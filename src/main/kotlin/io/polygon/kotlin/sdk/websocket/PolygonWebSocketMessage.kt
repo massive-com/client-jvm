@@ -273,4 +273,40 @@ sealed class PolygonWebSocketMessage {
             @SerialName("t") val timestampMillis: Long? = null
         ) : BusinessMessage()
     }
+
+    sealed class FuturesMessage : PolygonWebSocketMessage() {
+        @Serializable
+        data class Trade(
+            @SerialName("ev") val eventType: String? = null,
+            @SerialName("sym") val ticker: String? = null,
+            @SerialName("p") val price: Double? = null,
+            @SerialName("s") val size: Double? = null,
+            @SerialName("t") val timestampMillis: Long? = null
+        ) : FuturesMessage()
+
+        @Serializable
+        data class Quote(
+            @SerialName("ev") val eventType: String? = null,
+            @SerialName("sym") val ticker: String? = null,
+            @SerialName("bp") val bidPrice: Double? = null,
+            @SerialName("bs") val bidSize: Double? = null,
+            @SerialName("ap") val askPrice: Double? = null,
+            @SerialName("as") val askSize: Double? = null,
+            @SerialName("t") val timestampMillis: Long? = null
+        ) : FuturesMessage()
+
+        @Serializable
+        data class Aggregate(
+            @SerialName("ev") val eventType: String? = null,
+            @SerialName("sym") val ticker: String? = null,
+            @SerialName("v") val volume: Double? = null,
+            @SerialName("o") val openPrice: Double? = null,
+            @SerialName("c") val closePrice: Double? = null,
+            @SerialName("h") val highPrice: Double? = null,
+            @SerialName("l") val lowPrice: Double? = null,
+            @SerialName("s") val startTimestampMillis: Long? = null,
+            @SerialName("e") val endTimestampMillis: Long? = null
+        ) : FuturesMessage()
+    }
+
 }
