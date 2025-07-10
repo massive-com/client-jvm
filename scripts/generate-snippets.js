@@ -18,9 +18,28 @@ function getEnumClassName(paramName, operationId) {
   return `${capitalize(paramName)}${capitalize(operationId)}`;
 }
 
+function toPolygonToken(name) {
+  let result = '';
+  for (let i = 0; i < name.length; i++) {
+    const c = name[i];
+    if (c === '_') {
+      result += '__';
+    } else if (c.toUpperCase() === c && i > 0 && /^[A-Z]$/.test(c)) {
+      result += '_' + c;
+    } else {
+      result += c;
+    }
+  }
+  return 'POLYGON_' + result.toUpperCase();
+}
+
+function toSnakeCase(str) {
+  return str.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase();
+}
+
 function getPlaceholder(param, useTokens, operationId) {
   if (useTokens) {
-    return `"POLYGON_${param.name.toUpperCase()}"`;
+    return `"${toPolygonToken(param.name)}"`;
   }
   if (param.schema && param.schema.enum) {
     const enumClass = getEnumClassName(param.name, operationId);
@@ -123,7 +142,8 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
       snippetLines.push(`    }`);
       snippetLines.push(`}`);
 
-      const snippetPath = path.join(dir, `${funcName}.kt`);
+      let snakeOp = toSnakeCase(funcName);
+      const snippetPath = path.join(dir, `${snakeOp}.kt`);
       fs.writeFileSync(snippetPath, snippetLines.join('\n'));
       console.log(`✅ Generated snippet: ${path.relative('.', snippetPath)}`);
     };
