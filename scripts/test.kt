@@ -7,7 +7,7 @@ import org.openapitools.client.models.*
 
 fun main() {
     // Set your Polygon.io API key here
-    ApiClient.apiKey["apiKey"] = "NaDb7rd5pGD2CALbHvURQ0VJbfgpxbCv"
+    ApiClient.apiKey["apiKey"] = "POLYGON_API_KEY"
 
     val api = DefaultApi()
     try {
