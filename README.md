@@ -2,6 +2,18 @@
 
 Welcome to the official JVM client library SDK, written in Kotlin, for the [Polygon](https://polygon.io/) REST and WebSocket API. This client SDK is usable by any JVM language (including in Android SDK version 21+). To get started, please see the [Getting Started](https://polygon.io/docs/stocks/getting-started) section in our documentation, and the [docs](https://polygon.io/docs/rest/quickstart) for code snippets.
 
+## Breaking Change Notice
+As of July 21, 2025, we've rebuilt client-jvm to be fully generated from the Polygon.io OpenAPI specification.
+
+### Key improvements:
+- Breaking changes to method names and request/response structures.
+- The client is now automatically synchronized with the latest Polygon.io API, ensuring faster access to new endpoints and updates.
+- Reduces the risk of SDK/API drift—what you see in the docs is what you get in the client.
+
+### Action required:
+- If you're upgrading from a previous version, expect incompatibilities—please update your integration accordingly.
+- We've updated the [docs](https://polygon.io/docs) with usage examples and new patterns for making requests.
+
 ## Getting started
 
 To access real-time and historical market data with Polygon.io, you will first need to create an account and obtain an API key to authenticate your requests. If you run the samples makes sure to set the `POLYGON_API_KEY` environment variable for the sample code to use. To persist the environment variable you need to add the above command to the shell startup script (e.g. .bashrc or .bash_profile.
