@@ -1,2 +1,1 @@
-include ':sample'
-rootProject.name='PolygonKotlinClient'
+rootProject.name = 'kotlin-client'
