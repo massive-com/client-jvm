@@ -50,6 +50,7 @@ sealed class Market(val market: String) {
     object Forex : Market("forex")
     object Crypto : Market("crypto")
     object Indices : Market("indices")
+    object Futures : Market("futures")
     object LaunchpadStocks : Market("stocks")
     object LaunchpadOptions : Market("options")
     object LaunchpadForex : Market("forex")
@@ -265,6 +266,7 @@ constructor(
                         Market.Indices -> parseIndicesMessage(frame)
                         Market.Forex -> parseForexMessage(frame)
                         Market.Crypto -> parseCryptoMessage(frame)
+                        Market.Futures -> parseFuturesMessage(frame)
                         Market.LaunchpadStocks -> parseLaunchpadMessage(frame)
                         Market.LaunchpadOptions -> parseLaunchpadMessage(frame)
                         Market.LaunchpadForex -> parseLaunchpadMessage(frame)
@@ -339,6 +341,15 @@ constructor(
             else -> RawMessage(frame.toString().toByteArray())
         }
     }
+
+	private fun parseFuturesMessage(frame: JsonObject): PolygonWebSocketMessage {
+	    return when (frame.jsonObject[EVENT_TYPE_MESSAGE_KEY]?.jsonPrimitive?.content) {
+	        "T" -> serializer.decodeFromJsonElement(FuturesMessage.Trade.serializer(), frame)
+	        "Q" -> serializer.decodeFromJsonElement(FuturesMessage.Quote.serializer(), frame)
+	        "A", "AM" -> serializer.decodeFromJsonElement(FuturesMessage.Aggregate.serializer(), frame)
+	        else -> RawMessage(frame.toString().toByteArray())
+	    }
+	}
 
     private fun parseLaunchpadMessage(frame: JsonObject): PolygonWebSocketMessage {
         return when (frame.jsonObject[EVENT_TYPE_MESSAGE_KEY]?.jsonPrimitive?.content) {

@@ -44,6 +44,16 @@ sealed class PolygonWebSocketChannel(val prefix: String) {
         object AggPerMinute : Options("AM")
     }
 
+	/**
+     * Usable in the [PolygonWebSocketCluster.Futures] cluster
+     */
+	sealed class Futures(channelPrefix: String) : PolygonWebSocketChannel(channelPrefix) {
+        object Trades : Futures("T")
+        object Quotes : Futures("Q")
+        object AggPerSecond : Futures("A")
+        object AggPerMinute : Futures("AM")
+    }
+
     /**
      * Usable in the [PolygonWebSocketCluster.LaunchpadOptions] cluster
      */
