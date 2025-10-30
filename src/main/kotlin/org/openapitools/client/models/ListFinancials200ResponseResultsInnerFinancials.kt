@@ -24,9 +24,9 @@ import com.squareup.moshi.JsonClass
  * Structured financial statements with detailed data points and metadata.
  *
  * @param balanceSheet 
- * @param cashFlowStatement Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
- * @param comprehensiveIncome Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
- * @param incomeStatement Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+ * @param cashFlowStatement Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+ * @param comprehensiveIncome Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+ * @param incomeStatement Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
  */
 
 
@@ -35,15 +35,15 @@ data class ListFinancials200ResponseResultsInnerFinancials (
     @Json(name = "balance_sheet")
     val balanceSheet: ListFinancials200ResponseResultsInnerFinancialsBalanceSheet? = null,
 
-    /* Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
+    /* Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
     @Json(name = "cash_flow_statement")
     val cashFlowStatement: kotlin.Any? = null,
 
-    /* Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
+    /* Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
     @Json(name = "comprehensive_income")
     val comprehensiveIncome: kotlin.Any? = null,
 
-    /* Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
+    /* Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details. */
     @Json(name = "income_statement")
     val incomeStatement: kotlin.Any? = null
 

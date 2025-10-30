@@ -22,13 +22,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param condition Polygon.io's mapping for condition codes.  For more information, see our <a href=\"https://polygon.io/glossary/us/stocks/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
+ * @param condition Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/us/stocks/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
  */
 
 
 data class ConditionTypeMap (
 
-    /* Polygon.io's mapping for condition codes.  For more information, see our <a href=\"https://polygon.io/glossary/us/stocks/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>.  */
+    /* Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/us/stocks/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>.  */
     @Json(name = "condition")
     val condition: kotlin.String? = null
 

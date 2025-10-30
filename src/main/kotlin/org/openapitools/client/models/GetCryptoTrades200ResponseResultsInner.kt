@@ -22,7 +22,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param exchange The exchange ID. See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param price The price of the trade in the base currency of the crypto pair.
  * @param propertySize The size of a trade (also known as volume).
  * @param conditions A list of condition codes.
@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
 
 data class GetCryptoTrades200ResponseResultsInner (
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 

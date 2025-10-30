@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  * @param breakEvenPrice The price of the underlying asset for the contract to break even. For a call, this value is (strike price + premium paid). For a put, this value is (strike price - premium paid).
  * @param details 
  * @param error The error while looking for this ticker.
- * @param fmv Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>.
+ * @param fmv Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
  * @param greeks 
  * @param impliedVolatility The market's forecast for the volatility of the underlying asset, based on this option's current price.
  * @param lastQuote 
@@ -65,7 +65,7 @@ data class GetSnapshots200ResponseResultsInner (
     @Json(name = "error")
     val error: kotlin.String? = null,
 
-    /* Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>. */
+    /* Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
     @Json(name = "fmv")
     val fmv: java.math.BigDecimal? = null,
 

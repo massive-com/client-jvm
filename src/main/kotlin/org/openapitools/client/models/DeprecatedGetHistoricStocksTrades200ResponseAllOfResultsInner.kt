@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
  * @param p The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
  * @param r The ID for the Trade Reporting Facility where the trade took place. 
  * @param s The size of a trade (also known as volume). 
- * @param x The exchange ID. See <a href=\"https://polygon.io/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param x The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param z There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ 
  */
 
@@ -84,7 +84,7 @@ data class DeprecatedGetHistoricStocksTrades200ResponseAllOfResultsInner (
     @Json(name = "s")
     val s: kotlin.Double,
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "x")
     val x: kotlin.Int,
 

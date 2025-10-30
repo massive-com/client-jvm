@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Balance sheet. The keys in this object can be any of the fields listed in the Balance Sheet section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>.
+ * Balance sheet. The keys in this object can be any of the fields listed in the Balance Sheet section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>.
  *
  * @param star 
  */

@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The greeks for this contract. There are certain circumstances where greeks will not be returned, such as options contracts that are deep in the money. See this <a href=\"https://polygon.io/blog/greeks-and-implied-volatility/#testing\" alt=\"link\">article</a> for more information.
+ * The greeks for this contract. There are certain circumstances where greeks will not be returned, such as options contracts that are deep in the money. See this <a href=\"https://massive.com/blog/greeks-and-implied-volatility/#testing\" alt=\"link\">article</a> for more information.
  *
  * @param delta The change in the option's price per $0.01 increment in the price of the underlying asset.
  * @param gamma The change in delta per $0.01 change in the price of the underlying asset.

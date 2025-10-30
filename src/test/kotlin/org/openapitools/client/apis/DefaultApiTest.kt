@@ -488,7 +488,7 @@ class DefaultApiTest : ShouldSpec() {
             //val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
-            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://polygon.io/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
+            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
             //val result : GetCryptoAggregates200Response = apiInstance.getCryptoAggregates(cryptoTicker, multiplier, timespan, from, to, adjusted, sort, limit)
             //result shouldBe ("TODO")
         }
@@ -636,7 +636,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getEvents
         should("test getEvents") {
             // uncomment below to test getEvents
-            //val id : kotlin.String = META // kotlin.String | Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://polygon.io/docs/stocks/get_v3_reference_tickers__ticker)
+            //val id : kotlin.String = META // kotlin.String | Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://massive.com/docs/stocks/get_v3_reference_tickers__ticker)
             //val types : kotlin.String = types_example // kotlin.String | A comma-separated list of the types of event to include. Currently ticker_change is the only supported event_type. Leave blank to return all supported event_types.
             //val result : GetEvents200Response = apiInstance.getEvents(id, types)
             //result shouldBe ("TODO")
@@ -667,7 +667,7 @@ class DefaultApiTest : ShouldSpec() {
             //val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
-            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://polygon.io/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
+            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
             //val result : GetCryptoAggregates200Response = apiInstance.getForexAggregates(forexTicker, multiplier, timespan, from, to, adjusted, sort, limit)
             //result shouldBe ("TODO")
         }
@@ -831,7 +831,7 @@ class DefaultApiTest : ShouldSpec() {
             //val from : kotlin.String = 2023-03-13 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val to : kotlin.String = 2023-03-24 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
-            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://polygon.io/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
+            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
             //val result : GetPreviousIndicesAggregates200Response = apiInstance.getIndicesAggregates(indicesTicker, multiplier, timespan, from, to, sort, limit)
             //result shouldBe ("TODO")
         }
@@ -1018,7 +1018,7 @@ class DefaultApiTest : ShouldSpec() {
             //val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
-            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://polygon.io/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
+            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
             //val result : GetCryptoAggregates200Response = apiInstance.getOptionsAggregates(optionsTicker, multiplier, timespan, from, to, adjusted, sort, limit)
             //result shouldBe ("TODO")
         }
@@ -1048,7 +1048,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getOptionsContract
         should("test getOptionsContract") {
             // uncomment below to test getOptionsContract
-            //val optionsTicker : kotlin.String = O:SPY251219C00650000 // kotlin.String | Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://polygon.io/blog/how-to-read-a-stock-options-ticker/).
+            //val optionsTicker : kotlin.String = O:SPY251219C00650000 // kotlin.String | Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://massive.com/blog/how-to-read-a-stock-options-ticker/).
             //val asOf : kotlin.String = asOf_example // kotlin.String | Specify a point in time for the contract as of this date with format YYYY-MM-DD. Defaults to today's date.
             //val result : GetOptionsContract200Response = apiInstance.getOptionsContract(optionsTicker, asOf)
             //result shouldBe ("TODO")
@@ -1233,7 +1233,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getSnapshotSummary
         should("test getSnapshotSummary") {
             // uncomment below to test getSnapshotSummary
-            //val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD // kotlin.String | Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/docs/stocks/get_v3_reference_tickers\">the tickers endpoint</a> for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
+            //val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD // kotlin.String | Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/docs/stocks/get_v3_reference_tickers\">the tickers endpoint</a> for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
             //val result : GetSnapshotSummary200Response = apiInstance.getSnapshotSummary(tickerAnyOf)
             //result shouldBe ("TODO")
         }
@@ -1265,7 +1265,7 @@ class DefaultApiTest : ShouldSpec() {
             //val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
-            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://polygon.io/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
+            //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
             //val result : GetStocksAggregates200Response = apiInstance.getStocksAggregates(stocksTicker, multiplier, timespan, from, to, adjusted, sort, limit)
             //result shouldBe ("TODO")
         }
@@ -1687,7 +1687,7 @@ class DefaultApiTest : ShouldSpec() {
         should("test listOptionsContracts") {
             // uncomment below to test listOptionsContracts
             //val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | Query for contracts relating to an underlying stock ticker.
-            //val ticker : kotlin.String = ticker_example // kotlin.String | This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://polygon.io/docs/options/get_v3_reference_options_contracts__options_ticker).
+            //val ticker : kotlin.String = ticker_example // kotlin.String | This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://massive.com/docs/options/get_v3_reference_options_contracts__options_ticker).
             //val contractType : kotlin.String = contractType_example // kotlin.String | Query by the type of contract.
             //val expirationDate : kotlin.String = expirationDate_example // kotlin.String | Query by contract expiration with date format YYYY-MM-DD.
             //val asOf : kotlin.String = asOf_example // kotlin.String | Specify a point in time for contracts as of this date with format YYYY-MM-DD. Defaults to today's date.
@@ -1746,7 +1746,7 @@ class DefaultApiTest : ShouldSpec() {
         should("test listTickers") {
             // uncomment below to test listTickers
             //val ticker : kotlin.String = ticker_example // kotlin.String | Specify a ticker symbol. Defaults to empty string which queries all tickers.
-            //val type : kotlin.String = type_example // kotlin.String | Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types.
+            //val type : kotlin.String = type_example // kotlin.String | Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types.
             //val market : kotlin.String = market_example // kotlin.String | Filter by market type. By default all markets are included.
             //val exchange : kotlin.String = exchange_example // kotlin.String | Specify the primary exchange of the asset in the ISO code format. Find more information about the ISO codes [at the ISO org website](https://www.iso20022.org/market-identifier-codes). Defaults to empty string which queries all exchanges.
             //val cusip : kotlin.String = cusip_example // kotlin.String | Specify the CUSIP code of the asset you want to search for. Find more information about CUSIP codes [at their website](https://www.cusip.com/identifiers.html#/CUSIP). Defaults to empty string which queries all CUSIPs.  Note: Although you can query by CUSIP, due to legal reasons we do not return the CUSIP in the response.

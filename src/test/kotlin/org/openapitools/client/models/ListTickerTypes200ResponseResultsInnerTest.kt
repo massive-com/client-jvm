@@ -31,7 +31,7 @@ class ListTickerTypes200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.assetClass shouldBe ("TODO")
         }
 
-        // to test the property `code` - A code used by Polygon.io to refer to this ticker type.
+        // to test the property `code` - A code used by Massive.com to refer to this ticker type.
         should("test code") {
             // uncomment below to test the property
             //modelInstance.code shouldBe ("TODO")

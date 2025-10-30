@@ -16,7 +16,7 @@
 | **lastUpdatedUtc** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The information is accurate up to this time. |  [optional] |
 | **primaryExchange** | **kotlin.String** | The ISO code of the primary listing exchange for this asset. |  [optional] |
 | **shareClassFigi** | **kotlin.String** | The share Class OpenFIGI number for this ticker. Find more information [here](https://www.openfigi.com/about/figi) |  [optional] |
-| **type** | **kotlin.String** | The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). |  [optional] |
+| **type** | **kotlin.String** | The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). |  [optional] |
 
 
 <a id="Locale"></a>

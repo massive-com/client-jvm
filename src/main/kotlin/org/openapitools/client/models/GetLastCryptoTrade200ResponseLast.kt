@@ -22,7 +22,7 @@ import com.squareup.moshi.JsonClass
 /**
  * Contains the requested trade data for the specified cryptocurrency pair.
  *
- * @param exchange The exchange that this crypto trade happened on.   See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.
+ * @param exchange The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
  * @param propertySize The size of a trade (also known as volume).
  * @param timestamp The Unix millisecond timestamp.
@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
 
 data class GetLastCryptoTrade200ResponseLast (
 
-    /* The exchange that this crypto trade happened on.   See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. */
+    /* The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 

@@ -28,7 +28,7 @@ import com.squareup.moshi.JsonClass
  * Contains the requested snapshot data for the specified ticker.
  *
  * @param day 
- * @param fmv Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>.
+ * @param fmv Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
  * @param lastQuote 
  * @param lastTrade 
  * @param min 
@@ -45,7 +45,7 @@ data class GetStocksSnapshotTicker200ResponseAllOfTicker (
     @Json(name = "day")
     val day: GetStocksSnapshotTickers200ResponseAllOfTickersInnerDay? = null,
 
-    /* Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>. */
+    /* Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
     @Json(name = "fmv")
     val fmv: kotlin.Double? = null,
 

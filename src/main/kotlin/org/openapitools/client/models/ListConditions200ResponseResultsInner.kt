@@ -26,13 +26,13 @@ import com.squareup.moshi.JsonClass
  *
  * @param assetClass An identifier for a group of similar financial instruments.
  * @param dataTypes Data types that this condition applies to.
- * @param id An identifier used by Polygon.io for this condition. Unique per data type.
+ * @param id An identifier used by Massive.com for this condition. Unique per data type.
  * @param name The name of this condition.
  * @param sipMapping 
  * @param type An identifier for a collection of related conditions.
  * @param abbreviation A commonly-used abbreviation for this condition.
  * @param description A short description of the semantics of this condition.
- * @param exchange If present, mapping this condition from a Polygon.io code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange.
+ * @param exchange If present, mapping this condition from a Massive.com code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange.
  * @param legacy If true, this condition is from an old version of the SIPs' specs and no longer is used. Other conditions may or may not reuse the same symbol as this one.
  * @param updateRules 
  */
@@ -48,7 +48,7 @@ data class ListConditions200ResponseResultsInner (
     @Json(name = "data_types")
     val dataTypes: kotlin.collections.List<ListConditions200ResponseResultsInner.DataTypes>,
 
-    /* An identifier used by Polygon.io for this condition. Unique per data type. */
+    /* An identifier used by Massive.com for this condition. Unique per data type. */
     @Json(name = "id")
     val id: kotlin.Int,
 
@@ -71,7 +71,7 @@ data class ListConditions200ResponseResultsInner (
     @Json(name = "description")
     val description: kotlin.String? = null,
 
-    /* If present, mapping this condition from a Polygon.io code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange. */
+    /* If present, mapping this condition from a Massive.com code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange. */
     @Json(name = "exchange")
     val exchange: kotlin.Int? = null,
 

@@ -1,23 +1,23 @@
-package io.polygon.kotlin.sdk.websocket
+package io.massive.kotlin.sdk.websocket
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Messages that Polygon web sockets might return. See https://polygon.io/sockets for documentation
+ * Messages that Massive web sockets might return. See https://massive.com/sockets for documentation
  */
-sealed class PolygonWebSocketMessage {
+sealed class MassiveWebSocketMessage {
 
-    data class RawMessage(val data: ByteArray) : PolygonWebSocketMessage()
+    data class RawMessage(val data: ByteArray) : MassiveWebSocketMessage()
 
     @Serializable
     data class StatusMessage(
         val ev: String? = null,
         val status: String? = null,
         val message: String? = null
-    ) : PolygonWebSocketMessage()
+    ) : MassiveWebSocketMessage()
 
-    sealed class StocksMessage : PolygonWebSocketMessage() {
+    sealed class StocksMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class Trade(
@@ -72,7 +72,7 @@ sealed class PolygonWebSocketMessage {
         ) : StocksMessage()
     }
 
-    sealed class OptionsMessage : PolygonWebSocketMessage() {
+    sealed class OptionsMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class Trade(
@@ -119,7 +119,7 @@ sealed class PolygonWebSocketMessage {
         ) : OptionsMessage()
     }
 
-    sealed class ForexMessage : PolygonWebSocketMessage() {
+    sealed class ForexMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class Quote(
@@ -145,7 +145,7 @@ sealed class PolygonWebSocketMessage {
         ) : ForexMessage()
     }
 
-    sealed class CryptoMessage : PolygonWebSocketMessage() {
+    sealed class CryptoMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class Quote(
@@ -157,7 +157,7 @@ sealed class PolygonWebSocketMessage {
             @SerialName("as") val askSize: Double? = null,
             @SerialName("t") val exchangeTimesampeMillis: Long? = null,
             @SerialName("x") val exchangeId: Long? = null,
-            @SerialName("r") val receivedAtPolygonTimestamp: Long? = null
+            @SerialName("r") val receivedAtMassiveTimestamp: Long? = null
         ) : CryptoMessage()
 
         @Serializable
@@ -170,7 +170,7 @@ sealed class PolygonWebSocketMessage {
             @SerialName("i") val tradeId: String? = null,
             @SerialName("t") val exchangeTimestampMillis: Long? = null,
             @SerialName("x") val exchangeId: Long? = null,
-            @SerialName("r") val receivedAtPolygonTimestamp: Long? = null
+            @SerialName("r") val receivedAtMassiveTimestamp: Long? = null
         ) : CryptoMessage()
 
         @Serializable
@@ -209,11 +209,11 @@ sealed class PolygonWebSocketMessage {
             @SerialName("a") val askPrices: List<List<Double>> = emptyList(),
             @SerialName("t") val timestampMillis: Long? = null,
             @SerialName("x") val exchangeId: Long? = null,
-            @SerialName("r") val receivedAtPolygonTimestamp: Long? = null
+            @SerialName("r") val receivedAtMassiveTimestamp: Long? = null
         ) : CryptoMessage()
     }
 
-    sealed class IndicesMessage : PolygonWebSocketMessage() {
+    sealed class IndicesMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class Value(
@@ -238,7 +238,7 @@ sealed class PolygonWebSocketMessage {
 
     }
 
-    sealed class LaunchpadMessage : PolygonWebSocketMessage() {
+    sealed class LaunchpadMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class LaunchpadValue(
@@ -263,7 +263,7 @@ sealed class PolygonWebSocketMessage {
 
     }
 
-    sealed class BusinessMessage : PolygonWebSocketMessage() {
+    sealed class BusinessMessage : MassiveWebSocketMessage() {
 
         @Serializable
         data class FairMarketValue(
@@ -274,7 +274,7 @@ sealed class PolygonWebSocketMessage {
         ) : BusinessMessage()
     }
 
-    sealed class FuturesMessage : PolygonWebSocketMessage() {
+    sealed class FuturesMessage : MassiveWebSocketMessage() {
         @Serializable
         data class Trade(
             @SerialName("ev") val eventType: String? = null,

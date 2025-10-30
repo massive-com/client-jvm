@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * @param a The ask price.
  * @param b The bid price.
  * @param t The Unix millisecond timestamp for the start of the aggregate window.
- * @param x The exchange ID. See <a href=\"https://polygon.io/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param x The exchange ID. See <a href=\"https://massive.com/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  */
 
 
@@ -43,7 +43,7 @@ data class DeprecatedGetHistoricForexQuotes200ResponseAllOfTicksInner (
     @Json(name = "t")
     val t: kotlin.Int,
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "x")
     val x: kotlin.Int
 

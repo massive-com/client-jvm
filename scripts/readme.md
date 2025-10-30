@@ -1,6 +1,6 @@
-# Polygon.io Kotlin Client Generator
+# Massive.com Kotlin Client Generator
 
-This directory contains tools and scripts to generate a Kotlin/JVM client SDK for the [Polygon.io](https://polygon.io/) API using the OpenAPI specification generator. The process involves building a Docker image for the generator, pulling the OpenAPI spec, generating the client code, building the project with Gradle, and running tests.
+This directory contains tools and scripts to generate a Kotlin/JVM client SDK for the [Massive.com](https://massive.com/) API using the OpenAPI specification generator. The process involves building a Docker image for the generator, pulling the OpenAPI spec, generating the client code, building the project with Gradle, and running tests.
 
 ## Prerequisites
 
@@ -13,14 +13,14 @@ This directory contains tools and scripts to generate a Kotlin/JVM client SDK fo
 
 ## Usage
 
-Follow these steps to generate, build, and test the Polygon.io Kotlin client SDK.
+Follow these steps to generate, build, and test the Massive.com Kotlin client SDK.
 
 ### 1. Build the Docker Image
 
 Build the Docker image for the OpenAPI client generator:
 
 ```
-docker build -t polygon-kotlin-client-generator .
+docker build -t massive-kotlin-client-generator .
 ```
 
 ### 2. Run the Generator Container (Initial Setup)
@@ -28,12 +28,12 @@ docker build -t polygon-kotlin-client-generator .
 Run the Docker container to prepare the environment (this may perform initial setup or generation):
 
 ```
-docker run --rm -v $(pwd):/app polygon-kotlin-client-generator
+docker run --rm -v $(pwd):/app massive-kotlin-client-generator
 ```
 
 ### 3. Pull the OpenAPI Specification
 
-Use the Node.js script to fetch the latest OpenAPI spec from Polygon.io:
+Use the Node.js script to fetch the latest OpenAPI spec from Massive.com:
 
 ```
 node pull_spec.js
@@ -49,7 +49,7 @@ Run the Docker container again to generate the Kotlin client code using the pull
 docker run --rm \
   -v $(pwd)/src/openapi.json:/app/src/openapi.json \
   -v $(pwd)/src/rest:/app/src/rest \
-  polygon-kotlin-client-generator
+  massive-kotlin-client-generator
 ```
 
 The generated code will be placed in `src/rest`.
@@ -98,7 +98,7 @@ This will execute the test code (e.g., `test.kt`) and verify the client function
 - Ensure all volumes are correctly mounted to avoid file not found errors.
 - If the `pull_spec.js` script fails, verify your Node.js environment and internet connection.
 - For Gradle build issues, check the Docker logs or run with `--debug` for more details.
-- Customize the OpenAPI generator configuration in the Dockerfile or generator scripts as needed for Polygon.io specifics.
+- Customize the OpenAPI generator configuration in the Dockerfile or generator scripts as needed for Massive.com specifics.
 
 ## Contributing
 

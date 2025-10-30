@@ -27,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param p The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
  * @param s The size (volume) of the trade.
  * @param t The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this message from the exchange which produced it.
- * @param x The exchange ID. See <a href=\"https://polygon.io/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param x The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  */
 
 
@@ -53,7 +53,7 @@ data class GetStocksSnapshotTickers200ResponseAllOfTickersInnerLastTrade (
     @Json(name = "t")
     val t: kotlin.Int,
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "x")
     val x: kotlin.Int
 

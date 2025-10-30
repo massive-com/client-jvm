@@ -26,9 +26,9 @@ import com.squareup.moshi.JsonClass
  * @param bid The bid price.
  * @param lastUpdated The nanosecond timestamp of when this information was updated.
  * @param timeframe The time relevance of the data.
- * @param askExchange The ask side exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param askExchange The ask side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param askSize The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price.
- * @param bidExchange The bid side exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param bidExchange The bid side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param bidSize The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price.
  * @param midpoint The average of the bid and ask price.
  */
@@ -52,7 +52,7 @@ data class GetSnapshots200ResponseResultsInnerLastQuote (
     @Json(name = "timeframe")
     val timeframe: GetSnapshots200ResponseResultsInnerLastQuote.Timeframe,
 
-    /* The ask side exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The ask side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "ask_exchange")
     val askExchange: kotlin.Int? = null,
 
@@ -60,7 +60,7 @@ data class GetSnapshots200ResponseResultsInnerLastQuote (
     @Json(name = "ask_size")
     val askSize: kotlin.Double? = null,
 
-    /* The bid side exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The bid side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "bid_exchange")
     val bidExchange: kotlin.Int? = null,
 

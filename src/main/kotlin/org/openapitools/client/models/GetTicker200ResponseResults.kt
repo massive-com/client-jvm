@@ -49,7 +49,7 @@ import com.squareup.moshi.JsonClass
  * @param tickerRoot The root of a specified ticker. For example, the root of BRK.A is BRK.
  * @param tickerSuffix The suffix of a specified ticker. For example, the suffix of BRK.A is A.
  * @param totalEmployees The approximate number of employees for the company.
- * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types).
+ * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types).
  * @param weightedSharesOutstanding The shares outstanding calculated assuming all shares of other share classes are converted to this share class.
  */
 
@@ -154,7 +154,7 @@ data class GetTicker200ResponseResults (
     @Json(name = "total_employees")
     val totalEmployees: java.math.BigDecimal? = null,
 
-    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). */
+    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). */
     @Json(name = "type")
     val type: kotlin.String? = null,
 

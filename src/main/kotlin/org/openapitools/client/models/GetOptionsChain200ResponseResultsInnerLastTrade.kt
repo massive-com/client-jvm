@@ -22,7 +22,7 @@ import com.squareup.moshi.JsonClass
 /**
  * The most recent trade for this contract. This is only returned if your current plan includes trades.
  *
- * @param exchange The exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
  * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
  * @param propertySize The size of a trade (also known as volume).
@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
 
 data class GetOptionsChain200ResponseResultsInnerLastTrade (
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 

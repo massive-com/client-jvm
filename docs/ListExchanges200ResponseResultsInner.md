@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **assetClass** | [**inline**](#AssetClass) | An identifier for a group of similar financial instruments. |  |
-| **id** | **kotlin.Int** | A unique identifier used by Polygon.io for this exchange. |  |
+| **id** | **kotlin.Int** | A unique identifier used by Massive.com for this exchange. |  |
 | **locale** | [**inline**](#Locale) | An identifier for a geographical location. |  |
 | **name** | **kotlin.String** | Name of this exchange. |  |
 | **type** | [**inline**](#Type) | Represents the type of exchange. |  |
