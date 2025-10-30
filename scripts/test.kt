@@ -6,8 +6,8 @@ import org.openapitools.client.infrastructure.*
 import org.openapitools.client.models.*
 
 fun main() {
-    // Set your Polygon.io API key here
-    ApiClient.apiKey["apiKey"] = "POLYGON_API_KEY"
+    // Set your Massive.com API key here
+    ApiClient.apiKey["apiKey"] = "MASSIVE_API_KEY"
 
     val api = DefaultApi()
     try {

@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param todaysChange The value of the change from the previous day.
  * @param todaysChangePerc The percentage change since the previous day.
  * @param updated The last updated timestamp.
- * @param fmv Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>.
+ * @param fmv Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
  */
 
 
@@ -68,7 +68,7 @@ data class GetCryptoSnapshotTickers200ResponseAllOfTickersInner (
     @Json(name = "updated")
     val updated: kotlin.Int,
 
-    /* Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://polygon.io/contact\">contact us</a>. */
+    /* Fair market value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
     @Json(name = "fmv")
     val fmv: kotlin.Double? = null
 

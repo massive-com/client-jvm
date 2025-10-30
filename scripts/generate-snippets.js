@@ -18,7 +18,7 @@ function getEnumClassName(paramName, operationId) {
   return `${capitalize(paramName)}${capitalize(operationId)}`;
 }
 
-function toPolygonToken(name) {
+function toMassiveToken(name) {
   let result = '';
   for (let i = 0; i < name.length; i++) {
     const c = name[i];
@@ -30,7 +30,7 @@ function toPolygonToken(name) {
       result += c;
     }
   }
-  return 'POLYGON_' + result.toUpperCase();
+  return 'MASSIVE_' + result.toUpperCase();
 }
 
 function toSnakeCase(str) {
@@ -39,7 +39,7 @@ function toSnakeCase(str) {
 
 function getPlaceholder(param, useTokens, operationId) {
   if (useTokens) {
-    return `"${toPolygonToken(param.name)}"`;
+    return `"${toMassiveToken(param.name)}"`;
   }
   if (param.schema && param.schema.enum) {
     const enumClass = getEnumClassName(param.name, operationId);
@@ -106,7 +106,7 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
         imports.add(`org.openapitools.client.models.${requestBodyType}`);
         const jsonContent = details.requestBody.content['application/json'];
         const requestBodyJson = useTokens 
-          ? `"""{"key": "POLYGON_VALUE"}"""`
+          ? `"""{"key": "MASSIVE_VALUE"}"""`
           : `"""${JSON.stringify(jsonContent.example || {"key": "value"}, null, 2)}"""`;
         requestBodyLines.push(`    val requestBodyJson = ${requestBodyJson}`);
         requestBodyLines.push(`    val requestBody = Serializer.moshi.adapter(${requestBodyType}::class.java).fromJson(requestBodyJson)`);
@@ -120,7 +120,7 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
       //Array.from(enumImports).forEach(importStmt => snippetLines.push(`import ${importStmt}`));
       snippetLines.push(``);
       snippetLines.push(`fun main() {`);
-      snippetLines.push(`    ApiClient.apiKey["apiKey"] = "GLOBAL_POLYGON_API_KEY"`);
+      snippetLines.push(`    ApiClient.apiKey["apiKey"] = "GLOBAL_MASSIVE_API_KEY"`);
       snippetLines.push(``);
       if (requestBodyLines.length > 0) {
         requestBodyLines.forEach(line => snippetLines.push(line));

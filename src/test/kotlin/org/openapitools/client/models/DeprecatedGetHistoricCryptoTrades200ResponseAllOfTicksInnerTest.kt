@@ -55,7 +55,7 @@ class DeprecatedGetHistoricCryptoTrades200ResponseAllOfTicksInnerTest : ShouldSp
             //modelInstance.t shouldBe ("TODO")
         }
 
-        // to test the property `x` - The exchange that this crypto trade happened on.   See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
+        // to test the property `x` - The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
         should("test x") {
             // uncomment below to test the property
             //modelInstance.x shouldBe ("TODO")

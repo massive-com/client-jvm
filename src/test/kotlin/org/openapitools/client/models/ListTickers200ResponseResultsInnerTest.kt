@@ -97,7 +97,7 @@ class ListTickers200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.shareClassFigi shouldBe ("TODO")
         }
 
-        // to test the property `type` - The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types).
+        // to test the property `type` - The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types).
         should("test type") {
             // uncomment below to test the property
             //modelInstance.type shouldBe ("TODO")

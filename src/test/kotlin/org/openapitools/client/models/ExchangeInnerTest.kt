@@ -25,7 +25,7 @@ class ExchangeInnerTest : ShouldSpec() {
         // uncomment below to create an instance of ExchangeInner
         //val modelInstance = ExchangeInner()
 
-        // to test the property `code` - A unique identifier for the exchange internal to Polygon.io.  This is not an industry code or ISO standard.
+        // to test the property `code` - A unique identifier for the exchange internal to Massive.com.  This is not an industry code or ISO standard.
         should("test code") {
             // uncomment below to test the property
             //modelInstance.code shouldBe ("TODO")

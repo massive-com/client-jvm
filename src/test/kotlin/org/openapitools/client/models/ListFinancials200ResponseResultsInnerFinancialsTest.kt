@@ -32,19 +32,19 @@ class ListFinancials200ResponseResultsInnerFinancialsTest : ShouldSpec() {
             //modelInstance.balanceSheet shouldBe ("TODO")
         }
 
-        // to test the property `cashFlowStatement` - Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+        // to test the property `cashFlowStatement` - Cash flow statement. The keys in this object can be any of the fields listed in the Cash Flow Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
         should("test cashFlowStatement") {
             // uncomment below to test the property
             //modelInstance.cashFlowStatement shouldBe ("TODO")
         }
 
-        // to test the property `comprehensiveIncome` - Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+        // to test the property `comprehensiveIncome` - Comprehensive income. The keys in this object can be any of the fields listed in the Comprehensive Income section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
         should("test comprehensiveIncome") {
             // uncomment below to test the property
             //modelInstance.comprehensiveIncome shouldBe ("TODO")
         }
 
-        // to test the property `incomeStatement` - Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://polygon.io/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
+        // to test the property `incomeStatement` - Income statement. The keys in this object can be any of the fields listed in the Income Statement section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>. See the attributes of the objects within `balance_sheet` for more details.
         should("test incomeStatement") {
             // uncomment below to test the property
             //modelInstance.incomeStatement shouldBe ("TODO")

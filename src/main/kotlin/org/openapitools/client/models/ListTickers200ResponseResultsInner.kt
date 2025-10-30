@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param lastUpdatedUtc The information is accurate up to this time.
  * @param primaryExchange The ISO code of the primary listing exchange for this asset.
  * @param shareClassFigi The share Class OpenFIGI number for this ticker. Find more information [here](https://www.openfigi.com/about/figi)
- * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types).
+ * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types).
  */
 
 
@@ -88,7 +88,7 @@ data class ListTickers200ResponseResultsInner (
     @Json(name = "share_class_figi")
     val shareClassFigi: kotlin.String? = null,
 
-    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). */
+    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). */
     @Json(name = "type")
     val type: kotlin.String? = null
 

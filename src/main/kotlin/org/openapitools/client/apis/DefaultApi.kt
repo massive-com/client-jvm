@@ -115,7 +115,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "https://api.polygon.io")
+            System.getProperties().getProperty(ApiClient.baseUrlKey, "https://api.massive.com")
         }
     }
 
@@ -2790,7 +2790,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return GetCryptoAggregates200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2829,7 +2829,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return ApiResponse<GetCryptoAggregates200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -2854,7 +2854,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return RequestConfig
      */
     fun getCryptoAggregatesRequestConfig(cryptoTicker: kotlin.String, multiplier: kotlin.Int, timespan: TimespanGetCryptoAggregates, from: kotlin.String, to: kotlin.String, adjusted: kotlin.Boolean?, sort: SortGetCryptoAggregates?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -4290,7 +4290,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /vX/reference/tickers/{id}/events
      * Ticker Events
      * Get a timeline of events for the entity associated with the given ticker, CUSIP, or Composite FIGI.
-     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://polygon.io/docs/stocks/get_v3_reference_tickers__ticker)
+     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://massive.com/docs/stocks/get_v3_reference_tickers__ticker)
      * @param types A comma-separated list of the types of event to include. Currently ticker_change is the only supported event_type. Leave blank to return all supported event_types. (optional)
      * @return GetEvents200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -4323,7 +4323,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /vX/reference/tickers/{id}/events
      * Ticker Events
      * Get a timeline of events for the entity associated with the given ticker, CUSIP, or Composite FIGI.
-     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://polygon.io/docs/stocks/get_v3_reference_tickers__ticker)
+     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://massive.com/docs/stocks/get_v3_reference_tickers__ticker)
      * @param types A comma-separated list of the types of event to include. Currently ticker_change is the only supported event_type. Leave blank to return all supported event_types. (optional)
      * @return ApiResponse<GetEvents200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -4342,7 +4342,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * To obtain the request config of the operation getEvents
      *
-     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://polygon.io/docs/stocks/get_v3_reference_tickers__ticker)
+     * @param id Identifier of an asset. This can currently be a Ticker, CUSIP, or Composite FIGI. When given a ticker, we return events for the entity currently represented by that ticker. To find events for entities previously associated with a ticker, find the relevant identifier using the  [Ticker Details Endpoint](https://massive.com/docs/stocks/get_v3_reference_tickers__ticker)
      * @param types A comma-separated list of the types of event to include. Currently ticker_change is the only supported event_type. Leave blank to return all supported event_types. (optional)
      * @return RequestConfig
      */
@@ -4538,7 +4538,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return GetCryptoAggregates200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4577,7 +4577,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return ApiResponse<GetCryptoAggregates200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4602,7 +4602,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return RequestConfig
      */
     fun getForexAggregatesRequestConfig(forexTicker: kotlin.String, multiplier: kotlin.Int, timespan: TimespanGetForexAggregates, from: kotlin.String, to: kotlin.String, adjusted: kotlin.Boolean?, sort: SortGetForexAggregates?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -6160,7 +6160,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return GetPreviousIndicesAggregates200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -6198,7 +6198,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return ApiResponse<GetPreviousIndicesAggregates200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -6222,7 +6222,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return RequestConfig
      */
     fun getIndicesAggregatesRequestConfig(indicesTicker: kotlin.String, multiplier: kotlin.Int, timespan: TimespanGetIndicesAggregates, from: kotlin.String, to: kotlin.String, sort: SortGetIndicesAggregates?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -7954,7 +7954,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return GetCryptoAggregates200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -7993,7 +7993,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return ApiResponse<GetCryptoAggregates200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -8018,7 +8018,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return RequestConfig
      */
     fun getOptionsAggregatesRequestConfig(optionsTicker: kotlin.String, multiplier: kotlin.Int, timespan: TimespanGetOptionsAggregates, from: kotlin.String, to: kotlin.String, adjusted: kotlin.Boolean?, sort: SortGetOptionsAggregates?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -8263,7 +8263,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /v3/reference/options/contracts/{options_ticker}
      * Options Contract
      * Get an options contract
-     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://polygon.io/blog/how-to-read-a-stock-options-ticker/).
+     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://massive.com/blog/how-to-read-a-stock-options-ticker/).
      * @param asOf Specify a point in time for the contract as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
      * @return GetOptionsContract200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -8296,7 +8296,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /v3/reference/options/contracts/{options_ticker}
      * Options Contract
      * Get an options contract
-     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://polygon.io/blog/how-to-read-a-stock-options-ticker/).
+     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://massive.com/blog/how-to-read-a-stock-options-ticker/).
      * @param asOf Specify a point in time for the contract as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
      * @return ApiResponse<GetOptionsContract200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -8315,7 +8315,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * To obtain the request config of the operation getOptionsContract
      *
-     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://polygon.io/blog/how-to-read-a-stock-options-ticker/).
+     * @param optionsTicker Query for a contract by options ticker. You can learn more about the structure of options tickers [here](https://massive.com/blog/how-to-read-a-stock-options-ticker/).
      * @param asOf Specify a point in time for the contract as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
      * @return RequestConfig
      */
@@ -10042,7 +10042,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /v1/summaries
      * Summaries
      * Get everything needed to visualize the tick-by-tick movement of a list of tickers.
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://polygon.io/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
+     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
      * @return GetSnapshotSummary200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10074,7 +10074,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * GET /v1/summaries
      * Summaries
      * Get everything needed to visualize the tick-by-tick movement of a list of tickers.
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://polygon.io/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
+     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
      * @return ApiResponse<GetSnapshotSummary200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10092,7 +10092,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * To obtain the request config of the operation getSnapshotSummary
      *
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://polygon.io/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
+     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/stocks/get_v3_reference_tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
      * @return RequestConfig
      */
     fun getSnapshotSummaryRequestConfig(tickerAnyOf: kotlin.String?) : RequestConfig<Unit> {
@@ -10352,7 +10352,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return GetStocksAggregates200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10391,7 +10391,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return ApiResponse<GetStocksAggregates200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10416,7 +10416,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param to The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
      * @param adjusted Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits.  (optional)
      * @param sort Sort the results by timestamp. &#x60;asc&#x60; will return results in ascending order (oldest at the top), &#x60;desc&#x60; will return results in descending order (newest at the top).  (optional)
-     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://polygon.io/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
+     * @param limit Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on &lt;a href&#x3D;\&quot;https://massive.com/blog/aggs-api-updates/\&quot; target&#x3D;\&quot;_blank\&quot; alt&#x3D;\&quot;Aggregate Data API Improvements\&quot;&gt;Aggregate Data API Improvements&lt;/a&gt;.  (optional)
      * @return RequestConfig
      */
     fun getStocksAggregatesRequestConfig(stocksTicker: kotlin.String, multiplier: kotlin.Int, timespan: TimespanGetStocksAggregates, from: kotlin.String, to: kotlin.String, adjusted: kotlin.Boolean?, sort: SortGetStocksAggregates?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -12388,7 +12388,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/{ticker}
      * Ticker Details v3
-     * Get a single ticker supported by Polygon.io. This response will have detailed information about the ticker and the company behind it.
+     * Get a single ticker supported by Massive.com. This response will have detailed information about the ticker and the company behind it.
      * @param ticker The ticker symbol of the asset.
      * @param date Specify a point in time to get information about the ticker available on that date. When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date. (optional)
      * @return GetTicker200Response
@@ -12421,7 +12421,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/{ticker}
      * Ticker Details v3
-     * Get a single ticker supported by Polygon.io. This response will have detailed information about the ticker and the company behind it.
+     * Get a single ticker supported by Massive.com. This response will have detailed information about the ticker and the company behind it.
      * @param ticker The ticker symbol of the asset.
      * @param date Specify a point in time to get information about the ticker available on that date. When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date. (optional)
      * @return ApiResponse<GetTicker200Response?>
@@ -12934,7 +12934,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/conditions
      * Conditions
-     * List all conditions that Polygon.io uses.
+     * List all conditions that Massive.com uses.
      * @param assetClass Filter for conditions within a given asset class. (optional)
      * @param dataType Filter by data type. (optional)
      * @param id Filter for conditions with a given ID. (optional)
@@ -12972,7 +12972,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/conditions
      * Conditions
-     * List all conditions that Polygon.io uses.
+     * List all conditions that Massive.com uses.
      * @param assetClass Filter for conditions within a given asset class. (optional)
      * @param dataType Filter by data type. (optional)
      * @param id Filter for conditions with a given ID. (optional)
@@ -13445,7 +13445,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/exchanges
      * Exchanges
-     * List all exchanges that Polygon.io knows about.
+     * List all exchanges that Massive.com knows about.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ListExchanges200Response
@@ -13478,7 +13478,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/exchanges
      * Exchanges
-     * List all exchanges that Polygon.io knows about.
+     * List all exchanges that Massive.com knows about.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ApiResponse<ListExchanges200Response?>
@@ -14224,7 +14224,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * Options Contracts
      * Query for historical options contracts. This provides both active and expired options contracts.
      * @param underlyingTicker Query for contracts relating to an underlying stock ticker. (optional)
-     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://polygon.io/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
+     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://massive.com/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
      * @param contractType Query by the type of contract. (optional)
      * @param expirationDate Query by contract expiration with date format YYYY-MM-DD. (optional)
      * @param asOf Specify a point in time for contracts as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
@@ -14277,7 +14277,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * Options Contracts
      * Query for historical options contracts. This provides both active and expired options contracts.
      * @param underlyingTicker Query for contracts relating to an underlying stock ticker. (optional)
-     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://polygon.io/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
+     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://massive.com/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
      * @param contractType Query by the type of contract. (optional)
      * @param expirationDate Query by contract expiration with date format YYYY-MM-DD. (optional)
      * @param asOf Specify a point in time for contracts as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
@@ -14316,7 +14316,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * To obtain the request config of the operation listOptionsContracts
      *
      * @param underlyingTicker Query for contracts relating to an underlying stock ticker. (optional)
-     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://polygon.io/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
+     * @param ticker This parameter has been deprecated. To search by specific options ticker, use the Options Contract endpoint [here](https://massive.com/docs/options/get_v3_reference_options_contracts__options_ticker). (optional)
      * @param contractType Query by the type of contract. (optional)
      * @param expirationDate Query by contract expiration with date format YYYY-MM-DD. (optional)
      * @param asOf Specify a point in time for contracts as of this date with format YYYY-MM-DD. Defaults to today&#39;s date. (optional)
@@ -14653,7 +14653,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/types
      * Ticker Types
-     * List all ticker types that Polygon.io has.
+     * List all ticker types that Massive.com has.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ListTickerTypes200Response
@@ -14686,7 +14686,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/types
      * Ticker Types
-     * List all ticker types that Polygon.io has.
+     * List all ticker types that Massive.com has.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ApiResponse<ListTickerTypes200Response?>
@@ -14842,9 +14842,9 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers
      * Tickers
-     * Query all ticker symbols which are supported by Polygon.io. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+     * Query all ticker symbols which are supported by Massive.com. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
      * @param ticker Specify a ticker symbol. Defaults to empty string which queries all tickers. (optional)
-     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
+     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
      * @param market Filter by market type. By default all markets are included. (optional)
      * @param exchange Specify the primary exchange of the asset in the ISO code format. Find more information about the ISO codes [at the ISO org website](https://www.iso20022.org/market-identifier-codes). Defaults to empty string which queries all exchanges. (optional)
      * @param cusip Specify the CUSIP code of the asset you want to search for. Find more information about CUSIP codes [at their website](https://www.cusip.com/identifiers.html#/CUSIP). Defaults to empty string which queries all CUSIPs.  Note: Although you can query by CUSIP, due to legal reasons we do not return the CUSIP in the response. (optional)
@@ -14889,9 +14889,9 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers
      * Tickers
-     * Query all ticker symbols which are supported by Polygon.io. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+     * Query all ticker symbols which are supported by Massive.com. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
      * @param ticker Specify a ticker symbol. Defaults to empty string which queries all tickers. (optional)
-     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
+     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
      * @param market Filter by market type. By default all markets are included. (optional)
      * @param exchange Specify the primary exchange of the asset in the ISO code format. Find more information about the ISO codes [at the ISO org website](https://www.iso20022.org/market-identifier-codes). Defaults to empty string which queries all exchanges. (optional)
      * @param cusip Specify the CUSIP code of the asset you want to search for. Find more information about CUSIP codes [at their website](https://www.cusip.com/identifiers.html#/CUSIP). Defaults to empty string which queries all CUSIPs.  Note: Although you can query by CUSIP, due to legal reasons we do not return the CUSIP in the response. (optional)
@@ -14924,7 +14924,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * To obtain the request config of the operation listTickers
      *
      * @param ticker Specify a ticker symbol. Defaults to empty string which queries all tickers. (optional)
-     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://polygon.io/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
+     * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). Defaults to empty string which queries all types. (optional)
      * @param market Filter by market type. By default all markets are included. (optional)
      * @param exchange Specify the primary exchange of the asset in the ISO code format. Find more information about the ISO codes [at the ISO org website](https://www.iso20022.org/market-identifier-codes). Defaults to empty string which queries all exchanges. (optional)
      * @param cusip Specify the CUSIP code of the asset you want to search for. Find more information about CUSIP codes [at their website](https://www.cusip.com/identifiers.html#/CUSIP). Defaults to empty string which queries all CUSIPs.  Note: Although you can query by CUSIP, due to legal reasons we do not return the CUSIP in the response. (optional)

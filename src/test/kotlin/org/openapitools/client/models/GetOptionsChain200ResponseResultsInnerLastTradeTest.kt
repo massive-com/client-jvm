@@ -25,7 +25,7 @@ class GetOptionsChain200ResponseResultsInnerLastTradeTest : ShouldSpec() {
         // uncomment below to create an instance of GetOptionsChain200ResponseResultsInnerLastTrade
         //val modelInstance = GetOptionsChain200ResponseResultsInnerLastTrade()
 
-        // to test the property `exchange` - The exchange ID. See <a href=\"https://polygon.io/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+        // to test the property `exchange` - The exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test exchange") {
             // uncomment below to test the property
             //modelInstance.exchange shouldBe ("TODO")

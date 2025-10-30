@@ -8,7 +8,7 @@
 | **breakEvenPrice** | **kotlin.Double** | The price of the underlying asset for the contract to break even. For a call, this value is (strike price + premium paid). For a put, this value is (strike price - premium paid). |  [optional] |
 | **details** | [**GetSnapshots200ResponseResultsInnerDetails**](GetSnapshots200ResponseResultsInnerDetails.md) |  |  [optional] |
 | **error** | **kotlin.String** | The error while looking for this ticker. |  [optional] |
-| **fmv** | [**java.math.BigDecimal**](java.math.BigDecimal.md) | Fair market value is only available on Business plans. It&#39;s it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://polygon.io/contact\&quot;&gt;contact us&lt;/a&gt;. |  [optional] |
+| **fmv** | [**java.math.BigDecimal**](java.math.BigDecimal.md) | Fair market value is only available on Business plans. It&#39;s it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/contact\&quot;&gt;contact us&lt;/a&gt;. |  [optional] |
 | **greeks** | [**GetSnapshots200ResponseResultsInnerGreeks**](GetSnapshots200ResponseResultsInnerGreeks.md) |  |  [optional] |
 | **impliedVolatility** | **kotlin.Double** | The market&#39;s forecast for the volatility of the underlying asset, based on this option&#39;s current price. |  [optional] |
 | **lastQuote** | [**GetSnapshots200ResponseResultsInnerLastQuote**](GetSnapshots200ResponseResultsInnerLastQuote.md) |  |  [optional] |

@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param conditions A list of condition codes. 
- * @param exchange The exchange that this crypto trade happened on.   See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
+ * @param exchange The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
  * @param propertySize The size of a trade (also known as volume). 
  * @param timestamp The Unix millisecond timestamp for the start of the aggregate window.
@@ -36,7 +36,7 @@ data class CryptoLastTradeLast (
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>,
 
-    /* The exchange that this crypto trade happened on.   See <a href=\"https://polygon.io/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.  */
+    /* The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.  */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 

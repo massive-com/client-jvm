@@ -47,7 +47,7 @@ import com.squareup.moshi.JsonClass
  * @param similar A list of ticker symbols for similar companies.
  * @param symbol The exchange symbol that this item is traded under.
  * @param tags 
- * @param type The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://polygon.io/docs/stocks/get_v3_reference_tickers_types\">Full List of Ticker Types</a>)
+ * @param type The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://massive.com/docs/stocks/get_v3_reference_tickers_types\">Full List of Ticker Types</a>)
  * @param updated The last time this company record was updated.
  * @param url The URL of the company's website
  */
@@ -154,7 +154,7 @@ data class Company (
     @Json(name = "tags")
     val tags: kotlin.collections.List<kotlin.String>? = null,
 
-    /* The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://polygon.io/docs/stocks/get_v3_reference_tickers_types\">Full List of Ticker Types</a>) */
+    /* The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://massive.com/docs/stocks/get_v3_reference_tickers_types\">Full List of Ticker Types</a>) */
     @Json(name = "type")
     val type: kotlin.String? = null,
 

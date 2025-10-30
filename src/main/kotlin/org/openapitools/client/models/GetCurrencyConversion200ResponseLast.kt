@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param ask The ask price.
  * @param bid The bid price.
- * @param exchange The exchange ID. See <a href=\"https://polygon.io/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs.
+ * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
  * @param timestamp The Unix millisecond timestamp.
  */
 
@@ -39,7 +39,7 @@ data class GetCurrencyConversion200ResponseLast (
     @Json(name = "bid")
     val bid: kotlin.Double,
 
-    /* The exchange ID. See <a href=\"https://polygon.io/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Polygon.io's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/forex/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 
