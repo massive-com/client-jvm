@@ -73,7 +73,7 @@ class GetMarketStatus200ResponseIndicesGroupsTest : ShouldSpec() {
             //modelInstance.nasdaq shouldBe ("TODO")
         }
 
-        // to test the property `sAndP` - The status of Standard & Poors's (\"S&P\") indices trading hours.
+        // to test the property `sAndP` - The status of Standard & Poor's (\"S&P\") indices trading hours.
         should("test sAndP") {
             // uncomment below to test the property
             //modelInstance.sAndP shouldBe ("TODO")

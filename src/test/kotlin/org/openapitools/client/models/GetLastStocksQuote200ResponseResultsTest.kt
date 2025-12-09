@@ -55,13 +55,13 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.P shouldBe ("TODO")
         }
 
-        // to test the property `S` - The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price.
+        // to test the property `S` - The total number of shares available for sale at the current ask price.
         should("test S") {
             // uncomment below to test the property
             //modelInstance.S shouldBe ("TODO")
         }
 
-        // to test the property `X` - The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `X` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test X") {
             // uncomment below to test the property
             //modelInstance.X shouldBe ("TODO")
@@ -91,13 +91,13 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.p shouldBe ("TODO")
         }
 
-        // to test the property `s` - The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price.
+        // to test the property `s` - The total number of shares that buyers want to purchase at the current bid price.
         should("test s") {
             // uncomment below to test the property
             //modelInstance.s shouldBe ("TODO")
         }
 
-        // to test the property `x` - The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `x` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test x") {
             // uncomment below to test the property
             //modelInstance.x shouldBe ("TODO")

@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.StocksTickerResultsOTC
-import org.openapitools.client.models.StocksTickerResultsOTCResultsInner
+import org.openapitools.client.models.GetStocksAggregates200ResponseAllOfResultsInner
 
 class StocksTickerResultsOTCTest : ShouldSpec() {
     init {

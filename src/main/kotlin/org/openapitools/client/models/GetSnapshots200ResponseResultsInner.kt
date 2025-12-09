@@ -18,6 +18,7 @@ package org.openapitools.client.models
 import org.openapitools.client.models.GetSnapshotSummary200ResponseResultsInnerSession
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerDetails
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerGreeks
+import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastMinute
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastQuote
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastTrade
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerUnderlyingAsset
@@ -32,16 +33,20 @@ import com.squareup.moshi.JsonClass
  * @param breakEvenPrice The price of the underlying asset for the contract to break even. For a call, this value is (strike price + premium paid). For a put, this value is (strike price - premium paid).
  * @param details 
  * @param error The error while looking for this ticker.
- * @param fmv Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+ * @param fmv Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+ * @param fmvLastUpdated If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation.
  * @param greeks 
  * @param impliedVolatility The market's forecast for the volatility of the underlying asset, based on this option's current price.
+ * @param lastMinute 
  * @param lastQuote 
  * @param lastTrade 
+ * @param lastUpdated The nanosecond timestamp of when this information was updated.
  * @param marketStatus The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
  * @param message The error message while looking for this ticker.
  * @param name The name of this contract.
  * @param openInterest The quantity of this contract held at the end of the last trading day.
  * @param session 
+ * @param timeframe The time relevance of the data.
  * @param type The asset class for this ticker.
  * @param underlyingAsset 
  * @param `value` Value of Index.
@@ -65,9 +70,13 @@ data class GetSnapshots200ResponseResultsInner (
     @Json(name = "error")
     val error: kotlin.String? = null,
 
-    /* Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
+    /* Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
     @Json(name = "fmv")
     val fmv: java.math.BigDecimal? = null,
+
+    /* If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation. */
+    @Json(name = "fmv_last_updated")
+    val fmvLastUpdated: kotlin.Long? = null,
 
     @Json(name = "greeks")
     val greeks: GetSnapshots200ResponseResultsInnerGreeks? = null,
@@ -76,11 +85,18 @@ data class GetSnapshots200ResponseResultsInner (
     @Json(name = "implied_volatility")
     val impliedVolatility: kotlin.Double? = null,
 
+    @Json(name = "last_minute")
+    val lastMinute: GetSnapshots200ResponseResultsInnerLastMinute? = null,
+
     @Json(name = "last_quote")
     val lastQuote: GetSnapshots200ResponseResultsInnerLastQuote? = null,
 
     @Json(name = "last_trade")
     val lastTrade: GetSnapshots200ResponseResultsInnerLastTrade? = null,
+
+    /* The nanosecond timestamp of when this information was updated. */
+    @Json(name = "last_updated")
+    val lastUpdated: kotlin.Long? = null,
 
     /* The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading. */
     @Json(name = "market_status")
@@ -101,6 +117,10 @@ data class GetSnapshots200ResponseResultsInner (
     @Json(name = "session")
     val session: GetSnapshotSummary200ResponseResultsInnerSession? = null,
 
+    /* The time relevance of the data. */
+    @Json(name = "timeframe")
+    val timeframe: GetSnapshots200ResponseResultsInner.Timeframe? = null,
+
     /* The asset class for this ticker. */
     @Json(name = "type")
     val type: GetSnapshots200ResponseResultsInner.Type? = null,
@@ -114,6 +134,16 @@ data class GetSnapshots200ResponseResultsInner (
 
 ) {
 
+    /**
+     * The time relevance of the data.
+     *
+     * Values: dELAYED,rEALMinusTIME
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Timeframe(val value: kotlin.String) {
+        @Json(name = "DELAYED") dELAYED("DELAYED"),
+        @Json(name = "REAL-TIME") rEALMinusTIME("REAL-TIME");
+    }
     /**
      * The asset class for this ticker.
      *

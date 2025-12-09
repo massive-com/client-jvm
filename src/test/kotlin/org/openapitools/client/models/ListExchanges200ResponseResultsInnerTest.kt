@@ -31,7 +31,7 @@ class ListExchanges200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.assetClass shouldBe ("TODO")
         }
 
-        // to test the property `id` - A unique identifier used by Massive.com for this exchange.
+        // to test the property `id` - A unique identifier used by Massive for this exchange.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")

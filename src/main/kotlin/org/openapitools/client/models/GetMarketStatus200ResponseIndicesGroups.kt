@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
  * @param mstar The status of Morningstar (\"MSTAR\") indices trading hours.
  * @param mstarc The status of Morningstar Customer (\"MSTARC\") indices trading hours.
  * @param nasdaq The status of National Association of Securities Dealers Automated Quotations (\"Nasdaq\") indices trading hours.
- * @param sAndP The status of Standard & Poors's (\"S&P\") indices trading hours.
+ * @param sAndP The status of Standard & Poor's (\"S&P\") indices trading hours.
  * @param societeGenerale The status of Societe Generale indices trading hours.
  */
 
@@ -69,7 +69,7 @@ data class GetMarketStatus200ResponseIndicesGroups (
     @Json(name = "nasdaq")
     val nasdaq: kotlin.String? = null,
 
-    /* The status of Standard & Poors's (\"S&P\") indices trading hours. */
+    /* The status of Standard & Poor's (\"S&P\") indices trading hours. */
     @Json(name = "s_and_p")
     val sAndP: kotlin.String? = null,
 

@@ -37,7 +37,7 @@ class GetBenzingaV1Ratings200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.analyst shouldBe ("TODO")
         }
 
-        // to test the property `benzingaAnalystId`
+        // to test the property `benzingaAnalystId` - The identifer used by Benzinga for this analyst.
         should("test benzingaAnalystId") {
             // uncomment below to test the property
             //modelInstance.benzingaAnalystId shouldBe ("TODO")
@@ -49,7 +49,7 @@ class GetBenzingaV1Ratings200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.benzingaCalendarUrl shouldBe ("TODO")
         }
 
-        // to test the property `benzingaFirmId`
+        // to test the property `benzingaFirmId` - The identifer used by Benzinga for this firm.
         should("test benzingaFirmId") {
             // uncomment below to test the property
             //modelInstance.benzingaFirmId shouldBe ("TODO")
@@ -127,7 +127,7 @@ class GetBenzingaV1Ratings200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.previousRating shouldBe ("TODO")
         }
 
-        // to test the property `pricePercentChange`
+        // to test the property `pricePercentChange` - The percentage change in price target if price target and previous price target exists
         should("test pricePercentChange") {
             // uncomment below to test the property
             //modelInstance.pricePercentChange shouldBe ("TODO")

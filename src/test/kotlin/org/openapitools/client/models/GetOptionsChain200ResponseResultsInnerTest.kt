@@ -67,10 +67,16 @@ class GetOptionsChain200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.underlyingAsset shouldBe ("TODO")
         }
 
-        // to test the property `fmv` - Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+        // to test the property `fmv` - Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
         should("test fmv") {
             // uncomment below to test the property
             //modelInstance.fmv shouldBe ("TODO")
+        }
+
+        // to test the property `fmvLastUpdated` - If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation.
+        should("test fmvLastUpdated") {
+            // uncomment below to test the property
+            //modelInstance.fmvLastUpdated shouldBe ("TODO")
         }
 
         // to test the property `greeks`

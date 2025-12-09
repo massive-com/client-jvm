@@ -27,10 +27,10 @@ import com.squareup.moshi.JsonClass
  * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
  * @param askExchange The ask exchange ID
  * @param askPrice The ask price.
- * @param askSize The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price.
+ * @param askSize The total number of shares available for sale at the current ask price.
  * @param bidExchange The bid exchange ID
  * @param bidPrice The bid price.
- * @param bidSize The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price.
+ * @param bidSize The total number of shares that buyers want to purchase at the current bid price.
  * @param conditions A list of condition codes.
  * @param indicators A list of indicator codes.
  * @param tape There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ
@@ -60,7 +60,7 @@ data class GetStocksQuotes200ResponseResultsInner (
     @Json(name = "ask_price")
     val askPrice: kotlin.Double? = null,
 
-    /* The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price. */
+    /* The total number of shares available for sale at the current ask price. */
     @Json(name = "ask_size")
     val askSize: kotlin.Double? = null,
 
@@ -72,7 +72,7 @@ data class GetStocksQuotes200ResponseResultsInner (
     @Json(name = "bid_price")
     val bidPrice: kotlin.Double? = null,
 
-    /* The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price. */
+    /* The total number of shares that buyers want to purchase at the current bid price. */
     @Json(name = "bid_size")
     val bidSize: kotlin.Double? = null,
 

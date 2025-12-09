@@ -24,9 +24,9 @@ import com.squareup.moshi.JsonClass
  *
  * @param adjustedPriceTarget The current price target adjusted for stock splits and dividends.
  * @param analyst The name of the individual analyst who issued the rating.
- * @param benzingaAnalystId 
+ * @param benzingaAnalystId The identifer used by Benzinga for this analyst.
  * @param benzingaCalendarUrl A link to the Benzinga calendar page for this ticker
- * @param benzingaFirmId 
+ * @param benzingaFirmId The identifer used by Benzinga for this firm.
  * @param benzingaId The identifer used by Benzinga for this record.
  * @param benzingaNewsUrl A link to the Benzinga articles page for this ticker
  * @param companyName The name of the company being rated.
@@ -39,7 +39,7 @@ import com.squareup.moshi.JsonClass
  * @param previousAdjustedPriceTarget The previous price target adjusted for stock splits and dividends.
  * @param previousPriceTarget The previous price target set by the analyst.
  * @param previousRating The previous rating set by the analyst.
- * @param pricePercentChange 
+ * @param pricePercentChange The percentage change in price target if price target and previous price target exists
  * @param priceTarget The current price target set by the analyst.
  * @param priceTargetAction The description of the directional change in price target. Possible values include: raises, lowers, maintains, announces, sets.
  * @param rating The current rating set by the analyst.
@@ -53,12 +53,13 @@ data class GetBenzingaV1Ratings200ResponseResultsInner (
 
     /* The current price target adjusted for stock splits and dividends. */
     @Json(name = "adjusted_price_target")
-    val adjustedPriceTarget: kotlin.Float? = null,
+    val adjustedPriceTarget: kotlin.Double? = null,
 
     /* The name of the individual analyst who issued the rating. */
     @Json(name = "analyst")
     val analyst: kotlin.String? = null,
 
+    /* The identifer used by Benzinga for this analyst. */
     @Json(name = "benzinga_analyst_id")
     val benzingaAnalystId: kotlin.String? = null,
 
@@ -66,6 +67,7 @@ data class GetBenzingaV1Ratings200ResponseResultsInner (
     @Json(name = "benzinga_calendar_url")
     val benzingaCalendarUrl: kotlin.String? = null,
 
+    /* The identifer used by Benzinga for this firm. */
     @Json(name = "benzinga_firm_id")
     val benzingaFirmId: kotlin.String? = null,
 
@@ -99,7 +101,7 @@ data class GetBenzingaV1Ratings200ResponseResultsInner (
 
     /* The timestamp (formatted as an ISO 8601 timestamp) when the rating was last updated in the system. */
     @Json(name = "last_updated")
-    val lastUpdated: kotlin.String? = null,
+    val lastUpdated: java.time.OffsetDateTime? = null,
 
     /* Additional context or commentary. */
     @Json(name = "notes")
@@ -107,22 +109,23 @@ data class GetBenzingaV1Ratings200ResponseResultsInner (
 
     /* The previous price target adjusted for stock splits and dividends. */
     @Json(name = "previous_adjusted_price_target")
-    val previousAdjustedPriceTarget: kotlin.Float? = null,
+    val previousAdjustedPriceTarget: kotlin.Double? = null,
 
     /* The previous price target set by the analyst. */
     @Json(name = "previous_price_target")
-    val previousPriceTarget: kotlin.Float? = null,
+    val previousPriceTarget: kotlin.Double? = null,
 
     /* The previous rating set by the analyst. */
     @Json(name = "previous_rating")
     val previousRating: kotlin.String? = null,
 
+    /* The percentage change in price target if price target and previous price target exists */
     @Json(name = "price_percent_change")
-    val pricePercentChange: kotlin.Float? = null,
+    val pricePercentChange: kotlin.Double? = null,
 
     /* The current price target set by the analyst. */
     @Json(name = "price_target")
-    val priceTarget: kotlin.Float? = null,
+    val priceTarget: kotlin.Double? = null,
 
     /* The description of the directional change in price target. Possible values include: raises, lowers, maintains, announces, sets. */
     @Json(name = "price_target_action")

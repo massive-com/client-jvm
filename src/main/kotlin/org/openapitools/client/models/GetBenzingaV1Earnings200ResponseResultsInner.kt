@@ -113,7 +113,7 @@ data class GetBenzingaV1Earnings200ResponseResultsInner (
 
     /* The timestamp (formatted as an ISO 8601 timestamp) when the record was last updated in the system. */
     @Json(name = "last_updated")
-    val lastUpdated: kotlin.String? = null,
+    val lastUpdated: java.time.OffsetDateTime? = null,
 
     /* Additional context, commentary, or clarifying notes related to the earnings event. */
     @Json(name = "notes")

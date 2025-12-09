@@ -175,7 +175,7 @@ class CompanyTest : ShouldSpec() {
             //modelInstance.tags shouldBe ("TODO")
         }
 
-        // to test the property `type` - The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://massive.com/docs/stocks/get_v3_reference_tickers_types\">Full List of Ticker Types</a>)
+        // to test the property `type` - The type or class of the security.  (<a alt=\"Full List of Ticker Types\" href=\"https://massive.com/docs/rest/stocks/tickers/ticker-types\">Full List of Ticker Types</a>)
         should("test type") {
             // uncomment below to test the property
             //modelInstance.type shouldBe ("TODO")

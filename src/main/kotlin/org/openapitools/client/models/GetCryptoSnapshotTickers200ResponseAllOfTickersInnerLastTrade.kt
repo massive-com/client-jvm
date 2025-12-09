@@ -27,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param p The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
  * @param s The size (volume) of the trade.
  * @param t The millisecond accuracy timestamp. This is the timestamp of when the trade was generated at the exchange.
- * @param x The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
+ * @param x The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/rest/crypto/market-operations/exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
  */
 
 
@@ -53,7 +53,7 @@ data class GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTrade (
     @Json(name = "t")
     val t: kotlin.Int,
 
-    /* The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.  */
+    /* The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/rest/crypto/market-operations/exchanges\">Exchanges</a> for a mapping of exchanges to IDs.  */
     @Json(name = "x")
     val x: kotlin.Int
 

@@ -22,6 +22,7 @@ import org.openapitools.client.models.GetSnapshots200ResponseResultsInner
 import org.openapitools.client.models.GetSnapshotSummary200ResponseResultsInnerSession
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerDetails
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerGreeks
+import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastMinute
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastQuote
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerLastTrade
 import org.openapitools.client.models.GetSnapshots200ResponseResultsInnerUnderlyingAsset
@@ -55,10 +56,16 @@ class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.error shouldBe ("TODO")
         }
 
-        // to test the property `fmv` - Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+        // to test the property `fmv` - Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
         should("test fmv") {
             // uncomment below to test the property
             //modelInstance.fmv shouldBe ("TODO")
+        }
+
+        // to test the property `fmvLastUpdated` - If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation.
+        should("test fmvLastUpdated") {
+            // uncomment below to test the property
+            //modelInstance.fmvLastUpdated shouldBe ("TODO")
         }
 
         // to test the property `greeks`
@@ -73,6 +80,12 @@ class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.impliedVolatility shouldBe ("TODO")
         }
 
+        // to test the property `lastMinute`
+        should("test lastMinute") {
+            // uncomment below to test the property
+            //modelInstance.lastMinute shouldBe ("TODO")
+        }
+
         // to test the property `lastQuote`
         should("test lastQuote") {
             // uncomment below to test the property
@@ -83,6 +96,12 @@ class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {
         should("test lastTrade") {
             // uncomment below to test the property
             //modelInstance.lastTrade shouldBe ("TODO")
+        }
+
+        // to test the property `lastUpdated` - The nanosecond timestamp of when this information was updated.
+        should("test lastUpdated") {
+            // uncomment below to test the property
+            //modelInstance.lastUpdated shouldBe ("TODO")
         }
 
         // to test the property `marketStatus` - The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
@@ -113,6 +132,12 @@ class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {
         should("test session") {
             // uncomment below to test the property
             //modelInstance.session shouldBe ("TODO")
+        }
+
+        // to test the property `timeframe` - The time relevance of the data.
+        should("test timeframe") {
+            // uncomment below to test the property
+            //modelInstance.timeframe shouldBe ("TODO")
         }
 
         // to test the property `type` - The asset class for this ticker.

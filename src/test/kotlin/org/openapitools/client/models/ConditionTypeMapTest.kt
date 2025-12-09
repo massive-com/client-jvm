@@ -25,7 +25,7 @@ class ConditionTypeMapTest : ShouldSpec() {
         // uncomment below to create an instance of ConditionTypeMap
         //val modelInstance = ConditionTypeMap()
 
-        // to test the property `condition` - Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/us/stocks/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
+        // to test the property `condition` - Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
         should("test condition") {
             // uncomment below to test the property
             //modelInstance.condition shouldBe ("TODO")

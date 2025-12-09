@@ -29,7 +29,7 @@
 | **similar** | **kotlin.collections.List&lt;kotlin.String&gt;** | A list of ticker symbols for similar companies. |  [optional] |
 | **symbol** | **kotlin.String** | The exchange symbol that this item is traded under. |  [optional] |
 | **tags** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional] |
-| **type** | **kotlin.String** | The type or class of the security.  (&lt;a alt&#x3D;\&quot;Full List of Ticker Types\&quot; href&#x3D;\&quot;https://massive.com/docs/stocks/get_v3_reference_tickers_types\&quot;&gt;Full List of Ticker Types&lt;/a&gt;) |  [optional] |
+| **type** | **kotlin.String** | The type or class of the security.  (&lt;a alt&#x3D;\&quot;Full List of Ticker Types\&quot; href&#x3D;\&quot;https://massive.com/docs/rest/stocks/tickers/ticker-types\&quot;&gt;Full List of Ticker Types&lt;/a&gt;) |  [optional] |
 | **updated** | [**java.time.LocalDate**](java.time.LocalDate.md) | The last time this company record was updated. |  [optional] |
 | **url** | **kotlin.String** | The URL of the company&#39;s website |  [optional] |
 

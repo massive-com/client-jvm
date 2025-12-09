@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
  * An entity that reports trades.
  *
  * @param assetClass An identifier for a group of similar financial instruments.
- * @param id A unique identifier used by Massive.com for this exchange.
+ * @param id A unique identifier used by Massive for this exchange.
  * @param locale An identifier for a geographical location.
  * @param name Name of this exchange.
  * @param type Represents the type of exchange.
@@ -41,7 +41,7 @@ data class ListExchanges200ResponseResultsInner (
     @Json(name = "asset_class")
     val assetClass: ListExchanges200ResponseResultsInner.AssetClass,
 
-    /* A unique identifier used by Massive.com for this exchange. */
+    /* A unique identifier used by Massive for this exchange. */
     @Json(name = "id")
     val id: kotlin.Int,
 
@@ -82,14 +82,15 @@ data class ListExchanges200ResponseResultsInner (
     /**
      * An identifier for a group of similar financial instruments.
      *
-     * Values: stocks,options,crypto,fx
+     * Values: stocks,options,crypto,fx,futures
      */
     @JsonClass(generateAdapter = false)
     enum class AssetClass(val value: kotlin.String) {
         @Json(name = "stocks") stocks("stocks"),
         @Json(name = "options") options("options"),
         @Json(name = "crypto") crypto("crypto"),
-        @Json(name = "fx") fx("fx");
+        @Json(name = "fx") fx("fx"),
+        @Json(name = "futures") futures("futures");
     }
     /**
      * An identifier for a geographical location.
