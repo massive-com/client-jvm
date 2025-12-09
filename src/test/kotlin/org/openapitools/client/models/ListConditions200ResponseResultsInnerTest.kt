@@ -39,7 +39,7 @@ class ListConditions200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.dataTypes shouldBe ("TODO")
         }
 
-        // to test the property `id` - An identifier used by Massive.com for this condition. Unique per data type.
+        // to test the property `id` - An identifier used by Massive for this condition. Unique per data type.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
@@ -75,7 +75,7 @@ class ListConditions200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.description shouldBe ("TODO")
         }
 
-        // to test the property `exchange` - If present, mapping this condition from a Massive.com code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange.
+        // to test the property `exchange` - If present, mapping this condition from a Massive code to a SIP symbol depends on this attribute. In other words, data with this condition attached comes exclusively from the given exchange.
         should("test exchange") {
             // uncomment below to test the property
             //modelInstance.exchange shouldBe ("TODO")

@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.StocksTickerResultsOTCResultsInner
+import org.openapitools.client.models.GetStocksAggregates200ResponseAllOfResultsInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,7 +31,7 @@ data class StocksTickerResultsOTC (
 
     /* An array of results containing the requested data. */
     @Json(name = "results")
-    val results: kotlin.collections.List<StocksTickerResultsOTCResultsInner>? = null
+    val results: kotlin.collections.List<GetStocksAggregates200ResponseAllOfResultsInner>? = null
 
 ) {
 

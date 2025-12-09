@@ -55,6 +55,18 @@ class ListTickers200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.active shouldBe ("TODO")
         }
 
+        // to test the property `baseCurrencyName` - The name of the currency that this asset is priced against.
+        should("test baseCurrencyName") {
+            // uncomment below to test the property
+            //modelInstance.baseCurrencyName shouldBe ("TODO")
+        }
+
+        // to test the property `baseCurrencySymbol` - The ISO 4217 code of the currency that this asset is priced against.
+        should("test baseCurrencySymbol") {
+            // uncomment below to test the property
+            //modelInstance.baseCurrencySymbol shouldBe ("TODO")
+        }
+
         // to test the property `cik` - The CIK number for this ticker. Find more information [here](https://en.wikipedia.org/wiki/Central_Index_Key).
         should("test cik") {
             // uncomment below to test the property
@@ -71,6 +83,12 @@ class ListTickers200ResponseResultsInnerTest : ShouldSpec() {
         should("test currencyName") {
             // uncomment below to test the property
             //modelInstance.currencyName shouldBe ("TODO")
+        }
+
+        // to test the property `currencySymbol` - The ISO 4217 code of the currency that this asset is traded with.
+        should("test currencySymbol") {
+            // uncomment below to test the property
+            //modelInstance.currencySymbol shouldBe ("TODO")
         }
 
         // to test the property `delistedUtc` - The last date that the asset was traded.
@@ -97,7 +115,7 @@ class ListTickers200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.shareClassFigi shouldBe ("TODO")
         }
 
-        // to test the property `type` - The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types).
+        // to test the property `type` - The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types).
         should("test type") {
             // uncomment below to test the property
             //modelInstance.type shouldBe ("TODO")

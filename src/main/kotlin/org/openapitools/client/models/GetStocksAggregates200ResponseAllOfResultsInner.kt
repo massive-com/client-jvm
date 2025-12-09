@@ -54,7 +54,7 @@ data class GetStocksAggregates200ResponseAllOfResultsInner (
 
     /* The Unix millisecond timestamp for the start of the aggregate window. */
     @Json(name = "t")
-    val t: kotlin.Long,
+    val t: kotlin.Int,
 
     /* The trading volume of the symbol in the given time period. */
     @Json(name = "v")

@@ -27,14 +27,17 @@ import com.squareup.moshi.JsonClass
  * @param name The name of the asset. For stocks/equities this will be the companies registered name. For crypto/fx this will be the name of the currency or coin pair.
  * @param ticker The exchange symbol that this item is traded under.
  * @param active Whether or not the asset is actively traded. False means the asset has been delisted.
+ * @param baseCurrencyName The name of the currency that this asset is priced against.
+ * @param baseCurrencySymbol The ISO 4217 code of the currency that this asset is priced against.
  * @param cik The CIK number for this ticker. Find more information [here](https://en.wikipedia.org/wiki/Central_Index_Key).
  * @param compositeFigi The composite OpenFIGI number for this ticker. Find more information [here](https://www.openfigi.com/about/figi)
  * @param currencyName The name of the currency that this asset is traded with.
+ * @param currencySymbol The ISO 4217 code of the currency that this asset is traded with.
  * @param delistedUtc The last date that the asset was traded.
  * @param lastUpdatedUtc The information is accurate up to this time.
  * @param primaryExchange The ISO code of the primary listing exchange for this asset.
  * @param shareClassFigi The share Class OpenFIGI number for this ticker. Find more information [here](https://www.openfigi.com/about/figi)
- * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types).
+ * @param type The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types).
  */
 
 
@@ -60,6 +63,14 @@ data class ListTickers200ResponseResultsInner (
     @Json(name = "active")
     val active: kotlin.Boolean? = null,
 
+    /* The name of the currency that this asset is priced against. */
+    @Json(name = "base_currency_name")
+    val baseCurrencyName: kotlin.String? = null,
+
+    /* The ISO 4217 code of the currency that this asset is priced against. */
+    @Json(name = "base_currency_symbol")
+    val baseCurrencySymbol: kotlin.String? = null,
+
     /* The CIK number for this ticker. Find more information [here](https://en.wikipedia.org/wiki/Central_Index_Key). */
     @Json(name = "cik")
     val cik: kotlin.String? = null,
@@ -71,6 +82,10 @@ data class ListTickers200ResponseResultsInner (
     /* The name of the currency that this asset is traded with. */
     @Json(name = "currency_name")
     val currencyName: kotlin.String? = null,
+
+    /* The ISO 4217 code of the currency that this asset is traded with. */
+    @Json(name = "currency_symbol")
+    val currencySymbol: kotlin.String? = null,
 
     /* The last date that the asset was traded. */
     @Json(name = "delisted_utc")
@@ -88,7 +103,7 @@ data class ListTickers200ResponseResultsInner (
     @Json(name = "share_class_figi")
     val shareClassFigi: kotlin.String? = null,
 
-    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). */
+    /* The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types). */
     @Json(name = "type")
     val type: kotlin.String? = null
 

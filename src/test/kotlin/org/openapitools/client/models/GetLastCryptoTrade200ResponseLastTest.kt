@@ -25,7 +25,7 @@ class GetLastCryptoTrade200ResponseLastTest : ShouldSpec() {
         // uncomment below to create an instance of GetLastCryptoTrade200ResponseLast
         //val modelInstance = GetLastCryptoTrade200ResponseLast()
 
-        // to test the property `exchange` - The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/crypto/get_v3_reference_exchanges\">Exchanges</a> for a mapping of exchanges to IDs.
+        // to test the property `exchange` - The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/rest/crypto/market-operations/exchanges\">Exchanges</a> for a mapping of exchanges to IDs.
         should("test exchange") {
             // uncomment below to test the property
             //modelInstance.exchange shouldBe ("TODO")

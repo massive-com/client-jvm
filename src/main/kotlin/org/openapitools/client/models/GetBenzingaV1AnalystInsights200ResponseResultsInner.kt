@@ -69,11 +69,11 @@ data class GetBenzingaV1AnalystInsights200ResponseResultsInner (
 
     /* The timestamp (formatted as an ISO 8601 timestamp) when the rating was last updated in the system. */
     @Json(name = "last_updated")
-    val lastUpdated: kotlin.String? = null,
+    val lastUpdated: java.time.OffsetDateTime? = null,
 
     /* The current price target set by the analyst. */
     @Json(name = "price_target")
-    val priceTarget: kotlin.Float? = null,
+    val priceTarget: kotlin.Double? = null,
 
     /* The current rating set by the analyst. */
     @Json(name = "rating")

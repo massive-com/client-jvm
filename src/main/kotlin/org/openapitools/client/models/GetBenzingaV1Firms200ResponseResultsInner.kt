@@ -23,8 +23,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param benzingaId The identifer used by Benzinga for this record.
- * @param currency 
- * @param lastUpdated 
+ * @param currency Primary currency used by the financial firm, with some entries having null values.
+ * @param lastUpdated Timestamp indicating when the firm's information was last modified or verified in the database.
  * @param name The name of a research firm or investment bank which issues ratings.
  */
 
@@ -35,9 +35,11 @@ data class GetBenzingaV1Firms200ResponseResultsInner (
     @Json(name = "benzinga_id")
     val benzingaId: kotlin.String? = null,
 
+    /* Primary currency used by the financial firm, with some entries having null values. */
     @Json(name = "currency")
     val currency: kotlin.String? = null,
 
+    /* Timestamp indicating when the firm's information was last modified or verified in the database. */
     @Json(name = "last_updated")
     val lastUpdated: kotlin.String? = null,
 

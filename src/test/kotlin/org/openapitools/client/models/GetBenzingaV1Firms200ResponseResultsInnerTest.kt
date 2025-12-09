@@ -31,13 +31,13 @@ class GetBenzingaV1Firms200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.benzingaId shouldBe ("TODO")
         }
 
-        // to test the property `currency`
+        // to test the property `currency` - Primary currency used by the financial firm, with some entries having null values.
         should("test currency") {
             // uncomment below to test the property
             //modelInstance.currency shouldBe ("TODO")
         }
 
-        // to test the property `lastUpdated`
+        // to test the property `lastUpdated` - Timestamp indicating when the firm's information was last modified or verified in the database.
         should("test lastUpdated") {
             // uncomment below to test the property
             //modelInstance.lastUpdated shouldBe ("TODO")

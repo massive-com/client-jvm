@@ -49,7 +49,7 @@ class GetSnapshots200ResponseResultsInnerLastQuoteTest : ShouldSpec() {
             //modelInstance.timeframe shouldBe ("TODO")
         }
 
-        // to test the property `askExchange` - The ask side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `askExchange` - The ask side exchange ID. See <a href=\"https://massive.com/docs/rest/options/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test askExchange") {
             // uncomment below to test the property
             //modelInstance.askExchange shouldBe ("TODO")
@@ -61,7 +61,7 @@ class GetSnapshots200ResponseResultsInnerLastQuoteTest : ShouldSpec() {
             //modelInstance.askSize shouldBe ("TODO")
         }
 
-        // to test the property `bidExchange` - The bid side exchange ID. See <a href=\"https://massive.com/docs/options/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `bidExchange` - The bid side exchange ID. See <a href=\"https://massive.com/docs/rest/options/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test bidExchange") {
             // uncomment below to test the property
             //modelInstance.bidExchange shouldBe ("TODO")

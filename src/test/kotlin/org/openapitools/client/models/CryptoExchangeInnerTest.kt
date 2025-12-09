@@ -25,7 +25,7 @@ class CryptoExchangeInnerTest : ShouldSpec() {
         // uncomment below to create an instance of CryptoExchangeInner
         //val modelInstance = CryptoExchangeInner()
 
-        // to test the property `id` - The exchange ID. See <a href=\"https://massive.com/docs/stocks/get_v3_reference_exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `id` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")

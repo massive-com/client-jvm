@@ -34,7 +34,8 @@ import com.squareup.moshi.JsonClass
  * @param lastQuote 
  * @param openInterest The quantity of this contract held at the end of the last trading day.
  * @param underlyingAsset 
- * @param fmv Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+ * @param fmv Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>.
+ * @param fmvLastUpdated If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation.
  * @param greeks 
  * @param impliedVolatility The market's forecast for the volatility of the underlying asset, based on this option's current price.
  * @param lastTrade 
@@ -63,9 +64,13 @@ data class GetOptionsChain200ResponseResultsInner (
     @Json(name = "underlying_asset")
     val underlyingAsset: GetSnapshots200ResponseResultsInnerUnderlyingAsset,
 
-    /* Fair market value is only available on Business plans. It's it our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
+    /* Fair Market Value is only available on Business plans. It is our proprietary algorithm to generate a real-time, accurate, fair market value of a tradable security. For more information, <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/contact\">contact us</a>. */
     @Json(name = "fmv")
     val fmv: java.math.BigDecimal? = null,
+
+    /* If Fair Market Value (FMV) is available, this field is the nanosecond timestamp of the last FMV calculation. */
+    @Json(name = "fmv_last_updated")
+    val fmvLastUpdated: kotlin.Long? = null,
 
     @Json(name = "greeks")
     val greeks: GetSnapshots200ResponseResultsInnerGreeks? = null,
