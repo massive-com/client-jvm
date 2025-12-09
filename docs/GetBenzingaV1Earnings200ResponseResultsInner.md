@@ -19,7 +19,7 @@
 | **fiscalPeriod** | **kotlin.String** | The fiscal period for which the earnings are reported. Examples include: Q1, Q2, H1, FY. |  [optional] |
 | **fiscalYear** | **kotlin.Long** | The fiscal year in which the earnings period falls. |  [optional] |
 | **importance** | **kotlin.Long** | A subjective indicator of the importance of the event, on a scale from 0 (lowest) to 5 (highest). |  [optional] |
-| **lastUpdated** | **kotlin.String** | The timestamp (formatted as an ISO 8601 timestamp) when the record was last updated in the system. |  [optional] |
+| **lastUpdated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The timestamp (formatted as an ISO 8601 timestamp) when the record was last updated in the system. |  [optional] |
 | **notes** | **kotlin.String** | Additional context, commentary, or clarifying notes related to the earnings event. |  [optional] |
 | **previousEps** | **kotlin.Double** | The company&#39;s reported earnings per share (EPS) for the previous comparable period. |  [optional] |
 | **previousRevenue** | **kotlin.Double** | The company&#39;s revenue for the previous comparable fiscal period. |  [optional] |

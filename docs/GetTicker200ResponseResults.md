@@ -29,7 +29,7 @@
 | **tickerRoot** | **kotlin.String** | The root of a specified ticker. For example, the root of BRK.A is BRK. |  [optional] |
 | **tickerSuffix** | **kotlin.String** | The suffix of a specified ticker. For example, the suffix of BRK.A is A. |  [optional] |
 | **totalEmployees** | [**java.math.BigDecimal**](java.math.BigDecimal.md) | The approximate number of employees for the company. |  [optional] |
-| **type** | **kotlin.String** | The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/stocks/get_v3_reference_tickers_types). |  [optional] |
+| **type** | **kotlin.String** | The type of the asset. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types). |  [optional] |
 | **weightedSharesOutstanding** | **kotlin.Double** | The shares outstanding calculated assuming all shares of other share classes are converted to this share class. |  [optional] |
 
 
