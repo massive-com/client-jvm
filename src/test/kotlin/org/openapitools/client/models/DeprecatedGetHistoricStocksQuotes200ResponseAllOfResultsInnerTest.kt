@@ -67,7 +67,7 @@ class DeprecatedGetHistoricStocksQuotes200ResponseAllOfResultsInnerTest : Should
             //modelInstance.S shouldBe ("TODO")
         }
 
-        // to test the property `X` - The ask exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `X` - The ask exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
         should("test X") {
             // uncomment below to test the property
             //modelInstance.X shouldBe ("TODO")
@@ -97,7 +97,7 @@ class DeprecatedGetHistoricStocksQuotes200ResponseAllOfResultsInnerTest : Should
             //modelInstance.s shouldBe ("TODO")
         }
 
-        // to test the property `x` - The bid exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `x` - The bid exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
         should("test x") {
             // uncomment below to test the property
             //modelInstance.x shouldBe ("TODO")

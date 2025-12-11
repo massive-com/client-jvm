@@ -24,7 +24,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param ask The ask price.
  * @param bid The bid price.
- * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/forex/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+ * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/forex/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param timestamp The Unix millisecond timestamp for the start of the aggregate window.
  */
 
@@ -39,7 +39,7 @@ data class ForexConversionLast (
     @Json(name = "bid")
     val bid: kotlin.Double,
 
-    /* The exchange ID. See <a href=\"https://massive.com/docs/rest/forex/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/rest/forex/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int,
 

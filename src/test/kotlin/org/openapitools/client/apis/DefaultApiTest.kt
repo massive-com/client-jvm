@@ -84,6 +84,8 @@ import org.openapitools.client.models.GetSnapshotSummary200Response
 import org.openapitools.client.models.GetSnapshots200Response
 import org.openapitools.client.models.GetStocksAggregates200Response
 import org.openapitools.client.models.GetStocksEMA200Response
+import org.openapitools.client.models.GetStocksFilingsVXRiskFactors200Response
+import org.openapitools.client.models.GetStocksFilingsVXText200Response
 import org.openapitools.client.models.GetStocksFinancialsV1BalanceSheets200Response
 import org.openapitools.client.models.GetStocksFinancialsV1CashFlowStatements200Response
 import org.openapitools.client.models.GetStocksFinancialsV1IncomeStatements200Response
@@ -95,6 +97,7 @@ import org.openapitools.client.models.GetStocksSMA200Response
 import org.openapitools.client.models.GetStocksSnapshotDirection200Response
 import org.openapitools.client.models.GetStocksSnapshotTicker200Response
 import org.openapitools.client.models.GetStocksSnapshotTickers200Response
+import org.openapitools.client.models.GetStocksTaxonomiesVXRiskFactors200Response
 import org.openapitools.client.models.GetStocksTrades200Response
 import org.openapitools.client.models.GetStocksV1Dividends200Response
 import org.openapitools.client.models.GetStocksV1Exchanges200Response
@@ -1385,6 +1388,68 @@ class DefaultApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
+        // to test getStocksFilingsVXRiskFactors
+        should("test getStocksFilingsVXRiskFactors") {
+            // uncomment below to test getStocksFilingsVXRiskFactors
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD).
+            //val filingDateAnyOf : kotlin.String = filingDateAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value.
+            //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value.
+            //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value.
+            //val ticker : kotlin.String = ticker_example // kotlin.String | Stock ticker symbol for the company.
+            //val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+            //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+            //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+            //val cik : kotlin.String = cik_example // kotlin.String | SEC Central Index Key (10 digits, zero-padded).
+            //val cikAnyOf : kotlin.String = cikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val cikGt : kotlin.String = cikGt_example // kotlin.String | Filter greater than the value.
+            //val cikGte : kotlin.String = cikGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val cikLt : kotlin.String = cikLt_example // kotlin.String | Filter less than the value.
+            //val cikLte : kotlin.String = cikLte_example // kotlin.String | Filter less than or equal to the value.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '49999'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksFilingsVXRiskFactors200Response = apiInstance.getStocksFilingsVXRiskFactors(filingDate, filingDateAnyOf, filingDateGt, filingDateGte, filingDateLt, filingDateLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getStocksFilingsVXText
+        should("test getStocksFilingsVXText") {
+            // uncomment below to test getStocksFilingsVXText
+            //val cik : kotlin.String = cik_example // kotlin.String | SEC Central Index Key (10 digits, zero-padded).
+            //val cikAnyOf : kotlin.String = cikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val cikGt : kotlin.String = cikGt_example // kotlin.String | Filter greater than the value.
+            //val cikGte : kotlin.String = cikGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val cikLt : kotlin.String = cikLt_example // kotlin.String | Filter less than the value.
+            //val cikLte : kotlin.String = cikLte_example // kotlin.String | Filter less than or equal to the value.
+            //val ticker : kotlin.String = ticker_example // kotlin.String | Stock ticker symbol for the company.
+            //val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+            //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+            //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+            //val formType : kotlin.String = formType_example // kotlin.String | SEC form type (e.g., '10-K' for annual reports, '10-Q' for quarterly reports).
+            //val formTypeAnyOf : kotlin.String = formTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val section : kotlin.String = section_example // kotlin.String | Standardized section identifier from the filing (e.g. 'business', 'risk_factors', etc.).
+            //val sectionAnyOf : kotlin.String = sectionAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val periodEnd : kotlin.String = periodEnd_example // kotlin.String | Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val periodEndGt : kotlin.String = periodEndGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '9999'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksFilingsVXText200Response = apiInstance.getStocksFilingsVXText(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, formType, formTypeAnyOf, section, sectionAnyOf, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
         // to test getStocksFinancialsV1BalanceSheets
         should("test getStocksFinancialsV1BalanceSheets") {
             // uncomment below to test getStocksFinancialsV1BalanceSheets
@@ -1752,6 +1817,38 @@ class DefaultApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
+        // to test getStocksTaxonomiesVXRiskFactors
+        should("test getStocksTaxonomiesVXRiskFactors") {
+            // uncomment below to test getStocksTaxonomiesVXRiskFactors
+            //val taxonomy : kotlin.Double = 1.2 // kotlin.Double | Version identifier (e.g., '1.0', '1.1') for the taxonomy Value must be a floating point number.
+            //val taxonomyGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
+            //val taxonomyGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
+            //val taxonomyLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
+            //val taxonomyLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+            //val primaryCategory : kotlin.String = primaryCategory_example // kotlin.String | Top-level risk category
+            //val primaryCategoryAnyOf : kotlin.String = primaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val primaryCategoryGt : kotlin.String = primaryCategoryGt_example // kotlin.String | Filter greater than the value.
+            //val primaryCategoryGte : kotlin.String = primaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val primaryCategoryLt : kotlin.String = primaryCategoryLt_example // kotlin.String | Filter less than the value.
+            //val primaryCategoryLte : kotlin.String = primaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+            //val secondaryCategory : kotlin.String = secondaryCategory_example // kotlin.String | Mid-level risk category
+            //val secondaryCategoryAnyOf : kotlin.String = secondaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val secondaryCategoryGt : kotlin.String = secondaryCategoryGt_example // kotlin.String | Filter greater than the value.
+            //val secondaryCategoryGte : kotlin.String = secondaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val secondaryCategoryLt : kotlin.String = secondaryCategoryLt_example // kotlin.String | Filter less than the value.
+            //val secondaryCategoryLte : kotlin.String = secondaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+            //val tertiaryCategory : kotlin.String = tertiaryCategory_example // kotlin.String | Most specific risk classification
+            //val tertiaryCategoryAnyOf : kotlin.String = tertiaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tertiaryCategoryGt : kotlin.String = tertiaryCategoryGt_example // kotlin.String | Filter greater than the value.
+            //val tertiaryCategoryGte : kotlin.String = tertiaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val tertiaryCategoryLt : kotlin.String = tertiaryCategoryLt_example // kotlin.String | Filter less than the value.
+            //val tertiaryCategoryLte : kotlin.String = tertiaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '999'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'taxonomy' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksTaxonomiesVXRiskFactors200Response = apiInstance.getStocksTaxonomiesVXRiskFactors(taxonomy, taxonomyGt, taxonomyGte, taxonomyLt, taxonomyLte, primaryCategory, primaryCategoryAnyOf, primaryCategoryGt, primaryCategoryGte, primaryCategoryLt, primaryCategoryLte, secondaryCategory, secondaryCategoryAnyOf, secondaryCategoryGt, secondaryCategoryGte, secondaryCategoryLt, secondaryCategoryLte, tertiaryCategory, tertiaryCategoryAnyOf, tertiaryCategoryGt, tertiaryCategoryGte, tertiaryCategoryLt, tertiaryCategoryLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
         // to test getStocksTrades
         should("test getStocksTrades") {
             // uncomment below to test getStocksTrades
@@ -1789,13 +1886,9 @@ class DefaultApiTest : ShouldSpec() {
             //val frequencyLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
             //val distributionType : kotlin.String = distributionType_example // kotlin.String | Classification describing the nature of this dividend's recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data)
             //val distributionTypeAnyOf : kotlin.String = distributionTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-            //val distributionTypeGt : kotlin.String = distributionTypeGt_example // kotlin.String | Filter greater than the value.
-            //val distributionTypeGte : kotlin.String = distributionTypeGte_example // kotlin.String | Filter greater than or equal to the value.
-            //val distributionTypeLt : kotlin.String = distributionTypeLt_example // kotlin.String | Filter less than the value.
-            //val distributionTypeLte : kotlin.String = distributionTypeLte_example // kotlin.String | Filter less than or equal to the value.
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'ticker' if not specified. The sort order defaults to 'asc' if not specified.
-            //val result : GetStocksV1Dividends200Response = apiInstance.getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, distributionTypeGt, distributionTypeGte, distributionTypeLt, distributionTypeLte, limit, sort)
+            //val result : GetStocksV1Dividends200Response = apiInstance.getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, limit, sort)
             //result shouldBe ("TODO")
         }
 
@@ -1889,13 +1982,9 @@ class DefaultApiTest : ShouldSpec() {
             //val executionDateLte : kotlin.String = executionDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val adjustmentType : kotlin.String = adjustmentType_example // kotlin.String | Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend)
             //val adjustmentTypeAnyOf : kotlin.String = adjustmentTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-            //val adjustmentTypeGt : kotlin.String = adjustmentTypeGt_example // kotlin.String | Filter greater than the value.
-            //val adjustmentTypeGte : kotlin.String = adjustmentTypeGte_example // kotlin.String | Filter greater than or equal to the value.
-            //val adjustmentTypeLt : kotlin.String = adjustmentTypeLt_example // kotlin.String | Filter less than the value.
-            //val adjustmentTypeLte : kotlin.String = adjustmentTypeLte_example // kotlin.String | Filter less than or equal to the value.
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'execution_date' if not specified. The sort order defaults to 'desc' if not specified.
-            //val result : GetStocksV1Splits200Response = apiInstance.getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, adjustmentTypeGt, adjustmentTypeGte, adjustmentTypeLt, adjustmentTypeLte, limit, sort)
+            //val result : GetStocksV1Splits200Response = apiInstance.getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, limit, sort)
             //result shouldBe ("TODO")
         }
 
