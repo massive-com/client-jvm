@@ -84,6 +84,8 @@ import org.openapitools.client.models.GetSnapshotSummary200Response
 import org.openapitools.client.models.GetSnapshots200Response
 import org.openapitools.client.models.GetStocksAggregates200Response
 import org.openapitools.client.models.GetStocksEMA200Response
+import org.openapitools.client.models.GetStocksFilingsVXRiskFactors200Response
+import org.openapitools.client.models.GetStocksFilingsVXText200Response
 import org.openapitools.client.models.GetStocksFinancialsV1BalanceSheets200Response
 import org.openapitools.client.models.GetStocksFinancialsV1CashFlowStatements200Response
 import org.openapitools.client.models.GetStocksFinancialsV1IncomeStatements200Response
@@ -95,6 +97,7 @@ import org.openapitools.client.models.GetStocksSMA200Response
 import org.openapitools.client.models.GetStocksSnapshotDirection200Response
 import org.openapitools.client.models.GetStocksSnapshotTicker200Response
 import org.openapitools.client.models.GetStocksSnapshotTickers200Response
+import org.openapitools.client.models.GetStocksTaxonomiesVXRiskFactors200Response
 import org.openapitools.client.models.GetStocksTrades200Response
 import org.openapitools.client.models.GetStocksV1Dividends200Response
 import org.openapitools.client.models.GetStocksV1Exchanges200Response
@@ -10088,6 +10091,504 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * GET /stocks/filings/vX/risk-factors
+     * 
+     * The risk factors identified in companies&#39; 10K filings.
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). (optional)
+     * @param filingDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDateGt Filter greater than the value. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. (optional)
+     * @param filingDateLt Filter less than the value. (optional)
+     * @param filingDateLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
+     * @return GetStocksFilingsVXRiskFactors200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksFilingsVXRiskFactors(filingDate: kotlin.String? = null, filingDateAnyOf: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "filing_date.desc") : GetStocksFilingsVXRiskFactors200Response {
+        val localVarResponse = getStocksFilingsVXRiskFactorsWithHttpInfo(filingDate = filingDate, filingDateAnyOf = filingDateAnyOf, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFilingsVXRiskFactors200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/filings/vX/risk-factors
+     * 
+     * The risk factors identified in companies&#39; 10K filings.
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). (optional)
+     * @param filingDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDateGt Filter greater than the value. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. (optional)
+     * @param filingDateLt Filter less than the value. (optional)
+     * @param filingDateLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
+     * @return ApiResponse<GetStocksFilingsVXRiskFactors200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksFilingsVXRiskFactorsWithHttpInfo(filingDate: kotlin.String?, filingDateAnyOf: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFilingsVXRiskFactors200Response?> {
+        val localVariableConfig = getStocksFilingsVXRiskFactorsRequestConfig(filingDate = filingDate, filingDateAnyOf = filingDateAnyOf, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksFilingsVXRiskFactors200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksFilingsVXRiskFactors
+     *
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). (optional)
+     * @param filingDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDateGt Filter greater than the value. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. (optional)
+     * @param filingDateLt Filter less than the value. (optional)
+     * @param filingDateLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
+     * @return RequestConfig
+     */
+    fun getStocksFilingsVXRiskFactorsRequestConfig(filingDate: kotlin.String?, filingDateAnyOf: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (filingDate != null) {
+                    put("filing_date", listOf(filingDate.toString()))
+                }
+                if (filingDateAnyOf != null) {
+                    put("filing_date.any_of", listOf(filingDateAnyOf.toString()))
+                }
+                if (filingDateGt != null) {
+                    put("filing_date.gt", listOf(filingDateGt.toString()))
+                }
+                if (filingDateGte != null) {
+                    put("filing_date.gte", listOf(filingDateGte.toString()))
+                }
+                if (filingDateLt != null) {
+                    put("filing_date.lt", listOf(filingDateLt.toString()))
+                }
+                if (filingDateLte != null) {
+                    put("filing_date.lte", listOf(filingDateLte.toString()))
+                }
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (cik != null) {
+                    put("cik", listOf(cik.toString()))
+                }
+                if (cikAnyOf != null) {
+                    put("cik.any_of", listOf(cikAnyOf.toString()))
+                }
+                if (cikGt != null) {
+                    put("cik.gt", listOf(cikGt.toString()))
+                }
+                if (cikGte != null) {
+                    put("cik.gte", listOf(cikGte.toString()))
+                }
+                if (cikLt != null) {
+                    put("cik.lt", listOf(cikLt.toString()))
+                }
+                if (cikLte != null) {
+                    put("cik.lte", listOf(cikLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/filings/vX/risk-factors",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * enum for parameter formType
+     */
+     enum class FormTypeGetStocksFilingsVXText(val value: kotlin.String) {
+         @Json(name = "10-K") _10minusK("10-K");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter formTypeAnyOf
+     */
+     enum class FormTypeAnyOfGetStocksFilingsVXText(val value: kotlin.String) {
+         @Json(name = "10-K") _10minusK("10-K");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter section
+     */
+     enum class SectionGetStocksFilingsVXText(val value: kotlin.String) {
+         @Json(name = "business") business("business"),
+         @Json(name = "risk_factors") riskFactors("risk_factors");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter sectionAnyOf
+     */
+     enum class SectionAnyOfGetStocksFilingsVXText(val value: kotlin.String) {
+         @Json(name = "business") business("business"),
+         @Json(name = "risk_factors") riskFactors("risk_factors");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /stocks/filings/vX/text
+     * 
+     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
+     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return GetStocksFilingsVXText200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksFilingsVXText(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, formType: FormTypeGetStocksFilingsVXText? = null, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText? = null, section: SectionGetStocksFilingsVXText? = null, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.desc") : GetStocksFilingsVXText200Response {
+        val localVarResponse = getStocksFilingsVXTextWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, formType = formType, formTypeAnyOf = formTypeAnyOf, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFilingsVXText200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/filings/vX/text
+     * 
+     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
+     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return ApiResponse<GetStocksFilingsVXText200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksFilingsVXTextWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, formType: FormTypeGetStocksFilingsVXText?, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText?, section: SectionGetStocksFilingsVXText?, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFilingsVXText200Response?> {
+        val localVariableConfig = getStocksFilingsVXTextRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, formType = formType, formTypeAnyOf = formTypeAnyOf, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksFilingsVXText200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksFilingsVXText
+     *
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
+     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return RequestConfig
+     */
+    fun getStocksFilingsVXTextRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, formType: FormTypeGetStocksFilingsVXText?, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText?, section: SectionGetStocksFilingsVXText?, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (cik != null) {
+                    put("cik", listOf(cik.toString()))
+                }
+                if (cikAnyOf != null) {
+                    put("cik.any_of", listOf(cikAnyOf.toString()))
+                }
+                if (cikGt != null) {
+                    put("cik.gt", listOf(cikGt.toString()))
+                }
+                if (cikGte != null) {
+                    put("cik.gte", listOf(cikGte.toString()))
+                }
+                if (cikLt != null) {
+                    put("cik.lt", listOf(cikLt.toString()))
+                }
+                if (cikLte != null) {
+                    put("cik.lte", listOf(cikLte.toString()))
+                }
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (formType != null) {
+                    put("form_type", listOf(formType.value))
+                }
+                if (formTypeAnyOf != null) {
+                    put("form_type.any_of", listOf(formTypeAnyOf.value))
+                }
+                if (section != null) {
+                    put("section", listOf(section.value))
+                }
+                if (sectionAnyOf != null) {
+                    put("section.any_of", listOf(sectionAnyOf.value))
+                }
+                if (filingDate != null) {
+                    put("filing_date", listOf(filingDate.toString()))
+                }
+                if (filingDateGt != null) {
+                    put("filing_date.gt", listOf(filingDateGt.toString()))
+                }
+                if (filingDateGte != null) {
+                    put("filing_date.gte", listOf(filingDateGte.toString()))
+                }
+                if (filingDateLt != null) {
+                    put("filing_date.lt", listOf(filingDateLt.toString()))
+                }
+                if (filingDateLte != null) {
+                    put("filing_date.lte", listOf(filingDateLte.toString()))
+                }
+                if (periodEnd != null) {
+                    put("period_end", listOf(periodEnd.toString()))
+                }
+                if (periodEndGt != null) {
+                    put("period_end.gt", listOf(periodEndGt.toString()))
+                }
+                if (periodEndGte != null) {
+                    put("period_end.gte", listOf(periodEndGte.toString()))
+                }
+                if (periodEndLt != null) {
+                    put("period_end.lt", listOf(periodEndLt.toString()))
+                }
+                if (periodEndLte != null) {
+                    put("period_end.lte", listOf(periodEndLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/filings/vX/text",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /stocks/financials/v1/balance-sheets
      * 
      * A comprehensive financial dataset containing quarterly and annual balance sheet data for public companies. Includes detailed asset, liability, and equity positions representing the company&#39;s financial position at specific points in time. Balance sheet data represents point-in-time snapshots rather than cumulative flows, showing what the company owns, owes, and shareholders&#39; equity as of each period end date.
@@ -12848,6 +13349,228 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * GET /stocks/taxonomies/vX/risk-factors
+     * 
+     * The complete list of risk factor classifications used in the risk factors endpoint.
+     * @param taxonomy Version identifier (e.g., &#39;1.0&#39;, &#39;1.1&#39;) for the taxonomy Value must be a floating point number. (optional)
+     * @param taxonomyGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param taxonomyGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param taxonomyLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param taxonomyLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param primaryCategory Top-level risk category (optional)
+     * @param primaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param primaryCategoryGt Filter greater than the value. (optional)
+     * @param primaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param primaryCategoryLt Filter less than the value. (optional)
+     * @param primaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param secondaryCategory Mid-level risk category (optional)
+     * @param secondaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param secondaryCategoryGt Filter greater than the value. (optional)
+     * @param secondaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param secondaryCategoryLt Filter less than the value. (optional)
+     * @param secondaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param tertiaryCategory Most specific risk classification (optional)
+     * @param tertiaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tertiaryCategoryGt Filter greater than the value. (optional)
+     * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param tertiaryCategoryLt Filter less than the value. (optional)
+     * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
+     * @return GetStocksTaxonomiesVXRiskFactors200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksTaxonomiesVXRiskFactors(taxonomy: kotlin.Double? = null, taxonomyGt: kotlin.Double? = null, taxonomyGte: kotlin.Double? = null, taxonomyLt: kotlin.Double? = null, taxonomyLte: kotlin.Double? = null, primaryCategory: kotlin.String? = null, primaryCategoryAnyOf: kotlin.String? = null, primaryCategoryGt: kotlin.String? = null, primaryCategoryGte: kotlin.String? = null, primaryCategoryLt: kotlin.String? = null, primaryCategoryLte: kotlin.String? = null, secondaryCategory: kotlin.String? = null, secondaryCategoryAnyOf: kotlin.String? = null, secondaryCategoryGt: kotlin.String? = null, secondaryCategoryGte: kotlin.String? = null, secondaryCategoryLt: kotlin.String? = null, secondaryCategoryLte: kotlin.String? = null, tertiaryCategory: kotlin.String? = null, tertiaryCategoryAnyOf: kotlin.String? = null, tertiaryCategoryGt: kotlin.String? = null, tertiaryCategoryGte: kotlin.String? = null, tertiaryCategoryLt: kotlin.String? = null, tertiaryCategoryLte: kotlin.String? = null, limit: kotlin.Int? = 200, sort: kotlin.String? = "taxonomy.desc") : GetStocksTaxonomiesVXRiskFactors200Response {
+        val localVarResponse = getStocksTaxonomiesVXRiskFactorsWithHttpInfo(taxonomy = taxonomy, taxonomyGt = taxonomyGt, taxonomyGte = taxonomyGte, taxonomyLt = taxonomyLt, taxonomyLte = taxonomyLte, primaryCategory = primaryCategory, primaryCategoryAnyOf = primaryCategoryAnyOf, primaryCategoryGt = primaryCategoryGt, primaryCategoryGte = primaryCategoryGte, primaryCategoryLt = primaryCategoryLt, primaryCategoryLte = primaryCategoryLte, secondaryCategory = secondaryCategory, secondaryCategoryAnyOf = secondaryCategoryAnyOf, secondaryCategoryGt = secondaryCategoryGt, secondaryCategoryGte = secondaryCategoryGte, secondaryCategoryLt = secondaryCategoryLt, secondaryCategoryLte = secondaryCategoryLte, tertiaryCategory = tertiaryCategory, tertiaryCategoryAnyOf = tertiaryCategoryAnyOf, tertiaryCategoryGt = tertiaryCategoryGt, tertiaryCategoryGte = tertiaryCategoryGte, tertiaryCategoryLt = tertiaryCategoryLt, tertiaryCategoryLte = tertiaryCategoryLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksTaxonomiesVXRiskFactors200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/taxonomies/vX/risk-factors
+     * 
+     * The complete list of risk factor classifications used in the risk factors endpoint.
+     * @param taxonomy Version identifier (e.g., &#39;1.0&#39;, &#39;1.1&#39;) for the taxonomy Value must be a floating point number. (optional)
+     * @param taxonomyGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param taxonomyGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param taxonomyLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param taxonomyLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param primaryCategory Top-level risk category (optional)
+     * @param primaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param primaryCategoryGt Filter greater than the value. (optional)
+     * @param primaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param primaryCategoryLt Filter less than the value. (optional)
+     * @param primaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param secondaryCategory Mid-level risk category (optional)
+     * @param secondaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param secondaryCategoryGt Filter greater than the value. (optional)
+     * @param secondaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param secondaryCategoryLt Filter less than the value. (optional)
+     * @param secondaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param tertiaryCategory Most specific risk classification (optional)
+     * @param tertiaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tertiaryCategoryGt Filter greater than the value. (optional)
+     * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param tertiaryCategoryLt Filter less than the value. (optional)
+     * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
+     * @return ApiResponse<GetStocksTaxonomiesVXRiskFactors200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksTaxonomiesVXRiskFactorsWithHttpInfo(taxonomy: kotlin.Double?, taxonomyGt: kotlin.Double?, taxonomyGte: kotlin.Double?, taxonomyLt: kotlin.Double?, taxonomyLte: kotlin.Double?, primaryCategory: kotlin.String?, primaryCategoryAnyOf: kotlin.String?, primaryCategoryGt: kotlin.String?, primaryCategoryGte: kotlin.String?, primaryCategoryLt: kotlin.String?, primaryCategoryLte: kotlin.String?, secondaryCategory: kotlin.String?, secondaryCategoryAnyOf: kotlin.String?, secondaryCategoryGt: kotlin.String?, secondaryCategoryGte: kotlin.String?, secondaryCategoryLt: kotlin.String?, secondaryCategoryLte: kotlin.String?, tertiaryCategory: kotlin.String?, tertiaryCategoryAnyOf: kotlin.String?, tertiaryCategoryGt: kotlin.String?, tertiaryCategoryGte: kotlin.String?, tertiaryCategoryLt: kotlin.String?, tertiaryCategoryLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksTaxonomiesVXRiskFactors200Response?> {
+        val localVariableConfig = getStocksTaxonomiesVXRiskFactorsRequestConfig(taxonomy = taxonomy, taxonomyGt = taxonomyGt, taxonomyGte = taxonomyGte, taxonomyLt = taxonomyLt, taxonomyLte = taxonomyLte, primaryCategory = primaryCategory, primaryCategoryAnyOf = primaryCategoryAnyOf, primaryCategoryGt = primaryCategoryGt, primaryCategoryGte = primaryCategoryGte, primaryCategoryLt = primaryCategoryLt, primaryCategoryLte = primaryCategoryLte, secondaryCategory = secondaryCategory, secondaryCategoryAnyOf = secondaryCategoryAnyOf, secondaryCategoryGt = secondaryCategoryGt, secondaryCategoryGte = secondaryCategoryGte, secondaryCategoryLt = secondaryCategoryLt, secondaryCategoryLte = secondaryCategoryLte, tertiaryCategory = tertiaryCategory, tertiaryCategoryAnyOf = tertiaryCategoryAnyOf, tertiaryCategoryGt = tertiaryCategoryGt, tertiaryCategoryGte = tertiaryCategoryGte, tertiaryCategoryLt = tertiaryCategoryLt, tertiaryCategoryLte = tertiaryCategoryLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksTaxonomiesVXRiskFactors200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksTaxonomiesVXRiskFactors
+     *
+     * @param taxonomy Version identifier (e.g., &#39;1.0&#39;, &#39;1.1&#39;) for the taxonomy Value must be a floating point number. (optional)
+     * @param taxonomyGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param taxonomyGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param taxonomyLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param taxonomyLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param primaryCategory Top-level risk category (optional)
+     * @param primaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param primaryCategoryGt Filter greater than the value. (optional)
+     * @param primaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param primaryCategoryLt Filter less than the value. (optional)
+     * @param primaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param secondaryCategory Mid-level risk category (optional)
+     * @param secondaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param secondaryCategoryGt Filter greater than the value. (optional)
+     * @param secondaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param secondaryCategoryLt Filter less than the value. (optional)
+     * @param secondaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param tertiaryCategory Most specific risk classification (optional)
+     * @param tertiaryCategoryAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tertiaryCategoryGt Filter greater than the value. (optional)
+     * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
+     * @param tertiaryCategoryLt Filter less than the value. (optional)
+     * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
+     * @return RequestConfig
+     */
+    fun getStocksTaxonomiesVXRiskFactorsRequestConfig(taxonomy: kotlin.Double?, taxonomyGt: kotlin.Double?, taxonomyGte: kotlin.Double?, taxonomyLt: kotlin.Double?, taxonomyLte: kotlin.Double?, primaryCategory: kotlin.String?, primaryCategoryAnyOf: kotlin.String?, primaryCategoryGt: kotlin.String?, primaryCategoryGte: kotlin.String?, primaryCategoryLt: kotlin.String?, primaryCategoryLte: kotlin.String?, secondaryCategory: kotlin.String?, secondaryCategoryAnyOf: kotlin.String?, secondaryCategoryGt: kotlin.String?, secondaryCategoryGte: kotlin.String?, secondaryCategoryLt: kotlin.String?, secondaryCategoryLte: kotlin.String?, tertiaryCategory: kotlin.String?, tertiaryCategoryAnyOf: kotlin.String?, tertiaryCategoryGt: kotlin.String?, tertiaryCategoryGte: kotlin.String?, tertiaryCategoryLt: kotlin.String?, tertiaryCategoryLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (taxonomy != null) {
+                    put("taxonomy", listOf(taxonomy.toString()))
+                }
+                if (taxonomyGt != null) {
+                    put("taxonomy.gt", listOf(taxonomyGt.toString()))
+                }
+                if (taxonomyGte != null) {
+                    put("taxonomy.gte", listOf(taxonomyGte.toString()))
+                }
+                if (taxonomyLt != null) {
+                    put("taxonomy.lt", listOf(taxonomyLt.toString()))
+                }
+                if (taxonomyLte != null) {
+                    put("taxonomy.lte", listOf(taxonomyLte.toString()))
+                }
+                if (primaryCategory != null) {
+                    put("primary_category", listOf(primaryCategory.toString()))
+                }
+                if (primaryCategoryAnyOf != null) {
+                    put("primary_category.any_of", listOf(primaryCategoryAnyOf.toString()))
+                }
+                if (primaryCategoryGt != null) {
+                    put("primary_category.gt", listOf(primaryCategoryGt.toString()))
+                }
+                if (primaryCategoryGte != null) {
+                    put("primary_category.gte", listOf(primaryCategoryGte.toString()))
+                }
+                if (primaryCategoryLt != null) {
+                    put("primary_category.lt", listOf(primaryCategoryLt.toString()))
+                }
+                if (primaryCategoryLte != null) {
+                    put("primary_category.lte", listOf(primaryCategoryLte.toString()))
+                }
+                if (secondaryCategory != null) {
+                    put("secondary_category", listOf(secondaryCategory.toString()))
+                }
+                if (secondaryCategoryAnyOf != null) {
+                    put("secondary_category.any_of", listOf(secondaryCategoryAnyOf.toString()))
+                }
+                if (secondaryCategoryGt != null) {
+                    put("secondary_category.gt", listOf(secondaryCategoryGt.toString()))
+                }
+                if (secondaryCategoryGte != null) {
+                    put("secondary_category.gte", listOf(secondaryCategoryGte.toString()))
+                }
+                if (secondaryCategoryLt != null) {
+                    put("secondary_category.lt", listOf(secondaryCategoryLt.toString()))
+                }
+                if (secondaryCategoryLte != null) {
+                    put("secondary_category.lte", listOf(secondaryCategoryLte.toString()))
+                }
+                if (tertiaryCategory != null) {
+                    put("tertiary_category", listOf(tertiaryCategory.toString()))
+                }
+                if (tertiaryCategoryAnyOf != null) {
+                    put("tertiary_category.any_of", listOf(tertiaryCategoryAnyOf.toString()))
+                }
+                if (tertiaryCategoryGt != null) {
+                    put("tertiary_category.gt", listOf(tertiaryCategoryGt.toString()))
+                }
+                if (tertiaryCategoryGte != null) {
+                    put("tertiary_category.gte", listOf(tertiaryCategoryGte.toString()))
+                }
+                if (tertiaryCategoryLt != null) {
+                    put("tertiary_category.lt", listOf(tertiaryCategoryLt.toString()))
+                }
+                if (tertiaryCategoryLte != null) {
+                    put("tertiary_category.lte", listOf(tertiaryCategoryLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/taxonomies/vX/risk-factors",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * enum for parameter order
      */
      enum class OrderGetStocksTrades(val value: kotlin.String) {
@@ -13004,6 +13727,46 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * enum for parameter distributionType
+     */
+     enum class DistributionTypeGetStocksV1Dividends(val value: kotlin.String) {
+         @Json(name = "recurring") recurring("recurring"),
+         @Json(name = "special") special("special"),
+         @Json(name = "supplemental") supplemental("supplemental"),
+         @Json(name = "irregular") irregular("irregular"),
+         @Json(name = "unknown") unknown("unknown");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter distributionTypeAnyOf
+     */
+     enum class DistributionTypeAnyOfGetStocksV1Dividends(val value: kotlin.String) {
+         @Json(name = "recurring") recurring("recurring"),
+         @Json(name = "special") special("special"),
+         @Json(name = "supplemental") supplemental("supplemental"),
+         @Json(name = "irregular") irregular("irregular"),
+         @Json(name = "unknown") unknown("unknown");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * GET /stocks/v1/dividends
      * 
      * Contains historical dividend payment records for US stocks with split-adjusted amounts and historical adjustment factors for price normalization.
@@ -13025,10 +13788,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param frequencyLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param distributionType Classification describing the nature of this dividend&#39;s recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data) (optional)
      * @param distributionTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param distributionTypeGt Filter greater than the value. (optional)
-     * @param distributionTypeGte Filter greater than or equal to the value. (optional)
-     * @param distributionTypeLt Filter less than the value. (optional)
-     * @param distributionTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
      * @return GetStocksV1Dividends200Response
@@ -13040,8 +13799,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksV1Dividends(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, exDividendDate: kotlin.String? = null, exDividendDateGt: kotlin.String? = null, exDividendDateGte: kotlin.String? = null, exDividendDateLt: kotlin.String? = null, exDividendDateLte: kotlin.String? = null, frequency: kotlin.Long? = null, frequencyGt: kotlin.Long? = null, frequencyGte: kotlin.Long? = null, frequencyLt: kotlin.Long? = null, frequencyLte: kotlin.Long? = null, distributionType: kotlin.String? = null, distributionTypeAnyOf: kotlin.String? = null, distributionTypeGt: kotlin.String? = null, distributionTypeGte: kotlin.String? = null, distributionTypeLt: kotlin.String? = null, distributionTypeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "ticker.asc") : GetStocksV1Dividends200Response {
-        val localVarResponse = getStocksV1DividendsWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, exDividendDate = exDividendDate, exDividendDateGt = exDividendDateGt, exDividendDateGte = exDividendDateGte, exDividendDateLt = exDividendDateLt, exDividendDateLte = exDividendDateLte, frequency = frequency, frequencyGt = frequencyGt, frequencyGte = frequencyGte, frequencyLt = frequencyLt, frequencyLte = frequencyLte, distributionType = distributionType, distributionTypeAnyOf = distributionTypeAnyOf, distributionTypeGt = distributionTypeGt, distributionTypeGte = distributionTypeGte, distributionTypeLt = distributionTypeLt, distributionTypeLte = distributionTypeLte, limit = limit, sort = sort)
+    fun getStocksV1Dividends(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, exDividendDate: kotlin.String? = null, exDividendDateGt: kotlin.String? = null, exDividendDateGte: kotlin.String? = null, exDividendDateLt: kotlin.String? = null, exDividendDateLte: kotlin.String? = null, frequency: kotlin.Long? = null, frequencyGt: kotlin.Long? = null, frequencyGte: kotlin.Long? = null, frequencyLt: kotlin.Long? = null, frequencyLte: kotlin.Long? = null, distributionType: DistributionTypeGetStocksV1Dividends? = null, distributionTypeAnyOf: DistributionTypeAnyOfGetStocksV1Dividends? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "ticker.asc") : GetStocksV1Dividends200Response {
+        val localVarResponse = getStocksV1DividendsWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, exDividendDate = exDividendDate, exDividendDateGt = exDividendDateGt, exDividendDateGte = exDividendDateGte, exDividendDateLt = exDividendDateLt, exDividendDateLte = exDividendDateLte, frequency = frequency, frequencyGt = frequencyGt, frequencyGte = frequencyGte, frequencyLt = frequencyLt, frequencyLte = frequencyLte, distributionType = distributionType, distributionTypeAnyOf = distributionTypeAnyOf, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksV1Dividends200Response
@@ -13080,10 +13839,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param frequencyLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param distributionType Classification describing the nature of this dividend&#39;s recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data) (optional)
      * @param distributionTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param distributionTypeGt Filter greater than the value. (optional)
-     * @param distributionTypeGte Filter greater than or equal to the value. (optional)
-     * @param distributionTypeLt Filter less than the value. (optional)
-     * @param distributionTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
      * @return ApiResponse<GetStocksV1Dividends200Response?>
@@ -13092,8 +13847,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksV1DividendsWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, exDividendDate: kotlin.String?, exDividendDateGt: kotlin.String?, exDividendDateGte: kotlin.String?, exDividendDateLt: kotlin.String?, exDividendDateLte: kotlin.String?, frequency: kotlin.Long?, frequencyGt: kotlin.Long?, frequencyGte: kotlin.Long?, frequencyLt: kotlin.Long?, frequencyLte: kotlin.Long?, distributionType: kotlin.String?, distributionTypeAnyOf: kotlin.String?, distributionTypeGt: kotlin.String?, distributionTypeGte: kotlin.String?, distributionTypeLt: kotlin.String?, distributionTypeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksV1Dividends200Response?> {
-        val localVariableConfig = getStocksV1DividendsRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, exDividendDate = exDividendDate, exDividendDateGt = exDividendDateGt, exDividendDateGte = exDividendDateGte, exDividendDateLt = exDividendDateLt, exDividendDateLte = exDividendDateLte, frequency = frequency, frequencyGt = frequencyGt, frequencyGte = frequencyGte, frequencyLt = frequencyLt, frequencyLte = frequencyLte, distributionType = distributionType, distributionTypeAnyOf = distributionTypeAnyOf, distributionTypeGt = distributionTypeGt, distributionTypeGte = distributionTypeGte, distributionTypeLt = distributionTypeLt, distributionTypeLte = distributionTypeLte, limit = limit, sort = sort)
+    fun getStocksV1DividendsWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, exDividendDate: kotlin.String?, exDividendDateGt: kotlin.String?, exDividendDateGte: kotlin.String?, exDividendDateLt: kotlin.String?, exDividendDateLte: kotlin.String?, frequency: kotlin.Long?, frequencyGt: kotlin.Long?, frequencyGte: kotlin.Long?, frequencyLt: kotlin.Long?, frequencyLte: kotlin.Long?, distributionType: DistributionTypeGetStocksV1Dividends?, distributionTypeAnyOf: DistributionTypeAnyOfGetStocksV1Dividends?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksV1Dividends200Response?> {
+        val localVariableConfig = getStocksV1DividendsRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, exDividendDate = exDividendDate, exDividendDateGt = exDividendDateGt, exDividendDateGte = exDividendDateGte, exDividendDateLt = exDividendDateLt, exDividendDateLte = exDividendDateLte, frequency = frequency, frequencyGt = frequencyGt, frequencyGte = frequencyGte, frequencyLt = frequencyLt, frequencyLte = frequencyLte, distributionType = distributionType, distributionTypeAnyOf = distributionTypeAnyOf, limit = limit, sort = sort)
 
         return request<Unit, GetStocksV1Dividends200Response>(
             localVariableConfig
@@ -13121,15 +13876,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param frequencyLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param distributionType Classification describing the nature of this dividend&#39;s recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data) (optional)
      * @param distributionTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param distributionTypeGt Filter greater than the value. (optional)
-     * @param distributionTypeGte Filter greater than or equal to the value. (optional)
-     * @param distributionTypeLt Filter less than the value. (optional)
-     * @param distributionTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
      * @return RequestConfig
      */
-    fun getStocksV1DividendsRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, exDividendDate: kotlin.String?, exDividendDateGt: kotlin.String?, exDividendDateGte: kotlin.String?, exDividendDateLt: kotlin.String?, exDividendDateLte: kotlin.String?, frequency: kotlin.Long?, frequencyGt: kotlin.Long?, frequencyGte: kotlin.Long?, frequencyLt: kotlin.Long?, frequencyLte: kotlin.Long?, distributionType: kotlin.String?, distributionTypeAnyOf: kotlin.String?, distributionTypeGt: kotlin.String?, distributionTypeGte: kotlin.String?, distributionTypeLt: kotlin.String?, distributionTypeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksV1DividendsRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, exDividendDate: kotlin.String?, exDividendDateGt: kotlin.String?, exDividendDateGte: kotlin.String?, exDividendDateLt: kotlin.String?, exDividendDateLte: kotlin.String?, frequency: kotlin.Long?, frequencyGt: kotlin.Long?, frequencyGte: kotlin.Long?, frequencyLt: kotlin.Long?, frequencyLte: kotlin.Long?, distributionType: DistributionTypeGetStocksV1Dividends?, distributionTypeAnyOf: DistributionTypeAnyOfGetStocksV1Dividends?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -13182,22 +13933,10 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                     put("frequency.lte", listOf(frequencyLte.toString()))
                 }
                 if (distributionType != null) {
-                    put("distribution_type", listOf(distributionType.toString()))
+                    put("distribution_type", listOf(distributionType.value))
                 }
                 if (distributionTypeAnyOf != null) {
-                    put("distribution_type.any_of", listOf(distributionTypeAnyOf.toString()))
-                }
-                if (distributionTypeGt != null) {
-                    put("distribution_type.gt", listOf(distributionTypeGt.toString()))
-                }
-                if (distributionTypeGte != null) {
-                    put("distribution_type.gte", listOf(distributionTypeGte.toString()))
-                }
-                if (distributionTypeLt != null) {
-                    put("distribution_type.lt", listOf(distributionTypeLt.toString()))
-                }
-                if (distributionTypeLte != null) {
-                    put("distribution_type.lte", listOf(distributionTypeLte.toString()))
+                    put("distribution_type.any_of", listOf(distributionTypeAnyOf.value))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -13754,6 +14493,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * enum for parameter adjustmentType
+     */
+     enum class AdjustmentTypeGetStocksV1Splits(val value: kotlin.String) {
+         @Json(name = "forward_split") forwardSplit("forward_split"),
+         @Json(name = "reverse_split") reverseSplit("reverse_split"),
+         @Json(name = "stock_dividend") stockDividend("stock_dividend");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter adjustmentTypeAnyOf
+     */
+     enum class AdjustmentTypeAnyOfGetStocksV1Splits(val value: kotlin.String) {
+         @Json(name = "forward_split") forwardSplit("forward_split"),
+         @Json(name = "reverse_split") reverseSplit("reverse_split"),
+         @Json(name = "stock_dividend") stockDividend("stock_dividend");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
      * GET /stocks/v1/splits
      * 
      * Contains historical stock split and reverse split events for US equities with historical adjustment factors for price normalization.
@@ -13770,10 +14545,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param executionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param adjustmentType Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend) (optional)
      * @param adjustmentTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param adjustmentTypeGt Filter greater than the value. (optional)
-     * @param adjustmentTypeGte Filter greater than or equal to the value. (optional)
-     * @param adjustmentTypeLt Filter less than the value. (optional)
-     * @param adjustmentTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;execution_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "execution_date.desc")
      * @return GetStocksV1Splits200Response
@@ -13785,8 +14556,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksV1Splits(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, executionDate: kotlin.String? = null, executionDateGt: kotlin.String? = null, executionDateGte: kotlin.String? = null, executionDateLt: kotlin.String? = null, executionDateLte: kotlin.String? = null, adjustmentType: kotlin.String? = null, adjustmentTypeAnyOf: kotlin.String? = null, adjustmentTypeGt: kotlin.String? = null, adjustmentTypeGte: kotlin.String? = null, adjustmentTypeLt: kotlin.String? = null, adjustmentTypeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "execution_date.desc") : GetStocksV1Splits200Response {
-        val localVarResponse = getStocksV1SplitsWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, executionDate = executionDate, executionDateGt = executionDateGt, executionDateGte = executionDateGte, executionDateLt = executionDateLt, executionDateLte = executionDateLte, adjustmentType = adjustmentType, adjustmentTypeAnyOf = adjustmentTypeAnyOf, adjustmentTypeGt = adjustmentTypeGt, adjustmentTypeGte = adjustmentTypeGte, adjustmentTypeLt = adjustmentTypeLt, adjustmentTypeLte = adjustmentTypeLte, limit = limit, sort = sort)
+    fun getStocksV1Splits(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, executionDate: kotlin.String? = null, executionDateGt: kotlin.String? = null, executionDateGte: kotlin.String? = null, executionDateLt: kotlin.String? = null, executionDateLte: kotlin.String? = null, adjustmentType: AdjustmentTypeGetStocksV1Splits? = null, adjustmentTypeAnyOf: AdjustmentTypeAnyOfGetStocksV1Splits? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "execution_date.desc") : GetStocksV1Splits200Response {
+        val localVarResponse = getStocksV1SplitsWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, executionDate = executionDate, executionDateGt = executionDateGt, executionDateGte = executionDateGte, executionDateLt = executionDateLt, executionDateLte = executionDateLte, adjustmentType = adjustmentType, adjustmentTypeAnyOf = adjustmentTypeAnyOf, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksV1Splits200Response
@@ -13820,10 +14591,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param executionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param adjustmentType Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend) (optional)
      * @param adjustmentTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param adjustmentTypeGt Filter greater than the value. (optional)
-     * @param adjustmentTypeGte Filter greater than or equal to the value. (optional)
-     * @param adjustmentTypeLt Filter less than the value. (optional)
-     * @param adjustmentTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;execution_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "execution_date.desc")
      * @return ApiResponse<GetStocksV1Splits200Response?>
@@ -13832,8 +14599,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksV1SplitsWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, executionDate: kotlin.String?, executionDateGt: kotlin.String?, executionDateGte: kotlin.String?, executionDateLt: kotlin.String?, executionDateLte: kotlin.String?, adjustmentType: kotlin.String?, adjustmentTypeAnyOf: kotlin.String?, adjustmentTypeGt: kotlin.String?, adjustmentTypeGte: kotlin.String?, adjustmentTypeLt: kotlin.String?, adjustmentTypeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksV1Splits200Response?> {
-        val localVariableConfig = getStocksV1SplitsRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, executionDate = executionDate, executionDateGt = executionDateGt, executionDateGte = executionDateGte, executionDateLt = executionDateLt, executionDateLte = executionDateLte, adjustmentType = adjustmentType, adjustmentTypeAnyOf = adjustmentTypeAnyOf, adjustmentTypeGt = adjustmentTypeGt, adjustmentTypeGte = adjustmentTypeGte, adjustmentTypeLt = adjustmentTypeLt, adjustmentTypeLte = adjustmentTypeLte, limit = limit, sort = sort)
+    fun getStocksV1SplitsWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, executionDate: kotlin.String?, executionDateGt: kotlin.String?, executionDateGte: kotlin.String?, executionDateLt: kotlin.String?, executionDateLte: kotlin.String?, adjustmentType: AdjustmentTypeGetStocksV1Splits?, adjustmentTypeAnyOf: AdjustmentTypeAnyOfGetStocksV1Splits?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksV1Splits200Response?> {
+        val localVariableConfig = getStocksV1SplitsRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, executionDate = executionDate, executionDateGt = executionDateGt, executionDateGte = executionDateGte, executionDateLt = executionDateLt, executionDateLte = executionDateLte, adjustmentType = adjustmentType, adjustmentTypeAnyOf = adjustmentTypeAnyOf, limit = limit, sort = sort)
 
         return request<Unit, GetStocksV1Splits200Response>(
             localVariableConfig
@@ -13856,15 +14623,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param executionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param adjustmentType Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend) (optional)
      * @param adjustmentTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param adjustmentTypeGt Filter greater than the value. (optional)
-     * @param adjustmentTypeGte Filter greater than or equal to the value. (optional)
-     * @param adjustmentTypeLt Filter less than the value. (optional)
-     * @param adjustmentTypeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;execution_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "execution_date.desc")
      * @return RequestConfig
      */
-    fun getStocksV1SplitsRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, executionDate: kotlin.String?, executionDateGt: kotlin.String?, executionDateGte: kotlin.String?, executionDateLt: kotlin.String?, executionDateLte: kotlin.String?, adjustmentType: kotlin.String?, adjustmentTypeAnyOf: kotlin.String?, adjustmentTypeGt: kotlin.String?, adjustmentTypeGte: kotlin.String?, adjustmentTypeLt: kotlin.String?, adjustmentTypeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksV1SplitsRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, executionDate: kotlin.String?, executionDateGt: kotlin.String?, executionDateGte: kotlin.String?, executionDateLt: kotlin.String?, executionDateLte: kotlin.String?, adjustmentType: AdjustmentTypeGetStocksV1Splits?, adjustmentTypeAnyOf: AdjustmentTypeAnyOfGetStocksV1Splits?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -13902,22 +14665,10 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                     put("execution_date.lte", listOf(executionDateLte.toString()))
                 }
                 if (adjustmentType != null) {
-                    put("adjustment_type", listOf(adjustmentType.toString()))
+                    put("adjustment_type", listOf(adjustmentType.value))
                 }
                 if (adjustmentTypeAnyOf != null) {
-                    put("adjustment_type.any_of", listOf(adjustmentTypeAnyOf.toString()))
-                }
-                if (adjustmentTypeGt != null) {
-                    put("adjustment_type.gt", listOf(adjustmentTypeGt.toString()))
-                }
-                if (adjustmentTypeGte != null) {
-                    put("adjustment_type.gte", listOf(adjustmentTypeGte.toString()))
-                }
-                if (adjustmentTypeLt != null) {
-                    put("adjustment_type.lt", listOf(adjustmentTypeLt.toString()))
-                }
-                if (adjustmentTypeLte != null) {
-                    put("adjustment_type.lte", listOf(adjustmentTypeLte.toString()))
+                    put("adjustment_type.any_of", listOf(adjustmentTypeAnyOf.value))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -13942,7 +14693,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/{ticker}
      * Ticker Details v3
-     * Get a single ticker supported by Massive.com. This response will have detailed information about the ticker and the company behind it.
+     * Get a single ticker supported by Massive. This response will have detailed information about the ticker and the company behind it.
      * @param ticker Specify a case-sensitive ticker symbol. For example, AAPL represents Apple Inc.
      * @param date Specify a point in time to get information about the ticker available on that date. When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date. (optional)
      * @return GetTicker200Response
@@ -13975,7 +14726,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/{ticker}
      * Ticker Details v3
-     * Get a single ticker supported by Massive.com. This response will have detailed information about the ticker and the company behind it.
+     * Get a single ticker supported by Massive. This response will have detailed information about the ticker and the company behind it.
      * @param ticker Specify a case-sensitive ticker symbol. For example, AAPL represents Apple Inc.
      * @param date Specify a point in time to get information about the ticker available on that date. When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date. (optional)
      * @return ApiResponse<GetTicker200Response?>
@@ -16802,7 +17553,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/types
      * Ticker Types
-     * List all ticker types that Massive.com has.
+     * List all ticker types that Massive has.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ListTickerTypes200Response
@@ -16835,7 +17586,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers/types
      * Ticker Types
-     * List all ticker types that Massive.com has.
+     * List all ticker types that Massive has.
      * @param assetClass Filter by asset class. (optional)
      * @param locale Filter by locale. (optional)
      * @return ApiResponse<ListTickerTypes200Response?>
@@ -16991,7 +17742,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers
      * Tickers
-     * Query all ticker symbols which are supported by Massive.com. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+     * Query all ticker symbols which are supported by Massive. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
      * @param ticker Specify a ticker symbol. Defaults to empty string which queries all tickers. (optional)
      * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types). Defaults to empty string which queries all types. (optional)
      * @param market Filter by market type. By default all markets are included. (optional)
@@ -17038,7 +17789,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * GET /v3/reference/tickers
      * Tickers
-     * Query all ticker symbols which are supported by Massive.com. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+     * Query all ticker symbols which are supported by Massive. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
      * @param ticker Specify a ticker symbol. Defaults to empty string which queries all tickers. (optional)
      * @param type Specify the type of the tickers. Find the types that we support via our [Ticker Types API](https://massive.com/docs/rest/stocks/tickers/ticker-types). Defaults to empty string which queries all types. (optional)
      * @param market Filter by market type. By default all markets are included. (optional)

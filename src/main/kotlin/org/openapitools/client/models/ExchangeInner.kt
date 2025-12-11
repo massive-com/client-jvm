@@ -22,7 +22,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param code A unique identifier for the exchange internal to Massive.com.  This is not an industry code or ISO standard.
+ * @param code A unique identifier for the exchange internal to Massive.  This is not an industry code or ISO standard.
  * @param id The ID of the exchange.
  * @param market The market data type that this exchange contains.
  * @param mic The Market Identification Code or MIC as defined in ISO 10383 (<a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Market_Identifier_Code\">https://en.wikipedia.org/wiki/Market_Identifier_Code</a>).
@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
 
 data class ExchangeInner (
 
-    /* A unique identifier for the exchange internal to Massive.com.  This is not an industry code or ISO standard. */
+    /* A unique identifier for the exchange internal to Massive.  This is not an industry code or ISO standard. */
     @Json(name = "code")
     val code: kotlin.String? = null,
 

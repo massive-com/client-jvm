@@ -91,7 +91,7 @@ class DeprecatedGetHistoricStocksTrades200ResponseAllOfResultsInnerTest : Should
             //modelInstance.s shouldBe ("TODO")
         }
 
-        // to test the property `x` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `x` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
         should("test x") {
             // uncomment below to test the property
             //modelInstance.x shouldBe ("TODO")
