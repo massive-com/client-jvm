@@ -22,13 +22,13 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param condition Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
+ * @param condition Massive's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>. 
  */
 
 
 data class ConditionTypeMap (
 
-    /* Massive.com's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>.  */
+    /* Massive's mapping for condition codes.  For more information, see our <a href=\"https://massive.com/glossary/trade-conditions\" alt=\"Trade Conditions Glossary\" target=\"_blank\">Trade Conditions Glossary</a>.  */
     @Json(name = "condition")
     val condition: kotlin.String? = null
 

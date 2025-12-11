@@ -44,7 +44,7 @@ class ListTickerTypes200ResponseTest : ShouldSpec() {
             //modelInstance.count shouldBe ("TODO")
         }
 
-        // to test the property `results`
+        // to test the property `results` - An array of results containing the requested data.
         should("test results") {
             // uncomment below to test the property
             //modelInstance.results shouldBe ("TODO")

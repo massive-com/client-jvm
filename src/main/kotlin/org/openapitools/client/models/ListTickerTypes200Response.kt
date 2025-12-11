@@ -26,7 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param requestId A request ID assigned by the server.
  * @param status The status of this request's response.
  * @param count The total number of results for this request.
- * @param results 
+ * @param results An array of results containing the requested data.
  */
 
 
@@ -44,6 +44,7 @@ data class ListTickerTypes200Response (
     @Json(name = "count")
     val count: kotlin.Int? = null,
 
+    /* An array of results containing the requested data. */
     @Json(name = "results")
     val results: kotlin.collections.List<ListTickerTypes200ResponseResultsInner>? = null
 

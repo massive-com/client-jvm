@@ -43,7 +43,7 @@ class GetSnapshots200ResponseResultsInnerLastTradeTest : ShouldSpec() {
             //modelInstance.conditions shouldBe ("TODO")
         }
 
-        // to test the property `exchange` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+        // to test the property `exchange` - The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
         should("test exchange") {
             // uncomment below to test the property
             //modelInstance.exchange shouldBe ("TODO")

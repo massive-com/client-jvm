@@ -25,7 +25,7 @@ import com.squareup.moshi.JsonClass
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
  * @param propertySize The size of a trade (also known as volume).
  * @param conditions A list of condition codes.
- * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs.
+ * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param id The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID.
  * @param lastUpdated The nanosecond timestamp of when this information was updated.
  * @param participantTimestamp The nanosecond Exchange Unix Timestamp. This is the timestamp of when the trade was generated at the exchange.
@@ -48,7 +48,7 @@ data class GetSnapshots200ResponseResultsInnerLastTrade (
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>? = null,
 
-    /* The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive.com's mapping of exchange IDs. */
+    /* The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs. */
     @Json(name = "exchange")
     val exchange: kotlin.Int? = null,
 

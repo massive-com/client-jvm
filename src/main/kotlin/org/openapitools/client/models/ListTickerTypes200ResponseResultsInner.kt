@@ -23,7 +23,7 @@ import com.squareup.moshi.JsonClass
  * Describes the type of financial instrument represented by a ticker.
  *
  * @param assetClass An identifier for a group of similar financial instruments.
- * @param code A code used by Massive.com to refer to this ticker type.
+ * @param code A code used by Massive to refer to this ticker type.
  * @param description A short description of this ticker type.
  * @param locale An identifier for a geographical location.
  */
@@ -35,7 +35,7 @@ data class ListTickerTypes200ResponseResultsInner (
     @Json(name = "asset_class")
     val assetClass: ListTickerTypes200ResponseResultsInner.AssetClass,
 
-    /* A code used by Massive.com to refer to this ticker type. */
+    /* A code used by Massive to refer to this ticker type. */
     @Json(name = "code")
     val code: kotlin.String,
 
