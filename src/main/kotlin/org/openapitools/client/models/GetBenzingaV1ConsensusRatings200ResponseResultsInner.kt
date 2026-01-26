@@ -82,11 +82,11 @@ data class GetBenzingaV1ConsensusRatings200ResponseResultsInner (
 
     /* The highest price target among all contributing analysts. */
     @Json(name = "high_price_target")
-    val highPriceTarget: kotlin.Float? = null,
+    val highPriceTarget: kotlin.Double? = null,
 
     /* The lowest price target among all contributing analysts. */
     @Json(name = "low_price_target")
-    val lowPriceTarget: kotlin.Float? = null,
+    val lowPriceTarget: kotlin.Double? = null,
 
     /* The requested ticker. */
     @Json(name = "ticker")

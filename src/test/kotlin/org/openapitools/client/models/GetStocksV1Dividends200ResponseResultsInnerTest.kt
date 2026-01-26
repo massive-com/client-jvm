@@ -55,7 +55,7 @@ class GetStocksV1Dividends200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.exDividendDate shouldBe ("TODO")
         }
 
-        // to test the property `frequency` - How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence.
+        // to test the property `frequency` - How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence.
         should("test frequency") {
             // uncomment below to test the property
             //modelInstance.frequency shouldBe ("TODO")

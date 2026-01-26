@@ -27,7 +27,7 @@ import com.squareup.moshi.JsonClass
  * @param currency Currency code for the dividend payment (e.g., USD, CAD)
  * @param declarationDate Date when the company officially announced the dividend
  * @param exDividendDate Date when the stock begins trading without the dividend value
- * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence.
+ * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence.
  * @param historicalAdjustmentFactor Cumulative adjustment factor used to offset dividend effects on historical prices. To adjust a historical price for dividends: for a price on date D, find the first dividend whose `ex_dividend_date` is after date D and multiply the price by that dividend's `historical_adjustment_factor`.
  * @param id Unique identifier for each dividend record
  * @param payDate Date when the dividend payment is distributed to shareholders
@@ -59,7 +59,7 @@ data class GetStocksV1Dividends200ResponseResultsInner (
     @Json(name = "ex_dividend_date")
     val exDividendDate: java.time.LocalDate? = null,
 
-    /* How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence. */
+    /* How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence. */
     @Json(name = "frequency")
     val frequency: kotlin.Long? = null,
 

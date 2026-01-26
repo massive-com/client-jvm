@@ -22,6 +22,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param constituentRank The rank of this constituent within the ETF for a given effective_date, ordered by weight (descending), market_value (descending), and constituent_ticker (ascending). A rank of 1 indicates the largest holding.
  * @param assetClass The broad category of asset type, such as Equity, Corporate Bond, Municipal Bond, etc.
  * @param compositeTicker The stock ticker symbol of the ETF that holds these constituent securities.
  * @param constituentName The full company or security name of the constituent holding.
@@ -43,6 +44,10 @@ import com.squareup.moshi.JsonClass
 
 
 data class GetEtfGlobalV1Constituents200ResponseResultsInner (
+
+    /* The rank of this constituent within the ETF for a given effective_date, ordered by weight (descending), market_value (descending), and constituent_ticker (ascending). A rank of 1 indicates the largest holding. */
+    @Json(name = "constituent_rank")
+    val constituentRank: kotlin.Long,
 
     /* The broad category of asset type, such as Equity, Corporate Bond, Municipal Bond, etc. */
     @Json(name = "asset_class")

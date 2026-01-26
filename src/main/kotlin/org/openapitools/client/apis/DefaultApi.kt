@@ -19,8 +19,6 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
-import org.openapitools.client.models.ContractDetails200Response
-import org.openapitools.client.models.DailySchedules200Response
 import org.openapitools.client.models.DeprecatedGetCryptoSnapshotTickerBook200Response
 import org.openapitools.client.models.DeprecatedGetHistoricCryptoTrades200Response
 import org.openapitools.client.models.DeprecatedGetHistoricForexQuotes200Response
@@ -29,6 +27,7 @@ import org.openapitools.client.models.DeprecatedGetHistoricStocksTrades200Respon
 import org.openapitools.client.models.GetBenzingaV1AnalystInsights200Response
 import org.openapitools.client.models.GetBenzingaV1AnalystInsights400Response
 import org.openapitools.client.models.GetBenzingaV1Analysts200Response
+import org.openapitools.client.models.GetBenzingaV1BullsBearsSay200Response
 import org.openapitools.client.models.GetBenzingaV1ConsensusRatings200Response
 import org.openapitools.client.models.GetBenzingaV1Earnings200Response
 import org.openapitools.client.models.GetBenzingaV1Firms200Response
@@ -50,6 +49,7 @@ import org.openapitools.client.models.GetEtfGlobalV1Taxonomies200Response
 import org.openapitools.client.models.GetEvents200Response
 import org.openapitools.client.models.GetFedV1Inflation200Response
 import org.openapitools.client.models.GetFedV1InflationExpectations200Response
+import org.openapitools.client.models.GetFedV1LaborMarket200Response
 import org.openapitools.client.models.GetFedV1TreasuryYields200Response
 import org.openapitools.client.models.GetForexSnapshotTicker200Response
 import org.openapitools.client.models.GetForexSnapshotTickers200Response
@@ -57,9 +57,11 @@ import org.openapitools.client.models.GetForexV1Exchanges200Response
 import org.openapitools.client.models.GetFuturesAggregates200Response
 import org.openapitools.client.models.GetFuturesQuotes200Response
 import org.openapitools.client.models.GetFuturesTrades200Response
-import org.openapitools.client.models.GetFuturesVXContractsNew200Response
+import org.openapitools.client.models.GetFuturesVXContracts200Response
 import org.openapitools.client.models.GetFuturesVXExchanges200Response
-import org.openapitools.client.models.GetFuturesVXProductsNew200Response
+import org.openapitools.client.models.GetFuturesVXMarketStatus200Response
+import org.openapitools.client.models.GetFuturesVXProducts200Response
+import org.openapitools.client.models.GetFuturesVXSchedules200Response
 import org.openapitools.client.models.GetFuturesVXSnapshot200Response
 import org.openapitools.client.models.GetGroupedCryptoAggregates200Response
 import org.openapitools.client.models.GetGroupedStocksAggregates200Response
@@ -84,8 +86,8 @@ import org.openapitools.client.models.GetSnapshotSummary200Response
 import org.openapitools.client.models.GetSnapshots200Response
 import org.openapitools.client.models.GetStocksAggregates200Response
 import org.openapitools.client.models.GetStocksEMA200Response
+import org.openapitools.client.models.GetStocksFilings10KVXSections200Response
 import org.openapitools.client.models.GetStocksFilingsVXRiskFactors200Response
-import org.openapitools.client.models.GetStocksFilingsVXText200Response
 import org.openapitools.client.models.GetStocksFinancialsV1BalanceSheets200Response
 import org.openapitools.client.models.GetStocksFinancialsV1CashFlowStatements200Response
 import org.openapitools.client.models.GetStocksFinancialsV1IncomeStatements200Response
@@ -104,26 +106,22 @@ import org.openapitools.client.models.GetStocksV1Exchanges200Response
 import org.openapitools.client.models.GetStocksV1ShortInterest200Response
 import org.openapitools.client.models.GetStocksV1ShortVolume200Response
 import org.openapitools.client.models.GetStocksV1Splits200Response
+import org.openapitools.client.models.GetStocksVXFloat200Response
 import org.openapitools.client.models.GetTicker200Response
 import org.openapitools.client.models.GetTmxV1CorporateEvents200Response
 import org.openapitools.client.models.ListConditions200Response
 import org.openapitools.client.models.ListConditions400Response
-import org.openapitools.client.models.ListContracts200Response
 import org.openapitools.client.models.ListDividends200Response
 import org.openapitools.client.models.ListExchanges200Response
 import org.openapitools.client.models.ListExchanges400Response
 import org.openapitools.client.models.ListFinancials200Response
 import org.openapitools.client.models.ListIPOs200Response
-import org.openapitools.client.models.ListMarketStatuses200Response
 import org.openapitools.client.models.ListNews200Response
 import org.openapitools.client.models.ListNewsPublishedUtcParameter
 import org.openapitools.client.models.ListOptionsContracts200Response
-import org.openapitools.client.models.ListProducts200Response
 import org.openapitools.client.models.ListStockSplits200Response
 import org.openapitools.client.models.ListTickerTypes200Response
 import org.openapitools.client.models.ListTickers200Response
-import org.openapitools.client.models.ProductDetails200Response
-import org.openapitools.client.models.ProductSchedules200Response
 
 import com.squareup.moshi.Json
 
@@ -147,200 +145,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty(ApiClient.baseUrlKey, "https://api.massive.com")
         }
-    }
-
-    /**
-     * GET /futures/vX/contracts/{ticker}
-     * Contract Details
-     * The Contract Details endpoint returns the details for a single contract at a specific point in time.
-     * @param ticker The ticker symbol of the contract to retrieve.
-     * @param asOf The point-in-time of the data to be retrieved. Note that the contract data returned for a given date represents the state of that contract on that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @return ContractDetails200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun contractDetails(ticker: kotlin.String, asOf: java.time.LocalDate? = null) : ContractDetails200Response {
-        val localVarResponse = contractDetailsWithHttpInfo(ticker = ticker, asOf = asOf)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ContractDetails200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/contracts/{ticker}
-     * Contract Details
-     * The Contract Details endpoint returns the details for a single contract at a specific point in time.
-     * @param ticker The ticker symbol of the contract to retrieve.
-     * @param asOf The point-in-time of the data to be retrieved. Note that the contract data returned for a given date represents the state of that contract on that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @return ApiResponse<ContractDetails200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun contractDetailsWithHttpInfo(ticker: kotlin.String, asOf: java.time.LocalDate?) : ApiResponse<ContractDetails200Response?> {
-        val localVariableConfig = contractDetailsRequestConfig(ticker = ticker, asOf = asOf)
-
-        return request<Unit, ContractDetails200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation contractDetails
-     *
-     * @param ticker The ticker symbol of the contract to retrieve.
-     * @param asOf The point-in-time of the data to be retrieved. Note that the contract data returned for a given date represents the state of that contract on that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @return RequestConfig
-     */
-    fun contractDetailsRequestConfig(ticker: kotlin.String, asOf: java.time.LocalDate?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (asOf != null) {
-                    put("as_of", listOf(parseDateToQueryString(asOf)))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/contracts/{ticker}".replace("{"+"ticker"+"}", encodeURIComponent(ticker.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter sort
-     */
-     enum class SortDailySchedules(val value: kotlin.String) {
-         @Json(name = "trading_venue.asc") tradingVenuePeriodAsc("trading_venue.asc"),
-         @Json(name = "trading_venue.desc") tradingVenuePeriodDesc("trading_venue.desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/schedules
-     * Daily Schedules
-     * The Trading-Date Based Futures Schedules API provides detailed trading schedules for all products on a specific day. This API allows you to retrieve detailed information about trading sessions, including market events like preopen, open, and closed, along with their precise timestamps.
-     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
-     * @param tradingVenue The trading venue (MIC) of the exchange for the schedules. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to trading_venue.asc)
-     * @return DailySchedules200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun dailySchedules(sessionEndDate: java.time.LocalDate? = null, tradingVenue: kotlin.String? = null, limit: kotlin.Int? = 100, sort: SortDailySchedules? = SortDailySchedules.tradingVenuePeriodAsc) : DailySchedules200Response {
-        val localVarResponse = dailySchedulesWithHttpInfo(sessionEndDate = sessionEndDate, tradingVenue = tradingVenue, limit = limit, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DailySchedules200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/schedules
-     * Daily Schedules
-     * The Trading-Date Based Futures Schedules API provides detailed trading schedules for all products on a specific day. This API allows you to retrieve detailed information about trading sessions, including market events like preopen, open, and closed, along with their precise timestamps.
-     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
-     * @param tradingVenue The trading venue (MIC) of the exchange for the schedules. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to trading_venue.asc)
-     * @return ApiResponse<DailySchedules200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun dailySchedulesWithHttpInfo(sessionEndDate: java.time.LocalDate?, tradingVenue: kotlin.String?, limit: kotlin.Int?, sort: SortDailySchedules?) : ApiResponse<DailySchedules200Response?> {
-        val localVariableConfig = dailySchedulesRequestConfig(sessionEndDate = sessionEndDate, tradingVenue = tradingVenue, limit = limit, sort = sort)
-
-        return request<Unit, DailySchedules200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation dailySchedules
-     *
-     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
-     * @param tradingVenue The trading venue (MIC) of the exchange for the schedules. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to trading_venue.asc)
-     * @return RequestConfig
-     */
-    fun dailySchedulesRequestConfig(sessionEndDate: java.time.LocalDate?, tradingVenue: kotlin.String?, limit: kotlin.Int?, sort: SortDailySchedules?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (sessionEndDate != null) {
-                    put("session_end_date", listOf(parseDateToQueryString(sessionEndDate)))
-                }
-                if (tradingVenue != null) {
-                    put("trading_venue", listOf(tradingVenue.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.value))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/schedules",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
     }
 
     /**
@@ -1357,6 +1161,192 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/benzinga/v1/analysts",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /benzinga/v1/bulls-bears-say
+     * 
+     * A comprehensive database of analyst bull and bear case summaries for publicly traded companies, providing concise summaries of both bullish and bearish investment arguments to help investors see both sides of the story before making investment decisions.
+     * @param ticker The stock ticker symbol for the company associated with the bull and bear case summaries. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param benzingaId The unique identifier used by Benzinga for this bull/bear case record. (optional)
+     * @param benzingaIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param benzingaIdGt Filter greater than the value. (optional)
+     * @param benzingaIdGte Filter greater than or equal to the value. (optional)
+     * @param benzingaIdLt Filter less than the value. (optional)
+     * @param benzingaIdLte Filter less than or equal to the value. (optional)
+     * @param lastUpdated The timestamp (formatted as an ISO 8601 timestamp) when the bull/bear case was last updated in the system. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGt Filter greater than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGte Filter greater than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLt Filter less than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLte Filter less than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "ticker.desc")
+     * @return GetBenzingaV1BullsBearsSay200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getBenzingaV1BullsBearsSay(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, benzingaId: kotlin.String? = null, benzingaIdAnyOf: kotlin.String? = null, benzingaIdGt: kotlin.String? = null, benzingaIdGte: kotlin.String? = null, benzingaIdLt: kotlin.String? = null, benzingaIdLte: kotlin.String? = null, lastUpdated: kotlin.String? = null, lastUpdatedGt: kotlin.String? = null, lastUpdatedGte: kotlin.String? = null, lastUpdatedLt: kotlin.String? = null, lastUpdatedLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "ticker.desc") : GetBenzingaV1BullsBearsSay200Response {
+        val localVarResponse = getBenzingaV1BullsBearsSayWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, benzingaId = benzingaId, benzingaIdAnyOf = benzingaIdAnyOf, benzingaIdGt = benzingaIdGt, benzingaIdGte = benzingaIdGte, benzingaIdLt = benzingaIdLt, benzingaIdLte = benzingaIdLte, lastUpdated = lastUpdated, lastUpdatedGt = lastUpdatedGt, lastUpdatedGte = lastUpdatedGte, lastUpdatedLt = lastUpdatedLt, lastUpdatedLte = lastUpdatedLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetBenzingaV1BullsBearsSay200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /benzinga/v1/bulls-bears-say
+     * 
+     * A comprehensive database of analyst bull and bear case summaries for publicly traded companies, providing concise summaries of both bullish and bearish investment arguments to help investors see both sides of the story before making investment decisions.
+     * @param ticker The stock ticker symbol for the company associated with the bull and bear case summaries. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param benzingaId The unique identifier used by Benzinga for this bull/bear case record. (optional)
+     * @param benzingaIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param benzingaIdGt Filter greater than the value. (optional)
+     * @param benzingaIdGte Filter greater than or equal to the value. (optional)
+     * @param benzingaIdLt Filter less than the value. (optional)
+     * @param benzingaIdLte Filter less than or equal to the value. (optional)
+     * @param lastUpdated The timestamp (formatted as an ISO 8601 timestamp) when the bull/bear case was last updated in the system. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGt Filter greater than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGte Filter greater than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLt Filter less than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLte Filter less than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "ticker.desc")
+     * @return ApiResponse<GetBenzingaV1BullsBearsSay200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getBenzingaV1BullsBearsSayWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, benzingaId: kotlin.String?, benzingaIdAnyOf: kotlin.String?, benzingaIdGt: kotlin.String?, benzingaIdGte: kotlin.String?, benzingaIdLt: kotlin.String?, benzingaIdLte: kotlin.String?, lastUpdated: kotlin.String?, lastUpdatedGt: kotlin.String?, lastUpdatedGte: kotlin.String?, lastUpdatedLt: kotlin.String?, lastUpdatedLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetBenzingaV1BullsBearsSay200Response?> {
+        val localVariableConfig = getBenzingaV1BullsBearsSayRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, benzingaId = benzingaId, benzingaIdAnyOf = benzingaIdAnyOf, benzingaIdGt = benzingaIdGt, benzingaIdGte = benzingaIdGte, benzingaIdLt = benzingaIdLt, benzingaIdLte = benzingaIdLte, lastUpdated = lastUpdated, lastUpdatedGt = lastUpdatedGt, lastUpdatedGte = lastUpdatedGte, lastUpdatedLt = lastUpdatedLt, lastUpdatedLte = lastUpdatedLte, limit = limit, sort = sort)
+
+        return request<Unit, GetBenzingaV1BullsBearsSay200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getBenzingaV1BullsBearsSay
+     *
+     * @param ticker The stock ticker symbol for the company associated with the bull and bear case summaries. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param benzingaId The unique identifier used by Benzinga for this bull/bear case record. (optional)
+     * @param benzingaIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param benzingaIdGt Filter greater than the value. (optional)
+     * @param benzingaIdGte Filter greater than or equal to the value. (optional)
+     * @param benzingaIdLt Filter less than the value. (optional)
+     * @param benzingaIdLte Filter less than or equal to the value. (optional)
+     * @param lastUpdated The timestamp (formatted as an ISO 8601 timestamp) when the bull/bear case was last updated in the system. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGt Filter greater than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedGte Filter greater than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLt Filter less than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastUpdatedLte Filter less than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "ticker.desc")
+     * @return RequestConfig
+     */
+    fun getBenzingaV1BullsBearsSayRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, benzingaId: kotlin.String?, benzingaIdAnyOf: kotlin.String?, benzingaIdGt: kotlin.String?, benzingaIdGte: kotlin.String?, benzingaIdLt: kotlin.String?, benzingaIdLte: kotlin.String?, lastUpdated: kotlin.String?, lastUpdatedGt: kotlin.String?, lastUpdatedGte: kotlin.String?, lastUpdatedLt: kotlin.String?, lastUpdatedLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (benzingaId != null) {
+                    put("benzinga_id", listOf(benzingaId.toString()))
+                }
+                if (benzingaIdAnyOf != null) {
+                    put("benzinga_id.any_of", listOf(benzingaIdAnyOf.toString()))
+                }
+                if (benzingaIdGt != null) {
+                    put("benzinga_id.gt", listOf(benzingaIdGt.toString()))
+                }
+                if (benzingaIdGte != null) {
+                    put("benzinga_id.gte", listOf(benzingaIdGte.toString()))
+                }
+                if (benzingaIdLt != null) {
+                    put("benzinga_id.lt", listOf(benzingaIdLt.toString()))
+                }
+                if (benzingaIdLte != null) {
+                    put("benzinga_id.lte", listOf(benzingaIdLte.toString()))
+                }
+                if (lastUpdated != null) {
+                    put("last_updated", listOf(lastUpdated.toString()))
+                }
+                if (lastUpdatedGt != null) {
+                    put("last_updated.gt", listOf(lastUpdatedGt.toString()))
+                }
+                if (lastUpdatedGte != null) {
+                    put("last_updated.gte", listOf(lastUpdatedGte.toString()))
+                }
+                if (lastUpdatedLt != null) {
+                    put("last_updated.lt", listOf(lastUpdatedLt.toString()))
+                }
+                if (lastUpdatedLte != null) {
+                    put("last_updated.lte", listOf(lastUpdatedLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/benzinga/v1/bulls-bears-say",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -5332,6 +5322,126 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * GET /fed/v1/labor-market
+     * 
+     * Labor market indicators from the Federal Reserve, including unemployment rate, labor force participation, average hourly earnings, and job openings data.
+     * @param date Calendar date of the observation (YYYY-MM-DD). (optional)
+     * @param dateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param dateGt Filter greater than the value. (optional)
+     * @param dateGte Filter greater than or equal to the value. (optional)
+     * @param dateLt Filter less than the value. (optional)
+     * @param dateLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return GetFedV1LaborMarket200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getFedV1LaborMarket(date: kotlin.String? = null, dateAnyOf: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.asc") : GetFedV1LaborMarket200Response {
+        val localVarResponse = getFedV1LaborMarketWithHttpInfo(date = date, dateAnyOf = dateAnyOf, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFedV1LaborMarket200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /fed/v1/labor-market
+     * 
+     * Labor market indicators from the Federal Reserve, including unemployment rate, labor force participation, average hourly earnings, and job openings data.
+     * @param date Calendar date of the observation (YYYY-MM-DD). (optional)
+     * @param dateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param dateGt Filter greater than the value. (optional)
+     * @param dateGte Filter greater than or equal to the value. (optional)
+     * @param dateLt Filter less than the value. (optional)
+     * @param dateLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return ApiResponse<GetFedV1LaborMarket200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getFedV1LaborMarketWithHttpInfo(date: kotlin.String?, dateAnyOf: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFedV1LaborMarket200Response?> {
+        val localVariableConfig = getFedV1LaborMarketRequestConfig(date = date, dateAnyOf = dateAnyOf, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetFedV1LaborMarket200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getFedV1LaborMarket
+     *
+     * @param date Calendar date of the observation (YYYY-MM-DD). (optional)
+     * @param dateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param dateGt Filter greater than the value. (optional)
+     * @param dateGte Filter greater than or equal to the value. (optional)
+     * @param dateLt Filter less than the value. (optional)
+     * @param dateLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return RequestConfig
+     */
+    fun getFedV1LaborMarketRequestConfig(date: kotlin.String?, dateAnyOf: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (date != null) {
+                    put("date", listOf(date.toString()))
+                }
+                if (dateAnyOf != null) {
+                    put("date.any_of", listOf(dateAnyOf.toString()))
+                }
+                if (dateGt != null) {
+                    put("date.gt", listOf(dateGt.toString()))
+                }
+                if (dateGte != null) {
+                    put("date.gte", listOf(dateGte.toString()))
+                }
+                if (dateLt != null) {
+                    put("date.lt", listOf(dateLt.toString()))
+                }
+                if (dateLte != null) {
+                    put("date.lte", listOf(dateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/fed/v1/labor-market",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /fed/v1/treasury-yields
      * 
      * A record of U.S. Treasury bond yields across various maturity periods, tracking historical interest rates from short-term to long-term government securities.
@@ -6384,8 +6494,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * GET /futures/vX/contracts-new
-     * futures_contracts_v1 API
+     * enum for parameter type
+     */
+     enum class TypeGetFuturesVXContracts(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter typeAnyOf
+     */
+     enum class TypeAnyOfGetFuturesVXContracts(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /futures/vX/contracts
+     * futures contracts API
      * The Contracts API provides a single source for discovering all listed futures contracts and retrieving complete contract specifications. You can query the full contract index with filters for product code, trade dates, active status, and date, returning key attributes such as ticker, first and last trade dates, days to maturity, exchange code, and order quantity limits in paginated form. The same API also returns the full specification for a single contract, including settlement dates, tick sizes, and other trading and risk related fields. Point-in-time lookups allow you to reconstruct the exact contract definition that applied on any given day.  Use Cases: Historical research, trading system integration, portfolio workflows, risk management.
      * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about contracts for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -6404,26 +6548,22 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param active The contract is still trading. Value must be &#39;true&#39;, &#39;false&#39;, &#39;1&#39; or &#39;0&#39;. (optional)
-     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. (optional)
+     * @param active Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. (optional)
+     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
      * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
-     * @param firstTradeDate The first date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param firstTradeDate The first day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param lastTradeDate The last date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastTradeDate The last day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
-     * @return GetFuturesVXContractsNew200Response
+     * @return GetFuturesVXContracts200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -6432,11 +6572,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getFuturesVXContractsNew(date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, active: kotlin.String? = null, type: kotlin.String? = null, typeAnyOf: kotlin.String? = null, typeGt: kotlin.String? = null, typeGte: kotlin.String? = null, typeLt: kotlin.String? = null, typeLte: kotlin.String? = null, firstTradeDate: kotlin.String? = null, firstTradeDateGt: kotlin.String? = null, firstTradeDateGte: kotlin.String? = null, firstTradeDateLt: kotlin.String? = null, firstTradeDateLte: kotlin.String? = null, lastTradeDate: kotlin.String? = null, lastTradeDateGt: kotlin.String? = null, lastTradeDateGte: kotlin.String? = null, lastTradeDateLt: kotlin.String? = null, lastTradeDateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "product_code.asc") : GetFuturesVXContractsNew200Response {
-        val localVarResponse = getFuturesVXContractsNewWithHttpInfo(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, active = active, type = type, typeAnyOf = typeAnyOf, typeGt = typeGt, typeGte = typeGte, typeLt = typeLt, typeLte = typeLte, firstTradeDate = firstTradeDate, firstTradeDateGt = firstTradeDateGt, firstTradeDateGte = firstTradeDateGte, firstTradeDateLt = firstTradeDateLt, firstTradeDateLte = firstTradeDateLte, lastTradeDate = lastTradeDate, lastTradeDateGt = lastTradeDateGt, lastTradeDateGte = lastTradeDateGte, lastTradeDateLt = lastTradeDateLt, lastTradeDateLte = lastTradeDateLte, limit = limit, sort = sort)
+    fun getFuturesVXContracts(date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, active: kotlin.Boolean? = null, type: TypeGetFuturesVXContracts? = null, typeAnyOf: TypeAnyOfGetFuturesVXContracts? = null, firstTradeDate: kotlin.String? = null, firstTradeDateGt: kotlin.String? = null, firstTradeDateGte: kotlin.String? = null, firstTradeDateLt: kotlin.String? = null, firstTradeDateLte: kotlin.String? = null, lastTradeDate: kotlin.String? = null, lastTradeDateGt: kotlin.String? = null, lastTradeDateGte: kotlin.String? = null, lastTradeDateLt: kotlin.String? = null, lastTradeDateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "product_code.asc") : GetFuturesVXContracts200Response {
+        val localVarResponse = getFuturesVXContractsWithHttpInfo(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, active = active, type = type, typeAnyOf = typeAnyOf, firstTradeDate = firstTradeDate, firstTradeDateGt = firstTradeDateGt, firstTradeDateGte = firstTradeDateGte, firstTradeDateLt = firstTradeDateLt, firstTradeDateLte = firstTradeDateLte, lastTradeDate = lastTradeDate, lastTradeDateGt = lastTradeDateGt, lastTradeDateGte = lastTradeDateGte, lastTradeDateLt = lastTradeDateLt, lastTradeDateLte = lastTradeDateLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXContractsNew200Response
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXContracts200Response
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -6451,8 +6591,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * GET /futures/vX/contracts-new
-     * futures_contracts_v1 API
+     * GET /futures/vX/contracts
+     * futures contracts API
      * The Contracts API provides a single source for discovering all listed futures contracts and retrieving complete contract specifications. You can query the full contract index with filters for product code, trade dates, active status, and date, returning key attributes such as ticker, first and last trade dates, days to maturity, exchange code, and order quantity limits in paginated form. The same API also returns the full specification for a single contract, including settlement dates, tick sizes, and other trading and risk related fields. Point-in-time lookups allow you to reconstruct the exact contract definition that applied on any given day.  Use Cases: Historical research, trading system integration, portfolio workflows, risk management.
      * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about contracts for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -6471,41 +6611,37 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param active The contract is still trading. Value must be &#39;true&#39;, &#39;false&#39;, &#39;1&#39; or &#39;0&#39;. (optional)
-     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. (optional)
+     * @param active Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. (optional)
+     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
      * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
-     * @param firstTradeDate The first date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param firstTradeDate The first day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param lastTradeDate The last date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastTradeDate The last day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
-     * @return ApiResponse<GetFuturesVXContractsNew200Response?>
+     * @return ApiResponse<GetFuturesVXContracts200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getFuturesVXContractsNewWithHttpInfo(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, active: kotlin.String?, type: kotlin.String?, typeAnyOf: kotlin.String?, typeGt: kotlin.String?, typeGte: kotlin.String?, typeLt: kotlin.String?, typeLte: kotlin.String?, firstTradeDate: kotlin.String?, firstTradeDateGt: kotlin.String?, firstTradeDateGte: kotlin.String?, firstTradeDateLt: kotlin.String?, firstTradeDateLte: kotlin.String?, lastTradeDate: kotlin.String?, lastTradeDateGt: kotlin.String?, lastTradeDateGte: kotlin.String?, lastTradeDateLt: kotlin.String?, lastTradeDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesVXContractsNew200Response?> {
-        val localVariableConfig = getFuturesVXContractsNewRequestConfig(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, active = active, type = type, typeAnyOf = typeAnyOf, typeGt = typeGt, typeGte = typeGte, typeLt = typeLt, typeLte = typeLte, firstTradeDate = firstTradeDate, firstTradeDateGt = firstTradeDateGt, firstTradeDateGte = firstTradeDateGte, firstTradeDateLt = firstTradeDateLt, firstTradeDateLte = firstTradeDateLte, lastTradeDate = lastTradeDate, lastTradeDateGt = lastTradeDateGt, lastTradeDateGte = lastTradeDateGte, lastTradeDateLt = lastTradeDateLt, lastTradeDateLte = lastTradeDateLte, limit = limit, sort = sort)
+    fun getFuturesVXContractsWithHttpInfo(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, active: kotlin.Boolean?, type: TypeGetFuturesVXContracts?, typeAnyOf: TypeAnyOfGetFuturesVXContracts?, firstTradeDate: kotlin.String?, firstTradeDateGt: kotlin.String?, firstTradeDateGte: kotlin.String?, firstTradeDateLt: kotlin.String?, firstTradeDateLte: kotlin.String?, lastTradeDate: kotlin.String?, lastTradeDateGt: kotlin.String?, lastTradeDateGte: kotlin.String?, lastTradeDateLt: kotlin.String?, lastTradeDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesVXContracts200Response?> {
+        val localVariableConfig = getFuturesVXContractsRequestConfig(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, active = active, type = type, typeAnyOf = typeAnyOf, firstTradeDate = firstTradeDate, firstTradeDateGt = firstTradeDateGt, firstTradeDateGte = firstTradeDateGte, firstTradeDateLt = firstTradeDateLt, firstTradeDateLte = firstTradeDateLte, lastTradeDate = lastTradeDate, lastTradeDateGt = lastTradeDateGt, lastTradeDateGte = lastTradeDateGte, lastTradeDateLt = lastTradeDateLt, lastTradeDateLte = lastTradeDateLte, limit = limit, sort = sort)
 
-        return request<Unit, GetFuturesVXContractsNew200Response>(
+        return request<Unit, GetFuturesVXContracts200Response>(
             localVariableConfig
         )
     }
 
     /**
-     * To obtain the request config of the operation getFuturesVXContractsNew
+     * To obtain the request config of the operation getFuturesVXContracts
      *
      * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about contracts for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -6524,19 +6660,15 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param active The contract is still trading. Value must be &#39;true&#39;, &#39;false&#39;, &#39;1&#39; or &#39;0&#39;. (optional)
-     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. (optional)
+     * @param active Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. (optional)
+     * @param type The type of contract, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
      * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
-     * @param firstTradeDate The first date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param firstTradeDate The first day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param firstTradeDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param lastTradeDate The last date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastTradeDate The last day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param lastTradeDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -6545,7 +6677,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
      * @return RequestConfig
      */
-    fun getFuturesVXContractsNewRequestConfig(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, active: kotlin.String?, type: kotlin.String?, typeAnyOf: kotlin.String?, typeGt: kotlin.String?, typeGte: kotlin.String?, typeLt: kotlin.String?, typeLte: kotlin.String?, firstTradeDate: kotlin.String?, firstTradeDateGt: kotlin.String?, firstTradeDateGte: kotlin.String?, firstTradeDateLt: kotlin.String?, firstTradeDateLte: kotlin.String?, lastTradeDate: kotlin.String?, lastTradeDateGt: kotlin.String?, lastTradeDateGte: kotlin.String?, lastTradeDateLt: kotlin.String?, lastTradeDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getFuturesVXContractsRequestConfig(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, active: kotlin.Boolean?, type: TypeGetFuturesVXContracts?, typeAnyOf: TypeAnyOfGetFuturesVXContracts?, firstTradeDate: kotlin.String?, firstTradeDateGt: kotlin.String?, firstTradeDateGte: kotlin.String?, firstTradeDateLt: kotlin.String?, firstTradeDateLte: kotlin.String?, lastTradeDate: kotlin.String?, lastTradeDateGt: kotlin.String?, lastTradeDateGte: kotlin.String?, lastTradeDateLt: kotlin.String?, lastTradeDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -6604,22 +6736,10 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                     put("active", listOf(active.toString()))
                 }
                 if (type != null) {
-                    put("type", listOf(type.toString()))
+                    put("type", listOf(type.value))
                 }
                 if (typeAnyOf != null) {
-                    put("type.any_of", listOf(typeAnyOf.toString()))
-                }
-                if (typeGt != null) {
-                    put("type.gt", listOf(typeGt.toString()))
-                }
-                if (typeGte != null) {
-                    put("type.gte", listOf(typeGte.toString()))
-                }
-                if (typeLt != null) {
-                    put("type.lt", listOf(typeLt.toString()))
-                }
-                if (typeLte != null) {
-                    put("type.lte", listOf(typeLte.toString()))
+                    put("type.any_of", listOf(typeAnyOf.value))
                 }
                 if (firstTradeDate != null) {
                     put("first_trade_date", listOf(firstTradeDate.toString()))
@@ -6663,7 +6783,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/futures/vX/contracts-new",
+            path = "/futures/vX/contracts",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -6750,59 +6870,17 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * GET /futures/vX/products-new
-     * Futures Products API
-     * The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
-     * @param name The full name of the product. (optional)
-     * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param nameGt Filter greater than the value. (optional)
-     * @param nameGte Filter greater than or equal to the value. (optional)
-     * @param nameLt Filter less than the value. (optional)
-     * @param nameLte Filter less than or equal to the value. (optional)
-     * @param productCode The identifier for the product. (optional)
+     * GET /futures/vX/market-status
+     * Market Status API
+     * Retrieve the current market status for a specific product or products. This endpoint returns real-time indicators, such as open, pause, close, for futures products, along with the corresponding exchange and product codes and an evaluation timestamp. This information enables users to monitor operational conditions and adjust their trading strategies accordingly.  Use Cases: Real-time monitoring, algorithm scheduling, UI updates, operational planning.
+     * @param productCode The product code of the futures contracts for which you want statuses. (optional)
      * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param productCodeGt Filter greater than the value. (optional)
      * @param productCodeGte Filter greater than or equal to the value. (optional)
      * @param productCodeLt Filter less than the value. (optional)
      * @param productCodeLte Filter less than or equal to the value. (optional)
-     * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param sector The sector to which the product belongs. (optional)
-     * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param sectorGt Filter greater than the value. (optional)
-     * @param sectorGte Filter greater than or equal to the value. (optional)
-     * @param sectorLt Filter less than the value. (optional)
-     * @param sectorLte Filter less than or equal to the value. (optional)
-     * @param subSector The sub-sector to which the product belongs. (optional)
-     * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param subSectorGt Filter greater than the value. (optional)
-     * @param subSectorGte Filter greater than or equal to the value. (optional)
-     * @param subSectorLt Filter less than the value. (optional)
-     * @param subSectorLte Filter less than or equal to the value. (optional)
-     * @param assetClass The asset class to which the product belongs. (optional)
-     * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetClassGt Filter greater than the value. (optional)
-     * @param assetClassGte Filter greater than or equal to the value. (optional)
-     * @param assetClassLt Filter less than the value. (optional)
-     * @param assetClassLte Filter less than or equal to the value. (optional)
-     * @param assetSubClass The asset sub-class to which the product belongs. (optional)
-     * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetSubClassGt Filter greater than the value. (optional)
-     * @param assetSubClassGte Filter greater than or equal to the value. (optional)
-     * @param assetSubClassLt Filter less than the value. (optional)
-     * @param assetSubClassLte Filter less than or equal to the value. (optional)
-     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. (optional)
-     * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
-     * @return GetFuturesVXProductsNew200Response
+     * @return GetFuturesVXMarketStatus200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -6811,11 +6889,11 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getFuturesVXProductsNew(name: kotlin.String? = null, nameAnyOf: kotlin.String? = null, nameGt: kotlin.String? = null, nameGte: kotlin.String? = null, nameLt: kotlin.String? = null, nameLte: kotlin.String? = null, productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, sector: kotlin.String? = null, sectorAnyOf: kotlin.String? = null, sectorGt: kotlin.String? = null, sectorGte: kotlin.String? = null, sectorLt: kotlin.String? = null, sectorLte: kotlin.String? = null, subSector: kotlin.String? = null, subSectorAnyOf: kotlin.String? = null, subSectorGt: kotlin.String? = null, subSectorGte: kotlin.String? = null, subSectorLt: kotlin.String? = null, subSectorLte: kotlin.String? = null, assetClass: kotlin.String? = null, assetClassAnyOf: kotlin.String? = null, assetClassGt: kotlin.String? = null, assetClassGte: kotlin.String? = null, assetClassLt: kotlin.String? = null, assetClassLte: kotlin.String? = null, assetSubClass: kotlin.String? = null, assetSubClassAnyOf: kotlin.String? = null, assetSubClassGt: kotlin.String? = null, assetSubClassGte: kotlin.String? = null, assetSubClassLt: kotlin.String? = null, assetSubClassLte: kotlin.String? = null, type: kotlin.String? = null, typeAnyOf: kotlin.String? = null, typeGt: kotlin.String? = null, typeGte: kotlin.String? = null, typeLt: kotlin.String? = null, typeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.asc") : GetFuturesVXProductsNew200Response {
-        val localVarResponse = getFuturesVXProductsNewWithHttpInfo(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, sector = sector, sectorAnyOf = sectorAnyOf, sectorGt = sectorGt, sectorGte = sectorGte, sectorLt = sectorLt, sectorLte = sectorLte, subSector = subSector, subSectorAnyOf = subSectorAnyOf, subSectorGt = subSectorGt, subSectorGte = subSectorGte, subSectorLt = subSectorLt, subSectorLte = subSectorLte, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetClassGt = assetClassGt, assetClassGte = assetClassGte, assetClassLt = assetClassLt, assetClassLte = assetClassLte, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, assetSubClassGt = assetSubClassGt, assetSubClassGte = assetSubClassGte, assetSubClassLt = assetSubClassLt, assetSubClassLte = assetSubClassLte, type = type, typeAnyOf = typeAnyOf, typeGt = typeGt, typeGte = typeGte, typeLt = typeLt, typeLte = typeLte, limit = limit, sort = sort)
+    fun getFuturesVXMarketStatus(productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, limit: kotlin.Int? = 100) : GetFuturesVXMarketStatus200Response {
+        val localVarResponse = getFuturesVXMarketStatusWithHttpInfo(productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, limit = limit)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXProductsNew200Response
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXMarketStatus200Response
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -6830,7 +6908,367 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * GET /futures/vX/products-new
+     * GET /futures/vX/market-status
+     * Market Status API
+     * Retrieve the current market status for a specific product or products. This endpoint returns real-time indicators, such as open, pause, close, for futures products, along with the corresponding exchange and product codes and an evaluation timestamp. This information enables users to monitor operational conditions and adjust their trading strategies accordingly.  Use Cases: Real-time monitoring, algorithm scheduling, UI updates, operational planning.
+     * @param productCode The product code of the futures contracts for which you want statuses. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @return ApiResponse<GetFuturesVXMarketStatus200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getFuturesVXMarketStatusWithHttpInfo(productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, limit: kotlin.Int?) : ApiResponse<GetFuturesVXMarketStatus200Response?> {
+        val localVariableConfig = getFuturesVXMarketStatusRequestConfig(productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, limit = limit)
+
+        return request<Unit, GetFuturesVXMarketStatus200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getFuturesVXMarketStatus
+     *
+     * @param productCode The product code of the futures contracts for which you want statuses. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @return RequestConfig
+     */
+    fun getFuturesVXMarketStatusRequestConfig(productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, limit: kotlin.Int?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (productCode != null) {
+                    put("product_code", listOf(productCode.toString()))
+                }
+                if (productCodeAnyOf != null) {
+                    put("product_code.any_of", listOf(productCodeAnyOf.toString()))
+                }
+                if (productCodeGt != null) {
+                    put("product_code.gt", listOf(productCodeGt.toString()))
+                }
+                if (productCodeGte != null) {
+                    put("product_code.gte", listOf(productCodeGte.toString()))
+                }
+                if (productCodeLt != null) {
+                    put("product_code.lt", listOf(productCodeLt.toString()))
+                }
+                if (productCodeLte != null) {
+                    put("product_code.lte", listOf(productCodeLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/futures/vX/market-status",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * enum for parameter sector
+     */
+     enum class SectorGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "asia") asia("asia"),
+         @Json(name = "base") base("base"),
+         @Json(name = "biofuels") biofuels("biofuels"),
+         @Json(name = "coal") coal("coal"),
+         @Json(name = "cross_rates") crossRates("cross_rates"),
+         @Json(name = "crude_oil") crudeOil("crude_oil"),
+         @Json(name = "custom_index") customIndex("custom_index"),
+         @Json(name = "dairy") dairy("dairy"),
+         @Json(name = "dj_ubs_ci") djUbsCi("dj_ubs_ci"),
+         @Json(name = "electricity") electricity("electricity"),
+         @Json(name = "emissions") emissions("emissions"),
+         @Json(name = "europe") europe("europe"),
+         @Json(name = "fertilizer") fertilizer("fertilizer"),
+         @Json(name = "forestry") forestry("forestry"),
+         @Json(name = "grains_and_oilseeds") grainsAndOilseeds("grains_and_oilseeds"),
+         @Json(name = "intl_index") intlIndex("intl_index"),
+         @Json(name = "liq_nat_gas_lng") liqNatGasLng("liq_nat_gas_lng"),
+         @Json(name = "livestock") livestock("livestock"),
+         @Json(name = "long_term_gov") longTermGov("long_term_gov"),
+         @Json(name = "long_term_non_gov") longTermNonGov("long_term_non_gov"),
+         @Json(name = "majors") majors("majors"),
+         @Json(name = "minors") minors("minors"),
+         @Json(name = "nat_gas") natGas("nat_gas"),
+         @Json(name = "nat_gas_liq_petro") natGasLiqPetro("nat_gas_liq_petro"),
+         @Json(name = "precious") precious("precious"),
+         @Json(name = "refined_products") refinedProducts("refined_products"),
+         @Json(name = "s_and_p_gsci") sAndPGsci("s_and_p_gsci"),
+         @Json(name = "sel_sector_index") selSectorIndex("sel_sector_index"),
+         @Json(name = "short_term_gov") shortTermGov("short_term_gov"),
+         @Json(name = "short_term_non_gov") shortTermNonGov("short_term_non_gov"),
+         @Json(name = "softs") softs("softs"),
+         @Json(name = "us") us("us"),
+         @Json(name = "us_index") usIndex("us_index"),
+         @Json(name = "wet_bulk") wetBulk("wet_bulk");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter sectorAnyOf
+     */
+     enum class SectorAnyOfGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "asia") asia("asia"),
+         @Json(name = "base") base("base"),
+         @Json(name = "biofuels") biofuels("biofuels"),
+         @Json(name = "coal") coal("coal"),
+         @Json(name = "cross_rates") crossRates("cross_rates"),
+         @Json(name = "crude_oil") crudeOil("crude_oil"),
+         @Json(name = "custom_index") customIndex("custom_index"),
+         @Json(name = "dairy") dairy("dairy"),
+         @Json(name = "dj_ubs_ci") djUbsCi("dj_ubs_ci"),
+         @Json(name = "electricity") electricity("electricity"),
+         @Json(name = "emissions") emissions("emissions"),
+         @Json(name = "europe") europe("europe"),
+         @Json(name = "fertilizer") fertilizer("fertilizer"),
+         @Json(name = "forestry") forestry("forestry"),
+         @Json(name = "grains_and_oilseeds") grainsAndOilseeds("grains_and_oilseeds"),
+         @Json(name = "intl_index") intlIndex("intl_index"),
+         @Json(name = "liq_nat_gas_lng") liqNatGasLng("liq_nat_gas_lng"),
+         @Json(name = "livestock") livestock("livestock"),
+         @Json(name = "long_term_gov") longTermGov("long_term_gov"),
+         @Json(name = "long_term_non_gov") longTermNonGov("long_term_non_gov"),
+         @Json(name = "majors") majors("majors"),
+         @Json(name = "minors") minors("minors"),
+         @Json(name = "nat_gas") natGas("nat_gas"),
+         @Json(name = "nat_gas_liq_petro") natGasLiqPetro("nat_gas_liq_petro"),
+         @Json(name = "precious") precious("precious"),
+         @Json(name = "refined_products") refinedProducts("refined_products"),
+         @Json(name = "s_and_p_gsci") sAndPGsci("s_and_p_gsci"),
+         @Json(name = "sel_sector_index") selSectorIndex("sel_sector_index"),
+         @Json(name = "short_term_gov") shortTermGov("short_term_gov"),
+         @Json(name = "short_term_non_gov") shortTermNonGov("short_term_non_gov"),
+         @Json(name = "softs") softs("softs"),
+         @Json(name = "us") us("us"),
+         @Json(name = "us_index") usIndex("us_index"),
+         @Json(name = "wet_bulk") wetBulk("wet_bulk");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter subSector
+     */
+     enum class SubSectorGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "asian") asian("asian"),
+         @Json(name = "canadian") canadian("canadian"),
+         @Json(name = "cat") cat("cat"),
+         @Json(name = "cooling_degree_days") coolingDegreeDays("cooling_degree_days"),
+         @Json(name = "ercot") ercot("ercot"),
+         @Json(name = "european") european("european"),
+         @Json(name = "gulf") gulf("gulf"),
+         @Json(name = "heating_degree_days") heatingDegreeDays("heating_degree_days"),
+         @Json(name = "iso_ne") isoNe("iso_ne"),
+         @Json(name = "large_cap_index") largeCapIndex("large_cap_index"),
+         @Json(name = "mid_cap_index") midCapIndex("mid_cap_index"),
+         @Json(name = "miso") miso("miso"),
+         @Json(name = "north_american") northAmerican("north_american"),
+         @Json(name = "nyiso") nyiso("nyiso"),
+         @Json(name = "pjm") pjm("pjm"),
+         @Json(name = "small_cap_index") smallCapIndex("small_cap_index"),
+         @Json(name = "west") west("west"),
+         @Json(name = "western_power") westernPower("western_power");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter subSectorAnyOf
+     */
+     enum class SubSectorAnyOfGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "asian") asian("asian"),
+         @Json(name = "canadian") canadian("canadian"),
+         @Json(name = "cat") cat("cat"),
+         @Json(name = "cooling_degree_days") coolingDegreeDays("cooling_degree_days"),
+         @Json(name = "ercot") ercot("ercot"),
+         @Json(name = "european") european("european"),
+         @Json(name = "gulf") gulf("gulf"),
+         @Json(name = "heating_degree_days") heatingDegreeDays("heating_degree_days"),
+         @Json(name = "iso_ne") isoNe("iso_ne"),
+         @Json(name = "large_cap_index") largeCapIndex("large_cap_index"),
+         @Json(name = "mid_cap_index") midCapIndex("mid_cap_index"),
+         @Json(name = "miso") miso("miso"),
+         @Json(name = "north_american") northAmerican("north_american"),
+         @Json(name = "nyiso") nyiso("nyiso"),
+         @Json(name = "pjm") pjm("pjm"),
+         @Json(name = "small_cap_index") smallCapIndex("small_cap_index"),
+         @Json(name = "west") west("west"),
+         @Json(name = "western_power") westernPower("western_power");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetClass
+     */
+     enum class AssetClassGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "alt_investment") altInvestment("alt_investment"),
+         @Json(name = "commodity") commodity("commodity"),
+         @Json(name = "financials") financials("financials");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetClassAnyOf
+     */
+     enum class AssetClassAnyOfGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "alt_investment") altInvestment("alt_investment"),
+         @Json(name = "commodity") commodity("commodity"),
+         @Json(name = "financials") financials("financials");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetSubClass
+     */
+     enum class AssetSubClassGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "agricultural") agricultural("agricultural"),
+         @Json(name = "commodity_index") commodityIndex("commodity_index"),
+         @Json(name = "energy") energy("energy"),
+         @Json(name = "equity") equity("equity"),
+         @Json(name = "foreign_exchange") foreignExchange("foreign_exchange"),
+         @Json(name = "freight") freight("freight"),
+         @Json(name = "housing") housing("housing"),
+         @Json(name = "interest_rate") interestRate("interest_rate"),
+         @Json(name = "metals") metals("metals"),
+         @Json(name = "weather") weather("weather");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetSubClassAnyOf
+     */
+     enum class AssetSubClassAnyOfGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "agricultural") agricultural("agricultural"),
+         @Json(name = "commodity_index") commodityIndex("commodity_index"),
+         @Json(name = "energy") energy("energy"),
+         @Json(name = "equity") equity("equity"),
+         @Json(name = "foreign_exchange") foreignExchange("foreign_exchange"),
+         @Json(name = "freight") freight("freight"),
+         @Json(name = "housing") housing("housing"),
+         @Json(name = "interest_rate") interestRate("interest_rate"),
+         @Json(name = "metals") metals("metals"),
+         @Json(name = "weather") weather("weather");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter type
+     */
+     enum class TypeGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter typeAnyOf
+     */
+     enum class TypeAnyOfGetFuturesVXProducts(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /futures/vX/products
      * Futures Products API
      * The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
      * @param name The full name of the product. (optional)
@@ -6850,54 +7288,106 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
      * @param sector The sector to which the product belongs. (optional)
      * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param sectorGt Filter greater than the value. (optional)
-     * @param sectorGte Filter greater than or equal to the value. (optional)
-     * @param sectorLt Filter less than the value. (optional)
-     * @param sectorLte Filter less than or equal to the value. (optional)
      * @param subSector The sub-sector to which the product belongs. (optional)
      * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param subSectorGt Filter greater than the value. (optional)
-     * @param subSectorGte Filter greater than or equal to the value. (optional)
-     * @param subSectorLt Filter less than the value. (optional)
-     * @param subSectorLte Filter less than or equal to the value. (optional)
      * @param assetClass The asset class to which the product belongs. (optional)
      * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetClassGt Filter greater than the value. (optional)
-     * @param assetClassGte Filter greater than or equal to the value. (optional)
-     * @param assetClassLt Filter less than the value. (optional)
-     * @param assetClassLte Filter less than or equal to the value. (optional)
      * @param assetSubClass The asset sub-class to which the product belongs. (optional)
      * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetSubClassGt Filter greater than the value. (optional)
-     * @param assetSubClassGte Filter greater than or equal to the value. (optional)
-     * @param assetSubClassLt Filter less than the value. (optional)
-     * @param assetSubClassLte Filter less than or equal to the value. (optional)
-     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
      * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
-     * @return ApiResponse<GetFuturesVXProductsNew200Response?>
+     * @return GetFuturesVXProducts200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getFuturesVXProducts(name: kotlin.String? = null, nameAnyOf: kotlin.String? = null, nameGt: kotlin.String? = null, nameGte: kotlin.String? = null, nameLt: kotlin.String? = null, nameLte: kotlin.String? = null, productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, tradingVenue: kotlin.String? = null, tradingVenueAnyOf: kotlin.String? = null, tradingVenueGt: kotlin.String? = null, tradingVenueGte: kotlin.String? = null, tradingVenueLt: kotlin.String? = null, tradingVenueLte: kotlin.String? = null, sector: SectorGetFuturesVXProducts? = null, sectorAnyOf: SectorAnyOfGetFuturesVXProducts? = null, subSector: SubSectorGetFuturesVXProducts? = null, subSectorAnyOf: SubSectorAnyOfGetFuturesVXProducts? = null, assetClass: AssetClassGetFuturesVXProducts? = null, assetClassAnyOf: AssetClassAnyOfGetFuturesVXProducts? = null, assetSubClass: AssetSubClassGetFuturesVXProducts? = null, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesVXProducts? = null, type: TypeGetFuturesVXProducts? = null, typeAnyOf: TypeAnyOfGetFuturesVXProducts? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.asc") : GetFuturesVXProducts200Response {
+        val localVarResponse = getFuturesVXProductsWithHttpInfo(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, sector = sector, sectorAnyOf = sectorAnyOf, subSector = subSector, subSectorAnyOf = subSectorAnyOf, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, type = type, typeAnyOf = typeAnyOf, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXProducts200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /futures/vX/products
+     * Futures Products API
+     * The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
+     * @param name The full name of the product. (optional)
+     * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param nameGt Filter greater than the value. (optional)
+     * @param nameGte Filter greater than or equal to the value. (optional)
+     * @param nameLt Filter less than the value. (optional)
+     * @param nameLte Filter less than or equal to the value. (optional)
+     * @param productCode The identifier for the product. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param sector The sector to which the product belongs. (optional)
+     * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param subSector The sub-sector to which the product belongs. (optional)
+     * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetClass The asset class to which the product belongs. (optional)
+     * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetSubClass The asset sub-class to which the product belongs. (optional)
+     * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
+     * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return ApiResponse<GetFuturesVXProducts200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getFuturesVXProductsNewWithHttpInfo(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, sector: kotlin.String?, sectorAnyOf: kotlin.String?, sectorGt: kotlin.String?, sectorGte: kotlin.String?, sectorLt: kotlin.String?, sectorLte: kotlin.String?, subSector: kotlin.String?, subSectorAnyOf: kotlin.String?, subSectorGt: kotlin.String?, subSectorGte: kotlin.String?, subSectorLt: kotlin.String?, subSectorLte: kotlin.String?, assetClass: kotlin.String?, assetClassAnyOf: kotlin.String?, assetClassGt: kotlin.String?, assetClassGte: kotlin.String?, assetClassLt: kotlin.String?, assetClassLte: kotlin.String?, assetSubClass: kotlin.String?, assetSubClassAnyOf: kotlin.String?, assetSubClassGt: kotlin.String?, assetSubClassGte: kotlin.String?, assetSubClassLt: kotlin.String?, assetSubClassLte: kotlin.String?, type: kotlin.String?, typeAnyOf: kotlin.String?, typeGt: kotlin.String?, typeGte: kotlin.String?, typeLt: kotlin.String?, typeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesVXProductsNew200Response?> {
-        val localVariableConfig = getFuturesVXProductsNewRequestConfig(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, sector = sector, sectorAnyOf = sectorAnyOf, sectorGt = sectorGt, sectorGte = sectorGte, sectorLt = sectorLt, sectorLte = sectorLte, subSector = subSector, subSectorAnyOf = subSectorAnyOf, subSectorGt = subSectorGt, subSectorGte = subSectorGte, subSectorLt = subSectorLt, subSectorLte = subSectorLte, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetClassGt = assetClassGt, assetClassGte = assetClassGte, assetClassLt = assetClassLt, assetClassLte = assetClassLte, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, assetSubClassGt = assetSubClassGt, assetSubClassGte = assetSubClassGte, assetSubClassLt = assetSubClassLt, assetSubClassLte = assetSubClassLte, type = type, typeAnyOf = typeAnyOf, typeGt = typeGt, typeGte = typeGte, typeLt = typeLt, typeLte = typeLte, limit = limit, sort = sort)
+    fun getFuturesVXProductsWithHttpInfo(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, sector: SectorGetFuturesVXProducts?, sectorAnyOf: SectorAnyOfGetFuturesVXProducts?, subSector: SubSectorGetFuturesVXProducts?, subSectorAnyOf: SubSectorAnyOfGetFuturesVXProducts?, assetClass: AssetClassGetFuturesVXProducts?, assetClassAnyOf: AssetClassAnyOfGetFuturesVXProducts?, assetSubClass: AssetSubClassGetFuturesVXProducts?, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesVXProducts?, type: TypeGetFuturesVXProducts?, typeAnyOf: TypeAnyOfGetFuturesVXProducts?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesVXProducts200Response?> {
+        val localVariableConfig = getFuturesVXProductsRequestConfig(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, sector = sector, sectorAnyOf = sectorAnyOf, subSector = subSector, subSectorAnyOf = subSectorAnyOf, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, type = type, typeAnyOf = typeAnyOf, limit = limit, sort = sort)
 
-        return request<Unit, GetFuturesVXProductsNew200Response>(
+        return request<Unit, GetFuturesVXProducts200Response>(
             localVariableConfig
         )
     }
 
     /**
-     * To obtain the request config of the operation getFuturesVXProductsNew
+     * To obtain the request config of the operation getFuturesVXProducts
      *
      * @param name The full name of the product. (optional)
      * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
@@ -6916,41 +7406,27 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
      * @param sector The sector to which the product belongs. (optional)
      * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param sectorGt Filter greater than the value. (optional)
-     * @param sectorGte Filter greater than or equal to the value. (optional)
-     * @param sectorLt Filter less than the value. (optional)
-     * @param sectorLte Filter less than or equal to the value. (optional)
      * @param subSector The sub-sector to which the product belongs. (optional)
      * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param subSectorGt Filter greater than the value. (optional)
-     * @param subSectorGte Filter greater than or equal to the value. (optional)
-     * @param subSectorLt Filter less than the value. (optional)
-     * @param subSectorLte Filter less than or equal to the value. (optional)
      * @param assetClass The asset class to which the product belongs. (optional)
      * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetClassGt Filter greater than the value. (optional)
-     * @param assetClassGte Filter greater than or equal to the value. (optional)
-     * @param assetClassLt Filter less than the value. (optional)
-     * @param assetClassLte Filter less than or equal to the value. (optional)
      * @param assetSubClass The asset sub-class to which the product belongs. (optional)
      * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param assetSubClassGt Filter greater than the value. (optional)
-     * @param assetSubClassGte Filter greater than or equal to the value. (optional)
-     * @param assetSubClassLt Filter less than the value. (optional)
-     * @param assetSubClassLte Filter less than or equal to the value. (optional)
-     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
      * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param typeGt Filter greater than the value. (optional)
-     * @param typeGte Filter greater than or equal to the value. (optional)
-     * @param typeLt Filter less than the value. (optional)
-     * @param typeLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
      * @return RequestConfig
      */
-    fun getFuturesVXProductsNewRequestConfig(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, sector: kotlin.String?, sectorAnyOf: kotlin.String?, sectorGt: kotlin.String?, sectorGte: kotlin.String?, sectorLt: kotlin.String?, sectorLte: kotlin.String?, subSector: kotlin.String?, subSectorAnyOf: kotlin.String?, subSectorGt: kotlin.String?, subSectorGte: kotlin.String?, subSectorLt: kotlin.String?, subSectorLte: kotlin.String?, assetClass: kotlin.String?, assetClassAnyOf: kotlin.String?, assetClassGt: kotlin.String?, assetClassGte: kotlin.String?, assetClassLt: kotlin.String?, assetClassLte: kotlin.String?, assetSubClass: kotlin.String?, assetSubClassAnyOf: kotlin.String?, assetSubClassGt: kotlin.String?, assetSubClassGte: kotlin.String?, assetSubClassLt: kotlin.String?, assetSubClassLte: kotlin.String?, type: kotlin.String?, typeAnyOf: kotlin.String?, typeGt: kotlin.String?, typeGte: kotlin.String?, typeLt: kotlin.String?, typeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getFuturesVXProductsRequestConfig(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, sector: SectorGetFuturesVXProducts?, sectorAnyOf: SectorAnyOfGetFuturesVXProducts?, subSector: SubSectorGetFuturesVXProducts?, subSectorAnyOf: SubSectorAnyOfGetFuturesVXProducts?, assetClass: AssetClassGetFuturesVXProducts?, assetClassAnyOf: AssetClassAnyOfGetFuturesVXProducts?, assetSubClass: AssetSubClassGetFuturesVXProducts?, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesVXProducts?, type: TypeGetFuturesVXProducts?, typeAnyOf: TypeAnyOfGetFuturesVXProducts?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -7005,95 +7481,53 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                 if (dateLte != null) {
                     put("date.lte", listOf(dateLte.toString()))
                 }
+                if (tradingVenue != null) {
+                    put("trading_venue", listOf(tradingVenue.toString()))
+                }
+                if (tradingVenueAnyOf != null) {
+                    put("trading_venue.any_of", listOf(tradingVenueAnyOf.toString()))
+                }
+                if (tradingVenueGt != null) {
+                    put("trading_venue.gt", listOf(tradingVenueGt.toString()))
+                }
+                if (tradingVenueGte != null) {
+                    put("trading_venue.gte", listOf(tradingVenueGte.toString()))
+                }
+                if (tradingVenueLt != null) {
+                    put("trading_venue.lt", listOf(tradingVenueLt.toString()))
+                }
+                if (tradingVenueLte != null) {
+                    put("trading_venue.lte", listOf(tradingVenueLte.toString()))
+                }
                 if (sector != null) {
-                    put("sector", listOf(sector.toString()))
+                    put("sector", listOf(sector.value))
                 }
                 if (sectorAnyOf != null) {
-                    put("sector.any_of", listOf(sectorAnyOf.toString()))
-                }
-                if (sectorGt != null) {
-                    put("sector.gt", listOf(sectorGt.toString()))
-                }
-                if (sectorGte != null) {
-                    put("sector.gte", listOf(sectorGte.toString()))
-                }
-                if (sectorLt != null) {
-                    put("sector.lt", listOf(sectorLt.toString()))
-                }
-                if (sectorLte != null) {
-                    put("sector.lte", listOf(sectorLte.toString()))
+                    put("sector.any_of", listOf(sectorAnyOf.value))
                 }
                 if (subSector != null) {
-                    put("sub_sector", listOf(subSector.toString()))
+                    put("sub_sector", listOf(subSector.value))
                 }
                 if (subSectorAnyOf != null) {
-                    put("sub_sector.any_of", listOf(subSectorAnyOf.toString()))
-                }
-                if (subSectorGt != null) {
-                    put("sub_sector.gt", listOf(subSectorGt.toString()))
-                }
-                if (subSectorGte != null) {
-                    put("sub_sector.gte", listOf(subSectorGte.toString()))
-                }
-                if (subSectorLt != null) {
-                    put("sub_sector.lt", listOf(subSectorLt.toString()))
-                }
-                if (subSectorLte != null) {
-                    put("sub_sector.lte", listOf(subSectorLte.toString()))
+                    put("sub_sector.any_of", listOf(subSectorAnyOf.value))
                 }
                 if (assetClass != null) {
-                    put("asset_class", listOf(assetClass.toString()))
+                    put("asset_class", listOf(assetClass.value))
                 }
                 if (assetClassAnyOf != null) {
-                    put("asset_class.any_of", listOf(assetClassAnyOf.toString()))
-                }
-                if (assetClassGt != null) {
-                    put("asset_class.gt", listOf(assetClassGt.toString()))
-                }
-                if (assetClassGte != null) {
-                    put("asset_class.gte", listOf(assetClassGte.toString()))
-                }
-                if (assetClassLt != null) {
-                    put("asset_class.lt", listOf(assetClassLt.toString()))
-                }
-                if (assetClassLte != null) {
-                    put("asset_class.lte", listOf(assetClassLte.toString()))
+                    put("asset_class.any_of", listOf(assetClassAnyOf.value))
                 }
                 if (assetSubClass != null) {
-                    put("asset_sub_class", listOf(assetSubClass.toString()))
+                    put("asset_sub_class", listOf(assetSubClass.value))
                 }
                 if (assetSubClassAnyOf != null) {
-                    put("asset_sub_class.any_of", listOf(assetSubClassAnyOf.toString()))
-                }
-                if (assetSubClassGt != null) {
-                    put("asset_sub_class.gt", listOf(assetSubClassGt.toString()))
-                }
-                if (assetSubClassGte != null) {
-                    put("asset_sub_class.gte", listOf(assetSubClassGte.toString()))
-                }
-                if (assetSubClassLt != null) {
-                    put("asset_sub_class.lt", listOf(assetSubClassLt.toString()))
-                }
-                if (assetSubClassLte != null) {
-                    put("asset_sub_class.lte", listOf(assetSubClassLte.toString()))
+                    put("asset_sub_class.any_of", listOf(assetSubClassAnyOf.value))
                 }
                 if (type != null) {
-                    put("type", listOf(type.toString()))
+                    put("type", listOf(type.value))
                 }
                 if (typeAnyOf != null) {
-                    put("type.any_of", listOf(typeAnyOf.toString()))
-                }
-                if (typeGt != null) {
-                    put("type.gt", listOf(typeGt.toString()))
-                }
-                if (typeGte != null) {
-                    put("type.gte", listOf(typeGte.toString()))
-                }
-                if (typeLt != null) {
-                    put("type.lt", listOf(typeLt.toString()))
-                }
-                if (typeLte != null) {
-                    put("type.lte", listOf(typeLte.toString()))
+                    put("type.any_of", listOf(typeAnyOf.value))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -7107,7 +7541,199 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
 
         return RequestConfig(
             method = RequestMethod.GET,
-            path = "/futures/vX/products-new",
+            path = "/futures/vX/products",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /futures/vX/schedules
+     * Futures Schedules API
+     * The Schedules API provides a unified way to retrieve trading schedules for futures markets, returning precise session open and close times, intraday breaks, and any adjustments for holidays or special events. You can request the full set of schedules for all products on a specific trading date or retrieve the schedule for a single product using its product code. All times are returned in Coordinated Universal Time (UTC), making it straightforward to align trading, execution, and operational workflows across systems.  Use Cases: Schedule planning, market analysis, strategy alignment, risk and operations management.
+     * @param productCode The product code of the futures contract. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
+     * @param sessionEndDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param sessionEndDateGt Filter greater than the value. (optional)
+     * @param sessionEndDateGte Filter greater than or equal to the value. (optional)
+     * @param sessionEndDateLt Filter less than the value. (optional)
+     * @param sessionEndDateLte Filter less than or equal to the value. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this schedule&#39;s product trades. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 10)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
+     * @return GetFuturesVXSchedules200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getFuturesVXSchedules(productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, sessionEndDate: kotlin.String? = null, sessionEndDateAnyOf: kotlin.String? = null, sessionEndDateGt: kotlin.String? = null, sessionEndDateGte: kotlin.String? = null, sessionEndDateLt: kotlin.String? = null, sessionEndDateLte: kotlin.String? = null, tradingVenue: kotlin.String? = null, tradingVenueAnyOf: kotlin.String? = null, tradingVenueGt: kotlin.String? = null, tradingVenueGte: kotlin.String? = null, tradingVenueLt: kotlin.String? = null, tradingVenueLte: kotlin.String? = null, limit: kotlin.Int? = 10, sort: kotlin.String? = "product_code.asc") : GetFuturesVXSchedules200Response {
+        val localVarResponse = getFuturesVXSchedulesWithHttpInfo(productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, sessionEndDate = sessionEndDate, sessionEndDateAnyOf = sessionEndDateAnyOf, sessionEndDateGt = sessionEndDateGt, sessionEndDateGte = sessionEndDateGte, sessionEndDateLt = sessionEndDateLt, sessionEndDateLte = sessionEndDateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesVXSchedules200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /futures/vX/schedules
+     * Futures Schedules API
+     * The Schedules API provides a unified way to retrieve trading schedules for futures markets, returning precise session open and close times, intraday breaks, and any adjustments for holidays or special events. You can request the full set of schedules for all products on a specific trading date or retrieve the schedule for a single product using its product code. All times are returned in Coordinated Universal Time (UTC), making it straightforward to align trading, execution, and operational workflows across systems.  Use Cases: Schedule planning, market analysis, strategy alignment, risk and operations management.
+     * @param productCode The product code of the futures contract. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
+     * @param sessionEndDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param sessionEndDateGt Filter greater than the value. (optional)
+     * @param sessionEndDateGte Filter greater than or equal to the value. (optional)
+     * @param sessionEndDateLt Filter less than the value. (optional)
+     * @param sessionEndDateLte Filter less than or equal to the value. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this schedule&#39;s product trades. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 10)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
+     * @return ApiResponse<GetFuturesVXSchedules200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getFuturesVXSchedulesWithHttpInfo(productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, sessionEndDate: kotlin.String?, sessionEndDateAnyOf: kotlin.String?, sessionEndDateGt: kotlin.String?, sessionEndDateGte: kotlin.String?, sessionEndDateLt: kotlin.String?, sessionEndDateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesVXSchedules200Response?> {
+        val localVariableConfig = getFuturesVXSchedulesRequestConfig(productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, sessionEndDate = sessionEndDate, sessionEndDateAnyOf = sessionEndDateAnyOf, sessionEndDateGt = sessionEndDateGt, sessionEndDateGte = sessionEndDateGte, sessionEndDateLt = sessionEndDateLt, sessionEndDateLte = sessionEndDateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, limit = limit, sort = sort)
+
+        return request<Unit, GetFuturesVXSchedules200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getFuturesVXSchedules
+     *
+     * @param productCode The product code of the futures contract. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param sessionEndDate The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. (optional)
+     * @param sessionEndDateAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param sessionEndDateGt Filter greater than the value. (optional)
+     * @param sessionEndDateGte Filter greater than or equal to the value. (optional)
+     * @param sessionEndDateLt Filter less than the value. (optional)
+     * @param sessionEndDateLte Filter less than or equal to the value. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this schedule&#39;s product trades. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 10)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "product_code.asc")
+     * @return RequestConfig
+     */
+    fun getFuturesVXSchedulesRequestConfig(productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, sessionEndDate: kotlin.String?, sessionEndDateAnyOf: kotlin.String?, sessionEndDateGt: kotlin.String?, sessionEndDateGte: kotlin.String?, sessionEndDateLt: kotlin.String?, sessionEndDateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (productCode != null) {
+                    put("product_code", listOf(productCode.toString()))
+                }
+                if (productCodeAnyOf != null) {
+                    put("product_code.any_of", listOf(productCodeAnyOf.toString()))
+                }
+                if (productCodeGt != null) {
+                    put("product_code.gt", listOf(productCodeGt.toString()))
+                }
+                if (productCodeGte != null) {
+                    put("product_code.gte", listOf(productCodeGte.toString()))
+                }
+                if (productCodeLt != null) {
+                    put("product_code.lt", listOf(productCodeLt.toString()))
+                }
+                if (productCodeLte != null) {
+                    put("product_code.lte", listOf(productCodeLte.toString()))
+                }
+                if (sessionEndDate != null) {
+                    put("session_end_date", listOf(sessionEndDate.toString()))
+                }
+                if (sessionEndDateAnyOf != null) {
+                    put("session_end_date.any_of", listOf(sessionEndDateAnyOf.toString()))
+                }
+                if (sessionEndDateGt != null) {
+                    put("session_end_date.gt", listOf(sessionEndDateGt.toString()))
+                }
+                if (sessionEndDateGte != null) {
+                    put("session_end_date.gte", listOf(sessionEndDateGte.toString()))
+                }
+                if (sessionEndDateLt != null) {
+                    put("session_end_date.lt", listOf(sessionEndDateLt.toString()))
+                }
+                if (sessionEndDateLte != null) {
+                    put("session_end_date.lte", listOf(sessionEndDateLte.toString()))
+                }
+                if (tradingVenue != null) {
+                    put("trading_venue", listOf(tradingVenue.toString()))
+                }
+                if (tradingVenueAnyOf != null) {
+                    put("trading_venue.any_of", listOf(tradingVenueAnyOf.toString()))
+                }
+                if (tradingVenueGt != null) {
+                    put("trading_venue.gt", listOf(tradingVenueGt.toString()))
+                }
+                if (tradingVenueGte != null) {
+                    put("trading_venue.gte", listOf(tradingVenueGte.toString()))
+                }
+                if (tradingVenueLt != null) {
+                    put("trading_venue.lt", listOf(tradingVenueLt.toString()))
+                }
+                if (tradingVenueLte != null) {
+                    put("trading_venue.lte", listOf(tradingVenueLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/futures/vX/schedules",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -10091,6 +10717,268 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * enum for parameter section
+     */
+     enum class SectionGetStocksFilings10KVXSections(val value: kotlin.String) {
+         @Json(name = "business") business("business"),
+         @Json(name = "risk_factors") riskFactors("risk_factors");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter sectionAnyOf
+     */
+     enum class SectionAnyOfGetStocksFilings10KVXSections(val value: kotlin.String) {
+         @Json(name = "business") business("business"),
+         @Json(name = "risk_factors") riskFactors("risk_factors");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /stocks/filings/10-K/vX/sections
+     * 
+     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return GetStocksFilings10KVXSections200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksFilings10KVXSections(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, section: SectionGetStocksFilings10KVXSections? = null, sectionAnyOf: SectionAnyOfGetStocksFilings10KVXSections? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.desc") : GetStocksFilings10KVXSections200Response {
+        val localVarResponse = getStocksFilings10KVXSectionsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFilings10KVXSections200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/filings/10-K/vX/sections
+     * 
+     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return ApiResponse<GetStocksFilings10KVXSections200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksFilings10KVXSectionsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, section: SectionGetStocksFilings10KVXSections?, sectionAnyOf: SectionAnyOfGetStocksFilings10KVXSections?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFilings10KVXSections200Response?> {
+        val localVariableConfig = getStocksFilings10KVXSectionsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksFilings10KVXSections200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksFilings10KVXSections
+     *
+     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
+     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param cikGt Filter greater than the value. (optional)
+     * @param cikGte Filter greater than or equal to the value. (optional)
+     * @param cikLt Filter less than the value. (optional)
+     * @param cikLte Filter less than or equal to the value. (optional)
+     * @param ticker Stock ticker symbol for the company. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
+     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
+     * @return RequestConfig
+     */
+    fun getStocksFilings10KVXSectionsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, section: SectionGetStocksFilings10KVXSections?, sectionAnyOf: SectionAnyOfGetStocksFilings10KVXSections?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (cik != null) {
+                    put("cik", listOf(cik.toString()))
+                }
+                if (cikAnyOf != null) {
+                    put("cik.any_of", listOf(cikAnyOf.toString()))
+                }
+                if (cikGt != null) {
+                    put("cik.gt", listOf(cikGt.toString()))
+                }
+                if (cikGte != null) {
+                    put("cik.gte", listOf(cikGte.toString()))
+                }
+                if (cikLt != null) {
+                    put("cik.lt", listOf(cikLt.toString()))
+                }
+                if (cikLte != null) {
+                    put("cik.lte", listOf(cikLte.toString()))
+                }
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (section != null) {
+                    put("section", listOf(section.value))
+                }
+                if (sectionAnyOf != null) {
+                    put("section.any_of", listOf(sectionAnyOf.value))
+                }
+                if (filingDate != null) {
+                    put("filing_date", listOf(filingDate.toString()))
+                }
+                if (filingDateGt != null) {
+                    put("filing_date.gt", listOf(filingDateGt.toString()))
+                }
+                if (filingDateGte != null) {
+                    put("filing_date.gte", listOf(filingDateGte.toString()))
+                }
+                if (filingDateLt != null) {
+                    put("filing_date.lt", listOf(filingDateLt.toString()))
+                }
+                if (filingDateLte != null) {
+                    put("filing_date.lte", listOf(filingDateLte.toString()))
+                }
+                if (periodEnd != null) {
+                    put("period_end", listOf(periodEnd.toString()))
+                }
+                if (periodEndGt != null) {
+                    put("period_end.gt", listOf(periodEndGt.toString()))
+                }
+                if (periodEndGte != null) {
+                    put("period_end.gte", listOf(periodEndGte.toString()))
+                }
+                if (periodEndLt != null) {
+                    put("period_end.lt", listOf(periodEndLt.toString()))
+                }
+                if (periodEndLte != null) {
+                    put("period_end.lte", listOf(periodEndLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/filings/10-K/vX/sections",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /stocks/filings/vX/risk-factors
      * 
      * The risk factors identified in companies&#39; 10K filings.
@@ -10283,312 +11171,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * enum for parameter formType
-     */
-     enum class FormTypeGetStocksFilingsVXText(val value: kotlin.String) {
-         @Json(name = "10-K") _10minusK("10-K");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter formTypeAnyOf
-     */
-     enum class FormTypeAnyOfGetStocksFilingsVXText(val value: kotlin.String) {
-         @Json(name = "10-K") _10minusK("10-K");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter section
-     */
-     enum class SectionGetStocksFilingsVXText(val value: kotlin.String) {
-         @Json(name = "business") business("business"),
-         @Json(name = "risk_factors") riskFactors("risk_factors");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter sectionAnyOf
-     */
-     enum class SectionAnyOfGetStocksFilingsVXText(val value: kotlin.String) {
-         @Json(name = "business") business("business"),
-         @Json(name = "risk_factors") riskFactors("risk_factors");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /stocks/filings/vX/text
-     * 
-     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
-     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
-     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param cikGt Filter greater than the value. (optional)
-     * @param cikGte Filter greater than or equal to the value. (optional)
-     * @param cikLt Filter less than the value. (optional)
-     * @param cikLte Filter less than or equal to the value. (optional)
-     * @param ticker Stock ticker symbol for the company. (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
-     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
-     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
-     * @return GetStocksFilingsVXText200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFilingsVXText(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, formType: FormTypeGetStocksFilingsVXText? = null, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText? = null, section: SectionGetStocksFilingsVXText? = null, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.desc") : GetStocksFilingsVXText200Response {
-        val localVarResponse = getStocksFilingsVXTextWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, formType = formType, formTypeAnyOf = formTypeAnyOf, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFilingsVXText200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /stocks/filings/vX/text
-     * 
-     * SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
-     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
-     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param cikGt Filter greater than the value. (optional)
-     * @param cikGte Filter greater than or equal to the value. (optional)
-     * @param cikLt Filter less than the value. (optional)
-     * @param cikLte Filter less than or equal to the value. (optional)
-     * @param ticker Stock ticker symbol for the company. (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
-     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
-     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
-     * @return ApiResponse<GetStocksFilingsVXText200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFilingsVXTextWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, formType: FormTypeGetStocksFilingsVXText?, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText?, section: SectionGetStocksFilingsVXText?, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFilingsVXText200Response?> {
-        val localVariableConfig = getStocksFilingsVXTextRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, formType = formType, formTypeAnyOf = formTypeAnyOf, section = section, sectionAnyOf = sectionAnyOf, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, limit = limit, sort = sort)
-
-        return request<Unit, GetStocksFilingsVXText200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getStocksFilingsVXText
-     *
-     * @param cik SEC Central Index Key (10 digits, zero-padded). (optional)
-     * @param cikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param cikGt Filter greater than the value. (optional)
-     * @param cikGte Filter greater than or equal to the value. (optional)
-     * @param cikLt Filter less than the value. (optional)
-     * @param cikLte Filter less than or equal to the value. (optional)
-     * @param ticker Stock ticker symbol for the company. (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param formType SEC form type (e.g., &#39;10-K&#39; for annual reports, &#39;10-Q&#39; for quarterly reports). (optional)
-     * @param formTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param section Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). (optional)
-     * @param sectionAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEnd Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
-     * @return RequestConfig
-     */
-    fun getStocksFilingsVXTextRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, formType: FormTypeGetStocksFilingsVXText?, formTypeAnyOf: FormTypeAnyOfGetStocksFilingsVXText?, section: SectionGetStocksFilingsVXText?, sectionAnyOf: SectionAnyOfGetStocksFilingsVXText?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (cik != null) {
-                    put("cik", listOf(cik.toString()))
-                }
-                if (cikAnyOf != null) {
-                    put("cik.any_of", listOf(cikAnyOf.toString()))
-                }
-                if (cikGt != null) {
-                    put("cik.gt", listOf(cikGt.toString()))
-                }
-                if (cikGte != null) {
-                    put("cik.gte", listOf(cikGte.toString()))
-                }
-                if (cikLt != null) {
-                    put("cik.lt", listOf(cikLt.toString()))
-                }
-                if (cikLte != null) {
-                    put("cik.lte", listOf(cikLte.toString()))
-                }
-                if (ticker != null) {
-                    put("ticker", listOf(ticker.toString()))
-                }
-                if (tickerAnyOf != null) {
-                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
-                }
-                if (tickerGt != null) {
-                    put("ticker.gt", listOf(tickerGt.toString()))
-                }
-                if (tickerGte != null) {
-                    put("ticker.gte", listOf(tickerGte.toString()))
-                }
-                if (tickerLt != null) {
-                    put("ticker.lt", listOf(tickerLt.toString()))
-                }
-                if (tickerLte != null) {
-                    put("ticker.lte", listOf(tickerLte.toString()))
-                }
-                if (formType != null) {
-                    put("form_type", listOf(formType.value))
-                }
-                if (formTypeAnyOf != null) {
-                    put("form_type.any_of", listOf(formTypeAnyOf.value))
-                }
-                if (section != null) {
-                    put("section", listOf(section.value))
-                }
-                if (sectionAnyOf != null) {
-                    put("section.any_of", listOf(sectionAnyOf.value))
-                }
-                if (filingDate != null) {
-                    put("filing_date", listOf(filingDate.toString()))
-                }
-                if (filingDateGt != null) {
-                    put("filing_date.gt", listOf(filingDateGt.toString()))
-                }
-                if (filingDateGte != null) {
-                    put("filing_date.gte", listOf(filingDateGte.toString()))
-                }
-                if (filingDateLt != null) {
-                    put("filing_date.lt", listOf(filingDateLt.toString()))
-                }
-                if (filingDateLte != null) {
-                    put("filing_date.lte", listOf(filingDateLte.toString()))
-                }
-                if (periodEnd != null) {
-                    put("period_end", listOf(periodEnd.toString()))
-                }
-                if (periodEndGt != null) {
-                    put("period_end.gt", listOf(periodEndGt.toString()))
-                }
-                if (periodEndGte != null) {
-                    put("period_end.gte", listOf(periodEndGte.toString()))
-                }
-                if (periodEndLt != null) {
-                    put("period_end.lt", listOf(periodEndLt.toString()))
-                }
-                if (periodEndLte != null) {
-                    put("period_end.lte", listOf(periodEndLte.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/stocks/filings/vX/text",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * GET /stocks/financials/v1/balance-sheets
      * 
      * A comprehensive financial dataset containing quarterly and annual balance sheet data for public companies. Includes detailed asset, liability, and equity positions representing the company&#39;s financial position at specific points in time. Balance sheet data represents point-in-time snapshots rather than cumulative flows, showing what the company owns, owes, and shareholders&#39; equity as of each period end date.
@@ -10627,6 +11209,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return GetStocksFinancialsV1BalanceSheets200Response
@@ -10638,8 +11232,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1BalanceSheets(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1BalanceSheets200Response {
-        val localVarResponse = getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1BalanceSheets(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, maxTicker: kotlin.String? = null, maxTickerAnyOf: kotlin.String? = null, maxTickerGt: kotlin.String? = null, maxTickerGte: kotlin.String? = null, maxTickerLt: kotlin.String? = null, maxTickerLte: kotlin.String? = null, minTicker: kotlin.String? = null, minTickerAnyOf: kotlin.String? = null, minTickerGt: kotlin.String? = null, minTickerGte: kotlin.String? = null, minTickerLt: kotlin.String? = null, minTickerLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1BalanceSheets200Response {
+        val localVarResponse = getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFinancialsV1BalanceSheets200Response
@@ -10695,6 +11289,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return ApiResponse<GetStocksFinancialsV1BalanceSheets200Response?>
@@ -10703,8 +11309,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1BalanceSheets200Response?> {
-        val localVariableConfig = getStocksFinancialsV1BalanceSheetsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1BalanceSheets200Response?> {
+        val localVariableConfig = getStocksFinancialsV1BalanceSheetsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1BalanceSheets200Response>(
             localVariableConfig
@@ -10749,11 +11355,23 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1BalanceSheetsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1BalanceSheetsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -10861,6 +11479,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                 }
                 if (timeframeLte != null) {
                     put("timeframe.lte", listOf(timeframeLte.toString()))
+                }
+                if (maxTicker != null) {
+                    put("max_ticker", listOf(maxTicker.toString()))
+                }
+                if (maxTickerAnyOf != null) {
+                    put("max_ticker.any_of", listOf(maxTickerAnyOf.toString()))
+                }
+                if (maxTickerGt != null) {
+                    put("max_ticker.gt", listOf(maxTickerGt.toString()))
+                }
+                if (maxTickerGte != null) {
+                    put("max_ticker.gte", listOf(maxTickerGte.toString()))
+                }
+                if (maxTickerLt != null) {
+                    put("max_ticker.lt", listOf(maxTickerLt.toString()))
+                }
+                if (maxTickerLte != null) {
+                    put("max_ticker.lte", listOf(maxTickerLte.toString()))
+                }
+                if (minTicker != null) {
+                    put("min_ticker", listOf(minTicker.toString()))
+                }
+                if (minTickerAnyOf != null) {
+                    put("min_ticker.any_of", listOf(minTickerAnyOf.toString()))
+                }
+                if (minTickerGt != null) {
+                    put("min_ticker.gt", listOf(minTickerGt.toString()))
+                }
+                if (minTickerGte != null) {
+                    put("min_ticker.gte", listOf(minTickerGte.toString()))
+                }
+                if (minTickerLt != null) {
+                    put("min_ticker.lt", listOf(minTickerLt.toString()))
+                }
+                if (minTickerLte != null) {
+                    put("min_ticker.lte", listOf(minTickerLte.toString()))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -10921,6 +11575,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return GetStocksFinancialsV1CashFlowStatements200Response
@@ -10932,8 +11598,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1CashFlowStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1CashFlowStatements200Response {
-        val localVarResponse = getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1CashFlowStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, maxTicker: kotlin.String? = null, maxTickerAnyOf: kotlin.String? = null, maxTickerGt: kotlin.String? = null, maxTickerGte: kotlin.String? = null, maxTickerLt: kotlin.String? = null, maxTickerLte: kotlin.String? = null, minTicker: kotlin.String? = null, minTickerAnyOf: kotlin.String? = null, minTickerGt: kotlin.String? = null, minTickerGte: kotlin.String? = null, minTickerLt: kotlin.String? = null, minTickerLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1CashFlowStatements200Response {
+        val localVarResponse = getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFinancialsV1CashFlowStatements200Response
@@ -10989,6 +11655,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return ApiResponse<GetStocksFinancialsV1CashFlowStatements200Response?>
@@ -10997,8 +11675,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1CashFlowStatements200Response?> {
-        val localVariableConfig = getStocksFinancialsV1CashFlowStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1CashFlowStatements200Response?> {
+        val localVariableConfig = getStocksFinancialsV1CashFlowStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1CashFlowStatements200Response>(
             localVariableConfig
@@ -11043,11 +11721,23 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1CashFlowStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1CashFlowStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -11155,6 +11845,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                 }
                 if (timeframeLte != null) {
                     put("timeframe.lte", listOf(timeframeLte.toString()))
+                }
+                if (maxTicker != null) {
+                    put("max_ticker", listOf(maxTicker.toString()))
+                }
+                if (maxTickerAnyOf != null) {
+                    put("max_ticker.any_of", listOf(maxTickerAnyOf.toString()))
+                }
+                if (maxTickerGt != null) {
+                    put("max_ticker.gt", listOf(maxTickerGt.toString()))
+                }
+                if (maxTickerGte != null) {
+                    put("max_ticker.gte", listOf(maxTickerGte.toString()))
+                }
+                if (maxTickerLt != null) {
+                    put("max_ticker.lt", listOf(maxTickerLt.toString()))
+                }
+                if (maxTickerLte != null) {
+                    put("max_ticker.lte", listOf(maxTickerLte.toString()))
+                }
+                if (minTicker != null) {
+                    put("min_ticker", listOf(minTicker.toString()))
+                }
+                if (minTickerAnyOf != null) {
+                    put("min_ticker.any_of", listOf(minTickerAnyOf.toString()))
+                }
+                if (minTickerGt != null) {
+                    put("min_ticker.gt", listOf(minTickerGt.toString()))
+                }
+                if (minTickerGte != null) {
+                    put("min_ticker.gte", listOf(minTickerGte.toString()))
+                }
+                if (minTickerLt != null) {
+                    put("min_ticker.lt", listOf(minTickerLt.toString()))
+                }
+                if (minTickerLte != null) {
+                    put("min_ticker.lte", listOf(minTickerLte.toString()))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -11215,6 +11941,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return GetStocksFinancialsV1IncomeStatements200Response
@@ -11226,8 +11964,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1IncomeStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1IncomeStatements200Response {
-        val localVarResponse = getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1IncomeStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, maxTicker: kotlin.String? = null, maxTickerAnyOf: kotlin.String? = null, maxTickerGt: kotlin.String? = null, maxTickerGte: kotlin.String? = null, maxTickerLt: kotlin.String? = null, maxTickerLte: kotlin.String? = null, minTicker: kotlin.String? = null, minTickerAnyOf: kotlin.String? = null, minTickerGt: kotlin.String? = null, minTickerGte: kotlin.String? = null, minTickerLt: kotlin.String? = null, minTickerLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1IncomeStatements200Response {
+        val localVarResponse = getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksFinancialsV1IncomeStatements200Response
@@ -11283,6 +12021,18 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return ApiResponse<GetStocksFinancialsV1IncomeStatements200Response?>
@@ -11291,8 +12041,8 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1IncomeStatements200Response?> {
-        val localVariableConfig = getStocksFinancialsV1IncomeStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
+    fun getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1IncomeStatements200Response?> {
+        val localVariableConfig = getStocksFinancialsV1IncomeStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, maxTicker = maxTicker, maxTickerAnyOf = maxTickerAnyOf, maxTickerGt = maxTickerGt, maxTickerGte = maxTickerGte, maxTickerLt = maxTickerLt, maxTickerLte = maxTickerLte, minTicker = minTicker, minTickerAnyOf = minTickerAnyOf, minTickerGt = minTickerGt, minTickerGte = minTickerGte, minTickerLt = minTickerLt, minTickerLte = minTickerLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1IncomeStatements200Response>(
             localVariableConfig
@@ -11337,11 +12087,23 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param timeframeGte Filter greater than or equal to the value. (optional)
      * @param timeframeLt Filter less than the value. (optional)
      * @param timeframeLte Filter less than or equal to the value. (optional)
+     * @param maxTicker Filter equal to the value. (optional)
+     * @param maxTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param maxTickerGt Filter greater than the value. (optional)
+     * @param maxTickerGte Filter greater than or equal to the value. (optional)
+     * @param maxTickerLt Filter less than the value. (optional)
+     * @param maxTickerLte Filter less than or equal to the value. (optional)
+     * @param minTicker Filter equal to the value. (optional)
+     * @param minTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param minTickerGt Filter greater than the value. (optional)
+     * @param minTickerGte Filter greater than or equal to the value. (optional)
+     * @param minTickerLt Filter less than the value. (optional)
+     * @param minTickerLte Filter less than or equal to the value. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1IncomeStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1IncomeStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, maxTicker: kotlin.String?, maxTickerAnyOf: kotlin.String?, maxTickerGt: kotlin.String?, maxTickerGte: kotlin.String?, maxTickerLt: kotlin.String?, maxTickerLte: kotlin.String?, minTicker: kotlin.String?, minTickerAnyOf: kotlin.String?, minTickerGt: kotlin.String?, minTickerGte: kotlin.String?, minTickerLt: kotlin.String?, minTickerLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -11449,6 +12211,42 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
                 }
                 if (timeframeLte != null) {
                     put("timeframe.lte", listOf(timeframeLte.toString()))
+                }
+                if (maxTicker != null) {
+                    put("max_ticker", listOf(maxTicker.toString()))
+                }
+                if (maxTickerAnyOf != null) {
+                    put("max_ticker.any_of", listOf(maxTickerAnyOf.toString()))
+                }
+                if (maxTickerGt != null) {
+                    put("max_ticker.gt", listOf(maxTickerGt.toString()))
+                }
+                if (maxTickerGte != null) {
+                    put("max_ticker.gte", listOf(maxTickerGte.toString()))
+                }
+                if (maxTickerLt != null) {
+                    put("max_ticker.lt", listOf(maxTickerLt.toString()))
+                }
+                if (maxTickerLte != null) {
+                    put("max_ticker.lte", listOf(maxTickerLte.toString()))
+                }
+                if (minTicker != null) {
+                    put("min_ticker", listOf(minTicker.toString()))
+                }
+                if (minTickerAnyOf != null) {
+                    put("min_ticker.any_of", listOf(minTickerAnyOf.toString()))
+                }
+                if (minTickerGt != null) {
+                    put("min_ticker.gt", listOf(minTickerGt.toString()))
+                }
+                if (minTickerGte != null) {
+                    put("min_ticker.gte", listOf(minTickerGte.toString()))
+                }
+                if (minTickerLt != null) {
+                    put("min_ticker.lt", listOf(minTickerLt.toString()))
+                }
+                if (minTickerLte != null) {
+                    put("min_ticker.lte", listOf(minTickerLte.toString()))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))
@@ -13781,7 +14579,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param exDividendDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
+     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
      * @param frequencyGt Filter greater than the value. Value must be an integer. (optional)
      * @param frequencyGte Filter greater than or equal to the value. Value must be an integer. (optional)
      * @param frequencyLt Filter less than the value. Value must be an integer. (optional)
@@ -13832,7 +14630,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param exDividendDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
+     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
      * @param frequencyGt Filter greater than the value. Value must be an integer. (optional)
      * @param frequencyGte Filter greater than or equal to the value. Value must be an integer. (optional)
      * @param frequencyLt Filter less than the value. Value must be an integer. (optional)
@@ -13869,7 +14667,7 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param exDividendDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param exDividendDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
+     * @param frequency How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. (optional)
      * @param frequencyGt Filter greater than the value. Value must be an integer. (optional)
      * @param frequencyGte Filter greater than or equal to the value. Value must be an integer. (optional)
      * @param frequencyLt Filter less than the value. Value must be an integer. (optional)
@@ -14691,6 +15489,156 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
+     * GET /stocks/vX/float
+     * 
+     * Contains free float data for US-listed securities, showing the most recent available number of shares available for public trading and the percentage of total shares outstanding.
+     * @param ticker The primary ticker symbol for the stock. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param freeFloatPercent Percentage of total shares outstanding that are available for public trading, rounded to two decimal places. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
+     * @return GetStocksVXFloat200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksVXFloat(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, freeFloatPercent: kotlin.Double? = null, freeFloatPercentGt: kotlin.Double? = null, freeFloatPercentGte: kotlin.Double? = null, freeFloatPercentLt: kotlin.Double? = null, freeFloatPercentLte: kotlin.Double? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "ticker.asc") : GetStocksVXFloat200Response {
+        val localVarResponse = getStocksVXFloatWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, freeFloatPercent = freeFloatPercent, freeFloatPercentGt = freeFloatPercentGt, freeFloatPercentGte = freeFloatPercentGte, freeFloatPercentLt = freeFloatPercentLt, freeFloatPercentLte = freeFloatPercentLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksVXFloat200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/vX/float
+     * 
+     * Contains free float data for US-listed securities, showing the most recent available number of shares available for public trading and the percentage of total shares outstanding.
+     * @param ticker The primary ticker symbol for the stock. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param freeFloatPercent Percentage of total shares outstanding that are available for public trading, rounded to two decimal places. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
+     * @return ApiResponse<GetStocksVXFloat200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksVXFloatWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, freeFloatPercent: kotlin.Double?, freeFloatPercentGt: kotlin.Double?, freeFloatPercentGte: kotlin.Double?, freeFloatPercentLt: kotlin.Double?, freeFloatPercentLte: kotlin.Double?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksVXFloat200Response?> {
+        val localVariableConfig = getStocksVXFloatRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, freeFloatPercent = freeFloatPercent, freeFloatPercentGt = freeFloatPercentGt, freeFloatPercentGte = freeFloatPercentGte, freeFloatPercentLt = freeFloatPercentLt, freeFloatPercentLte = freeFloatPercentLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksVXFloat200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksVXFloat
+     *
+     * @param ticker The primary ticker symbol for the stock. (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param freeFloatPercent Percentage of total shares outstanding that are available for public trading, rounded to two decimal places. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGt Filter greater than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLt Filter less than the value. Value must be a floating point number. (optional)
+     * @param freeFloatPercentLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "ticker.asc")
+     * @return RequestConfig
+     */
+    fun getStocksVXFloatRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, freeFloatPercent: kotlin.Double?, freeFloatPercentGt: kotlin.Double?, freeFloatPercentGte: kotlin.Double?, freeFloatPercentLt: kotlin.Double?, freeFloatPercentLte: kotlin.Double?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (freeFloatPercent != null) {
+                    put("free_float_percent", listOf(freeFloatPercent.toString()))
+                }
+                if (freeFloatPercentGt != null) {
+                    put("free_float_percent.gt", listOf(freeFloatPercentGt.toString()))
+                }
+                if (freeFloatPercentGte != null) {
+                    put("free_float_percent.gte", listOf(freeFloatPercentGte.toString()))
+                }
+                if (freeFloatPercentLt != null) {
+                    put("free_float_percent.lt", listOf(freeFloatPercentLt.toString()))
+                }
+                if (freeFloatPercentLte != null) {
+                    put("free_float_percent.lte", listOf(freeFloatPercentLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/vX/float",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /v3/reference/tickers/{ticker}
      * Ticker Details v3
      * Get a single ticker supported by Massive. This response will have detailed information about the ticker and the company behind it.
@@ -15337,183 +16285,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v3/reference/conditions",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter active
-     */
-     enum class ActiveListContracts(val value: kotlin.String) {
-         @Json(name = "all") all("all"),
-         @Json(name = "true") `true`("true"),
-         @Json(name = "false") `false`("false");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter type
-     */
-     enum class TypeListContracts(val value: kotlin.String) {
-         @Json(name = "all") all("all"),
-         @Json(name = "single") single("single"),
-         @Json(name = "combo") combo("combo");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter sort
-     */
-     enum class SortListContracts(val value: kotlin.String) {
-         @Json(name = "product_code.asc") productCodePeriodAsc("product_code.asc"),
-         @Json(name = "product_code.desc") productCodePeriodDesc("product_code.desc"),
-         @Json(name = "first_trade_date.asc") firstTradeDatePeriodAsc("first_trade_date.asc"),
-         @Json(name = "first_trade_date.desc") firstTradeDatePeriodDesc("first_trade_date.desc"),
-         @Json(name = "last_trade_date.asc") lastTradeDatePeriodAsc("last_trade_date.asc"),
-         @Json(name = "last_trade_date.desc") lastTradeDatePeriodDesc("last_trade_date.desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/contracts
-     * Contracts
-     * The Contracts endpoint returns a list of futures contracts. This endpoint can be used to query for contracts based on a variety of parameters, including the contract&#39;s ticker, product code, first trade date, last trade date, and whether or not the contract was active on a given date.
-     * @param productCode A unique identifier for the Product a Contract belongs to. Note that multiple contracts can belong to the same product. (optional)
-     * @param firstTradeDate The first day that a contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param lastTradeDate The last day that the contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param asOf Specify the point-in-time for which you want to retrieve information. Note that the contract data returned for a given date is the state of that contract as of that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @param active Filter for contracts based on whether or not they were tradeable at the given point in time. For example, if the date queried is greater-than or equal-to a contract&#39;s &#39;first_trade_date&#39; and less-than-or-equal-to its &#39;last_trade_date&#39;, then the contract was active. If the date queried is greater-than-or-equal-to the contract&#39;s &#39;last_trade_date&#39; or less-than-or-equal-to its &#39;first_trade_date&#39;, then the contract was inactive. (optional, default to all)
-     * @param type The type of contract, one of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return ListContracts200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listContracts(productCode: kotlin.String? = null, firstTradeDate: java.time.LocalDate? = null, lastTradeDate: java.time.LocalDate? = null, asOf: java.time.LocalDate? = null, active: ActiveListContracts? = ActiveListContracts.all, type: TypeListContracts? = TypeListContracts.all, limit: kotlin.Int? = 100, sort: SortListContracts? = SortListContracts.productCodePeriodAsc) : ListContracts200Response {
-        val localVarResponse = listContractsWithHttpInfo(productCode = productCode, firstTradeDate = firstTradeDate, lastTradeDate = lastTradeDate, asOf = asOf, active = active, type = type, limit = limit, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListContracts200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/contracts
-     * Contracts
-     * The Contracts endpoint returns a list of futures contracts. This endpoint can be used to query for contracts based on a variety of parameters, including the contract&#39;s ticker, product code, first trade date, last trade date, and whether or not the contract was active on a given date.
-     * @param productCode A unique identifier for the Product a Contract belongs to. Note that multiple contracts can belong to the same product. (optional)
-     * @param firstTradeDate The first day that a contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param lastTradeDate The last day that the contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param asOf Specify the point-in-time for which you want to retrieve information. Note that the contract data returned for a given date is the state of that contract as of that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @param active Filter for contracts based on whether or not they were tradeable at the given point in time. For example, if the date queried is greater-than or equal-to a contract&#39;s &#39;first_trade_date&#39; and less-than-or-equal-to its &#39;last_trade_date&#39;, then the contract was active. If the date queried is greater-than-or-equal-to the contract&#39;s &#39;last_trade_date&#39; or less-than-or-equal-to its &#39;first_trade_date&#39;, then the contract was inactive. (optional, default to all)
-     * @param type The type of contract, one of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return ApiResponse<ListContracts200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listContractsWithHttpInfo(productCode: kotlin.String?, firstTradeDate: java.time.LocalDate?, lastTradeDate: java.time.LocalDate?, asOf: java.time.LocalDate?, active: ActiveListContracts?, type: TypeListContracts?, limit: kotlin.Int?, sort: SortListContracts?) : ApiResponse<ListContracts200Response?> {
-        val localVariableConfig = listContractsRequestConfig(productCode = productCode, firstTradeDate = firstTradeDate, lastTradeDate = lastTradeDate, asOf = asOf, active = active, type = type, limit = limit, sort = sort)
-
-        return request<Unit, ListContracts200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listContracts
-     *
-     * @param productCode A unique identifier for the Product a Contract belongs to. Note that multiple contracts can belong to the same product. (optional)
-     * @param firstTradeDate The first day that a contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param lastTradeDate The last day that the contract was tradeable. A date with the format YYYY-MM-DD. (optional)
-     * @param asOf Specify the point-in-time for which you want to retrieve information. Note that the contract data returned for a given date is the state of that contract as of that day. A date in the format YYYY-MM-DD (default&#x3D;today). (optional)
-     * @param active Filter for contracts based on whether or not they were tradeable at the given point in time. For example, if the date queried is greater-than or equal-to a contract&#39;s &#39;first_trade_date&#39; and less-than-or-equal-to its &#39;last_trade_date&#39;, then the contract was active. If the date queried is greater-than-or-equal-to the contract&#39;s &#39;last_trade_date&#39; or less-than-or-equal-to its &#39;first_trade_date&#39;, then the contract was inactive. (optional, default to all)
-     * @param type The type of contract, one of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return RequestConfig
-     */
-    fun listContractsRequestConfig(productCode: kotlin.String?, firstTradeDate: java.time.LocalDate?, lastTradeDate: java.time.LocalDate?, asOf: java.time.LocalDate?, active: ActiveListContracts?, type: TypeListContracts?, limit: kotlin.Int?, sort: SortListContracts?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (productCode != null) {
-                    put("product_code", listOf(productCode.toString()))
-                }
-                if (firstTradeDate != null) {
-                    put("first_trade_date", listOf(parseDateToQueryString(firstTradeDate)))
-                }
-                if (lastTradeDate != null) {
-                    put("last_trade_date", listOf(parseDateToQueryString(lastTradeDate)))
-                }
-                if (asOf != null) {
-                    put("as_of", listOf(parseDateToQueryString(asOf)))
-                }
-                if (active != null) {
-                    put("active", listOf(active.value))
-                }
-                if (type != null) {
-                    put("type", listOf(type.value))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.value))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/contracts",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -16466,119 +17237,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     }
 
     /**
-     * enum for parameter sort
-     */
-     enum class SortListMarketStatuses(val value: kotlin.String) {
-         @Json(name = "product_code.asc") productCodePeriodAsc("product_code.asc"),
-         @Json(name = "product_code.desc") productCodePeriodDesc("product_code.desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/market-status
-     * Market Status
-     * The market status endpoint returns the current status of the futures market for the given product code(s).
-     * @param productCodeAnyOf The product code(s) to return market statuses for.  Multiple product codes can be specified by separating them with a comma. Currently, the limit is 250 product codes. (optional)
-     * @param productCode The product code to return market statuses for. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return ListMarketStatuses200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listMarketStatuses(productCodeAnyOf: kotlin.String? = null, productCode: kotlin.String? = null, limit: kotlin.Int? = 100, sort: SortListMarketStatuses? = SortListMarketStatuses.productCodePeriodAsc) : ListMarketStatuses200Response {
-        val localVarResponse = listMarketStatusesWithHttpInfo(productCodeAnyOf = productCodeAnyOf, productCode = productCode, limit = limit, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListMarketStatuses200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/market-status
-     * Market Status
-     * The market status endpoint returns the current status of the futures market for the given product code(s).
-     * @param productCodeAnyOf The product code(s) to return market statuses for.  Multiple product codes can be specified by separating them with a comma. Currently, the limit is 250 product codes. (optional)
-     * @param productCode The product code to return market statuses for. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return ApiResponse<ListMarketStatuses200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listMarketStatusesWithHttpInfo(productCodeAnyOf: kotlin.String?, productCode: kotlin.String?, limit: kotlin.Int?, sort: SortListMarketStatuses?) : ApiResponse<ListMarketStatuses200Response?> {
-        val localVariableConfig = listMarketStatusesRequestConfig(productCodeAnyOf = productCodeAnyOf, productCode = productCode, limit = limit, sort = sort)
-
-        return request<Unit, ListMarketStatuses200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listMarketStatuses
-     *
-     * @param productCodeAnyOf The product code(s) to return market statuses for.  Multiple product codes can be specified by separating them with a comma. Currently, the limit is 250 product codes. (optional)
-     * @param productCode The product code to return market statuses for. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to product_code.asc)
-     * @return RequestConfig
-     */
-    fun listMarketStatusesRequestConfig(productCodeAnyOf: kotlin.String?, productCode: kotlin.String?, limit: kotlin.Int?, sort: SortListMarketStatuses?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (productCodeAnyOf != null) {
-                    put("product_code.any_of", listOf(productCodeAnyOf.toString()))
-                }
-                if (productCode != null) {
-                    put("product_code", listOf(productCode.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.value))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/market-status",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
      * enum for parameter order
      */
      enum class OrderListNews(val value: kotlin.String) {
@@ -17006,316 +17664,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v3/reference/options/contracts",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter sector
-     */
-     enum class SectorListProducts(val value: kotlin.String) {
-         @Json(name = "asia") asia("asia"),
-         @Json(name = "base") base("base"),
-         @Json(name = "biofuels") biofuels("biofuels"),
-         @Json(name = "coal") coal("coal"),
-         @Json(name = "cross_rates") crossRates("cross_rates"),
-         @Json(name = "crude_oil") crudeOil("crude_oil"),
-         @Json(name = "custom_index") customIndex("custom_index"),
-         @Json(name = "dairy") dairy("dairy"),
-         @Json(name = "dj_ubs_ci") djUbsCi("dj_ubs_ci"),
-         @Json(name = "electricity") electricity("electricity"),
-         @Json(name = "emissions") emissions("emissions"),
-         @Json(name = "europe") europe("europe"),
-         @Json(name = "fertilizer") fertilizer("fertilizer"),
-         @Json(name = "forestry") forestry("forestry"),
-         @Json(name = "grains_and_oilseeds") grainsAndOilseeds("grains_and_oilseeds"),
-         @Json(name = "intl_index") intlIndex("intl_index"),
-         @Json(name = "liq_nat_gas_lng") liqNatGasLng("liq_nat_gas_lng"),
-         @Json(name = "livestock") livestock("livestock"),
-         @Json(name = "long_term_gov") longTermGov("long_term_gov"),
-         @Json(name = "long_term_non_gov") longTermNonGov("long_term_non_gov"),
-         @Json(name = "majors") majors("majors"),
-         @Json(name = "minors") minors("minors"),
-         @Json(name = "nat_gas") natGas("nat_gas"),
-         @Json(name = "nat_gas_liq_petro") natGasLiqPetro("nat_gas_liq_petro"),
-         @Json(name = "precious") precious("precious"),
-         @Json(name = "refined_products") refinedProducts("refined_products"),
-         @Json(name = "s_and_p_gsci") sAndPGsci("s_and_p_gsci"),
-         @Json(name = "sel_sector_index") selSectorIndex("sel_sector_index"),
-         @Json(name = "short_term_gov") shortTermGov("short_term_gov"),
-         @Json(name = "short_term_non_gov") shortTermNonGov("short_term_non_gov"),
-         @Json(name = "softs") softs("softs"),
-         @Json(name = "us") us("us"),
-         @Json(name = "us_index") usIndex("us_index"),
-         @Json(name = "wet_bulk") wetBulk("wet_bulk");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter subSector
-     */
-     enum class SubSectorListProducts(val value: kotlin.String) {
-         @Json(name = "asian") asian("asian"),
-         @Json(name = "canadian") canadian("canadian"),
-         @Json(name = "cat") cat("cat"),
-         @Json(name = "cooling_degree_days") coolingDegreeDays("cooling_degree_days"),
-         @Json(name = "ercot") ercot("ercot"),
-         @Json(name = "european") european("european"),
-         @Json(name = "gulf") gulf("gulf"),
-         @Json(name = "heating_degree_days") heatingDegreeDays("heating_degree_days"),
-         @Json(name = "iso_ne") isoNe("iso_ne"),
-         @Json(name = "large_cap_index") largeCapIndex("large_cap_index"),
-         @Json(name = "mid_cap_index") midCapIndex("mid_cap_index"),
-         @Json(name = "miso") miso("miso"),
-         @Json(name = "north_american") northAmerican("north_american"),
-         @Json(name = "nyiso") nyiso("nyiso"),
-         @Json(name = "pjm") pjm("pjm"),
-         @Json(name = "small_cap_index") smallCapIndex("small_cap_index"),
-         @Json(name = "west") west("west"),
-         @Json(name = "western_power") westernPower("western_power");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter assetClass
-     */
-     enum class AssetClassListProducts(val value: kotlin.String) {
-         @Json(name = "alt_investment") altInvestment("alt_investment"),
-         @Json(name = "commodity") commodity("commodity"),
-         @Json(name = "financials") financials("financials");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter assetSubClass
-     */
-     enum class AssetSubClassListProducts(val value: kotlin.String) {
-         @Json(name = "agricultural") agricultural("agricultural"),
-         @Json(name = "commodity_index") commodityIndex("commodity_index"),
-         @Json(name = "energy") energy("energy"),
-         @Json(name = "equity") equity("equity"),
-         @Json(name = "foreign_exchange") foreignExchange("foreign_exchange"),
-         @Json(name = "freight") freight("freight"),
-         @Json(name = "housing") housing("housing"),
-         @Json(name = "interest_rate") interestRate("interest_rate"),
-         @Json(name = "metals") metals("metals"),
-         @Json(name = "weather") weather("weather");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter type
-     */
-     enum class TypeListProducts(val value: kotlin.String) {
-         @Json(name = "all") all("all"),
-         @Json(name = "single") single("single"),
-         @Json(name = "combo") combo("combo");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter sort
-     */
-     enum class SortListProducts(val value: kotlin.String) {
-         @Json(name = "name.asc") namePeriodAsc("name.asc"),
-         @Json(name = "name.desc") namePeriodDesc("name.desc"),
-         @Json(name = "trading_venue.asc") tradingVenuePeriodAsc("trading_venue.asc"),
-         @Json(name = "trading_venue.desc") tradingVenuePeriodDesc("trading_venue.desc"),
-         @Json(name = "sector.asc") sectorPeriodAsc("sector.asc"),
-         @Json(name = "sector.desc") sectorPeriodDesc("sector.desc"),
-         @Json(name = "sub_sector.asc") subSectorPeriodAsc("sub_sector.asc"),
-         @Json(name = "sub_sector.desc") subSectorPeriodDesc("sub_sector.desc"),
-         @Json(name = "asset_class.asc") assetClassPeriodAsc("asset_class.asc"),
-         @Json(name = "asset_class.desc") assetClassPeriodDesc("asset_class.desc"),
-         @Json(name = "asset_sub_class.asc") assetSubClassPeriodAsc("asset_sub_class.asc"),
-         @Json(name = "asset_sub_class.desc") assetSubClassPeriodDesc("asset_sub_class.desc"),
-         @Json(name = "type.asc") typePeriodAsc("type.asc"),
-         @Json(name = "type.desc") typePeriodDesc("type.desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/products
-     * Products
-     * The Products endpoint returns a list of futures products. This endpoint can be used to query for products based on a variety of parameters, including by the product&#39;s name, exchange, sector, sub-sector, asset class, asset sub-class, and type.
-     * @param name Search for products by Product Name. This parameter supports an exact match, while a name-contains search can be performed using the &#x60;name.search&#x60; parameter. Note that the search is case-sensitive. (optional)
-     * @param asOf A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day (default&#x3D;today). (optional)
-     * @param tradingVenue The trading venue (MIC) for the exchange on which the products trades. (optional)
-     * @param sector The sector to which the products belong. (optional)
-     * @param subSector The sub-sector to which the products belong. (optional)
-     * @param assetClass The asset class to which the products belong. (optional)
-     * @param assetSubClass The asset sub-class to which the products belong. (optional)
-     * @param type The type of products to return. One of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, maximum&#x3D;1000, minimum&#x3D;1). (optional, default to 100)
-     * @param nameSearch Search by name. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to name.asc)
-     * @return ListProducts200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listProducts(name: kotlin.String? = null, asOf: java.time.LocalDate? = null, tradingVenue: kotlin.String? = null, sector: SectorListProducts? = null, subSector: SubSectorListProducts? = null, assetClass: AssetClassListProducts? = null, assetSubClass: AssetSubClassListProducts? = null, type: TypeListProducts? = TypeListProducts.all, limit: kotlin.Int? = 100, nameSearch: kotlin.String? = null, sort: SortListProducts? = SortListProducts.namePeriodAsc) : ListProducts200Response {
-        val localVarResponse = listProductsWithHttpInfo(name = name, asOf = asOf, tradingVenue = tradingVenue, sector = sector, subSector = subSector, assetClass = assetClass, assetSubClass = assetSubClass, type = type, limit = limit, nameSearch = nameSearch, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ListProducts200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/products
-     * Products
-     * The Products endpoint returns a list of futures products. This endpoint can be used to query for products based on a variety of parameters, including by the product&#39;s name, exchange, sector, sub-sector, asset class, asset sub-class, and type.
-     * @param name Search for products by Product Name. This parameter supports an exact match, while a name-contains search can be performed using the &#x60;name.search&#x60; parameter. Note that the search is case-sensitive. (optional)
-     * @param asOf A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day (default&#x3D;today). (optional)
-     * @param tradingVenue The trading venue (MIC) for the exchange on which the products trades. (optional)
-     * @param sector The sector to which the products belong. (optional)
-     * @param subSector The sub-sector to which the products belong. (optional)
-     * @param assetClass The asset class to which the products belong. (optional)
-     * @param assetSubClass The asset sub-class to which the products belong. (optional)
-     * @param type The type of products to return. One of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, maximum&#x3D;1000, minimum&#x3D;1). (optional, default to 100)
-     * @param nameSearch Search by name. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to name.asc)
-     * @return ApiResponse<ListProducts200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listProductsWithHttpInfo(name: kotlin.String?, asOf: java.time.LocalDate?, tradingVenue: kotlin.String?, sector: SectorListProducts?, subSector: SubSectorListProducts?, assetClass: AssetClassListProducts?, assetSubClass: AssetSubClassListProducts?, type: TypeListProducts?, limit: kotlin.Int?, nameSearch: kotlin.String?, sort: SortListProducts?) : ApiResponse<ListProducts200Response?> {
-        val localVariableConfig = listProductsRequestConfig(name = name, asOf = asOf, tradingVenue = tradingVenue, sector = sector, subSector = subSector, assetClass = assetClass, assetSubClass = assetSubClass, type = type, limit = limit, nameSearch = nameSearch, sort = sort)
-
-        return request<Unit, ListProducts200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listProducts
-     *
-     * @param name Search for products by Product Name. This parameter supports an exact match, while a name-contains search can be performed using the &#x60;name.search&#x60; parameter. Note that the search is case-sensitive. (optional)
-     * @param asOf A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day (default&#x3D;today). (optional)
-     * @param tradingVenue The trading venue (MIC) for the exchange on which the products trades. (optional)
-     * @param sector The sector to which the products belong. (optional)
-     * @param subSector The sub-sector to which the products belong. (optional)
-     * @param assetClass The asset class to which the products belong. (optional)
-     * @param assetSubClass The asset sub-class to which the products belong. (optional)
-     * @param type The type of products to return. One of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). (optional, default to all)
-     * @param limit The number of results to return per page (default&#x3D;100, maximum&#x3D;1000, minimum&#x3D;1). (optional, default to 100)
-     * @param nameSearch Search by name. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to name.asc)
-     * @return RequestConfig
-     */
-    fun listProductsRequestConfig(name: kotlin.String?, asOf: java.time.LocalDate?, tradingVenue: kotlin.String?, sector: SectorListProducts?, subSector: SubSectorListProducts?, assetClass: AssetClassListProducts?, assetSubClass: AssetSubClassListProducts?, type: TypeListProducts?, limit: kotlin.Int?, nameSearch: kotlin.String?, sort: SortListProducts?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (name != null) {
-                    put("name", listOf(name.toString()))
-                }
-                if (asOf != null) {
-                    put("as_of", listOf(parseDateToQueryString(asOf)))
-                }
-                if (tradingVenue != null) {
-                    put("trading_venue", listOf(tradingVenue.toString()))
-                }
-                if (sector != null) {
-                    put("sector", listOf(sector.value))
-                }
-                if (subSector != null) {
-                    put("sub_sector", listOf(subSector.value))
-                }
-                if (assetClass != null) {
-                    put("asset_class", listOf(assetClass.value))
-                }
-                if (assetSubClass != null) {
-                    put("asset_sub_class", listOf(assetSubClass.value))
-                }
-                if (type != null) {
-                    put("type", listOf(type.value))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (nameSearch != null) {
-                    put("name.search", listOf(nameSearch.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.value))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/products",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
@@ -17900,244 +18248,6 @@ class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v3/reference/tickers",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter type
-     */
-     enum class TypeProductDetails(val value: kotlin.String) {
-         @Json(name = "single") single("single"),
-         @Json(name = "combo") combo("combo");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/products/{product_code}
-     * Product Details
-     * The Product Details endpoint returns the details for a single product as of a specific day.
-     * @param productCode The unique identifier for a product.
-     * @param type The type of product to return. One of \&quot;single\&quot; or \&quot;combo\&quot; (default&#x3D;single). (optional, default to single)
-     * @param asOf A date string in the format YYYY-MM-DD. Note that the data returned is the state of this product&#39;s data at that point-in-time. (optional)
-     * @return ProductDetails200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun productDetails(productCode: kotlin.String, type: TypeProductDetails? = TypeProductDetails.single, asOf: java.time.LocalDate? = null) : ProductDetails200Response {
-        val localVarResponse = productDetailsWithHttpInfo(productCode = productCode, type = type, asOf = asOf)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ProductDetails200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/products/{product_code}
-     * Product Details
-     * The Product Details endpoint returns the details for a single product as of a specific day.
-     * @param productCode The unique identifier for a product.
-     * @param type The type of product to return. One of \&quot;single\&quot; or \&quot;combo\&quot; (default&#x3D;single). (optional, default to single)
-     * @param asOf A date string in the format YYYY-MM-DD. Note that the data returned is the state of this product&#39;s data at that point-in-time. (optional)
-     * @return ApiResponse<ProductDetails200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun productDetailsWithHttpInfo(productCode: kotlin.String, type: TypeProductDetails?, asOf: java.time.LocalDate?) : ApiResponse<ProductDetails200Response?> {
-        val localVariableConfig = productDetailsRequestConfig(productCode = productCode, type = type, asOf = asOf)
-
-        return request<Unit, ProductDetails200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation productDetails
-     *
-     * @param productCode The unique identifier for a product.
-     * @param type The type of product to return. One of \&quot;single\&quot; or \&quot;combo\&quot; (default&#x3D;single). (optional, default to single)
-     * @param asOf A date string in the format YYYY-MM-DD. Note that the data returned is the state of this product&#39;s data at that point-in-time. (optional)
-     * @return RequestConfig
-     */
-    fun productDetailsRequestConfig(productCode: kotlin.String, type: TypeProductDetails?, asOf: java.time.LocalDate?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (type != null) {
-                    put("type", listOf(type.value))
-                }
-                if (asOf != null) {
-                    put("as_of", listOf(parseDateToQueryString(asOf)))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/products/{product_code}".replace("{"+"product_code"+"}", encodeURIComponent(productCode.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter sort
-     */
-     enum class SortProductSchedules(val value: kotlin.String) {
-         @Json(name = "session_end_date.asc") sessionEndDatePeriodAsc("session_end_date.asc"),
-         @Json(name = "session_end_date.desc") sessionEndDatePeriodDesc("session_end_date.desc");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /futures/vX/products/{product_code}/schedules
-     * Product Schedules
-     * The Product-Specific Futures Schedules API provides detailed trading schedules for a specific futures product. This API allows you to query schedules for a single product across a range of dates. Users can access comprehensive information about trading sessions, including market events such as preopen, open, and closed, along with their precise timestamps.
-     * @param productCode The product code for the futures product.
-     * @param sessionEndDate The date on which the schedule&#39;s trading day ended (sometimes referred to as trading date). Defaults to today. Formatted as &#x60;YYYY-MM-DD&#x60;. Note that although there is no time component the day is assumed to be that day in Central Time. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sessionEndDateGte Range by session_end_date. (optional)
-     * @param sessionEndDateGt Range by session_end_date. (optional)
-     * @param sessionEndDateLte Range by session_end_date. (optional)
-     * @param sessionEndDateLt Range by session_end_date. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to session_end_date.desc)
-     * @return ProductSchedules200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun productSchedules(productCode: kotlin.String, sessionEndDate: java.time.LocalDate? = null, limit: kotlin.Int? = 100, sessionEndDateGte: java.time.LocalDate? = null, sessionEndDateGt: java.time.LocalDate? = null, sessionEndDateLte: java.time.LocalDate? = null, sessionEndDateLt: java.time.LocalDate? = null, sort: SortProductSchedules? = SortProductSchedules.sessionEndDatePeriodDesc) : ProductSchedules200Response {
-        val localVarResponse = productSchedulesWithHttpInfo(productCode = productCode, sessionEndDate = sessionEndDate, limit = limit, sessionEndDateGte = sessionEndDateGte, sessionEndDateGt = sessionEndDateGt, sessionEndDateLte = sessionEndDateLte, sessionEndDateLt = sessionEndDateLt, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ProductSchedules200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /futures/vX/products/{product_code}/schedules
-     * Product Schedules
-     * The Product-Specific Futures Schedules API provides detailed trading schedules for a specific futures product. This API allows you to query schedules for a single product across a range of dates. Users can access comprehensive information about trading sessions, including market events such as preopen, open, and closed, along with their precise timestamps.
-     * @param productCode The product code for the futures product.
-     * @param sessionEndDate The date on which the schedule&#39;s trading day ended (sometimes referred to as trading date). Defaults to today. Formatted as &#x60;YYYY-MM-DD&#x60;. Note that although there is no time component the day is assumed to be that day in Central Time. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sessionEndDateGte Range by session_end_date. (optional)
-     * @param sessionEndDateGt Range by session_end_date. (optional)
-     * @param sessionEndDateLte Range by session_end_date. (optional)
-     * @param sessionEndDateLt Range by session_end_date. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to session_end_date.desc)
-     * @return ApiResponse<ProductSchedules200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun productSchedulesWithHttpInfo(productCode: kotlin.String, sessionEndDate: java.time.LocalDate?, limit: kotlin.Int?, sessionEndDateGte: java.time.LocalDate?, sessionEndDateGt: java.time.LocalDate?, sessionEndDateLte: java.time.LocalDate?, sessionEndDateLt: java.time.LocalDate?, sort: SortProductSchedules?) : ApiResponse<ProductSchedules200Response?> {
-        val localVariableConfig = productSchedulesRequestConfig(productCode = productCode, sessionEndDate = sessionEndDate, limit = limit, sessionEndDateGte = sessionEndDateGte, sessionEndDateGt = sessionEndDateGt, sessionEndDateLte = sessionEndDateLte, sessionEndDateLt = sessionEndDateLt, sort = sort)
-
-        return request<Unit, ProductSchedules200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation productSchedules
-     *
-     * @param productCode The product code for the futures product.
-     * @param sessionEndDate The date on which the schedule&#39;s trading day ended (sometimes referred to as trading date). Defaults to today. Formatted as &#x60;YYYY-MM-DD&#x60;. Note that although there is no time component the day is assumed to be that day in Central Time. (optional)
-     * @param limit The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). (optional, default to 100)
-     * @param sessionEndDateGte Range by session_end_date. (optional)
-     * @param sessionEndDateGt Range by session_end_date. (optional)
-     * @param sessionEndDateLte Range by session_end_date. (optional)
-     * @param sessionEndDateLt Range by session_end_date. (optional)
-     * @param sort Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). (optional, default to session_end_date.desc)
-     * @return RequestConfig
-     */
-    fun productSchedulesRequestConfig(productCode: kotlin.String, sessionEndDate: java.time.LocalDate?, limit: kotlin.Int?, sessionEndDateGte: java.time.LocalDate?, sessionEndDateGt: java.time.LocalDate?, sessionEndDateLte: java.time.LocalDate?, sessionEndDateLt: java.time.LocalDate?, sort: SortProductSchedules?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (sessionEndDate != null) {
-                    put("session_end_date", listOf(parseDateToQueryString(sessionEndDate)))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sessionEndDateGte != null) {
-                    put("session_end_date.gte", listOf(parseDateToQueryString(sessionEndDateGte)))
-                }
-                if (sessionEndDateGt != null) {
-                    put("session_end_date.gt", listOf(parseDateToQueryString(sessionEndDateGt)))
-                }
-                if (sessionEndDateLte != null) {
-                    put("session_end_date.lte", listOf(parseDateToQueryString(sessionEndDateLte)))
-                }
-                if (sessionEndDateLt != null) {
-                    put("session_end_date.lt", listOf(parseDateToQueryString(sessionEndDateLt)))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.value))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/futures/vX/products/{product_code}/schedules".replace("{"+"product_code"+"}", encodeURIComponent(productCode.toString())),
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

@@ -63,6 +63,16 @@ const main = async () => {
 
     const paths = {};
     for (const [path, pathObj] of Object.entries(spec.paths)) {
+
+      // Skip paths marked as drafts
+      if (pathObj["x-polygon-draft"]) continue;
+
+      // Skip paths marked as ignore
+      if (pathObj["x-polygon-ignore"]) continue;
+
+      // Skip paths starting with /v1/reference/
+      if (path.startsWith('/v1/reference/')) continue;
+
       // Skip paths marked as drafts
       if (pathObj["x-massive-draft"]) continue;
 
