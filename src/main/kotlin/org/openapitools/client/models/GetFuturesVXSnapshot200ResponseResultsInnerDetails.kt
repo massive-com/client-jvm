@@ -35,7 +35,7 @@ data class GetFuturesVXSnapshot200ResponseResultsInnerDetails (
 
     /* The day that this contract is settled. */
     @Json(name = "settlement_date")
-    val settlementDate: kotlin.Long? = null,
+    val settlementDate: java.time.LocalDate? = null,
 
     @Json(name = "ticker")
     val ticker: kotlin.String? = null

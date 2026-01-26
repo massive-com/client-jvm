@@ -4,8 +4,6 @@ All URIs are relative to *https://api.massive.com*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**contractDetails**](DefaultApi.md#contractDetails) | **GET** /futures/vX/contracts/{ticker} | Contract Details |
-| [**dailySchedules**](DefaultApi.md#dailySchedules) | **GET** /futures/vX/schedules | Daily Schedules |
 | [**deprecatedGetCryptoSnapshotTickerBook**](DefaultApi.md#deprecatedGetCryptoSnapshotTickerBook) | **GET** /v2/snapshot/locale/global/markets/crypto/tickers/{ticker}/book | Ticker Full Book (L2) |
 | [**deprecatedGetHistoricCryptoTrades**](DefaultApi.md#deprecatedGetHistoricCryptoTrades) | **GET** /v1/historic/crypto/{from}/{to}/{date} | Historic Crypto Trades |
 | [**deprecatedGetHistoricForexQuotes**](DefaultApi.md#deprecatedGetHistoricForexQuotes) | **GET** /v1/historic/forex/{from}/{to}/{date} | Historic Forex Ticks |
@@ -13,6 +11,7 @@ All URIs are relative to *https://api.massive.com*
 | [**deprecatedGetHistoricStocksTrades**](DefaultApi.md#deprecatedGetHistoricStocksTrades) | **GET** /v2/ticks/stocks/trades/{ticker}/{date} | Trades |
 | [**getBenzingaV1AnalystInsights**](DefaultApi.md#getBenzingaV1AnalystInsights) | **GET** /benzinga/v1/analyst-insights |  |
 | [**getBenzingaV1Analysts**](DefaultApi.md#getBenzingaV1Analysts) | **GET** /benzinga/v1/analysts |  |
+| [**getBenzingaV1BullsBearsSay**](DefaultApi.md#getBenzingaV1BullsBearsSay) | **GET** /benzinga/v1/bulls-bears-say |  |
 | [**getBenzingaV1ConsensusRatings**](DefaultApi.md#getBenzingaV1ConsensusRatings) | **GET** /benzinga/v1/consensus-ratings/{ticker} |  |
 | [**getBenzingaV1Earnings**](DefaultApi.md#getBenzingaV1Earnings) | **GET** /benzinga/v1/earnings |  |
 | [**getBenzingaV1Firms**](DefaultApi.md#getBenzingaV1Firms) | **GET** /benzinga/v1/firms |  |
@@ -34,6 +33,7 @@ All URIs are relative to *https://api.massive.com*
 | [**getEvents**](DefaultApi.md#getEvents) | **GET** /vX/reference/tickers/{id}/events | Ticker Events |
 | [**getFedV1Inflation**](DefaultApi.md#getFedV1Inflation) | **GET** /fed/v1/inflation |  |
 | [**getFedV1InflationExpectations**](DefaultApi.md#getFedV1InflationExpectations) | **GET** /fed/v1/inflation-expectations |  |
+| [**getFedV1LaborMarket**](DefaultApi.md#getFedV1LaborMarket) | **GET** /fed/v1/labor-market |  |
 | [**getFedV1TreasuryYields**](DefaultApi.md#getFedV1TreasuryYields) | **GET** /fed/v1/treasury-yields |  |
 | [**getForexAggregates**](DefaultApi.md#getForexAggregates) | **GET** /v2/aggs/ticker/{forexTicker}/range/{multiplier}/{timespan}/{from}/{to} | Aggregates (Bars) |
 | [**getForexSnapshotDirection**](DefaultApi.md#getForexSnapshotDirection) | **GET** /v2/snapshot/locale/global/markets/forex/{direction} | Gainers/Losers |
@@ -43,9 +43,11 @@ All URIs are relative to *https://api.massive.com*
 | [**getFuturesAggregates**](DefaultApi.md#getFuturesAggregates) | **GET** /futures/vX/aggs/{ticker} | Aggregates |
 | [**getFuturesQuotes**](DefaultApi.md#getFuturesQuotes) | **GET** /futures/vX/quotes/{ticker} | Quotes |
 | [**getFuturesTrades**](DefaultApi.md#getFuturesTrades) | **GET** /futures/vX/trades/{ticker} | Trades |
-| [**getFuturesVXContractsNew**](DefaultApi.md#getFuturesVXContractsNew) | **GET** /futures/vX/contracts-new | futures_contracts_v1 API |
+| [**getFuturesVXContracts**](DefaultApi.md#getFuturesVXContracts) | **GET** /futures/vX/contracts | futures contracts API |
 | [**getFuturesVXExchanges**](DefaultApi.md#getFuturesVXExchanges) | **GET** /futures/vX/exchanges |  |
-| [**getFuturesVXProductsNew**](DefaultApi.md#getFuturesVXProductsNew) | **GET** /futures/vX/products-new | Futures Products API |
+| [**getFuturesVXMarketStatus**](DefaultApi.md#getFuturesVXMarketStatus) | **GET** /futures/vX/market-status | Market Status API |
+| [**getFuturesVXProducts**](DefaultApi.md#getFuturesVXProducts) | **GET** /futures/vX/products | Futures Products API |
+| [**getFuturesVXSchedules**](DefaultApi.md#getFuturesVXSchedules) | **GET** /futures/vX/schedules | Futures Schedules API |
 | [**getFuturesVXSnapshot**](DefaultApi.md#getFuturesVXSnapshot) | **GET** /futures/vX/snapshot | futures_snapshot_v1 API |
 | [**getGroupedCryptoAggregates**](DefaultApi.md#getGroupedCryptoAggregates) | **GET** /v2/aggs/grouped/locale/global/market/crypto/{date} | Grouped Daily (Bars) |
 | [**getGroupedForexAggregates**](DefaultApi.md#getGroupedForexAggregates) | **GET** /v2/aggs/grouped/locale/global/market/fx/{date} | Grouped Daily (Bars) |
@@ -75,6 +77,8 @@ All URIs are relative to *https://api.massive.com*
 | [**getSnapshots**](DefaultApi.md#getSnapshots) | **GET** /v3/snapshot | Universal Snapshot |
 | [**getStocksAggregates**](DefaultApi.md#getStocksAggregates) | **GET** /v2/aggs/ticker/{stocksTicker}/range/{multiplier}/{timespan}/{from}/{to} | Aggregates (Bars) |
 | [**getStocksEMA**](DefaultApi.md#getStocksEMA) | **GET** /v1/indicators/ema/{stockTicker} | Exponential Moving Average (EMA) |
+| [**getStocksFilings10KVXSections**](DefaultApi.md#getStocksFilings10KVXSections) | **GET** /stocks/filings/10-K/vX/sections |  |
+| [**getStocksFilingsVXRiskFactors**](DefaultApi.md#getStocksFilingsVXRiskFactors) | **GET** /stocks/filings/vX/risk-factors |  |
 | [**getStocksFinancialsV1BalanceSheets**](DefaultApi.md#getStocksFinancialsV1BalanceSheets) | **GET** /stocks/financials/v1/balance-sheets |  |
 | [**getStocksFinancialsV1CashFlowStatements**](DefaultApi.md#getStocksFinancialsV1CashFlowStatements) | **GET** /stocks/financials/v1/cash-flow-statements |  |
 | [**getStocksFinancialsV1IncomeStatements**](DefaultApi.md#getStocksFinancialsV1IncomeStatements) | **GET** /stocks/financials/v1/income-statements |  |
@@ -87,136 +91,27 @@ All URIs are relative to *https://api.massive.com*
 | [**getStocksSnapshotDirection**](DefaultApi.md#getStocksSnapshotDirection) | **GET** /v2/snapshot/locale/us/markets/stocks/{direction} | Gainers/Losers |
 | [**getStocksSnapshotTicker**](DefaultApi.md#getStocksSnapshotTicker) | **GET** /v2/snapshot/locale/us/markets/stocks/tickers/{stocksTicker} | Ticker |
 | [**getStocksSnapshotTickers**](DefaultApi.md#getStocksSnapshotTickers) | **GET** /v2/snapshot/locale/us/markets/stocks/tickers | All Tickers |
+| [**getStocksTaxonomiesVXRiskFactors**](DefaultApi.md#getStocksTaxonomiesVXRiskFactors) | **GET** /stocks/taxonomies/vX/risk-factors |  |
 | [**getStocksTrades**](DefaultApi.md#getStocksTrades) | **GET** /v3/trades/{stockTicker} | Trades |
 | [**getStocksV1Dividends**](DefaultApi.md#getStocksV1Dividends) | **GET** /stocks/v1/dividends |  |
 | [**getStocksV1Exchanges**](DefaultApi.md#getStocksV1Exchanges) | **GET** /stocks/v1/exchanges |  |
 | [**getStocksV1ShortInterest**](DefaultApi.md#getStocksV1ShortInterest) | **GET** /stocks/v1/short-interest |  |
 | [**getStocksV1ShortVolume**](DefaultApi.md#getStocksV1ShortVolume) | **GET** /stocks/v1/short-volume |  |
 | [**getStocksV1Splits**](DefaultApi.md#getStocksV1Splits) | **GET** /stocks/v1/splits |  |
+| [**getStocksVXFloat**](DefaultApi.md#getStocksVXFloat) | **GET** /stocks/vX/float |  |
 | [**getTicker**](DefaultApi.md#getTicker) | **GET** /v3/reference/tickers/{ticker} | Ticker Details v3 |
 | [**getTmxV1CorporateEvents**](DefaultApi.md#getTmxV1CorporateEvents) | **GET** /tmx/v1/corporate-events |  |
 | [**listConditions**](DefaultApi.md#listConditions) | **GET** /v3/reference/conditions | Conditions |
-| [**listContracts**](DefaultApi.md#listContracts) | **GET** /futures/vX/contracts | Contracts |
 | [**listDividends**](DefaultApi.md#listDividends) | **GET** /v3/reference/dividends | Dividends v3 |
 | [**listExchanges**](DefaultApi.md#listExchanges) | **GET** /v3/reference/exchanges | Exchanges |
 | [**listFinancials**](DefaultApi.md#listFinancials) | **GET** /vX/reference/financials | Stock Financials vX |
 | [**listIPOs**](DefaultApi.md#listIPOs) | **GET** /vX/reference/ipos | IPOs |
-| [**listMarketStatuses**](DefaultApi.md#listMarketStatuses) | **GET** /futures/vX/market-status | Market Status |
 | [**listNews**](DefaultApi.md#listNews) | **GET** /v2/reference/news | Ticker News |
 | [**listOptionsContracts**](DefaultApi.md#listOptionsContracts) | **GET** /v3/reference/options/contracts | Options Contracts |
-| [**listProducts**](DefaultApi.md#listProducts) | **GET** /futures/vX/products | Products |
 | [**listStockSplits**](DefaultApi.md#listStockSplits) | **GET** /v3/reference/splits | Stock Splits v3 |
 | [**listTickerTypes**](DefaultApi.md#listTickerTypes) | **GET** /v3/reference/tickers/types | Ticker Types |
 | [**listTickers**](DefaultApi.md#listTickers) | **GET** /v3/reference/tickers | Tickers |
-| [**productDetails**](DefaultApi.md#productDetails) | **GET** /futures/vX/products/{product_code} | Product Details |
-| [**productSchedules**](DefaultApi.md#productSchedules) | **GET** /futures/vX/products/{product_code}/schedules | Product Schedules |
 
-
-<a id="contractDetails"></a>
-# **contractDetails**
-> ContractDetails200Response contractDetails(ticker, asOf)
-
-Contract Details
-
-The Contract Details endpoint returns the details for a single contract at a specific point in time.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val ticker : kotlin.String = ESU0 // kotlin.String | The ticker symbol of the contract to retrieve.
-val asOf : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The point-in-time of the data to be retrieved. Note that the contract data returned for a given date represents the state of that contract on that day. A date in the format YYYY-MM-DD (default=today).
-try {
-    val result : ContractDetails200Response = apiInstance.contractDetails(ticker, asOf)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#contractDetails")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#contractDetails")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **ticker** | **kotlin.String**| The ticker symbol of the contract to retrieve. | |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **asOf** | **java.time.LocalDate**| The point-in-time of the data to be retrieved. Note that the contract data returned for a given date represents the state of that contract on that day. A date in the format YYYY-MM-DD (default&#x3D;today). | [optional] |
-
-### Return type
-
-[**ContractDetails200Response**](ContractDetails200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="dailySchedules"></a>
-# **dailySchedules**
-> DailySchedules200Response dailySchedules(sessionEndDate, tradingVenue, limit, sort)
-
-Daily Schedules
-
-The Trading-Date Based Futures Schedules API provides detailed trading schedules for all products on a specific day. This API allows you to retrieve detailed information about trading sessions, including market events like preopen, open, and closed, along with their precise timestamps.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val sessionEndDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to 'today' in Central Time. e.g. If a request is made from Pacific Time on '2025-01-01' at 11:00 pm with no 'session_end_date' a default value of `2025-01-02` will be used.
-val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) of the exchange for the schedules.
-val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=100, max=1000, min=1).
-val sort : kotlin.String = trading_venue.asc // kotlin.String | Sort results by field and direction using dotted notation (e.g., 'ticker.asc', 'name.desc').
-try {
-    val result : DailySchedules200Response = apiInstance.dailySchedules(sessionEndDate, tradingVenue, limit, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#dailySchedules")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#dailySchedules")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **sessionEndDate** | **java.time.LocalDate**| The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. | [optional] |
-| **tradingVenue** | **kotlin.String**| The trading venue (MIC) of the exchange for the schedules. | [optional] |
-| **limit** | **kotlin.Int**| The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). | [optional] [default to 100] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). | [optional] [default to trading_venue.asc] [enum: trading_venue.asc, trading_venue.desc] |
-
-### Return type
-
-[**DailySchedules200Response**](DailySchedules200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 <a id="deprecatedGetCryptoSnapshotTickerBook"></a>
 # **deprecatedGetCryptoSnapshotTickerBook**
@@ -718,6 +613,91 @@ try {
 ### Return type
 
 [**GetBenzingaV1Analysts200Response**](GetBenzingaV1Analysts200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getBenzingaV1BullsBearsSay"></a>
+# **getBenzingaV1BullsBearsSay**
+> GetBenzingaV1BullsBearsSay200Response getBenzingaV1BullsBearsSay(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, benzingaId, benzingaIdAnyOf, benzingaIdGt, benzingaIdGte, benzingaIdLt, benzingaIdLte, lastUpdated, lastUpdatedGt, lastUpdatedGte, lastUpdatedLt, lastUpdatedLte, limit, sort)
+
+
+
+A comprehensive database of analyst bull and bear case summaries for publicly traded companies, providing concise summaries of both bullish and bearish investment arguments to help investors see both sides of the story before making investment decisions.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val ticker : kotlin.String = ticker_example // kotlin.String | The stock ticker symbol for the company associated with the bull and bear case summaries.
+val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+val benzingaId : kotlin.String = benzingaId_example // kotlin.String | The unique identifier used by Benzinga for this bull/bear case record.
+val benzingaIdAnyOf : kotlin.String = benzingaIdAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val benzingaIdGt : kotlin.String = benzingaIdGt_example // kotlin.String | Filter greater than the value.
+val benzingaIdGte : kotlin.String = benzingaIdGte_example // kotlin.String | Filter greater than or equal to the value.
+val benzingaIdLt : kotlin.String = benzingaIdLt_example // kotlin.String | Filter less than the value.
+val benzingaIdLte : kotlin.String = benzingaIdLte_example // kotlin.String | Filter less than or equal to the value.
+val lastUpdated : kotlin.String = lastUpdated_example // kotlin.String | The timestamp (formatted as an ISO 8601 timestamp) when the bull/bear case was last updated in the system. Value must be an integer timestamp in seconds or formatted 'yyyy-mm-dd'.
+val lastUpdatedGt : kotlin.String = lastUpdatedGt_example // kotlin.String | Filter greater than the value. Value must be an integer timestamp in seconds or formatted 'yyyy-mm-dd'.
+val lastUpdatedGte : kotlin.String = lastUpdatedGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in seconds or formatted 'yyyy-mm-dd'.
+val lastUpdatedLt : kotlin.String = lastUpdatedLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in seconds or formatted 'yyyy-mm-dd'.
+val lastUpdatedLte : kotlin.String = lastUpdatedLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in seconds or formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'ticker' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetBenzingaV1BullsBearsSay200Response = apiInstance.getBenzingaV1BullsBearsSay(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, benzingaId, benzingaIdAnyOf, benzingaIdGt, benzingaIdGte, benzingaIdLt, benzingaIdLte, lastUpdated, lastUpdatedGt, lastUpdatedGte, lastUpdatedLt, lastUpdatedLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getBenzingaV1BullsBearsSay")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getBenzingaV1BullsBearsSay")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **ticker** | **kotlin.String**| The stock ticker symbol for the company associated with the bull and bear case summaries. | [optional] |
+| **tickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **benzingaId** | **kotlin.String**| The unique identifier used by Benzinga for this bull/bear case record. | [optional] |
+| **benzingaIdAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **benzingaIdGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **benzingaIdGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **benzingaIdLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **benzingaIdLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **lastUpdated** | **kotlin.String**| The timestamp (formatted as an ISO 8601 timestamp) when the bull/bear case was last updated in the system. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastUpdatedGt** | **kotlin.String**| Filter greater than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastUpdatedGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastUpdatedLt** | **kotlin.String**| Filter less than the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastUpdatedLte** | **kotlin.String**| Filter less than or equal to the value. Value must be an integer timestamp in seconds or formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;ticker.desc&quot;] |
+
+### Return type
+
+[**GetBenzingaV1BullsBearsSay200Response**](GetBenzingaV1BullsBearsSay200Response.md)
 
 ### Authorization
 
@@ -1421,8 +1401,8 @@ val apiInstance = DefaultApi()
 val cryptoTicker : kotlin.String = X:BTCUSD // kotlin.String | The ticker symbol of the currency pair.
 val multiplier : kotlin.Int = 1 // kotlin.Int | The size of the timespan multiplier.
 val timespan : kotlin.String = day // kotlin.String | The size of the time window.
-val from : kotlin.String = 2023-01-09 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
-val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val from : kotlin.String = 2025-11-03 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
 val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
@@ -2526,6 +2506,69 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a id="getFedV1LaborMarket"></a>
+# **getFedV1LaborMarket**
+> GetFedV1LaborMarket200Response getFedV1LaborMarket(date, dateAnyOf, dateGt, dateGte, dateLt, dateLte, limit, sort)
+
+
+
+Labor market indicators from the Federal Reserve, including unemployment rate, labor force participation, average hourly earnings, and job openings data.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val date : kotlin.String = date_example // kotlin.String | Calendar date of the observation (YYYY-MM-DD).
+val dateAnyOf : kotlin.String = dateAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
+try {
+    val result : GetFedV1LaborMarket200Response = apiInstance.getFedV1LaborMarket(date, dateAnyOf, dateGt, dateGte, dateLt, dateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getFedV1LaborMarket")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getFedV1LaborMarket")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **date** | **kotlin.String**| Calendar date of the observation (YYYY-MM-DD). | [optional] |
+| **dateAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. | [optional] [default to &quot;date.asc&quot;] |
+
+### Return type
+
+[**GetFedV1LaborMarket200Response**](GetFedV1LaborMarket200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a id="getFedV1TreasuryYields"></a>
 # **getFedV1TreasuryYields**
 > GetFedV1TreasuryYields200Response getFedV1TreasuryYields(date, dateAnyOf, dateGt, dateGte, dateLt, dateLte, limit, sort)
@@ -2607,8 +2650,8 @@ val apiInstance = DefaultApi()
 val forexTicker : kotlin.String = C:EURUSD // kotlin.String | The ticker symbol of the currency pair.
 val multiplier : kotlin.Int = 1 // kotlin.Int | The size of the timespan multiplier.
 val timespan : kotlin.String = day // kotlin.String | The size of the time window.
-val from : kotlin.String = 2023-01-09 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
-val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val from : kotlin.String = 2025-11-03 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
 val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
@@ -3059,11 +3102,11 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="getFuturesVXContractsNew"></a>
-# **getFuturesVXContractsNew**
-> GetFuturesVXContractsNew200Response getFuturesVXContractsNew(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, typeGt, typeGte, typeLt, typeLte, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
+<a id="getFuturesVXContracts"></a>
+# **getFuturesVXContracts**
+> GetFuturesVXContracts200Response getFuturesVXContracts(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
 
-futures_contracts_v1 API
+futures contracts API
 
 The Contracts API provides a single source for discovering all listed futures contracts and retrieving complete contract specifications. You can query the full contract index with filters for product code, trade dates, active status, and date, returning key attributes such as ticker, first and last trade dates, days to maturity, exchange code, and order quantity limits in paginated form. The same API also returns the full specification for a single contract, including settlement dates, tick sizes, and other trading and risk related fields. Point-in-time lookups allow you to reconstruct the exact contract definition that applied on any given day.  Use Cases: Historical research, trading system integration, portfolio workflows, risk management.
 
@@ -3091,19 +3134,15 @@ val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greate
 val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
 val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
 val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
-val active : kotlin.String = active_example // kotlin.String | The contract is still trading. Value must be 'true', 'false', '1' or '0'.
-val type : kotlin.String = type_example // kotlin.String | The type of contract, one of 'single' or 'combo'.
+val active : kotlin.Boolean = true // kotlin.Boolean | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise.
+val type : kotlin.String = type_example // kotlin.String | The type of contract, one of 'single' or 'combo'. Leaving this filter blank will query for both 'single' and 'combo' types.
 val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val typeGt : kotlin.String = typeGt_example // kotlin.String | Filter greater than the value.
-val typeGte : kotlin.String = typeGte_example // kotlin.String | Filter greater than or equal to the value.
-val typeLt : kotlin.String = typeLt_example // kotlin.String | Filter less than the value.
-val typeLte : kotlin.String = typeLte_example // kotlin.String | Filter less than or equal to the value.
-val firstTradeDate : kotlin.String = firstTradeDate_example // kotlin.String | The first date the contract trades. Value must be formatted 'yyyy-mm-dd'.
+val firstTradeDate : kotlin.String = firstTradeDate_example // kotlin.String | The first day on which the contract was tradeable. Value must be formatted 'yyyy-mm-dd'.
 val firstTradeDateGt : kotlin.String = firstTradeDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
 val firstTradeDateGte : kotlin.String = firstTradeDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
 val firstTradeDateLt : kotlin.String = firstTradeDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
 val firstTradeDateLte : kotlin.String = firstTradeDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-val lastTradeDate : kotlin.String = lastTradeDate_example // kotlin.String | The last date the contract trades. Value must be formatted 'yyyy-mm-dd'.
+val lastTradeDate : kotlin.String = lastTradeDate_example // kotlin.String | The last day on which the contract was tradeable. Value must be formatted 'yyyy-mm-dd'.
 val lastTradeDateGt : kotlin.String = lastTradeDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
 val lastTradeDateGte : kotlin.String = lastTradeDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
 val lastTradeDateLt : kotlin.String = lastTradeDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
@@ -3111,13 +3150,13 @@ val lastTradeDateLte : kotlin.String = lastTradeDateLte_example // kotlin.String
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'product_code' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetFuturesVXContractsNew200Response = apiInstance.getFuturesVXContractsNew(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, typeGt, typeGte, typeLt, typeLte, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
+    val result : GetFuturesVXContracts200Response = apiInstance.getFuturesVXContracts(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#getFuturesVXContractsNew")
+    println("4xx response calling DefaultApi#getFuturesVXContracts")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#getFuturesVXContractsNew")
+    println("5xx response calling DefaultApi#getFuturesVXContracts")
     e.printStackTrace()
 }
 ```
@@ -3140,19 +3179,15 @@ try {
 | **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
 | **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
 | **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **active** | **kotlin.String**| The contract is still trading. Value must be &#39;true&#39;, &#39;false&#39;, &#39;1&#39; or &#39;0&#39;. | [optional] |
-| **type** | **kotlin.String**| The type of contract, one of &#39;single&#39; or &#39;combo&#39;. | [optional] |
-| **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **typeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **typeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **typeLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **typeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **firstTradeDate** | **kotlin.String**| The first date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **active** | **kotlin.Boolean**| Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. | [optional] |
+| **type** | **kotlin.String**| The type of contract, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. | [optional] [enum: single, combo] |
+| **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: single, combo] |
+| **firstTradeDate** | **kotlin.String**| The first day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **firstTradeDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **firstTradeDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **firstTradeDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **firstTradeDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **lastTradeDate** | **kotlin.String**| The last date the contract trades. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastTradeDate** | **kotlin.String**| The last day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **lastTradeDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **lastTradeDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **lastTradeDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
@@ -3164,7 +3199,7 @@ try {
 
 ### Return type
 
-[**GetFuturesVXContractsNew200Response**](GetFuturesVXContractsNew200Response.md)
+[**GetFuturesVXContracts200Response**](GetFuturesVXContracts200Response.md)
 
 ### Authorization
 
@@ -3227,9 +3262,70 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="getFuturesVXProductsNew"></a>
-# **getFuturesVXProductsNew**
-> GetFuturesVXProductsNew200Response getFuturesVXProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, sector, sectorAnyOf, sectorGt, sectorGte, sectorLt, sectorLte, subSector, subSectorAnyOf, subSectorGt, subSectorGte, subSectorLt, subSectorLte, assetClass, assetClassAnyOf, assetClassGt, assetClassGte, assetClassLt, assetClassLte, assetSubClass, assetSubClassAnyOf, assetSubClassGt, assetSubClassGte, assetSubClassLt, assetSubClassLte, type, typeAnyOf, typeGt, typeGte, typeLt, typeLte, limit, sort)
+<a id="getFuturesVXMarketStatus"></a>
+# **getFuturesVXMarketStatus**
+> GetFuturesVXMarketStatus200Response getFuturesVXMarketStatus(productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, limit)
+
+Market Status API
+
+Retrieve the current market status for a specific product or products. This endpoint returns real-time indicators, such as open, pause, close, for futures products, along with the corresponding exchange and product codes and an evaluation timestamp. This information enables users to monitor operational conditions and adjust their trading strategies accordingly.  Use Cases: Real-time monitoring, algorithm scheduling, UI updates, operational planning.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val productCode : kotlin.String = productCode_example // kotlin.String | The product code of the futures contracts for which you want statuses.
+val productCodeAnyOf : kotlin.String = productCodeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val productCodeGt : kotlin.String = productCodeGt_example // kotlin.String | Filter greater than the value.
+val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
+val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
+val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+try {
+    val result : GetFuturesVXMarketStatus200Response = apiInstance.getFuturesVXMarketStatus(productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, limit)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getFuturesVXMarketStatus")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getFuturesVXMarketStatus")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **productCode** | **kotlin.String**| The product code of the futures contracts for which you want statuses. | [optional] |
+| **productCodeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **productCodeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **productCodeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **productCodeLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **productCodeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+
+### Return type
+
+[**GetFuturesVXMarketStatus200Response**](GetFuturesVXMarketStatus200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getFuturesVXProducts"></a>
+# **getFuturesVXProducts**
+> GetFuturesVXProducts200Response getFuturesVXProducts(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
 
 Futures Products API
 
@@ -3259,46 +3355,32 @@ val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater th
 val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
 val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
 val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which this product's contracts trade.
+val tradingVenueAnyOf : kotlin.String = tradingVenueAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tradingVenueGt : kotlin.String = tradingVenueGt_example // kotlin.String | Filter greater than the value.
+val tradingVenueGte : kotlin.String = tradingVenueGte_example // kotlin.String | Filter greater than or equal to the value.
+val tradingVenueLt : kotlin.String = tradingVenueLt_example // kotlin.String | Filter less than the value.
+val tradingVenueLte : kotlin.String = tradingVenueLte_example // kotlin.String | Filter less than or equal to the value.
 val sector : kotlin.String = sector_example // kotlin.String | The sector to which the product belongs.
 val sectorAnyOf : kotlin.String = sectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val sectorGt : kotlin.String = sectorGt_example // kotlin.String | Filter greater than the value.
-val sectorGte : kotlin.String = sectorGte_example // kotlin.String | Filter greater than or equal to the value.
-val sectorLt : kotlin.String = sectorLt_example // kotlin.String | Filter less than the value.
-val sectorLte : kotlin.String = sectorLte_example // kotlin.String | Filter less than or equal to the value.
 val subSector : kotlin.String = subSector_example // kotlin.String | The sub-sector to which the product belongs.
 val subSectorAnyOf : kotlin.String = subSectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val subSectorGt : kotlin.String = subSectorGt_example // kotlin.String | Filter greater than the value.
-val subSectorGte : kotlin.String = subSectorGte_example // kotlin.String | Filter greater than or equal to the value.
-val subSectorLt : kotlin.String = subSectorLt_example // kotlin.String | Filter less than the value.
-val subSectorLte : kotlin.String = subSectorLte_example // kotlin.String | Filter less than or equal to the value.
 val assetClass : kotlin.String = assetClass_example // kotlin.String | The asset class to which the product belongs.
 val assetClassAnyOf : kotlin.String = assetClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val assetClassGt : kotlin.String = assetClassGt_example // kotlin.String | Filter greater than the value.
-val assetClassGte : kotlin.String = assetClassGte_example // kotlin.String | Filter greater than or equal to the value.
-val assetClassLt : kotlin.String = assetClassLt_example // kotlin.String | Filter less than the value.
-val assetClassLte : kotlin.String = assetClassLte_example // kotlin.String | Filter less than or equal to the value.
 val assetSubClass : kotlin.String = assetSubClass_example // kotlin.String | The asset sub-class to which the product belongs.
 val assetSubClassAnyOf : kotlin.String = assetSubClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val assetSubClassGt : kotlin.String = assetSubClassGt_example // kotlin.String | Filter greater than the value.
-val assetSubClassGte : kotlin.String = assetSubClassGte_example // kotlin.String | Filter greater than or equal to the value.
-val assetSubClassLt : kotlin.String = assetSubClassLt_example // kotlin.String | Filter less than the value.
-val assetSubClassLte : kotlin.String = assetSubClassLte_example // kotlin.String | Filter less than or equal to the value.
-val type : kotlin.String = type_example // kotlin.String | The type of product, one of 'single' or 'combo'.
+val type : kotlin.String = type_example // kotlin.String | The type of product, one of 'single' or 'combo'. Leaving this filter blank will query for both 'single' and 'combo' types.
 val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val typeGt : kotlin.String = typeGt_example // kotlin.String | Filter greater than the value.
-val typeGte : kotlin.String = typeGte_example // kotlin.String | Filter greater than or equal to the value.
-val typeLt : kotlin.String = typeLt_example // kotlin.String | Filter less than the value.
-val typeLte : kotlin.String = typeLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetFuturesVXProductsNew200Response = apiInstance.getFuturesVXProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, sector, sectorAnyOf, sectorGt, sectorGte, sectorLt, sectorLte, subSector, subSectorAnyOf, subSectorGt, subSectorGte, subSectorLt, subSectorLte, assetClass, assetClassAnyOf, assetClassGt, assetClassGte, assetClassLt, assetClassLte, assetSubClass, assetSubClassAnyOf, assetSubClassGt, assetSubClassGte, assetSubClassLt, assetSubClassLte, type, typeAnyOf, typeGt, typeGte, typeLt, typeLte, limit, sort)
+    val result : GetFuturesVXProducts200Response = apiInstance.getFuturesVXProducts(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling DefaultApi#getFuturesVXProductsNew")
+    println("4xx response calling DefaultApi#getFuturesVXProducts")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling DefaultApi#getFuturesVXProductsNew")
+    println("5xx response calling DefaultApi#getFuturesVXProducts")
     e.printStackTrace()
 }
 ```
@@ -3321,36 +3403,22 @@ try {
 | **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **sector** | **kotlin.String**| The sector to which the product belongs. | [optional] |
-| **sectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **sectorGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **sectorGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **sectorLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **sectorLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **subSector** | **kotlin.String**| The sub-sector to which the product belongs. | [optional] |
-| **subSectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **subSectorGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **subSectorGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **subSectorLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **subSectorLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **assetClass** | **kotlin.String**| The asset class to which the product belongs. | [optional] |
-| **assetClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **assetClassGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **assetClassGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **assetClassLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **assetClassLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **assetSubClass** | **kotlin.String**| The asset sub-class to which the product belongs. | [optional] |
-| **assetSubClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **assetSubClassGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **assetSubClassGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **assetSubClassLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **assetSubClassLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **type** | **kotlin.String**| The type of product, one of &#39;single&#39; or &#39;combo&#39;. | [optional] |
-| **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **typeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **typeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **typeLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **typeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **tradingVenue** | **kotlin.String**| The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. | [optional] |
+| **tradingVenueAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tradingVenueGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tradingVenueGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tradingVenueLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tradingVenueLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **sector** | **kotlin.String**| The sector to which the product belongs. | [optional] [enum: asia, base, biofuels, coal, cross_rates, crude_oil, custom_index, dairy, dj_ubs_ci, electricity, emissions, europe, fertilizer, forestry, grains_and_oilseeds, intl_index, liq_nat_gas_lng, livestock, long_term_gov, long_term_non_gov, majors, minors, nat_gas, nat_gas_liq_petro, precious, refined_products, s_and_p_gsci, sel_sector_index, short_term_gov, short_term_non_gov, softs, us, us_index, wet_bulk] |
+| **sectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: asia, base, biofuels, coal, cross_rates, crude_oil, custom_index, dairy, dj_ubs_ci, electricity, emissions, europe, fertilizer, forestry, grains_and_oilseeds, intl_index, liq_nat_gas_lng, livestock, long_term_gov, long_term_non_gov, majors, minors, nat_gas, nat_gas_liq_petro, precious, refined_products, s_and_p_gsci, sel_sector_index, short_term_gov, short_term_non_gov, softs, us, us_index, wet_bulk] |
+| **subSector** | **kotlin.String**| The sub-sector to which the product belongs. | [optional] [enum: asian, canadian, cat, cooling_degree_days, ercot, european, gulf, heating_degree_days, iso_ne, large_cap_index, mid_cap_index, miso, north_american, nyiso, pjm, small_cap_index, west, western_power] |
+| **subSectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: asian, canadian, cat, cooling_degree_days, ercot, european, gulf, heating_degree_days, iso_ne, large_cap_index, mid_cap_index, miso, north_american, nyiso, pjm, small_cap_index, west, western_power] |
+| **assetClass** | **kotlin.String**| The asset class to which the product belongs. | [optional] [enum: alt_investment, commodity, financials] |
+| **assetClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: alt_investment, commodity, financials] |
+| **assetSubClass** | **kotlin.String**| The asset sub-class to which the product belongs. | [optional] [enum: agricultural, commodity_index, energy, equity, foreign_exchange, freight, housing, interest_rate, metals, weather] |
+| **assetSubClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: agricultural, commodity_index, energy, equity, foreign_exchange, freight, housing, interest_rate, metals, weather] |
+| **type** | **kotlin.String**| The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. | [optional] [enum: single, combo] |
+| **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: single, combo] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -3358,7 +3426,94 @@ try {
 
 ### Return type
 
-[**GetFuturesVXProductsNew200Response**](GetFuturesVXProductsNew200Response.md)
+[**GetFuturesVXProducts200Response**](GetFuturesVXProducts200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getFuturesVXSchedules"></a>
+# **getFuturesVXSchedules**
+> GetFuturesVXSchedules200Response getFuturesVXSchedules(productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, sessionEndDate, sessionEndDateAnyOf, sessionEndDateGt, sessionEndDateGte, sessionEndDateLt, sessionEndDateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, limit, sort)
+
+Futures Schedules API
+
+The Schedules API provides a unified way to retrieve trading schedules for futures markets, returning precise session open and close times, intraday breaks, and any adjustments for holidays or special events. You can request the full set of schedules for all products on a specific trading date or retrieve the schedule for a single product using its product code. All times are returned in Coordinated Universal Time (UTC), making it straightforward to align trading, execution, and operational workflows across systems.  Use Cases: Schedule planning, market analysis, strategy alignment, risk and operations management.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val productCode : kotlin.String = productCode_example // kotlin.String | The product code of the futures contract.
+val productCodeAnyOf : kotlin.String = productCodeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val productCodeGt : kotlin.String = productCodeGt_example // kotlin.String | Filter greater than the value.
+val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
+val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
+val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+val sessionEndDate : kotlin.String = sessionEndDate_example // kotlin.String | The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to 'today' in Central Time. e.g. If a request is made from Pacific Time on '2025-01-01' at 11:00 pm with no 'session_end_date' a default value of `2025-01-02` will be used.
+val sessionEndDateAnyOf : kotlin.String = sessionEndDateAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val sessionEndDateGt : kotlin.String = sessionEndDateGt_example // kotlin.String | Filter greater than the value.
+val sessionEndDateGte : kotlin.String = sessionEndDateGte_example // kotlin.String | Filter greater than or equal to the value.
+val sessionEndDateLt : kotlin.String = sessionEndDateLt_example // kotlin.String | Filter less than the value.
+val sessionEndDateLte : kotlin.String = sessionEndDateLte_example // kotlin.String | Filter less than or equal to the value.
+val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which this schedule's product trades.
+val tradingVenueAnyOf : kotlin.String = tradingVenueAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tradingVenueGt : kotlin.String = tradingVenueGt_example // kotlin.String | Filter greater than the value.
+val tradingVenueGte : kotlin.String = tradingVenueGte_example // kotlin.String | Filter greater than or equal to the value.
+val tradingVenueLt : kotlin.String = tradingVenueLt_example // kotlin.String | Filter less than the value.
+val tradingVenueLte : kotlin.String = tradingVenueLte_example // kotlin.String | Filter less than or equal to the value.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '1000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'product_code' if not specified. The sort order defaults to 'asc' if not specified.
+try {
+    val result : GetFuturesVXSchedules200Response = apiInstance.getFuturesVXSchedules(productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, sessionEndDate, sessionEndDateAnyOf, sessionEndDateGt, sessionEndDateGte, sessionEndDateLt, sessionEndDateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getFuturesVXSchedules")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getFuturesVXSchedules")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **productCode** | **kotlin.String**| The product code of the futures contract. | [optional] |
+| **productCodeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **productCodeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **productCodeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **productCodeLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **productCodeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **sessionEndDate** | **kotlin.String**| The session end date for the schedules (also known as the trading date). This is the day in CT for which the user wants to retrieve data. If left blank, this value defaults to &#39;today&#39; in Central Time. e.g. If a request is made from Pacific Time on &#39;2025-01-01&#39; at 11:00 pm with no &#39;session_end_date&#39; a default value of &#x60;2025-01-02&#x60; will be used. | [optional] |
+| **sessionEndDateAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **sessionEndDateGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **sessionEndDateGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **sessionEndDateLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **sessionEndDateLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **tradingVenue** | **kotlin.String**| The trading venue (MIC) for the exchange on which this schedule&#39;s product trades. | [optional] |
+| **tradingVenueAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tradingVenueGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tradingVenueGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tradingVenueLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tradingVenueLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. | [optional] [default to 10] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;product_code&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. | [optional] [default to &quot;product_code.asc&quot;] |
+
+### Return type
+
+[**GetFuturesVXSchedules200Response**](GetFuturesVXSchedules200Response.md)
 
 ### Authorization
 
@@ -3462,7 +3617,7 @@ Get the daily open, high, low, and close (OHLC) for the entire cryptocurrency ma
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val date : kotlin.String = 2023-01-09 // kotlin.String | The beginning date for the aggregate window.
+val date : kotlin.String = 2025-11-03 // kotlin.String | The beginning date for the aggregate window.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 try {
     val result : GetGroupedCryptoAggregates200Response = apiInstance.getGroupedCryptoAggregates(date, adjusted)
@@ -3513,7 +3668,7 @@ Get the daily open, high, low, and close (OHLC) for the entire forex markets.
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val date : kotlin.String = 2023-01-09 // kotlin.String | The beginning date for the aggregate window.
+val date : kotlin.String = 2025-11-03 // kotlin.String | The beginning date for the aggregate window.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 try {
     val result : GetGroupedCryptoAggregates200Response = apiInstance.getGroupedForexAggregates(date, adjusted)
@@ -3564,7 +3719,7 @@ Get the daily open, high, low, and close (OHLC) for the entire stocks/equities m
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val date : kotlin.String = 2023-01-09 // kotlin.String | The beginning date for the aggregate window.
+val date : kotlin.String = 2025-11-03 // kotlin.String | The beginning date for the aggregate window.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 val includeOtc : kotlin.Boolean = true // kotlin.Boolean | Include OTC securities in the response. Default is false (don't include OTC securities). 
 try {
@@ -3620,8 +3775,8 @@ val apiInstance = DefaultApi()
 val indicesTicker : kotlin.String = I:NDX // kotlin.String | The ticker symbol of Index.
 val multiplier : kotlin.Int = 1 // kotlin.Int | The size of the timespan multiplier.
 val timespan : kotlin.String = day // kotlin.String | The size of the time window.
-val from : kotlin.String = 2023-03-13 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
-val to : kotlin.String = 2023-03-24 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val from : kotlin.String = 2025-11-03 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
 val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
 val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
 try {
@@ -4140,8 +4295,8 @@ val apiInstance = DefaultApi()
 val optionsTicker : kotlin.String = O:SPY251219C00650000 // kotlin.String | The ticker symbol of the options contract.
 val multiplier : kotlin.Int = 1 // kotlin.Int | The size of the timespan multiplier.
 val timespan : kotlin.String = day // kotlin.String | The size of the time window.
-val from : kotlin.String = 2023-01-09 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
-val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val from : kotlin.String = 2025-11-03 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
 val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
@@ -4851,8 +5006,8 @@ val apiInstance = DefaultApi()
 val stocksTicker : kotlin.String = AAPL // kotlin.String | Specify a case-sensitive ticker symbol. For example, AAPL represents Apple Inc.
 val multiplier : kotlin.Int = 1 // kotlin.Int | The size of the timespan multiplier.
 val timespan : kotlin.String = day // kotlin.String | The size of the time window.
-val from : kotlin.String = 2023-01-09 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
-val to : kotlin.String = 2023-02-10 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val from : kotlin.String = 2025-11-03 // kotlin.String | The start of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
+val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
 val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
 val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
 val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
@@ -4969,9 +5124,195 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a id="getStocksFilings10KVXSections"></a>
+# **getStocksFilings10KVXSections**
+> GetStocksFilings10KVXSections200Response getStocksFilings10KVXSections(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, section, sectionAnyOf, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, limit, sort)
+
+
+
+SEC document text sections providing raw text content from specific sections of SEC filings (10-K, 10-Q, etc.).
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val cik : kotlin.String = cik_example // kotlin.String | SEC Central Index Key (10 digits, zero-padded).
+val cikAnyOf : kotlin.String = cikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val cikGt : kotlin.String = cikGt_example // kotlin.String | Filter greater than the value.
+val cikGte : kotlin.String = cikGte_example // kotlin.String | Filter greater than or equal to the value.
+val cikLt : kotlin.String = cikLt_example // kotlin.String | Filter less than the value.
+val cikLte : kotlin.String = cikLte_example // kotlin.String | Filter less than or equal to the value.
+val ticker : kotlin.String = ticker_example // kotlin.String | Stock ticker symbol for the company.
+val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+val section : kotlin.String = section_example // kotlin.String | Standardized section identifier from the filing (e.g. 'business', 'risk_factors', etc.).
+val sectionAnyOf : kotlin.String = sectionAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val filingDate : kotlin.String = filingDate_example // kotlin.String | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val periodEnd : kotlin.String = periodEnd_example // kotlin.String | Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val periodEndGt : kotlin.String = periodEndGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '9999'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetStocksFilings10KVXSections200Response = apiInstance.getStocksFilings10KVXSections(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, section, sectionAnyOf, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksFilings10KVXSections")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksFilings10KVXSections")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **cik** | **kotlin.String**| SEC Central Index Key (10 digits, zero-padded). | [optional] |
+| **cikAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **cikGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **cikGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **cikLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **cikLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **ticker** | **kotlin.String**| Stock ticker symbol for the company. | [optional] |
+| **tickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **section** | **kotlin.String**| Standardized section identifier from the filing (e.g. &#39;business&#39;, &#39;risk_factors&#39;, etc.). | [optional] [enum: business, risk_factors] |
+| **sectionAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: business, risk_factors] |
+| **filingDate** | **kotlin.String**| Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **filingDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **filingDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **filingDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **filingDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **periodEnd** | **kotlin.String**| Period end date that the filing relates to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **periodEndGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **periodEndGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **periodEndLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **periodEndLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;9999&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;period_end.desc&quot;] |
+
+### Return type
+
+[**GetStocksFilings10KVXSections200Response**](GetStocksFilings10KVXSections200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getStocksFilingsVXRiskFactors"></a>
+# **getStocksFilingsVXRiskFactors**
+> GetStocksFilingsVXRiskFactors200Response getStocksFilingsVXRiskFactors(filingDate, filingDateAnyOf, filingDateGt, filingDateGte, filingDateLt, filingDateLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, limit, sort)
+
+
+
+The risk factors identified in companies&#39; 10K filings.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val filingDate : kotlin.String = filingDate_example // kotlin.String | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD).
+val filingDateAnyOf : kotlin.String = filingDateAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value.
+val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value.
+val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value.
+val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value.
+val ticker : kotlin.String = ticker_example // kotlin.String | Stock ticker symbol for the company.
+val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+val cik : kotlin.String = cik_example // kotlin.String | SEC Central Index Key (10 digits, zero-padded).
+val cikAnyOf : kotlin.String = cikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val cikGt : kotlin.String = cikGt_example // kotlin.String | Filter greater than the value.
+val cikGte : kotlin.String = cikGte_example // kotlin.String | Filter greater than or equal to the value.
+val cikLt : kotlin.String = cikLt_example // kotlin.String | Filter less than the value.
+val cikLte : kotlin.String = cikLte_example // kotlin.String | Filter less than or equal to the value.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '49999'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetStocksFilingsVXRiskFactors200Response = apiInstance.getStocksFilingsVXRiskFactors(filingDate, filingDateAnyOf, filingDateGt, filingDateGte, filingDateLt, filingDateLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksFilingsVXRiskFactors")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksFilingsVXRiskFactors")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **filingDate** | **kotlin.String**| Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). | [optional] |
+| **filingDateAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **filingDateGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **filingDateGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **filingDateLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **filingDateLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **ticker** | **kotlin.String**| Stock ticker symbol for the company. | [optional] |
+| **tickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **cik** | **kotlin.String**| SEC Central Index Key (10 digits, zero-padded). | [optional] |
+| **cikAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **cikGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **cikGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **cikLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **cikLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;filing_date.desc&quot;] |
+
+### Return type
+
+[**GetStocksFilingsVXRiskFactors200Response**](GetStocksFilingsVXRiskFactors200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a id="getStocksFinancialsV1BalanceSheets"></a>
 # **getStocksFinancialsV1BalanceSheets**
-> GetStocksFinancialsV1BalanceSheets200Response getStocksFinancialsV1BalanceSheets(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+> GetStocksFinancialsV1BalanceSheets200Response getStocksFinancialsV1BalanceSheets(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
 
 
 
@@ -5019,10 +5360,22 @@ val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter 
 val timeframeGte : kotlin.String = timeframeGte_example // kotlin.String | Filter greater than or equal to the value.
 val timeframeLt : kotlin.String = timeframeLt_example // kotlin.String | Filter less than the value.
 val timeframeLte : kotlin.String = timeframeLte_example // kotlin.String | Filter less than or equal to the value.
+val maxTicker : kotlin.String = maxTicker_example // kotlin.String | Filter equal to the value.
+val maxTickerAnyOf : kotlin.String = maxTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val maxTickerGt : kotlin.String = maxTickerGt_example // kotlin.String | Filter greater than the value.
+val maxTickerGte : kotlin.String = maxTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val maxTickerLt : kotlin.String = maxTickerLt_example // kotlin.String | Filter less than the value.
+val maxTickerLte : kotlin.String = maxTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val minTicker : kotlin.String = minTicker_example // kotlin.String | Filter equal to the value.
+val minTickerAnyOf : kotlin.String = minTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val minTickerGt : kotlin.String = minTickerGt_example // kotlin.String | Filter greater than the value.
+val minTickerGte : kotlin.String = minTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val minTickerLt : kotlin.String = minTickerLt_example // kotlin.String | Filter less than the value.
+val minTickerLte : kotlin.String = minTickerLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetStocksFinancialsV1BalanceSheets200Response = apiInstance.getStocksFinancialsV1BalanceSheets(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+    val result : GetStocksFinancialsV1BalanceSheets200Response = apiInstance.getStocksFinancialsV1BalanceSheets(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getStocksFinancialsV1BalanceSheets")
@@ -5069,6 +5422,18 @@ try {
 | **timeframeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
 | **timeframeLt** | **kotlin.String**| Filter less than the value. | [optional] |
 | **timeframeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **maxTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **maxTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **maxTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **maxTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **maxTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **maxTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **minTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **minTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **minTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **minTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **minTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **minTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -5092,7 +5457,7 @@ Configure apiKey:
 
 <a id="getStocksFinancialsV1CashFlowStatements"></a>
 # **getStocksFinancialsV1CashFlowStatements**
-> GetStocksFinancialsV1CashFlowStatements200Response getStocksFinancialsV1CashFlowStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, tickers, tickersAllOf, tickersAnyOf, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+> GetStocksFinancialsV1CashFlowStatements200Response getStocksFinancialsV1CashFlowStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, tickers, tickersAllOf, tickersAnyOf, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
 
 
 
@@ -5140,10 +5505,22 @@ val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter 
 val timeframeGte : kotlin.String = timeframeGte_example // kotlin.String | Filter greater than or equal to the value.
 val timeframeLt : kotlin.String = timeframeLt_example // kotlin.String | Filter less than the value.
 val timeframeLte : kotlin.String = timeframeLte_example // kotlin.String | Filter less than or equal to the value.
+val maxTicker : kotlin.String = maxTicker_example // kotlin.String | Filter equal to the value.
+val maxTickerAnyOf : kotlin.String = maxTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val maxTickerGt : kotlin.String = maxTickerGt_example // kotlin.String | Filter greater than the value.
+val maxTickerGte : kotlin.String = maxTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val maxTickerLt : kotlin.String = maxTickerLt_example // kotlin.String | Filter less than the value.
+val maxTickerLte : kotlin.String = maxTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val minTicker : kotlin.String = minTicker_example // kotlin.String | Filter equal to the value.
+val minTickerAnyOf : kotlin.String = minTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val minTickerGt : kotlin.String = minTickerGt_example // kotlin.String | Filter greater than the value.
+val minTickerGte : kotlin.String = minTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val minTickerLt : kotlin.String = minTickerLt_example // kotlin.String | Filter less than the value.
+val minTickerLte : kotlin.String = minTickerLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetStocksFinancialsV1CashFlowStatements200Response = apiInstance.getStocksFinancialsV1CashFlowStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, tickers, tickersAllOf, tickersAnyOf, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+    val result : GetStocksFinancialsV1CashFlowStatements200Response = apiInstance.getStocksFinancialsV1CashFlowStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, tickers, tickersAllOf, tickersAnyOf, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getStocksFinancialsV1CashFlowStatements")
@@ -5190,6 +5567,18 @@ try {
 | **timeframeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
 | **timeframeLt** | **kotlin.String**| Filter less than the value. | [optional] |
 | **timeframeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **maxTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **maxTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **maxTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **maxTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **maxTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **maxTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **minTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **minTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **minTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **minTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **minTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **minTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -5213,7 +5602,7 @@ Configure apiKey:
 
 <a id="getStocksFinancialsV1IncomeStatements"></a>
 # **getStocksFinancialsV1IncomeStatements**
-> GetStocksFinancialsV1IncomeStatements200Response getStocksFinancialsV1IncomeStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+> GetStocksFinancialsV1IncomeStatements200Response getStocksFinancialsV1IncomeStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
 
 
 
@@ -5261,10 +5650,22 @@ val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter 
 val timeframeGte : kotlin.String = timeframeGte_example // kotlin.String | Filter greater than or equal to the value.
 val timeframeLt : kotlin.String = timeframeLt_example // kotlin.String | Filter less than the value.
 val timeframeLte : kotlin.String = timeframeLte_example // kotlin.String | Filter less than or equal to the value.
+val maxTicker : kotlin.String = maxTicker_example // kotlin.String | Filter equal to the value.
+val maxTickerAnyOf : kotlin.String = maxTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val maxTickerGt : kotlin.String = maxTickerGt_example // kotlin.String | Filter greater than the value.
+val maxTickerGte : kotlin.String = maxTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val maxTickerLt : kotlin.String = maxTickerLt_example // kotlin.String | Filter less than the value.
+val maxTickerLte : kotlin.String = maxTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val minTicker : kotlin.String = minTicker_example // kotlin.String | Filter equal to the value.
+val minTickerAnyOf : kotlin.String = minTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val minTickerGt : kotlin.String = minTickerGt_example // kotlin.String | Filter greater than the value.
+val minTickerGte : kotlin.String = minTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val minTickerLt : kotlin.String = minTickerLt_example // kotlin.String | Filter less than the value.
+val minTickerLte : kotlin.String = minTickerLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetStocksFinancialsV1IncomeStatements200Response = apiInstance.getStocksFinancialsV1IncomeStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, limit, sort)
+    val result : GetStocksFinancialsV1IncomeStatements200Response = apiInstance.getStocksFinancialsV1IncomeStatements(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, tickers, tickersAllOf, tickersAnyOf, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, fiscalYear, fiscalYearGt, fiscalYearGte, fiscalYearLt, fiscalYearLte, fiscalQuarter, fiscalQuarterGt, fiscalQuarterGte, fiscalQuarterLt, fiscalQuarterLte, timeframe, timeframeAnyOf, timeframeGt, timeframeGte, timeframeLt, timeframeLte, maxTicker, maxTickerAnyOf, maxTickerGt, maxTickerGte, maxTickerLt, maxTickerLte, minTicker, minTickerAnyOf, minTickerGt, minTickerGte, minTickerLt, minTickerLte, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getStocksFinancialsV1IncomeStatements")
@@ -5311,6 +5712,18 @@ try {
 | **timeframeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
 | **timeframeLt** | **kotlin.String**| Filter less than the value. | [optional] |
 | **timeframeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **maxTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **maxTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **maxTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **maxTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **maxTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **maxTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **minTicker** | **kotlin.String**| Filter equal to the value. | [optional] |
+| **minTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **minTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **minTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **minTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **minTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -6099,6 +6512,103 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a id="getStocksTaxonomiesVXRiskFactors"></a>
+# **getStocksTaxonomiesVXRiskFactors**
+> GetStocksTaxonomiesVXRiskFactors200Response getStocksTaxonomiesVXRiskFactors(taxonomy, taxonomyGt, taxonomyGte, taxonomyLt, taxonomyLte, primaryCategory, primaryCategoryAnyOf, primaryCategoryGt, primaryCategoryGte, primaryCategoryLt, primaryCategoryLte, secondaryCategory, secondaryCategoryAnyOf, secondaryCategoryGt, secondaryCategoryGte, secondaryCategoryLt, secondaryCategoryLte, tertiaryCategory, tertiaryCategoryAnyOf, tertiaryCategoryGt, tertiaryCategoryGte, tertiaryCategoryLt, tertiaryCategoryLte, limit, sort)
+
+
+
+The complete list of risk factor classifications used in the risk factors endpoint.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val taxonomy : kotlin.Double = 1.2 // kotlin.Double | Version identifier (e.g., '1.0', '1.1') for the taxonomy Value must be a floating point number.
+val taxonomyGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
+val taxonomyGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
+val taxonomyLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
+val taxonomyLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+val primaryCategory : kotlin.String = primaryCategory_example // kotlin.String | Top-level risk category
+val primaryCategoryAnyOf : kotlin.String = primaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val primaryCategoryGt : kotlin.String = primaryCategoryGt_example // kotlin.String | Filter greater than the value.
+val primaryCategoryGte : kotlin.String = primaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+val primaryCategoryLt : kotlin.String = primaryCategoryLt_example // kotlin.String | Filter less than the value.
+val primaryCategoryLte : kotlin.String = primaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+val secondaryCategory : kotlin.String = secondaryCategory_example // kotlin.String | Mid-level risk category
+val secondaryCategoryAnyOf : kotlin.String = secondaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val secondaryCategoryGt : kotlin.String = secondaryCategoryGt_example // kotlin.String | Filter greater than the value.
+val secondaryCategoryGte : kotlin.String = secondaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+val secondaryCategoryLt : kotlin.String = secondaryCategoryLt_example // kotlin.String | Filter less than the value.
+val secondaryCategoryLte : kotlin.String = secondaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+val tertiaryCategory : kotlin.String = tertiaryCategory_example // kotlin.String | Most specific risk classification
+val tertiaryCategoryAnyOf : kotlin.String = tertiaryCategoryAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tertiaryCategoryGt : kotlin.String = tertiaryCategoryGt_example // kotlin.String | Filter greater than the value.
+val tertiaryCategoryGte : kotlin.String = tertiaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
+val tertiaryCategoryLt : kotlin.String = tertiaryCategoryLt_example // kotlin.String | Filter less than the value.
+val tertiaryCategoryLte : kotlin.String = tertiaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '999'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'taxonomy' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetStocksTaxonomiesVXRiskFactors200Response = apiInstance.getStocksTaxonomiesVXRiskFactors(taxonomy, taxonomyGt, taxonomyGte, taxonomyLt, taxonomyLte, primaryCategory, primaryCategoryAnyOf, primaryCategoryGt, primaryCategoryGte, primaryCategoryLt, primaryCategoryLte, secondaryCategory, secondaryCategoryAnyOf, secondaryCategoryGt, secondaryCategoryGte, secondaryCategoryLt, secondaryCategoryLte, tertiaryCategory, tertiaryCategoryAnyOf, tertiaryCategoryGt, tertiaryCategoryGte, tertiaryCategoryLt, tertiaryCategoryLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksTaxonomiesVXRiskFactors")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksTaxonomiesVXRiskFactors")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **taxonomy** | **kotlin.Double**| Version identifier (e.g., &#39;1.0&#39;, &#39;1.1&#39;) for the taxonomy Value must be a floating point number. | [optional] |
+| **taxonomyGt** | **kotlin.Double**| Filter greater than the value. Value must be a floating point number. | [optional] |
+| **taxonomyGte** | **kotlin.Double**| Filter greater than or equal to the value. Value must be a floating point number. | [optional] |
+| **taxonomyLt** | **kotlin.Double**| Filter less than the value. Value must be a floating point number. | [optional] |
+| **taxonomyLte** | **kotlin.Double**| Filter less than or equal to the value. Value must be a floating point number. | [optional] |
+| **primaryCategory** | **kotlin.String**| Top-level risk category | [optional] |
+| **primaryCategoryAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **primaryCategoryGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **primaryCategoryGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **primaryCategoryLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **primaryCategoryLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **secondaryCategory** | **kotlin.String**| Mid-level risk category | [optional] |
+| **secondaryCategoryAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **secondaryCategoryGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **secondaryCategoryGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **secondaryCategoryLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **secondaryCategoryLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **tertiaryCategory** | **kotlin.String**| Most specific risk classification | [optional] |
+| **tertiaryCategoryAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tertiaryCategoryGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tertiaryCategoryGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tertiaryCategoryLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tertiaryCategoryLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. | [optional] [default to 200] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;taxonomy.desc&quot;] |
+
+### Return type
+
+[**GetStocksTaxonomiesVXRiskFactors200Response**](GetStocksTaxonomiesVXRiskFactors200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a id="getStocksTrades"></a>
 # **getStocksTrades**
 > GetStocksTrades200Response getStocksTrades(stockTicker, timestamp, timestampGte, timestampGt, timestampLte, timestampLt, order, limit, sort)
@@ -6166,7 +6676,7 @@ Configure apiKey:
 
 <a id="getStocksV1Dividends"></a>
 # **getStocksV1Dividends**
-> GetStocksV1Dividends200Response getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, distributionTypeGt, distributionTypeGte, distributionTypeLt, distributionTypeLte, limit, sort)
+> GetStocksV1Dividends200Response getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, limit, sort)
 
 
 
@@ -6190,21 +6700,17 @@ val exDividendDateGt : kotlin.String = exDividendDateGt_example // kotlin.String
 val exDividendDateGte : kotlin.String = exDividendDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
 val exDividendDateLt : kotlin.String = exDividendDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
 val exDividendDateLte : kotlin.String = exDividendDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-val frequency : kotlin.Long = 789 // kotlin.Long | How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence. Value must be an integer.
+val frequency : kotlin.Long = 789 // kotlin.Long | How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer's declared or inferred payout cadence. Value must be an integer.
 val frequencyGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
 val frequencyGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
 val frequencyLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
 val frequencyLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
 val distributionType : kotlin.String = distributionType_example // kotlin.String | Classification describing the nature of this dividend's recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data)
 val distributionTypeAnyOf : kotlin.String = distributionTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val distributionTypeGt : kotlin.String = distributionTypeGt_example // kotlin.String | Filter greater than the value.
-val distributionTypeGte : kotlin.String = distributionTypeGte_example // kotlin.String | Filter greater than or equal to the value.
-val distributionTypeLt : kotlin.String = distributionTypeLt_example // kotlin.String | Filter less than the value.
-val distributionTypeLte : kotlin.String = distributionTypeLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'ticker' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetStocksV1Dividends200Response = apiInstance.getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, distributionTypeGt, distributionTypeGte, distributionTypeLt, distributionTypeLte, limit, sort)
+    val result : GetStocksV1Dividends200Response = apiInstance.getStocksV1Dividends(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, exDividendDate, exDividendDateGt, exDividendDateGte, exDividendDateLt, exDividendDateLte, frequency, frequencyGt, frequencyGte, frequencyLt, frequencyLte, distributionType, distributionTypeAnyOf, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getStocksV1Dividends")
@@ -6227,17 +6733,13 @@ try {
 | **exDividendDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **exDividendDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **exDividendDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **frequency** | **kotlin.Long**| How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 26 (bi-weekly), 52 (weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. | [optional] |
+| **frequency** | **kotlin.Long**| How many times per year this dividend is expected to occur. A value of 0 means the distribution is non-recurring or irregular (e.g., special, supplemental, or a one-off dividend). Other possible values include 1 (annual), 2 (semi-annual), 3 (trimester), 4 (quarterly), 12 (monthly), 24 (bi-monthly), 52 (weekly), 104 (bi-weekly), and 365 (daily) depending on the issuer&#39;s declared or inferred payout cadence. Value must be an integer. | [optional] |
 | **frequencyGt** | **kotlin.Long**| Filter greater than the value. Value must be an integer. | [optional] |
 | **frequencyGte** | **kotlin.Long**| Filter greater than or equal to the value. Value must be an integer. | [optional] |
 | **frequencyLt** | **kotlin.Long**| Filter less than the value. Value must be an integer. | [optional] |
 | **frequencyLte** | **kotlin.Long**| Filter less than or equal to the value. Value must be an integer. | [optional] |
-| **distributionType** | **kotlin.String**| Classification describing the nature of this dividend&#39;s recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data) | [optional] |
-| **distributionTypeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **distributionTypeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **distributionTypeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **distributionTypeLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **distributionTypeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **distributionType** | **kotlin.String**| Classification describing the nature of this dividend&#39;s recurrence pattern: recurring (paid on a regular schedule), special (one-time or commemorative), supplemental (extra beyond the regular schedule), irregular (unpredictable or non-recurring), unknown (cannot be classified from available data) | [optional] [enum: recurring, special, supplemental, irregular, unknown] |
+| **distributionTypeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: recurring, special, supplemental, irregular, unknown] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -6508,7 +7010,7 @@ Configure apiKey:
 
 <a id="getStocksV1Splits"></a>
 # **getStocksV1Splits**
-> GetStocksV1Splits200Response getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, adjustmentTypeGt, adjustmentTypeGte, adjustmentTypeLt, adjustmentTypeLte, limit, sort)
+> GetStocksV1Splits200Response getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, limit, sort)
 
 
 
@@ -6534,14 +7036,10 @@ val executionDateLt : kotlin.String = executionDateLt_example // kotlin.String |
 val executionDateLte : kotlin.String = executionDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
 val adjustmentType : kotlin.String = adjustmentType_example // kotlin.String | Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend)
 val adjustmentTypeAnyOf : kotlin.String = adjustmentTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val adjustmentTypeGt : kotlin.String = adjustmentTypeGt_example // kotlin.String | Filter greater than the value.
-val adjustmentTypeGte : kotlin.String = adjustmentTypeGte_example // kotlin.String | Filter greater than or equal to the value.
-val adjustmentTypeLt : kotlin.String = adjustmentTypeLt_example // kotlin.String | Filter less than the value.
-val adjustmentTypeLte : kotlin.String = adjustmentTypeLte_example // kotlin.String | Filter less than or equal to the value.
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'execution_date' if not specified. The sort order defaults to 'desc' if not specified.
 try {
-    val result : GetStocksV1Splits200Response = apiInstance.getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, adjustmentTypeGt, adjustmentTypeGte, adjustmentTypeLt, adjustmentTypeLte, limit, sort)
+    val result : GetStocksV1Splits200Response = apiInstance.getStocksV1Splits(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, executionDate, executionDateGt, executionDateGte, executionDateLt, executionDateLte, adjustmentType, adjustmentTypeAnyOf, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getStocksV1Splits")
@@ -6564,12 +7062,8 @@ try {
 | **executionDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **executionDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
 | **executionDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **adjustmentType** | **kotlin.String**| Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend) | [optional] |
-| **adjustmentTypeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **adjustmentTypeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **adjustmentTypeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **adjustmentTypeLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **adjustmentTypeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **adjustmentType** | **kotlin.String**| Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend) | [optional] [enum: forward_split, reverse_split, stock_dividend] |
+| **adjustmentTypeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: forward_split, reverse_split, stock_dividend] |
 | **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. | [optional] [default to 100] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
@@ -6591,13 +7085,86 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a id="getStocksVXFloat"></a>
+# **getStocksVXFloat**
+> GetStocksVXFloat200Response getStocksVXFloat(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, freeFloatPercent, freeFloatPercentGt, freeFloatPercentGte, freeFloatPercentLt, freeFloatPercentLte, limit, sort)
+
+
+
+Contains free float data for US-listed securities, showing the most recent available number of shares available for public trading and the percentage of total shares outstanding.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = DefaultApi()
+val ticker : kotlin.String = ticker_example // kotlin.String | The primary ticker symbol for the stock.
+val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+val freeFloatPercent : kotlin.Double = 1.2 // kotlin.Double | Percentage of total shares outstanding that are available for public trading, rounded to two decimal places. Value must be a floating point number.
+val freeFloatPercentGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
+val freeFloatPercentGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
+val freeFloatPercentLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
+val freeFloatPercentLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '5000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'ticker' if not specified. The sort order defaults to 'asc' if not specified.
+try {
+    val result : GetStocksVXFloat200Response = apiInstance.getStocksVXFloat(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, freeFloatPercent, freeFloatPercentGt, freeFloatPercentGte, freeFloatPercentLt, freeFloatPercentLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksVXFloat")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksVXFloat")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **ticker** | **kotlin.String**| The primary ticker symbol for the stock. | [optional] |
+| **tickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **freeFloatPercent** | **kotlin.Double**| Percentage of total shares outstanding that are available for public trading, rounded to two decimal places. Value must be a floating point number. | [optional] |
+| **freeFloatPercentGt** | **kotlin.Double**| Filter greater than the value. Value must be a floating point number. | [optional] |
+| **freeFloatPercentGte** | **kotlin.Double**| Filter greater than or equal to the value. Value must be a floating point number. | [optional] |
+| **freeFloatPercentLt** | **kotlin.Double**| Filter less than the value. Value must be a floating point number. | [optional] |
+| **freeFloatPercentLte** | **kotlin.Double**| Filter less than or equal to the value. Value must be a floating point number. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;5000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;ticker&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. | [optional] [default to &quot;ticker.asc&quot;] |
+
+### Return type
+
+[**GetStocksVXFloat200Response**](GetStocksVXFloat200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a id="getTicker"></a>
 # **getTicker**
 > GetTicker200Response getTicker(ticker, date)
 
 Ticker Details v3
 
-Get a single ticker supported by Massive.com. This response will have detailed information about the ticker and the company behind it.
+Get a single ticker supported by Massive. This response will have detailed information about the ticker and the company behind it.
 
 ### Example
 ```kotlin
@@ -6835,69 +7402,6 @@ try {
 ### Return type
 
 [**ListConditions200Response**](ListConditions200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="listContracts"></a>
-# **listContracts**
-> ListContracts200Response listContracts(productCode, firstTradeDate, lastTradeDate, asOf, active, type, limit, sort)
-
-Contracts
-
-The Contracts endpoint returns a list of futures contracts. This endpoint can be used to query for contracts based on a variety of parameters, including the contract&#39;s ticker, product code, first trade date, last trade date, and whether or not the contract was active on a given date.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val productCode : kotlin.String = productCode_example // kotlin.String | A unique identifier for the Product a Contract belongs to. Note that multiple contracts can belong to the same product.
-val firstTradeDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The first day that a contract was tradeable. A date with the format YYYY-MM-DD.
-val lastTradeDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The last day that the contract was tradeable. A date with the format YYYY-MM-DD.
-val asOf : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Specify the point-in-time for which you want to retrieve information. Note that the contract data returned for a given date is the state of that contract as of that day. A date in the format YYYY-MM-DD (default=today).
-val active : kotlin.String = active_example // kotlin.String | Filter for contracts based on whether or not they were tradeable at the given point in time. For example, if the date queried is greater-than or equal-to a contract's 'first_trade_date' and less-than-or-equal-to its 'last_trade_date', then the contract was active. If the date queried is greater-than-or-equal-to the contract's 'last_trade_date' or less-than-or-equal-to its 'first_trade_date', then the contract was inactive.
-val type : kotlin.String = type_example // kotlin.String | The type of contract, one of \"all\", \"single\", or \"combo\" (default=all).
-val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=100, max=1000, min=1).
-val sort : kotlin.String = product_code.asc // kotlin.String | Sort results by field and direction using dotted notation (e.g., 'ticker.asc', 'name.desc').
-try {
-    val result : ListContracts200Response = apiInstance.listContracts(productCode, firstTradeDate, lastTradeDate, asOf, active, type, limit, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#listContracts")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#listContracts")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **productCode** | **kotlin.String**| A unique identifier for the Product a Contract belongs to. Note that multiple contracts can belong to the same product. | [optional] |
-| **firstTradeDate** | **java.time.LocalDate**| The first day that a contract was tradeable. A date with the format YYYY-MM-DD. | [optional] |
-| **lastTradeDate** | **java.time.LocalDate**| The last day that the contract was tradeable. A date with the format YYYY-MM-DD. | [optional] |
-| **asOf** | **java.time.LocalDate**| Specify the point-in-time for which you want to retrieve information. Note that the contract data returned for a given date is the state of that contract as of that day. A date in the format YYYY-MM-DD (default&#x3D;today). | [optional] |
-| **active** | **kotlin.String**| Filter for contracts based on whether or not they were tradeable at the given point in time. For example, if the date queried is greater-than or equal-to a contract&#39;s &#39;first_trade_date&#39; and less-than-or-equal-to its &#39;last_trade_date&#39;, then the contract was active. If the date queried is greater-than-or-equal-to the contract&#39;s &#39;last_trade_date&#39; or less-than-or-equal-to its &#39;first_trade_date&#39;, then the contract was inactive. | [optional] [default to all] [enum: all, true, false] |
-| **type** | **kotlin.String**| The type of contract, one of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). | [optional] [default to all] [enum: all, single, combo] |
-| **limit** | **kotlin.Int**| The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). | [optional] [default to 100] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). | [optional] [default to product_code.asc] [enum: product_code.asc, product_code.desc, first_trade_date.asc, first_trade_date.desc, last_trade_date.asc, last_trade_date.desc] |
-
-### Return type
-
-[**ListContracts200Response**](ListContracts200Response.md)
 
 ### Authorization
 
@@ -7237,61 +7741,6 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="listMarketStatuses"></a>
-# **listMarketStatuses**
-> ListMarketStatuses200Response listMarketStatuses(productCodeAnyOf, productCode, limit, sort)
-
-Market Status
-
-The market status endpoint returns the current status of the futures market for the given product code(s).
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val productCodeAnyOf : kotlin.String = ES,CL // kotlin.String | The product code(s) to return market statuses for.  Multiple product codes can be specified by separating them with a comma. Currently, the limit is 250 product codes.
-val productCode : kotlin.String = ES // kotlin.String | The product code to return market statuses for.
-val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=100, max=1000, min=1).
-val sort : kotlin.String = product_code.asc // kotlin.String | Sort results by field and direction using dotted notation (e.g., 'ticker.asc', 'name.desc').
-try {
-    val result : ListMarketStatuses200Response = apiInstance.listMarketStatuses(productCodeAnyOf, productCode, limit, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#listMarketStatuses")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#listMarketStatuses")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **productCodeAnyOf** | **kotlin.String**| The product code(s) to return market statuses for.  Multiple product codes can be specified by separating them with a comma. Currently, the limit is 250 product codes. | [optional] |
-| **productCode** | **kotlin.String**| The product code to return market statuses for. | [optional] |
-| **limit** | **kotlin.Int**| The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). | [optional] [default to 100] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). | [optional] [default to product_code.asc] [enum: product_code.asc, product_code.desc] |
-
-### Return type
-
-[**ListMarketStatuses200Response**](ListMarketStatuses200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a id="listNews"></a>
 # **listNews**
 > ListNews200Response listNews(ticker, publishedUtc, tickerGte, tickerGt, tickerLte, tickerLt, publishedUtcGte, publishedUtcGt, publishedUtcLte, publishedUtcLt, order, limit, sort)
@@ -7456,75 +7905,6 @@ Configure apiKey:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a id="listProducts"></a>
-# **listProducts**
-> ListProducts200Response listProducts(name, asOf, tradingVenue, sector, subSector, assetClass, assetSubClass, type, limit, nameSearch, sort)
-
-Products
-
-The Products endpoint returns a list of futures products. This endpoint can be used to query for products based on a variety of parameters, including by the product&#39;s name, exchange, sector, sub-sector, asset class, asset sub-class, and type.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val name : kotlin.String = name_example // kotlin.String | Search for products by Product Name. This parameter supports an exact match, while a name-contains search can be performed using the `name.search` parameter. Note that the search is case-sensitive.
-val asOf : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day (default=today).
-val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which the products trades.
-val sector : kotlin.String = sector_example // kotlin.String | The sector to which the products belong.
-val subSector : kotlin.String = subSector_example // kotlin.String | The sub-sector to which the products belong.
-val assetClass : kotlin.String = assetClass_example // kotlin.String | The asset class to which the products belong.
-val assetSubClass : kotlin.String = assetSubClass_example // kotlin.String | The asset sub-class to which the products belong.
-val type : kotlin.String = type_example // kotlin.String | The type of products to return. One of \"all\", \"single\", or \"combo\" (default=all).
-val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=100, maximum=1000, minimum=1).
-val nameSearch : kotlin.String = nameSearch_example // kotlin.String | Search by name.
-val sort : kotlin.String = name.asc // kotlin.String | Sort results by field and direction using dotted notation (e.g., 'ticker.asc', 'name.desc').
-try {
-    val result : ListProducts200Response = apiInstance.listProducts(name, asOf, tradingVenue, sector, subSector, assetClass, assetSubClass, type, limit, nameSearch, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#listProducts")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#listProducts")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **name** | **kotlin.String**| Search for products by Product Name. This parameter supports an exact match, while a name-contains search can be performed using the &#x60;name.search&#x60; parameter. Note that the search is case-sensitive. | [optional] |
-| **asOf** | **java.time.LocalDate**| A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day (default&#x3D;today). | [optional] |
-| **tradingVenue** | **kotlin.String**| The trading venue (MIC) for the exchange on which the products trades. | [optional] |
-| **sector** | **kotlin.String**| The sector to which the products belong. | [optional] [enum: asia, base, biofuels, coal, cross_rates, crude_oil, custom_index, dairy, dj_ubs_ci, electricity, emissions, europe, fertilizer, forestry, grains_and_oilseeds, intl_index, liq_nat_gas_lng, livestock, long_term_gov, long_term_non_gov, majors, minors, nat_gas, nat_gas_liq_petro, precious, refined_products, s_and_p_gsci, sel_sector_index, short_term_gov, short_term_non_gov, softs, us, us_index, wet_bulk] |
-| **subSector** | **kotlin.String**| The sub-sector to which the products belong. | [optional] [enum: asian, canadian, cat, cooling_degree_days, ercot, european, gulf, heating_degree_days, iso_ne, large_cap_index, mid_cap_index, miso, north_american, nyiso, pjm, small_cap_index, west, western_power] |
-| **assetClass** | **kotlin.String**| The asset class to which the products belong. | [optional] [enum: alt_investment, commodity, financials] |
-| **assetSubClass** | **kotlin.String**| The asset sub-class to which the products belong. | [optional] [enum: agricultural, commodity_index, energy, equity, foreign_exchange, freight, housing, interest_rate, metals, weather] |
-| **type** | **kotlin.String**| The type of products to return. One of \&quot;all\&quot;, \&quot;single\&quot;, or \&quot;combo\&quot; (default&#x3D;all). | [optional] [default to all] [enum: all, single, combo] |
-| **limit** | **kotlin.Int**| The number of results to return per page (default&#x3D;100, maximum&#x3D;1000, minimum&#x3D;1). | [optional] [default to 100] |
-| **nameSearch** | **kotlin.String**| Search by name. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). | [optional] [default to name.asc] [enum: name.asc, name.desc, trading_venue.asc, trading_venue.desc, sector.asc, sector.desc, sub_sector.asc, sub_sector.desc, asset_class.asc, asset_class.desc, asset_sub_class.asc, asset_sub_class.desc, type.asc, type.desc] |
-
-### Return type
-
-[**ListProducts200Response**](ListProducts200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a id="listStockSplits"></a>
 # **listStockSplits**
 > ListStockSplits200Response listStockSplits(ticker, executionDate, reverseSplit, tickerGte, tickerGt, tickerLte, tickerLt, executionDateGte, executionDateGt, executionDateLte, executionDateLt, order, limit, sort)
@@ -7606,7 +7986,7 @@ Configure apiKey:
 
 Ticker Types
 
-List all ticker types that Massive.com has.
+List all ticker types that Massive has.
 
 ### Example
 ```kotlin
@@ -7657,7 +8037,7 @@ Configure apiKey:
 
 Tickers
 
-Query all ticker symbols which are supported by Massive.com. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+Query all ticker symbols which are supported by Massive. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
 
 ### Example
 ```kotlin
@@ -7717,122 +8097,6 @@ try {
 ### Return type
 
 [**ListTickers200Response**](ListTickers200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="productDetails"></a>
-# **productDetails**
-> ProductDetails200Response productDetails(productCode, type, asOf)
-
-Product Details
-
-The Product Details endpoint returns the details for a single product as of a specific day.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val productCode : kotlin.String = ES // kotlin.String | The unique identifier for a product.
-val type : kotlin.String = type_example // kotlin.String | The type of product to return. One of \"single\" or \"combo\" (default=single).
-val asOf : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | A date string in the format YYYY-MM-DD. Note that the data returned is the state of this product's data at that point-in-time.
-try {
-    val result : ProductDetails200Response = apiInstance.productDetails(productCode, type, asOf)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#productDetails")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#productDetails")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **productCode** | **kotlin.String**| The unique identifier for a product. | |
-| **type** | **kotlin.String**| The type of product to return. One of \&quot;single\&quot; or \&quot;combo\&quot; (default&#x3D;single). | [optional] [default to single] [enum: single, combo] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **asOf** | **java.time.LocalDate**| A date string in the format YYYY-MM-DD. Note that the data returned is the state of this product&#39;s data at that point-in-time. | [optional] |
-
-### Return type
-
-[**ProductDetails200Response**](ProductDetails200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="productSchedules"></a>
-# **productSchedules**
-> ProductSchedules200Response productSchedules(productCode, sessionEndDate, limit, sessionEndDateGte, sessionEndDateGt, sessionEndDateLte, sessionEndDateLt, sort)
-
-Product Schedules
-
-The Product-Specific Futures Schedules API provides detailed trading schedules for a specific futures product. This API allows you to query schedules for a single product across a range of dates. Users can access comprehensive information about trading sessions, including market events such as preopen, open, and closed, along with their precise timestamps.
-
-### Example
-```kotlin
-// Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
-
-val apiInstance = DefaultApi()
-val productCode : kotlin.String = ES // kotlin.String | The product code for the futures product.
-val sessionEndDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The date on which the schedule's trading day ended (sometimes referred to as trading date). Defaults to today. Formatted as `YYYY-MM-DD`. Note that although there is no time component the day is assumed to be that day in Central Time.
-val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=100, max=1000, min=1).
-val sessionEndDateGte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Range by session_end_date.
-val sessionEndDateGt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Range by session_end_date.
-val sessionEndDateLte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Range by session_end_date.
-val sessionEndDateLt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Range by session_end_date.
-val sort : kotlin.String = session_end_date.desc // kotlin.String | Sort results by field and direction using dotted notation (e.g., 'ticker.asc', 'name.desc').
-try {
-    val result : ProductSchedules200Response = apiInstance.productSchedules(productCode, sessionEndDate, limit, sessionEndDateGte, sessionEndDateGt, sessionEndDateLte, sessionEndDateLt, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#productSchedules")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#productSchedules")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **productCode** | **kotlin.String**| The product code for the futures product. | |
-| **sessionEndDate** | **java.time.LocalDate**| The date on which the schedule&#39;s trading day ended (sometimes referred to as trading date). Defaults to today. Formatted as &#x60;YYYY-MM-DD&#x60;. Note that although there is no time component the day is assumed to be that day in Central Time. | [optional] |
-| **limit** | **kotlin.Int**| The number of results to return per page (default&#x3D;100, max&#x3D;1000, min&#x3D;1). | [optional] [default to 100] |
-| **sessionEndDateGte** | **java.time.LocalDate**| Range by session_end_date. | [optional] |
-| **sessionEndDateGt** | **java.time.LocalDate**| Range by session_end_date. | [optional] |
-| **sessionEndDateLte** | **java.time.LocalDate**| Range by session_end_date. | [optional] |
-| **sessionEndDateLt** | **java.time.LocalDate**| Range by session_end_date. | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| Sort results by field and direction using dotted notation (e.g., &#39;ticker.asc&#39;, &#39;name.desc&#39;). | [optional] [default to session_end_date.desc] [enum: session_end_date.asc, session_end_date.desc] |
-
-### Return type
-
-[**ProductSchedules200Response**](ProductSchedules200Response.md)
 
 ### Authorization
 

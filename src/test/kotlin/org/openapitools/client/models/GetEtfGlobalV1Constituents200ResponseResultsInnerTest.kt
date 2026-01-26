@@ -25,6 +25,12 @@ class GetEtfGlobalV1Constituents200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetEtfGlobalV1Constituents200ResponseResultsInner
         //val modelInstance = GetEtfGlobalV1Constituents200ResponseResultsInner()
 
+        // to test the property `constituentRank` - The rank of this constituent within the ETF for a given effective_date, ordered by weight (descending), market_value (descending), and constituent_ticker (ascending). A rank of 1 indicates the largest holding.
+        should("test constituentRank") {
+            // uncomment below to test the property
+            //modelInstance.constituentRank shouldBe ("TODO")
+        }
+
         // to test the property `assetClass` - The broad category of asset type, such as Equity, Corporate Bond, Municipal Bond, etc.
         should("test assetClass") {
             // uncomment below to test the property

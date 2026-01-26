@@ -4,6 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
+| **constituentRank** | **kotlin.Long** | The rank of this constituent within the ETF for a given effective_date, ordered by weight (descending), market_value (descending), and constituent_ticker (ascending). A rank of 1 indicates the largest holding. |  |
 | **assetClass** | **kotlin.String** | The broad category of asset type, such as Equity, Corporate Bond, Municipal Bond, etc. |  [optional] |
 | **compositeTicker** | **kotlin.String** | The stock ticker symbol of the ETF that holds these constituent securities. |  [optional] |
 | **constituentName** | **kotlin.String** | The full company or security name of the constituent holding. |  [optional] |
