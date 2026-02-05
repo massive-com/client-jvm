@@ -23,6 +23,8 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param price The price of the trade. This is the actual dollar value per whole contract of this trade. A trade of 100 contracts with a price of $2.00 would be worth a total dollar value of $200.00.
+ * @param reportSequence The reporting sequence number.
+ * @param sequenceNumber The unique sequence number assigned to this trade.
  * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
  * @param propertySize The total number of contracts exchanged between buyers and sellers on a given trade.
  * @param ticker ticker of the trade
@@ -35,6 +37,14 @@ data class GetFuturesTrades200ResponseResultsInner (
     /* The price of the trade. This is the actual dollar value per whole contract of this trade. A trade of 100 contracts with a price of $2.00 would be worth a total dollar value of $200.00. */
     @Json(name = "price")
     val price: kotlin.Double,
+
+    /* The reporting sequence number. */
+    @Json(name = "report_sequence")
+    val reportSequence: kotlin.Int,
+
+    /* The unique sequence number assigned to this trade. */
+    @Json(name = "sequence_number")
+    val sequenceNumber: kotlin.Int,
 
     /* Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. */
     @Json(name = "session_end_date")

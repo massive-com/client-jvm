@@ -31,6 +31,18 @@ class GetFuturesTrades200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.price shouldBe ("TODO")
         }
 
+        // to test the property `reportSequence` - The reporting sequence number.
+        should("test reportSequence") {
+            // uncomment below to test the property
+            //modelInstance.reportSequence shouldBe ("TODO")
+        }
+
+        // to test the property `sequenceNumber` - The unique sequence number assigned to this trade.
+        should("test sequenceNumber") {
+            // uncomment below to test the property
+            //modelInstance.sequenceNumber shouldBe ("TODO")
+        }
+
         // to test the property `sessionEndDate` - Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
         should("test sessionEndDate") {
             // uncomment below to test the property

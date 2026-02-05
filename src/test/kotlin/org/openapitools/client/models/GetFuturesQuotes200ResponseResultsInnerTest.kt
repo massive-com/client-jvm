@@ -25,6 +25,18 @@ class GetFuturesQuotes200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetFuturesQuotes200ResponseResultsInner
         //val modelInstance = GetFuturesQuotes200ResponseResultsInner()
 
+        // to test the property `reportSequence` - The reporting sequence number.
+        should("test reportSequence") {
+            // uncomment below to test the property
+            //modelInstance.reportSequence shouldBe ("TODO")
+        }
+
+        // to test the property `sequenceNumber` - The unique sequence number assigned to this quote by the exchange.
+        should("test sequenceNumber") {
+            // uncomment below to test the property
+            //modelInstance.sequenceNumber shouldBe ("TODO")
+        }
+
         // to test the property `sessionEndDate` - Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
         should("test sessionEndDate") {
             // uncomment below to test the property
