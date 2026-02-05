@@ -22,6 +22,8 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param reportSequence The reporting sequence number.
+ * @param sequenceNumber The unique sequence number assigned to this quote by the exchange.
  * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
  * @param ticker The futures contract identifier, including the base symbol and contract expiration (e.g., GCJ5 for the April 2025 gold contract).
  * @param timestamp The time when the quote was generated at the exchange to nanosecond precision.
@@ -35,6 +37,14 @@ import com.squareup.moshi.JsonClass
 
 
 data class GetFuturesQuotes200ResponseResultsInner (
+
+    /* The reporting sequence number. */
+    @Json(name = "report_sequence")
+    val reportSequence: kotlin.Int,
+
+    /* The unique sequence number assigned to this quote by the exchange. */
+    @Json(name = "sequence_number")
+    val sequenceNumber: kotlin.Int,
 
     /* Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. */
     @Json(name = "session_end_date")
