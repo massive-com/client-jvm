@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **ticker** | [**GetStocksSnapshotTicker200ResponseAllOfTicker**](GetStocksSnapshotTicker200ResponseAllOfTicker.md) |  |  [optional] |
+| **ticker** | [**GetStocksSnapshotTickers200ResponseAllOfTickersInner**](GetStocksSnapshotTickers200ResponseAllOfTickersInner.md) |  |  [optional] |
 
 
 

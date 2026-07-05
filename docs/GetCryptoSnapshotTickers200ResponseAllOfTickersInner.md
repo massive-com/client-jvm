@@ -7,7 +7,7 @@
 | **day** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInnerDay**](GetCryptoSnapshotTickers200ResponseAllOfTickersInnerDay.md) |  |  |
 | **lastTrade** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTrade**](GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTrade.md) |  |  |
 | **min** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInnerMin**](GetCryptoSnapshotTickers200ResponseAllOfTickersInnerMin.md) |  |  |
-| **prevDay** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInnerPrevDay**](GetCryptoSnapshotTickers200ResponseAllOfTickersInnerPrevDay.md) |  |  |
+| **prevDay** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInnerDay**](GetCryptoSnapshotTickers200ResponseAllOfTickersInnerDay.md) |  |  |
 | **ticker** | **kotlin.String** | The exchange symbol that this item is traded under. |  |
 | **todaysChange** | **kotlin.Double** | The value of the change from the previous day. |  |
 | **todaysChangePerc** | **kotlin.Double** | The percentage change since the previous day. |  |

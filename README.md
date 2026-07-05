@@ -1,124 +1,197 @@
-# Massive (formerly Polygon.io) JVM Client SDK written in Kotlin - WebSocket & RESTful APIs
+# Massive (formerly Polygon.io) JVM Client SDK — Kotlin, REST & WebSocket
 
-Welcome to the official JVM client library SDK, written in Kotlin, for the [Massive](https://massive.com/) REST and WebSocket API. This client SDK is usable by any JVM language (including in Android SDK version 21+). To get started, please see the [Getting Started](https://massive.com/docs/stocks/getting-started) section in our documentation, and the [docs](https://massive.com/docs/rest/quickstart) for code snippets.
+The official JVM client library SDK, written in Kotlin, for the [Massive](https://massive.com/)
+REST and WebSocket APIs. Usable from any JVM language (including Android SDK 21+). See the
+[Getting Started](https://massive.com/docs/stocks/getting-started) guide and the
+[docs](https://massive.com/docs/rest/quickstart) for more code snippets.
 
-**Note:** Polygon.io has rebranded as [Massive.com](https://massive.com) on Oct 30, 2025. Existing API keys, accounts, and integrations continue to work exactly as before. The only change in this SDK is that it now defaults to the new API base at `api.massive.com`, while `api.polygon.io` remains supported for an extended period.
+**Note:** Polygon.io rebranded as [Massive.com](https://massive.com) on Oct 30, 2025. Existing
+API keys, accounts, and integrations continue to work exactly as before. This SDK now defaults to
+the new API base at `api.massive.com`, while `api.polygon.io` remains supported for an extended
+period. See the [rebrand announcement](https://massive.com/blog/polygon-is-now-massive/), or
+contact [support@massive.com](mailto:support@massive.com) with questions.
 
-For details, see our [rebrand announcement blog post](https://massive.com/blog/polygon-is-now-massive/) or open an issue / contact [support@massive.com](mailto:support@massive.com) if you have questions.
+---
 
-### Key improvements:
-- Breaking changes to method names and request/response structures.
-- The client is now automatically synchronized with the latest Massive.com API, ensuring faster access to new endpoints and updates.
-- Reduces the risk of SDK/API drift—what you see in the docs is what you get in the client.
+## How this SDK stays up to date
 
-### Action required:
-- If you're upgrading from a previous version, expect incompatibilities—please update your integration accordingly.
-- We've updated the [docs](https://massive.com/docs) with usage examples and new patterns for making requests.
+The REST client is **generated from the Massive OpenAPI specification**, not written by hand, so
+it never drifts from the live API.
+
+- **Automated (daily).** A GitHub Actions workflow
+  ([`.github/workflows/sync-openapi.yml`](.github/workflows/sync-openapi.yml)) runs every day. It
+  pulls the latest spec from `https://api.massive.com/openapi`, regenerates the client, and — only
+  when something changed — opens a new `[bot]`-prefixed pull request for review. Each run opens its
+  own PR; existing ones are never reused.
+- **Hand-written parts are preserved.** The generator only covers REST endpoints. The WebSocket
+  client (`com.massive.client.websocket`) and its support classes are maintained by hand and are
+  never overwritten by regeneration.
+- **Manual regeneration** (for maintainers) is documented in [`scripts/readme.md`](scripts/readme.md).
+
+---
 
 ## Getting started
 
-To access real-time and historical market data with Massive.com, you will first need to create an account and obtain an API key to authenticate your requests. If you run the samples makes sure to set the `MASSIVE_API_KEY` environment variable for the sample code to use. To persist the environment variable you need to add the above command to the shell startup script (e.g. .bashrc or .bash_profile.
+You need a Massive.com account and an API key. Create one at
+[massive.com](https://massive.com/). The examples read your key from the `MASSIVE_API_KEY`
+environment variable:
 
 ```bash
-setx MASSIVE_API_KEY "<your_api_key>"   # windows
-export MASSIVE_API_KEY="<your_api_key>" # mac/linux
+export MASSIVE_API_KEY="<your_api_key>"   # macOS / Linux
+setx MASSIVE_API_KEY "<your_api_key>"     # Windows
 ```
 
-## REST API Client
+To persist it, add the `export` line to your shell startup file (e.g. `.bashrc` / `.zshrc`).
 
-The [REST API](https://massive.com/docs/stocks/getting-started) provides endpoints that let you query the latest stock, options, indices, forex, and crypto market data market data. You can request data using client methods.
+---
 
-Create the client using your API key.
+## Build and run the examples locally
 
-```kotlin
-    ApiClient.apiKey["apiKey"] = "MASSIVE_API_KEY"
+Follow these steps to clone, build, and verify the SDK works end-to-end with a live REST call and
+a live WebSocket stream.
+
+### Prerequisites
+- **JDK 17+** (the bundled `./gradlew` wrapper uses Gradle 8.7)
+- **git**
+- A `MASSIVE_API_KEY` (see above)
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/polygon-io/client-jvm.git
+cd client-jvm
 ```
 
-Get [aggregate bars](https://massive.com/docs/rest/stocks/aggregates/custom-bars) for a stock over a given date range in custom time window sizes.
+### 2. Build
+
+```bash
+./gradlew build
+```
+
+This compiles the REST client, the WebSocket client, and runs the test suite.
+
+### 3. Set your API key
+
+```bash
+export MASSIVE_API_KEY="<your_api_key>"
+```
+
+### 4. Run the REST example
+
+Source: [`src/main/kotlin/com/massive/client/test.kt`](src/main/kotlin/com/massive/client/test.kt).
+It fetches hourly aggregate bars for NVDA.
+
+```bash
+./gradlew runRestExample
+```
+
+Expected output (abbreviated):
+
+```
+Hourly aggregates for NVDA (2025-06-09 to 2025-06-13):
+GetStocksAggregates200ResponseResultsInner(volume=..., open=..., close=..., ...)
+...
+```
+
+### 5. Run the WebSocket example
+
+Source: [`src/main/kotlin/com/massive/client/WebSocketExample.kt`](src/main/kotlin/com/massive/client/WebSocketExample.kt).
+It connects to the delayed stocks feed (available on every plan), subscribes to AAPL per-minute
+aggregates, prints messages for ~30 seconds, then disconnects.
+
+```bash
+./gradlew runWebSocketExample
+```
+
+Expected output (abbreviated):
+
+```
+Connecting to the Massive WebSocket (delayed stocks feed)…
+Authenticated — subscribing to AAPL minute aggregates
+Received: StatusMessage(ev=status, status=success, message=...)
+Received: StocksMessage.Aggregate(eventType=AM, ticker=AAPL, ...)
+...
+Disconnected
+Done.
+```
+
+> Tip: minute aggregates only arrive while the market is open. Outside market hours you'll still
+> see the authentication and subscription status messages, confirming the connection works.
+
+---
+
+## Using the REST client
+
+Create the client, set your API key, and call an endpoint. Every endpoint lives on `DefaultApi`.
 
 ```kotlin
-package org.openapitools.client
-
-import org.openapitools.client.apis.DefaultApi
-import org.openapitools.client.apis.DefaultApi.*
-import org.openapitools.client.infrastructure.*
-import org.openapitools.client.models.*
+import com.massive.client.apis.DefaultApi
+import com.massive.client.apis.DefaultApi.TimespanGetStocksAggregates
+import com.massive.client.infrastructure.*
+import com.massive.client.models.*
 
 fun main() {
-    ApiClient.apiKey["apiKey"] = "MASSIVE_API_KEY"
+    ApiClient.apiKey["apiKey"] = System.getenv("MASSIVE_API_KEY")
 
     val api = DefaultApi()
-    try {
-        val result = api.GetStocksAggregates(
-            multiplier = "1",
-            timespan = "day",
-            from = "2023-01-09",
-            to = "2023-02-10",
-            adjusted = "true",
-            sort = "asc",
-            limit = "120"
-        )
-        println(result)
-    } catch (e: Exception) {
-        println("Error calling GetStocksAggregates: ${e.message}")
-        e.printStackTrace()
-    }
+    val result = api.getStocksAggregates(
+        stocksTicker = "NVDA",
+        multiplier = 1,
+        timespan = TimespanGetStocksAggregates.hour,
+        from = "2025-06-09",
+        to = "2025-06-13",
+        adjusted = true,
+        limit = 5000,
+    )
+    println(result)
 }
 ```
 
-Get [trades](https://massive.com/docs/stocks/get_v3_trades__stockticker) for a ticker symbol in a given time range.
+By default the client targets `https://api.massive.com`. Every endpoint and model is documented
+under [`docs/`](docs/) (see [`docs/DefaultApi.md`](docs/DefaultApi.md)).
+
+---
+
+## Using the WebSocket client
+
+The WebSocket client streams real-time (or delayed) market data. Implement a listener, connect,
+and subscribe.
 
 ```kotlin
-package org.openapitools.client
-
-import org.openapitools.client.apis.DefaultApi
-import org.openapitools.client.apis.DefaultApi.*
-import org.openapitools.client.infrastructure.*
-import org.openapitools.client.models.*
+import com.massive.client.websocket.*
 
 fun main() {
-    ApiClient.apiKey["apiKey"] = "MASSIVE_API_KEY"
+    val client = MassiveWebSocketClient(
+        apiKey = System.getenv("MASSIVE_API_KEY"),
+        feed = Feed.Delayed,        // or Feed.RealTime, etc.
+        market = Market.Stocks,     // or Options, Forex, Crypto, Indices, Futures
+        listener = object : DefaultMassiveWebSocketListener() {
+            override fun onAuthenticated(client: MassiveWebSocketClient) {
+                client.subscribeBlocking(
+                    listOf(
+                        MassiveWebSocketSubscription(
+                            MassiveWebSocketChannel.Stocks.AggPerMinute, "AAPL"
+                        )
+                    )
+                )
+            }
 
-    val api = DefaultApi()
-    try {
-        val result = api.GetStocksTrades(
-            stockTicker = "AAPL",
-            order = "asc",
-            limit = "10",
-            sort = "timestamp"
-        )
-        println(result)
-    } catch (e: Exception) {
-        println("Error calling GetStocksTrades: ${e.message}")
-        e.printStackTrace()
-    }
+            override fun onReceive(client: MassiveWebSocketClient, message: MassiveWebSocketMessage) {
+                println(message)
+            }
+        },
+    )
+
+    client.connectBlocking()   // suspend variants (connect/subscribe/…) are also available
 }
 ```
 
-Get a [Full Market Snapshot](https://massive.com/docs/rest/stocks/snapshots/full-market-snapshot) for a all stocks.
+Blocking (`*Blocking`), async/callback (`*Async`), and coroutine (`suspend`) variants are provided
+for `connect`, `subscribe`, `unsubscribe`, and `disconnect`.
 
-```kotlin
-package org.openapitools.client
+---
 
-import org.openapitools.client.apis.DefaultApi
-import org.openapitools.client.apis.DefaultApi.*
-import org.openapitools.client.infrastructure.*
-import org.openapitools.client.models.*
+## Contributing
 
-fun main() {
-    ApiClient.apiKey["apiKey"] = "MASSIVE_API_KEY"
-
-    val api = DefaultApi()
-    try {
-        val result = api.GetStocksSnapshotTickers(
-        )
-        println(result)
-    } catch (e: Exception) {
-        println("Error calling GetStocksSnapshotTickers: ${e.message}")
-        e.printStackTrace()
-    }
-}
-```
-
-Please see more detailed code in the [docs](https://massive.com/docs/rest/quickstart) for code snippets.
-
+Contributions are welcome — open an issue or PR. If you're changing how the client is generated,
+see [`scripts/readme.md`](scripts/readme.md) for the generation pipeline and the daily sync workflow.

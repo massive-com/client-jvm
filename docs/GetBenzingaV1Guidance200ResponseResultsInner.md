@@ -14,7 +14,7 @@
 | **fiscalPeriod** | **kotlin.String** | The fiscal quarter to which the guidance applies, such as Q1, Q2, Q3, or Q4. |  [optional] |
 | **fiscalYear** | **kotlin.Long** | The fiscal year corresponding to the period for which the guidance is issued. |  [optional] |
 | **importance** | **kotlin.Long** | A subjective indicator of the importance of the event, on a scale from 0 (lowest) to 5 (highest). |  [optional] |
-| **lastUpdated** | **kotlin.String** | The timestamp (formatted as an ISO 8601 timestamp) when the record was last updated in the system. |  [optional] |
+| **lastUpdated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The timestamp (formatted as an ISO 8601 timestamp) when the record was last updated in the system. |  [optional] |
 | **maxEpsGuidance** | **kotlin.Double** | The highest EPS value the company expects for the fiscal period if a range was provided. |  [optional] |
 | **maxRevenueGuidance** | **kotlin.Double** | The highest revenue figure the company expects for the fiscal period if a range was provided. |  [optional] |
 | **minEpsGuidance** | **kotlin.Double** | The lowest EPS value the company expects for the fiscal period if a range was provided. |  [optional] |

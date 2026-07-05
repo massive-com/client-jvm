@@ -1,5 +1,6 @@
-# Use an official OpenJDK base image with Node.js for openapi-generator-cli
-FROM openjdk:17-jdk-slim
+# Use a maintained Temurin JDK 17 base image with Node.js for openapi-generator-cli
+# (the previous `openjdk:17-jdk-slim` image was deprecated and removed from Docker Hub)
+FROM eclipse-temurin:17-jdk-jammy
 
 # Install Node.js and npm
 RUN apt-get update && \

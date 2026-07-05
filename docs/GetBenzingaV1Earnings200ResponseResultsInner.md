@@ -6,7 +6,7 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **actualEps** | **kotlin.Double** | The actual earnings per share (EPS) reported by the company for the given period. |  [optional] |
 | **actualRevenue** | **kotlin.Double** | The actual revenue reported by the company for the given fiscal period. |  [optional] |
-| **benzingaId** | **kotlin.String** | The identifer used by Benzinga for this record. |  [optional] |
+| **benzingaId** | **kotlin.String** | The identifier used by Benzinga for this record. |  [optional] |
 | **companyName** | **kotlin.String** | The name of the company releasing earnings. |  [optional] |
 | **currency** | **kotlin.String** | The ISO 4217 currency code indicating the denomination in which the figures are reported. |  [optional] |
 | **date** | **kotlin.String** | The calendar date (formatted as YYYY-MM-DD) when the earnings are scheduled or were reported. |  [optional] |
@@ -27,7 +27,7 @@
 | **revenueSurprise** | **kotlin.Double** | The difference between the actual and estimated revenue. |  [optional] |
 | **revenueSurprisePercent** | **kotlin.Double** | The percentage difference between the actual and estimated revenue. |  [optional] |
 | **ticker** | **kotlin.String** | The stock symbol of the company reporting earnings. |  [optional] |
-| **time** | **kotlin.String** | The time (formatted as 24-hour HH:MM:SS UTC) when the earnings are scheduled or were reported. |  [optional] |
+| **time** | **kotlin.String** | The time (formatted as 24-hour HH:MM:SS EST) when the earnings are scheduled or were reported. |  [optional] |
 
 
 

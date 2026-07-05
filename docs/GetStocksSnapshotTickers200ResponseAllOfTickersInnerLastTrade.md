@@ -5,6 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **c** | **kotlin.collections.List&lt;kotlin.Int&gt;** | The trade conditions. |  |
+| **ds** | **kotlin.String** | The size of the trade including fractional shares, respresented as a string. |  |
 | **i** | **kotlin.String** | The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID.  |  |
 | **p** | **kotlin.Double** | The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.  |  |
 | **s** | **kotlin.Int** | The size (volume) of the trade. |  |

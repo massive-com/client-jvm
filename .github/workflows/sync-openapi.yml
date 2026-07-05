@@ -1,0 +1,126 @@
+name: Sync OpenAPI client
+
+# Daily: pull the latest OpenAPI spec, regenerate the Kotlin REST client, and
+# open a PR only when the regenerated output differs from what's committed.
+# Mirrors the automation in massive-com/openapi-spec-changelog.
+
+on:
+  schedule:
+    - cron: '0 15 * * *'   # 07:00 America/Vancouver
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-openapi
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Cache the openapi-generator JAR (version pinned in openapitools.json)
+      # so we don't re-download ~30MB every run.
+      - name: Cache openapi-generator
+        uses: actions/cache@v4
+        with:
+          path: ~/.openapi-generator-cli
+          key: openapi-generator-7.23.0
+
+      - name: Install openapi-generator-cli
+        run: npm install -g @openapitools/openapi-generator-cli
+
+      # GENERATOR defaults to "native": uses openapi-generator-cli + JDK on PATH.
+      - name: Regenerate client
+        run: bash scripts/generate.sh
+
+      - name: Detect changes
+        id: diff
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes — spec + generated output match what's committed."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected:"
+            git diff --cached --stat | tail -25
+          fi
+
+      - name: Import GPG signing key
+        if: steps.diff.outputs.changed == 'true'
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      # A unique branch per run (date + run id) so every sync opens a brand-new
+      # PR and never reuses/updates a previous one.
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "justinpolygon"
+          git config user.email "123573436+justinpolygon@users.noreply.github.com"
+          BRANCH="bot/openapi-sync-$(date -u +'%Y-%m-%d')-${GITHUB_RUN_ID}"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          git checkout -B "$BRANCH"
+          git commit -S -m "Sync client-jvm with OpenAPI spec"
+          git push origin "$BRANCH"
+
+      - name: Open PR
+        if: steps.diff.outputs.changed == 'true'
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create automated --color ededed --description "Automated PR" --force >/dev/null 2>&1 || true
+          url=$(gh pr create \
+            --base master --head "$BRANCH" \
+            --title "[bot] Sync client-jvm with OpenAPI spec ($(date -u +'%Y-%m-%d'))" \
+            --label automated \
+            --body "Automated regeneration from \`https://api.massive.com/openapi\` via \`scripts/generate.sh\` (openapi-generator 7.23.0).
+
+          - Regenerated REST client: \`com.massive.client\` (apis, models, infrastructure, docs, tests)
+          - Hand-written WebSocket client (\`com.massive.client.websocket\`) preserved
+          - Curated \`README.md\` / \`build.gradle\` preserved
+
+          Please review the diff before merging.")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Notify Slack
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          SLACK_CLIENT_LIBRARY_WEBHOOK: ${{ secrets.SLACK_CLIENT_LIBRARY_WEBHOOK }}
+          PR_URL: ${{ steps.pr.outputs.url }}
+        run: |
+          if [ -z "$SLACK_CLIENT_LIBRARY_WEBHOOK" ]; then
+            echo "No Slack webhook configured — skipping."
+            exit 0
+          fi
+          payload=$(jq -n --arg url "$PR_URL" --arg date "$(date -u +'%Y-%m-%d')" '{
+            blocks: [
+              { type: "header",  text: { type: "plain_text", text: ("client-jvm OpenAPI sync – " + $date), emoji: true } },
+              { type: "section", text: { type: "mrkdwn", text: ("A new OpenAPI sync PR is ready for review:\n<" + $url + "|" + $url + ">") } }
+            ]
+          }')
+          resp=$(curl -sS -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_CLIENT_LIBRARY_WEBHOOK")
+          [ "$resp" = "ok" ] && echo "✅ Slack posted" || echo "❌ Slack post failed: $resp"

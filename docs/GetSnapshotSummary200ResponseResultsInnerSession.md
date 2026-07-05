@@ -11,6 +11,7 @@
 | **low** | **kotlin.Double** | The lowest price of the asset for the day. |  |
 | **&#x60;open&#x60;** | **kotlin.Double** | The open price of the asset for the day. |  |
 | **previousClose** | **kotlin.Double** | The closing price of the asset for the previous trading day. |  |
+| **decimalVolume** | **kotlin.String** | The trading volume for the asset for the day with decimal precision. This field provides support for fractional shares, representing volume as a decimal string. This field is only returned for stocks snapshots. |  [optional] |
 | **earlyTradingChange** | **kotlin.Double** | Today&#39;s early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. |  [optional] |
 | **earlyTradingChangePercent** | **kotlin.Double** | Today&#39;s early trading change as a percentage. |  [optional] |
 | **lateTradingChange** | **kotlin.Double** | Today&#39;s late trading change amount, difference between price and today&#39;s close if in late trading hours, otherwise difference between last price during late trading and today&#39;s close. |  [optional] |

@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **ticker** | [**GetCryptoSnapshotTicker200ResponseAllOfTicker**](GetCryptoSnapshotTicker200ResponseAllOfTicker.md) |  |  [optional] |
+| **ticker** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInner**](GetCryptoSnapshotTickers200ResponseAllOfTickersInner.md) |  |  [optional] |
 
 
 
