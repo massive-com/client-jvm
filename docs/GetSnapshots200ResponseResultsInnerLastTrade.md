@@ -7,6 +7,7 @@
 | **price** | **kotlin.Double** | The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. |  |
 | **propertySize** | **kotlin.Int** | The size of a trade (also known as volume). |  |
 | **conditions** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. |  [optional] |
+| **decimalSize** | **kotlin.String** | The size of a trade, including fractional shares, represented as a decimal string where the fractional part is expressed in millionths. This field is only returned for stocks snapshots. |  [optional] |
 | **exchange** | **kotlin.Int** | The exchange ID. See &lt;a href&#x3D;\&quot;https://massive.com/docs/rest/stocks/market-operations/exchanges\&quot; alt&#x3D;\&quot;Exchanges\&quot;&gt;Exchanges&lt;/a&gt; for Massive&#39;s mapping of exchange IDs. |  [optional] |
 | **id** | **kotlin.String** | The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID. |  [optional] |
 | **lastUpdated** | **kotlin.Long** | The nanosecond timestamp of when this information was updated. |  [optional] |

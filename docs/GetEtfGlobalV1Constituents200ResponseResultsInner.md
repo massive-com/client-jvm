@@ -5,13 +5,13 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **constituentRank** | **kotlin.Long** | The rank of this constituent within the ETF for a given effective_date, ordered by weight (descending), market_value (descending), and constituent_ticker (ascending). A rank of 1 indicates the largest holding. |  |
+| **effectiveDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date showing when the information was accurate or valid; some issuers, such as Vanguard, release their data on a delay, so the effective_date can be several weeks earlier than the processed_date. |  |
 | **assetClass** | **kotlin.String** | The broad category of asset type, such as Equity, Corporate Bond, Municipal Bond, etc. |  [optional] |
 | **compositeTicker** | **kotlin.String** | The stock ticker symbol of the ETF that holds these constituent securities. |  [optional] |
 | **constituentName** | **kotlin.String** | The full company or security name of the constituent holding. |  [optional] |
 | **constituentTicker** | **kotlin.String** | The stock ticker symbol of the individual security held within the ETF. |  [optional] |
 | **countryOfExchange** | **kotlin.String** | The country where the exchange that lists this constituent security is located. |  [optional] |
 | **currencyTraded** | **kotlin.String** | The local currency in which this constituent security is denominated and traded. |  [optional] |
-| **effectiveDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date showing when the information was accurate or valid; some issuers, such as Vanguard, release their data on a delay, so the effective_date can be several weeks earlier than the processed_date. |  [optional] |
 | **exchange** | **kotlin.String** | The name of the stock exchange where this constituent security is primarily traded. |  [optional] |
 | **figi** | **kotlin.String** | The Financial Instrument Global Identifier, an open standard for uniquely identifying financial instruments. |  [optional] |
 | **isin** | **kotlin.String** | The International Securities Identification Number, a global standard for identifying securities. |  [optional] |

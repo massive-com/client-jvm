@@ -5,7 +5,7 @@
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
 | **author** | **kotlin.String** | The name of the journalist or entity that authored the news article. |  |
-| **benzingaId** | **kotlin.Long** | The identifer used by Benzinga for this record. |  |
+| **benzingaId** | **kotlin.Long** | The identifier used by Benzinga for this record. |  |
 | **lastUpdated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The timestamp (formatted as an ISO 8601 timestamp) when the news article was last updated in the system. |  |
 | **published** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The timestamp (formatted as an ISO 8601 timestamp) when the news article was originally published. |  |
 | **title** | **kotlin.String** | The headline of the news article. |  |

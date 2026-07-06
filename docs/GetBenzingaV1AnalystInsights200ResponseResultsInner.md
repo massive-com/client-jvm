@@ -4,8 +4,8 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **benzingaFirmId** | **kotlin.String** | The identifer used by Benzinga for the firm record. |  [optional] |
-| **benzingaId** | **kotlin.String** | The identifer used by Benzinga for this record. |  [optional] |
+| **benzingaFirmId** | **kotlin.String** | The identifier used by Benzinga for the firm record. |  [optional] |
+| **benzingaId** | **kotlin.String** | The identifier used by Benzinga for this record. |  [optional] |
 | **benzingaRatingId** | **kotlin.String** | The identifier used by Benzinga for the rating record. |  [optional] |
 | **companyName** | **kotlin.String** | The name of the company being rated. |  [optional] |
 | **date** | **kotlin.String** | The calendar date (formatted as YYYY-MM-DD) when the rating was issued. |  [optional] |

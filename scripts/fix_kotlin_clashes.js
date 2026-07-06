@@ -9,7 +9,7 @@ const files = [
     "StocksV2NBBO.kt"
 ];
 
-const dirPath = "./src/rest/src/main/kotlin/org/openapitools/client/models";
+const dirPath = "./src/rest/src/main/kotlin/com/massive/client/models";
 
 const conflictProps = ['P', 'S', 'X'];
 

@@ -1,105 +1,84 @@
 # Massive.com Kotlin Client Generator
 
-This directory contains tools and scripts to generate a Kotlin/JVM client SDK for the [Massive.com](https://massive.com/) API using the OpenAPI specification generator. The process involves building a Docker image for the generator, pulling the OpenAPI spec, generating the client code, building the project with Gradle, and running tests.
+Tooling that generates the Kotlin/JVM REST client SDK for the [Massive.com](https://massive.com/)
+API from its OpenAPI specification.
 
-## Prerequisites
+The OpenAPI generator only understands the **REST** endpoints. The **WebSocket**
+client under `com.massive.client.websocket` is hand-written and is never touched
+by regeneration.
 
-- Docker installed on your system.
-- Node.js installed (for running `pull_spec.js`).
-- A working directory with the necessary files:
-  - Dockerfile for building the generator image.
-  - `pull_spec.js` script in the project root or appropriate subdirectory.
-  - Directories like `src/` and `project/` set up as needed.
+## Automated daily sync (recommended)
 
-## Usage
+`.github/workflows/sync-openapi.yml` runs every day (and on manual dispatch). It:
 
-Follow these steps to generate, build, and test the Massive.com Kotlin client SDK.
+1. Pulls the latest spec from `https://api.massive.com/openapi`.
+2. Regenerates the client with `scripts/generate.sh`.
+3. Opens (or updates) a **PR** — `bot/openapi-sync` → `master` — only when the
+   regenerated output differs from what's committed. The commit is GPG-signed and
+   a Slack notification is posted to `SLACK_CLIENT_LIBRARY_WEBHOOK`.
 
-### 1. Build the Docker Image
+Required repo secrets: `GPG_PRIVATE_KEY`, `SLACK_CLIENT_LIBRARY_WEBHOOK`
+(`GITHUB_TOKEN` is provided automatically).
 
-Build the Docker image for the OpenAPI client generator:
+## Manual regeneration
 
-```
-docker build -t massive-kotlin-client-generator .
-```
+Everything is wrapped in a single script. From the **repo root**:
 
-### 2. Run the Generator Container (Initial Setup)
+```bash
+# Uses openapi-generator-cli + a JDK already on your PATH.
+scripts/generate.sh
 
-Run the Docker container to prepare the environment (this may perform initial setup or generation):
+# No local JDK? Generate inside the pinned Docker image instead:
+GENERATOR=docker scripts/generate.sh
 
-```
-docker run --rm -v $(pwd):/app massive-kotlin-client-generator
-```
-
-### 3. Pull the OpenAPI Specification
-
-Use the Node.js script to fetch the latest OpenAPI spec from Massive.com:
-
-```
-node pull_spec.js
+# Re-run only the assembly step against an already-generated ./src/rest:
+GENERATOR=skip scripts/generate.sh
 ```
 
-This script downloads the spec and saves it as `src/openapi.json`.
+`generate.sh` performs the whole pipeline:
 
-### 4. Generate the Client Code
+1. `pull_spec.js` → downloads + filters the spec to `src/openapi.json`.
+2. `generate-kotlin-client.sh` → generates the Kotlin client into the scratch
+   dir `src/rest` and applies the json/java clash fixes.
+3. **Assembly** → replaces only the generated pieces
+   (`src/main/kotlin/com/massive/client/{apis,models,infrastructure}`,
+   `src/test/kotlin/com/massive/client`, `docs/`) and re-copies the sample
+   `test.kt`. Hand-written code (`websocket/`) and curated files
+   (`README.md`, `build.gradle`, `settings.gradle`, `gradlew`) are preserved.
 
-Run the Docker container again to generate the Kotlin client code using the pulled OpenAPI spec:
+The generator version is pinned in `openapitools.json` (currently **7.23.0**) so
+diffs reflect spec changes, not generator upgrades.
 
-```
-docker run --rm \
-  -v $(pwd)/src/openapi.json:/app/src/openapi.json \
-  -v $(pwd)/src/rest:/app/src/rest \
-  massive-kotlin-client-generator
-```
+## Building / testing the generated client
 
-The generated code will be placed in `src/rest`.
+The library requires a JDK 17+. To build with a throwaway Gradle image:
 
-### 5. Copy Generated Files to Project Directory
-
-Copy the generated source files to the project directory for building:
-
-```
-cp -a src project
-```
-
-### 6. Build the Project with Gradle
-
-Use a Gradle Docker image to build the project:
-
-```
-docker run --rm -v $(pwd)/project/rest:/home/gradle/project -w /home/gradle/project gradle:jdk17 gradle build
+```bash
+docker run --rm -v "$(pwd)":/home/gradle/project -w /home/gradle/project gradle:jdk17 gradle build
+docker run --rm -v "$(pwd)":/home/gradle/project -w /home/gradle/project gradle:jdk17 gradle run
 ```
 
-This compiles the generated client code.
+## Files
 
-### 7. Copy Additional Scripts and Test Files
-
-Copy the build script and test file to the appropriate locations in the project (adjust paths as needed if running on the host):
-
-```
-cp project/rest/scripts/build.gradle project/rest/
-cp project/rest/scripts/test.kt project/rest/src/main/kotlin/org/openapitools/client/test.kt
-```
-
-**Note:** The original commands use container-internal paths (`/home/gradle/project`). If running these on the host, replace with host-equivalent paths like `project/rest/` as shown above.
-
-### 8. Run the Test
-
-Launch the application or test using Gradle in an interactive Docker session:
-
-```
-docker run -it --rm -v $(pwd)/src/rest:/app -w /app gradle:jdk17 gradle run
-```
-
-This will execute the test code (e.g., `test.kt`) and verify the client functionality.
+| File | Purpose |
+|------|---------|
+| `generate.sh` | One-command orchestration (pull → generate → assemble). |
+| `pull_spec.js` | Download + filter the OpenAPI spec. |
+| `generate-kotlin-client.sh` | Invoke openapi-generator + clash fixes. |
+| `fix_kotlin_clashes.js` | Rename single-letter property clashes (P/S/X). |
+| `operation-mappings.js` | Rename selected operationIds. |
+| `generate-snippets.js` | Generate per-endpoint example snippets. |
+| `test.kt` | Sample `main()` copied into the client as `test.kt`. |
+| `Dockerfile` | JDK 17 (Temurin) + Node + openapi-generator-cli image. |
 
 ## Troubleshooting
 
-- Ensure all volumes are correctly mounted to avoid file not found errors.
-- If the `pull_spec.js` script fails, verify your Node.js environment and internet connection.
-- For Gradle build issues, check the Docker logs or run with `--debug` for more details.
-- Customize the OpenAPI generator configuration in the Dockerfile or generator scripts as needed for Massive.com specifics.
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues or pull requests for improvements to the generation process, additional features, or bug fixes.
+- **Generation produced no output** — `generate.sh` aborts if the expected
+  package tree is missing, so the committed client is never clobbered by an
+  empty result. Check the openapi-generator logs above the failure.
+- **`pull_spec.js` fails** — verify network access to `api.massive.com`.
+- **Gradle build issues** — the hand-written `websocket/` client depends on ktor,
+  kotlinx-coroutines and kotlinx-serialization (declared in `build.gradle`, with the
+  `org.jetbrains.kotlin.plugin.serialization` plugin applied). Its support classes
+  (`HttpClientProvider`, `DefaultJvmHttpClientProvider`, `Version`, `ext/`) live at
+  the package root — outside the three regenerated subpackages — so they survive syncs.

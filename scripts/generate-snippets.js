@@ -78,10 +78,10 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
 
     const generateSnippet = (dir, useTokens = false) => {
       const imports = new Set([
-        'org.openapitools.client.apis.DefaultApi',
-        'org.openapitools.client.apis.DefaultApi.*',
-        'org.openapitools.client.infrastructure.*',
-        'org.openapitools.client.models.*'
+        'com.massive.client.apis.DefaultApi',
+        'com.massive.client.apis.DefaultApi.*',
+        'com.massive.client.infrastructure.*',
+        'com.massive.client.models.*'
       ]);
       
       const paramLines = [];
@@ -93,7 +93,7 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
             const placeholder = getPlaceholder(param, useTokens, operationId);
             if (param.schema && param.schema.enum) {
               const enumClass = getEnumClassName(param.name, operationId);
-              enumImports.add(`org.openapitools.client.apis.DefaultApi.${enumClass}`);
+              enumImports.add(`com.massive.client.apis.DefaultApi.${enumClass}`);
             }
             paramLines.push(`            ${param.name} = ${placeholder}`);
           }
@@ -103,7 +103,7 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
       let requestBodyLines = [];
       const requestBodyType = getRequestBodyType(details.requestBody);
       if (requestBodyType) {
-        imports.add(`org.openapitools.client.models.${requestBodyType}`);
+        imports.add(`com.massive.client.models.${requestBodyType}`);
         const jsonContent = details.requestBody.content['application/json'];
         const requestBodyJson = useTokens 
           ? `"""{"key": "MASSIVE_VALUE"}"""`
@@ -114,7 +114,7 @@ Object.entries(spec.paths).forEach(([route, methods]) => {
       }
 
       const snippetLines = [];
-      snippetLines.push(`package org.openapitools.client`);
+      snippetLines.push(`package com.massive.client`);
       snippetLines.push(``);
       Array.from(imports).forEach(importStmt => snippetLines.push(`import ${importStmt}`));
       //Array.from(enumImports).forEach(importStmt => snippetLines.push(`import ${importStmt}`));

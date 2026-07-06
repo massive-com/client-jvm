@@ -6,7 +6,7 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **status** | **kotlin.String** | The status of this request&#39;s response. |  |
 | **requestId** | **kotlin.String** | A request id assigned by the server. |  |
-| **ticker** | [**GetCryptoSnapshotTicker200ResponseAllOfTicker**](GetCryptoSnapshotTicker200ResponseAllOfTicker.md) |  |  [optional] |
+| **ticker** | [**GetCryptoSnapshotTickers200ResponseAllOfTickersInner**](GetCryptoSnapshotTickers200ResponseAllOfTickersInner.md) |  |  [optional] |
 
 
 

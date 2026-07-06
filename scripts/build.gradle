@@ -1,4 +1,4 @@
-group 'org.openapitools'
+group 'com.massive'
 version '1.0.0'
 
 wrapper {
@@ -25,7 +25,7 @@ apply plugin: 'com.diffplug.spotless'
 apply plugin: 'application'
 
 application {
-    mainClass.set("org.openapitools.client.TestKt")
+    mainClass.set("com.massive.client.TestKt")
 }
 
 repositories {

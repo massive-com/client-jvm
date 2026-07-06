@@ -6,10 +6,10 @@
 | ------------ | ------------- | ------------- | ------------- |
 | **adjustedPriceTarget** | **kotlin.Double** | The current price target adjusted for stock splits and dividends. |  [optional] |
 | **analyst** | **kotlin.String** | The name of the individual analyst who issued the rating. |  [optional] |
-| **benzingaAnalystId** | **kotlin.String** | The identifer used by Benzinga for this analyst. |  [optional] |
+| **benzingaAnalystId** | **kotlin.String** | The identifier used by Benzinga for this analyst. |  [optional] |
 | **benzingaCalendarUrl** | **kotlin.String** | A link to the Benzinga calendar page for this ticker |  [optional] |
-| **benzingaFirmId** | **kotlin.String** | The identifer used by Benzinga for this firm. |  [optional] |
-| **benzingaId** | **kotlin.String** | The identifer used by Benzinga for this record. |  [optional] |
+| **benzingaFirmId** | **kotlin.String** | The identifier used by Benzinga for this firm. |  [optional] |
+| **benzingaId** | **kotlin.String** | The identifier used by Benzinga for this record. |  [optional] |
 | **benzingaNewsUrl** | **kotlin.String** | A link to the Benzinga articles page for this ticker |  [optional] |
 | **companyName** | **kotlin.String** | The name of the company being rated. |  [optional] |
 | **currency** | **kotlin.String** | The ISO 4217 currency code in which the price target is denominated. |  [optional] |
