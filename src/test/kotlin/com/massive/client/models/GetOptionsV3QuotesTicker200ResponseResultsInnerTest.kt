@@ -33,16 +33,40 @@ class GetOptionsV3QuotesTicker200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetOptionsV3QuotesTicker200ResponseResultsInner
         //val modelInstance = GetOptionsV3QuotesTicker200ResponseResultsInner()
 
+        // to test the property `askExchange` - The exchange ID reporting the ask side of the quote.
+        should("test askExchange") {
+            // uncomment below to test the property
+            //modelInstance.askExchange shouldBe ("TODO")
+        }
+
         // to test the property `askPrice` - The ask price.
         should("test askPrice") {
             // uncomment below to test the property
             //modelInstance.askPrice shouldBe ("TODO")
         }
 
+        // to test the property `askSize` - The size available at the ask price.
+        should("test askSize") {
+            // uncomment below to test the property
+            //modelInstance.askSize shouldBe ("TODO")
+        }
+
+        // to test the property `bidExchange` - The exchange ID reporting the bid side of the quote.
+        should("test bidExchange") {
+            // uncomment below to test the property
+            //modelInstance.bidExchange shouldBe ("TODO")
+        }
+
         // to test the property `bidPrice` - The bid price.
         should("test bidPrice") {
             // uncomment below to test the property
             //modelInstance.bidPrice shouldBe ("TODO")
+        }
+
+        // to test the property `bidSize` - The size available at the bid price.
+        should("test bidSize") {
+            // uncomment below to test the property
+            //modelInstance.bidSize shouldBe ("TODO")
         }
 
         // to test the property `sequenceNumber` - The sequence number represents the sequence in which quote events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
@@ -61,30 +85,6 @@ class GetOptionsV3QuotesTicker200ResponseResultsInnerTest : ShouldSpec() {
         should("test ticker") {
             // uncomment below to test the property
             //modelInstance.ticker shouldBe ("TODO")
-        }
-
-        // to test the property `askExchange` - The exchange ID reporting the ask side of the quote.
-        should("test askExchange") {
-            // uncomment below to test the property
-            //modelInstance.askExchange shouldBe ("TODO")
-        }
-
-        // to test the property `askSize` - The size available at the ask price.
-        should("test askSize") {
-            // uncomment below to test the property
-            //modelInstance.askSize shouldBe ("TODO")
-        }
-
-        // to test the property `bidExchange` - The exchange ID reporting the bid side of the quote.
-        should("test bidExchange") {
-            // uncomment below to test the property
-            //modelInstance.bidExchange shouldBe ("TODO")
-        }
-
-        // to test the property `bidSize` - The size available at the bid price.
-        should("test bidSize") {
-            // uncomment below to test the property
-            //modelInstance.bidSize shouldBe ("TODO")
         }
 
     }

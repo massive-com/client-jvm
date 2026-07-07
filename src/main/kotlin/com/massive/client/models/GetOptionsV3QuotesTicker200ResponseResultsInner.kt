@@ -30,27 +30,43 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param askExchange The exchange ID reporting the ask side of the quote.
  * @param askPrice The ask price.
+ * @param askSize The size available at the ask price.
+ * @param bidExchange The exchange ID reporting the bid side of the quote.
  * @param bidPrice The bid price.
+ * @param bidSize The size available at the bid price.
  * @param sequenceNumber The sequence number represents the sequence in which quote events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
  * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
  * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000).
- * @param askExchange The exchange ID reporting the ask side of the quote.
- * @param askSize The size available at the ask price.
- * @param bidExchange The exchange ID reporting the bid side of the quote.
- * @param bidSize The size available at the bid price.
  */
 
 
 data class GetOptionsV3QuotesTicker200ResponseResultsInner (
 
+    /* The exchange ID reporting the ask side of the quote. */
+    @Json(name = "ask_exchange")
+    val askExchange: kotlin.Int,
+
     /* The ask price. */
     @Json(name = "ask_price")
     val askPrice: kotlin.Double,
 
+    /* The size available at the ask price. */
+    @Json(name = "ask_size")
+    val askSize: kotlin.Long,
+
+    /* The exchange ID reporting the bid side of the quote. */
+    @Json(name = "bid_exchange")
+    val bidExchange: kotlin.Int,
+
     /* The bid price. */
     @Json(name = "bid_price")
     val bidPrice: kotlin.Double,
+
+    /* The size available at the bid price. */
+    @Json(name = "bid_size")
+    val bidSize: kotlin.Long,
 
     /* The sequence number represents the sequence in which quote events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day. */
     @Json(name = "sequence_number")
@@ -62,23 +78,7 @@ data class GetOptionsV3QuotesTicker200ResponseResultsInner (
 
     /* The options ticker symbol (e.g., O:SPY260123C00687000). */
     @Json(name = "ticker")
-    val ticker: kotlin.String,
-
-    /* The exchange ID reporting the ask side of the quote. */
-    @Json(name = "ask_exchange")
-    val askExchange: kotlin.Int? = null,
-
-    /* The size available at the ask price. */
-    @Json(name = "ask_size")
-    val askSize: kotlin.Long? = null,
-
-    /* The exchange ID reporting the bid side of the quote. */
-    @Json(name = "bid_exchange")
-    val bidExchange: kotlin.Int? = null,
-
-    /* The size available at the bid price. */
-    @Json(name = "bid_size")
-    val bidSize: kotlin.Long? = null
+    val ticker: kotlin.String
 
 ) {
 
