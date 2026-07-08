@@ -14,10 +14,11 @@ by regeneration.
 1. Pulls the latest spec from `https://api.massive.com/openapi`.
 2. Regenerates the client with `scripts/generate.sh`.
 3. Opens (or updates) a **PR** — `bot/openapi-sync` → `master` — only when the
-   regenerated output differs from what's committed. The commit is GPG-signed and
-   a Slack notification is posted to `SLACK_CLIENT_LIBRARY_WEBHOOK`.
+   regenerated output differs from what's committed. The commit is authored by
+   the GitHub App's bot identity and a Slack notification is posted to
+   `SLACK_CLIENT_LIBRARY_WEBHOOK`.
 
-Required repo secrets: `GPG_PRIVATE_KEY`, `SLACK_CLIENT_LIBRARY_WEBHOOK`
+Required repo secrets: `SLACK_CLIENT_LIBRARY_WEBHOOK`
 (`GITHUB_TOKEN` is provided automatically).
 
 ## Manual regeneration
