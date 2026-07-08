@@ -17473,8 +17473,12 @@
                           "ticker",
                           "sip_timestamp",
                           "sequence_number",
+                          "ask_exchange",
                           "ask_price",
-                          "bid_price"
+                          "ask_size",
+                          "bid_exchange",
+                          "bid_price",
+                          "bid_size"
                         ],
                         "type": "object"
                       },
