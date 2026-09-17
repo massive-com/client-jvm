@@ -16,9 +16,9 @@
 | **ebitda** | **kotlin.Double** | Earnings before interest, taxes, depreciation, and amortization, a measure of operating performance. |  [optional] |
 | **equityInAffiliates** | **kotlin.Double** | The company&#39;s share of income or losses from equity method investments in affiliated companies. |  [optional] |
 | **extraordinaryItems** | **kotlin.Double** | Unusual and infrequent gains or losses that are both unusual in nature and infrequent in occurrence. |  [optional] |
-| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date when the financial statement was filed with the SEC. |  [optional] |
-| **fiscalQuarter** | **kotlin.Double** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
-| **fiscalYear** | **kotlin.Double** | The fiscal year for the reporting period. |  [optional] |
+| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). |  [optional] |
+| **fiscalQuarter** | **kotlin.Int** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
+| **fiscalYear** | **kotlin.Int** | The fiscal year for the reporting period. |  [optional] |
 | **grossProfit** | **kotlin.Double** | Revenue minus cost of revenue, representing profit before operating expenses. |  [optional] |
 | **incomeBeforeIncomeTaxes** | **kotlin.Double** | Pre-tax income calculated as operating income plus total other income/expense. |  [optional] |
 | **incomeTaxes** | **kotlin.Double** | Income tax expense or benefit for the period. |  [optional] |

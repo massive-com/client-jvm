@@ -42,7 +42,7 @@ import com.squareup.moshi.JsonClass
  * @param ebitda Earnings before interest, taxes, depreciation, and amortization, a measure of operating performance.
  * @param equityInAffiliates The company's share of income or losses from equity method investments in affiliated companies.
  * @param extraordinaryItems Unusual and infrequent gains or losses that are both unusual in nature and infrequent in occurrence.
- * @param filingDate The date when the financial statement was filed with the SEC.
+ * @param filingDate The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index).
  * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period.
  * @param fiscalYear The fiscal year for the reporting period.
  * @param grossProfit Revenue minus cost of revenue, representing profit before operating expenses.
@@ -117,17 +117,17 @@ data class GetStocksFinancialsV1IncomeStatements200ResponseResultsInner (
     @Json(name = "extraordinary_items")
     val extraordinaryItems: kotlin.Double? = null,
 
-    /* The date when the financial statement was filed with the SEC. */
+    /* The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). */
     @Json(name = "filing_date")
     val filingDate: java.time.LocalDate? = null,
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Double? = null,
+    val fiscalQuarter: kotlin.Int? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Double? = null,
+    val fiscalYear: kotlin.Int? = null,
 
     /* Revenue minus cost of revenue, representing profit before operating expenses. */
     @Json(name = "gross_profit")

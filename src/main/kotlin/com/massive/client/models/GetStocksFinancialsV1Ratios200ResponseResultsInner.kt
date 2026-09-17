@@ -39,7 +39,7 @@ import com.squareup.moshi.JsonClass
  * @param current Current ratio, calculated as total current assets divided by total current liabilities, measuring short-term liquidity.
  * @param debtToEquity Debt-to-equity ratio, calculated as total debt (current debt plus long-term debt) divided by total shareholders' equity, measuring financial leverage.
  * @param dividendYield Dividend yield, calculated as annual dividends per share divided by stock price, measuring the income return on investment.
- * @param earningsPerShare Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding.
+ * @param earningsPerShare Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint.
  * @param enterpriseValue Enterprise value, calculated as market capitalization plus total debt minus cash and cash equivalents, representing total company value.
  * @param evToEbitda Enterprise value to EBITDA ratio, calculated as enterprise value divided by EBITDA, measuring company valuation relative to earnings before interest, taxes, depreciation, and amortization.
  * @param evToSales Enterprise value to sales ratio, calculated as enterprise value divided by revenue, measuring company valuation relative to sales.
@@ -94,7 +94,7 @@ data class GetStocksFinancialsV1Ratios200ResponseResultsInner (
     @Json(name = "dividend_yield")
     val dividendYield: kotlin.Double? = null,
 
-    /* Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding. */
+    /* Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint. */
     @Json(name = "earnings_per_share")
     val earningsPerShare: kotlin.Double? = null,
 

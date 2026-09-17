@@ -58,6 +58,7 @@ import com.massive.client.models.GetEtfGlobalV1FundFlows200Response
 import com.massive.client.models.GetEtfGlobalV1Profiles200Response
 import com.massive.client.models.GetEtfGlobalV1Taxonomies200Response
 import com.massive.client.models.GetEvents200Response
+import com.massive.client.models.GetFedV1FundingConditions200Response
 import com.massive.client.models.GetFedV1Inflation200Response
 import com.massive.client.models.GetFedV1InflationExpectations200Response
 import com.massive.client.models.GetFedV1LaborMarket200Response
@@ -186,8 +187,8 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * Aggregates
      * Get aggregates for a contract in a given time range.
      * @param ticker The futures contract identifier, including the base symbol and contract expiration (e.g., GCJ5 for the April 2025 gold contract).
-     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: &#x60;sec&#x60;, &#x60;min&#x60;, &#x60;hour&#x60;, &#x60;session&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;quarter&#x60;, or &#x60;year&#x60;.  Each unit has a maximum multiplier. For instance, minute candles go up to &#x60;59min&#x60; — after that, use &#x60;1hour&#x60;. Requesting an unsupported size returns a &#x60;400 Bad Request&#x60;. (optional, default to "1session")
-     * @param windowStart Filter by the start time of each candle. Accepts a &#x60;YYYY-MM-DD&#x60; date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval.  When omitted, the API returns the most recent candles up to &#x60;limit&#x60;.  Use comparison suffixes to query a range: - &#x60;window_start.gte&#x60; — greater than or equal to - &#x60;window_start.gt&#x60; — greater than - &#x60;window_start.lte&#x60; — less than or equal to - &#x60;window_start.lt&#x60; — less than  **Examples** - Most recent minute candles: &#x60;/v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5&#x60; - Single daily candle: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05&#x60; - Date range: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31&#x60; - After a timestamp: &#x60;/v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000&#x60; (optional)
+     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: sec, min, hour, session, week, month, quarter, or year.  Each unit has a maximum multiplier. For instance, minute candles go up to 59min; after that, use 1hour. Requesting an unsupported size returns a 400 Bad Request. (optional, default to "1session")
+     * @param windowStart Filter by the start time of each candle. Accepts a YYYY-MM-DD date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval. When omitted, the API returns the most recent candles up to the limit.  Session candles are timestamped at the start of the session, not the trading date they settle on. A futures session opens the evening before it settles, so window_start falls on the day before session_end_date. To pull the session that settles on a given date, set window_start to the day before. For example, window_start&#x3D;2025-08-05 returns the session that settles on 2025-08-06. Week, month, quarter, and year candles follow the same rule: window_start is the first day of the period and session_end_date is the last trading date in it.  Add a comparison suffix to filter a range: window_start.gte (greater than or equal to), window_start.gt (greater than), window_start.lte (less than or equal to), or window_start.lt (less than).  Examples:  Most recent minute candles: /v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5  Session settling 2025-08-06 (pass its start date, 2025-08-05): /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05  Date range: /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31  After a timestamp: /v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000 (optional)
      * @param limit The number of results to return per page (default&#x3D;1000, maximum&#x3D;50000, minimum&#x3D;1). (optional, default to 1000)
      * @param windowStartGte Range by window_start. (optional)
      * @param windowStartGt Range by window_start. (optional)
@@ -226,8 +227,8 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * Aggregates
      * Get aggregates for a contract in a given time range.
      * @param ticker The futures contract identifier, including the base symbol and contract expiration (e.g., GCJ5 for the April 2025 gold contract).
-     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: &#x60;sec&#x60;, &#x60;min&#x60;, &#x60;hour&#x60;, &#x60;session&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;quarter&#x60;, or &#x60;year&#x60;.  Each unit has a maximum multiplier. For instance, minute candles go up to &#x60;59min&#x60; — after that, use &#x60;1hour&#x60;. Requesting an unsupported size returns a &#x60;400 Bad Request&#x60;. (optional, default to "1session")
-     * @param windowStart Filter by the start time of each candle. Accepts a &#x60;YYYY-MM-DD&#x60; date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval.  When omitted, the API returns the most recent candles up to &#x60;limit&#x60;.  Use comparison suffixes to query a range: - &#x60;window_start.gte&#x60; — greater than or equal to - &#x60;window_start.gt&#x60; — greater than - &#x60;window_start.lte&#x60; — less than or equal to - &#x60;window_start.lt&#x60; — less than  **Examples** - Most recent minute candles: &#x60;/v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5&#x60; - Single daily candle: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05&#x60; - Date range: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31&#x60; - After a timestamp: &#x60;/v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000&#x60; (optional)
+     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: sec, min, hour, session, week, month, quarter, or year.  Each unit has a maximum multiplier. For instance, minute candles go up to 59min; after that, use 1hour. Requesting an unsupported size returns a 400 Bad Request. (optional, default to "1session")
+     * @param windowStart Filter by the start time of each candle. Accepts a YYYY-MM-DD date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval. When omitted, the API returns the most recent candles up to the limit.  Session candles are timestamped at the start of the session, not the trading date they settle on. A futures session opens the evening before it settles, so window_start falls on the day before session_end_date. To pull the session that settles on a given date, set window_start to the day before. For example, window_start&#x3D;2025-08-05 returns the session that settles on 2025-08-06. Week, month, quarter, and year candles follow the same rule: window_start is the first day of the period and session_end_date is the last trading date in it.  Add a comparison suffix to filter a range: window_start.gte (greater than or equal to), window_start.gt (greater than), window_start.lte (less than or equal to), or window_start.lt (less than).  Examples:  Most recent minute candles: /v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5  Session settling 2025-08-06 (pass its start date, 2025-08-05): /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05  Date range: /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31  After a timestamp: /v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000 (optional)
      * @param limit The number of results to return per page (default&#x3D;1000, maximum&#x3D;50000, minimum&#x3D;1). (optional, default to 1000)
      * @param windowStartGte Range by window_start. (optional)
      * @param windowStartGt Range by window_start. (optional)
@@ -252,8 +253,8 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * To obtain the request config of the operation aggregatesV1
      *
      * @param ticker The futures contract identifier, including the base symbol and contract expiration (e.g., GCJ5 for the April 2025 gold contract).
-     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: &#x60;sec&#x60;, &#x60;min&#x60;, &#x60;hour&#x60;, &#x60;session&#x60;, &#x60;week&#x60;, &#x60;month&#x60;, &#x60;quarter&#x60;, or &#x60;year&#x60;.  Each unit has a maximum multiplier. For instance, minute candles go up to &#x60;59min&#x60; — after that, use &#x60;1hour&#x60;. Requesting an unsupported size returns a &#x60;400 Bad Request&#x60;. (optional, default to "1session")
-     * @param windowStart Filter by the start time of each candle. Accepts a &#x60;YYYY-MM-DD&#x60; date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval.  When omitted, the API returns the most recent candles up to &#x60;limit&#x60;.  Use comparison suffixes to query a range: - &#x60;window_start.gte&#x60; — greater than or equal to - &#x60;window_start.gt&#x60; — greater than - &#x60;window_start.lte&#x60; — less than or equal to - &#x60;window_start.lt&#x60; — less than  **Examples** - Most recent minute candles: &#x60;/v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5&#x60; - Single daily candle: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05&#x60; - Date range: &#x60;/v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31&#x60; - After a timestamp: &#x60;/v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000&#x60; (optional)
+     * @param resolution The size of each aggregate candle, specified as a number followed by a unit: sec, min, hour, session, week, month, quarter, or year.  Each unit has a maximum multiplier. For instance, minute candles go up to 59min; after that, use 1hour. Requesting an unsupported size returns a 400 Bad Request. (optional, default to "1session")
+     * @param windowStart Filter by the start time of each candle. Accepts a YYYY-MM-DD date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval. When omitted, the API returns the most recent candles up to the limit.  Session candles are timestamped at the start of the session, not the trading date they settle on. A futures session opens the evening before it settles, so window_start falls on the day before session_end_date. To pull the session that settles on a given date, set window_start to the day before. For example, window_start&#x3D;2025-08-05 returns the session that settles on 2025-08-06. Week, month, quarter, and year candles follow the same rule: window_start is the first day of the period and session_end_date is the last trading date in it.  Add a comparison suffix to filter a range: window_start.gte (greater than or equal to), window_start.gt (greater than), window_start.lte (less than or equal to), or window_start.lt (less than).  Examples:  Most recent minute candles: /v1/aggs/ESU5?resolution&#x3D;1min&amp;limit&#x3D;5  Session settling 2025-08-06 (pass its start date, 2025-08-05): /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start&#x3D;2025-08-05  Date range: /v1/aggs/ESU5?resolution&#x3D;1session&amp;window_start.gte&#x3D;2025-07-01&amp;window_start.lte&#x3D;2025-07-31  After a timestamp: /v1/aggs/ESU5?resolution&#x3D;1sec&amp;window_start.gt&#x3D;1751409877000000000&amp;limit&#x3D;1000 (optional)
      * @param limit The number of results to return per page (default&#x3D;1000, maximum&#x3D;50000, minimum&#x3D;1). (optional, default to 1000)
      * @param windowStartGte Range by window_start. (optional)
      * @param windowStartGt Range by window_start. (optional)
@@ -4187,7 +4188,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /crypto/v1/exchanges
      * 
      * Global cryptocurrency exchanges and digital asset trading platforms, including major centralized exchanges (Coinbase, Binance, Bitfinex, etc.) that facilitate trading of cryptocurrencies and digital tokens worldwide.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return GetCryptoV1Exchanges200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4219,7 +4220,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /crypto/v1/exchanges
      * 
      * Global cryptocurrency exchanges and digital asset trading platforms, including major centralized exchanges (Coinbase, Binance, Bitfinex, etc.) that facilitate trading of cryptocurrencies and digital tokens worldwide.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return ApiResponse<GetCryptoV1Exchanges200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -4237,7 +4238,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getCryptoV1Exchanges
      *
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return RequestConfig
      */
     fun getCryptoV1ExchangesRequestConfig(limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -5839,6 +5840,120 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     }
 
     /**
+     * GET /fed/v1/funding-conditions
+     * 
+     * Daily U.S. money-market funding conditions from the Federal Reserve and the Federal Reserve Bank of New York, including the Federal Funds Effective Rate, SOFR, OBFR, tri-party general collateral repo rates, Treasury-collateralized overnight reverse repo and repo operation amounts, and commercial paper rates. One row per calendar day; daily federal-funds series generally populate calendar-day rows, while market-rate, volume, and commercial-paper series are generally published on business days and may be null on weekends or holidays.
+     * @param date Calendar date of the observation (YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return GetFedV1FundingConditions200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getFedV1FundingConditions(date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.asc") : GetFedV1FundingConditions200Response {
+        val localVarResponse = getFedV1FundingConditionsWithHttpInfo(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFedV1FundingConditions200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /fed/v1/funding-conditions
+     * 
+     * Daily U.S. money-market funding conditions from the Federal Reserve and the Federal Reserve Bank of New York, including the Federal Funds Effective Rate, SOFR, OBFR, tri-party general collateral repo rates, Treasury-collateralized overnight reverse repo and repo operation amounts, and commercial paper rates. One row per calendar day; daily federal-funds series generally populate calendar-day rows, while market-rate, volume, and commercial-paper series are generally published on business days and may be null on weekends or holidays.
+     * @param date Calendar date of the observation (YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return ApiResponse<GetFedV1FundingConditions200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getFedV1FundingConditionsWithHttpInfo(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFedV1FundingConditions200Response?> {
+        val localVariableConfig = getFedV1FundingConditionsRequestConfig(date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetFedV1FundingConditions200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getFedV1FundingConditions
+     *
+     * @param date Calendar date of the observation (YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return RequestConfig
+     */
+    fun getFedV1FundingConditionsRequestConfig(date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (date != null) {
+                    put("date", listOf(date.toString()))
+                }
+                if (dateGt != null) {
+                    put("date.gt", listOf(dateGt.toString()))
+                }
+                if (dateGte != null) {
+                    put("date.gte", listOf(dateGte.toString()))
+                }
+                if (dateLt != null) {
+                    put("date.lt", listOf(dateLt.toString()))
+                }
+                if (dateLte != null) {
+                    put("date.lte", listOf(dateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/fed/v1/funding-conditions",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /fed/v1/inflation
      * 
      * A table tracking inflation and price indices, including Consumer Price Index (CPI) and Personal Consumption Expenditures (PCE) metrics over time.
@@ -6708,7 +6823,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /forex/v1/exchanges
      * 
      * Global foreign exchange (FX) trading venues and market infrastructure, including electronic trading platforms, banks, and other institutions facilitating currency pair trading worldwide.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return GetForexV1Exchanges200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -6740,7 +6855,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /forex/v1/exchanges
      * 
      * Global foreign exchange (FX) trading venues and market infrastructure, including electronic trading platforms, banks, and other institutions facilitating currency pair trading worldwide.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return ApiResponse<GetForexV1Exchanges200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -6758,7 +6873,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getForexV1Exchanges
      *
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return RequestConfig
      */
     fun getForexV1ExchangesRequestConfig(limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -7084,7 +7199,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /futures/v1/exchanges
      * 
      * US futures exchanges and trading venues including major derivatives exchanges (CME, CBOT, NYMEX, COMEX) and other futures market infrastructure for commodity, financial, and other derivative contract trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return GetFuturesV1Exchanges200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -7116,7 +7231,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /futures/v1/exchanges
      * 
      * US futures exchanges and trading venues including major derivatives exchanges (CME, CBOT, NYMEX, COMEX) and other futures market infrastructure for commodity, financial, and other derivative contract trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return ApiResponse<GetFuturesV1Exchanges200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -7134,7 +7249,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getFuturesV1Exchanges
      *
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return RequestConfig
      */
     fun getFuturesV1ExchangesRequestConfig(limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -7168,7 +7283,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param productCodeGte Filter greater than or equal to the value. (optional)
      * @param productCodeLt Filter less than the value. (optional)
      * @param productCodeLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @return GetFuturesV1MarketStatus200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -7206,7 +7321,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param productCodeGte Filter greater than or equal to the value. (optional)
      * @param productCodeLt Filter less than the value. (optional)
      * @param productCodeLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @return ApiResponse<GetFuturesV1MarketStatus200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -7230,7 +7345,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param productCodeGte Filter greater than or equal to the value. (optional)
      * @param productCodeLt Filter less than the value. (optional)
      * @param productCodeLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @return RequestConfig
      */
     fun getFuturesV1MarketStatusRequestConfig(productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -7849,7 +7964,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetFuturesV1QuotesTicker200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -7889,7 +8004,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetFuturesV1QuotesTicker200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -7915,7 +8030,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig
      */
@@ -8314,7 +8429,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetFuturesV1TradesTicker200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -8354,7 +8469,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetFuturesV1TradesTicker200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -8380,7 +8495,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig
      */
@@ -8928,7 +9043,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * Indices Snapshot
      * Get a Snapshot of indices data for said tickers
      * @param tickerAnyOf Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single index ticker, for example I:SPX. Index tickers are case-sensitive and start with I:. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
      * @param tickerLte Range by ticker. (optional)
@@ -8968,7 +9083,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * Indices Snapshot
      * Get a Snapshot of indices data for said tickers
      * @param tickerAnyOf Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single index ticker, for example I:SPX. Index tickers are case-sensitive and start with I:. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
      * @param tickerLte Range by ticker. (optional)
@@ -8994,7 +9109,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * To obtain the request config of the operation getIndicesSnapshot
      *
      * @param tickerAnyOf Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single index ticker, for example I:SPX. Index tickers are case-sensitive and start with I:. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
      * @param tickerLte Range by ticker. (optional)
@@ -10088,7 +10203,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /options/v1/exchanges
      * 
      * US options exchanges and trading venues including traditional options exchanges (CBOE, ISE, etc.), Securities Information Processors (SIP), and other options market infrastructure for derivatives trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return GetOptionsV1Exchanges200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10120,7 +10235,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /options/v1/exchanges
      * 
      * US options exchanges and trading venues including traditional options exchanges (CBOE, ISE, etc.), Securities Information Processors (SIP), and other options market infrastructure for derivatives trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return ApiResponse<GetOptionsV1Exchanges200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -10138,7 +10253,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getOptionsV1Exchanges
      *
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return RequestConfig
      */
     fun getOptionsV1ExchangesRequestConfig(limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -10172,7 +10287,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetOptionsV3QuotesTicker200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -10211,7 +10326,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetOptionsV3QuotesTicker200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -10236,7 +10351,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig
      */
@@ -10289,7 +10404,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetOptionsV3TradesTicker200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -10328,7 +10443,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetOptionsV3TradesTicker200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -10353,7 +10468,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 1000)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig
      */
@@ -11001,7 +11116,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /v3/snapshot
      * Universal Snapshot
      * Get snapshots for assets of all types
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single ticker symbol. Ticker symbols are case-sensitive and use a prefix for non-stock assets, for example NVDA for stocks, O:SPY280121C00750000 for options, C:EURUSD for forex, X:BTCUSD for crypto, and I:SPX for indices. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param type Query by the type of asset. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
@@ -11042,7 +11157,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /v3/snapshot
      * Universal Snapshot
      * Get snapshots for assets of all types
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single ticker symbol. Ticker symbols are case-sensitive and use a prefix for non-stock assets, for example NVDA for stocks, O:SPY280121C00750000 for options, C:EURUSD for forex, X:BTCUSD for crypto, and I:SPX for indices. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param type Query by the type of asset. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
@@ -11069,7 +11184,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getSnapshots
      *
-     * @param ticker Search a range of tickers lexicographically. (optional)
+     * @param ticker Specify a single ticker symbol. Ticker symbols are case-sensitive and use a prefix for non-stock assets, for example NVDA for stocks, O:SPY280121C00750000 for options, C:EURUSD for forex, X:BTCUSD for crypto, and I:SPX for indices. To request more than one ticker or a range of tickers, expand the filter modifiers. (optional)
      * @param type Query by the type of asset. (optional)
      * @param tickerGte Range by ticker. (optional)
      * @param tickerGt Range by ticker. (optional)
@@ -11284,7 +11399,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
      * @return GetStocksDevTradesTicker200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -11323,7 +11438,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
      * @return ApiResponse<GetStocksDevTradesTicker200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -11348,7 +11463,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
      * @return RequestConfig
      */
@@ -11658,7 +11773,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return GetStocksFilings10KVXSections200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -11715,7 +11830,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return ApiResponse<GetStocksFilings10KVXSections200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -11758,7 +11873,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return RequestConfig
      */
@@ -11920,7 +12035,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return GetStocksFilings10KVXSections200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -11977,7 +12092,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return ApiResponse<GetStocksFilings10KVXSections200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -12020,7 +12135,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "period_end.desc")
      * @return RequestConfig
      */
@@ -12303,7 +12418,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return GetStocksFilings8KVXText200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -12359,7 +12474,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return ApiResponse<GetStocksFilings8KVXText200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -12401,7 +12516,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;99&#39;. (optional, default to 10)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;100&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return RequestConfig
      */
@@ -13198,7 +13313,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param cikGte Filter greater than or equal to the value. (optional)
      * @param cikLt Filter less than the value. (optional)
      * @param cikLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return GetStocksFilingsVXRiskFactors200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -13249,7 +13364,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param cikGte Filter greater than or equal to the value. (optional)
      * @param cikLt Filter less than the value. (optional)
      * @param cikLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return ApiResponse<GetStocksFilingsVXRiskFactors200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -13286,7 +13401,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param cikGte Filter greater than or equal to the value. (optional)
      * @param cikLt Filter less than the value. (optional)
      * @param cikLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;49999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "filing_date.desc")
      * @return RequestConfig
      */
@@ -13386,21 +13501,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13418,7 +13533,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1BalanceSheets(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1BalanceSheets200Response {
+    fun getStocksFinancialsV1BalanceSheets(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Long? = null, fiscalYearGt: kotlin.Long? = null, fiscalYearGte: kotlin.Long? = null, fiscalYearLt: kotlin.Long? = null, fiscalYearLte: kotlin.Long? = null, fiscalQuarter: kotlin.Long? = null, fiscalQuarterGt: kotlin.Long? = null, fiscalQuarterGte: kotlin.Long? = null, fiscalQuarterLt: kotlin.Long? = null, fiscalQuarterLte: kotlin.Long? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1BalanceSheets200Response {
         val localVarResponse = getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
@@ -13454,21 +13569,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13483,7 +13598,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1BalanceSheets200Response?> {
+    fun getStocksFinancialsV1BalanceSheetsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1BalanceSheets200Response?> {
         val localVariableConfig = getStocksFinancialsV1BalanceSheetsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1BalanceSheets200Response>(
@@ -13508,21 +13623,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13533,7 +13648,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1BalanceSheetsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1BalanceSheetsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -13677,7 +13792,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -13685,16 +13800,16 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickers Filter for arrays that contain the value. (optional)
      * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13712,7 +13827,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1CashFlowStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1CashFlowStatements200Response {
+    fun getStocksFinancialsV1CashFlowStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, fiscalYear: kotlin.Long? = null, fiscalYearGt: kotlin.Long? = null, fiscalYearGte: kotlin.Long? = null, fiscalYearLt: kotlin.Long? = null, fiscalYearLte: kotlin.Long? = null, fiscalQuarter: kotlin.Long? = null, fiscalQuarterGt: kotlin.Long? = null, fiscalQuarterGte: kotlin.Long? = null, fiscalQuarterLt: kotlin.Long? = null, fiscalQuarterLte: kotlin.Long? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1CashFlowStatements200Response {
         val localVarResponse = getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
@@ -13745,7 +13860,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -13753,16 +13868,16 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickers Filter for arrays that contain the value. (optional)
      * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13777,7 +13892,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1CashFlowStatements200Response?> {
+    fun getStocksFinancialsV1CashFlowStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1CashFlowStatements200Response?> {
         val localVariableConfig = getStocksFinancialsV1CashFlowStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1CashFlowStatements200Response>(
@@ -13799,7 +13914,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -13807,16 +13922,16 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickers Filter for arrays that contain the value. (optional)
      * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -13827,7 +13942,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1CashFlowStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1CashFlowStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -13974,21 +14089,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -14006,7 +14121,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStocksFinancialsV1IncomeStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Double? = null, fiscalYearGt: kotlin.Double? = null, fiscalYearGte: kotlin.Double? = null, fiscalYearLt: kotlin.Double? = null, fiscalYearLte: kotlin.Double? = null, fiscalQuarter: kotlin.Double? = null, fiscalQuarterGt: kotlin.Double? = null, fiscalQuarterGte: kotlin.Double? = null, fiscalQuarterLt: kotlin.Double? = null, fiscalQuarterLte: kotlin.Double? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1IncomeStatements200Response {
+    fun getStocksFinancialsV1IncomeStatements(cik: kotlin.String? = null, cikAnyOf: kotlin.String? = null, cikGt: kotlin.String? = null, cikGte: kotlin.String? = null, cikLt: kotlin.String? = null, cikLte: kotlin.String? = null, tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, periodEnd: kotlin.String? = null, periodEndGt: kotlin.String? = null, periodEndGte: kotlin.String? = null, periodEndLt: kotlin.String? = null, periodEndLte: kotlin.String? = null, filingDate: kotlin.String? = null, filingDateGt: kotlin.String? = null, filingDateGte: kotlin.String? = null, filingDateLt: kotlin.String? = null, filingDateLte: kotlin.String? = null, fiscalYear: kotlin.Long? = null, fiscalYearGt: kotlin.Long? = null, fiscalYearGte: kotlin.Long? = null, fiscalYearLt: kotlin.Long? = null, fiscalYearLte: kotlin.Long? = null, fiscalQuarter: kotlin.Long? = null, fiscalQuarterGt: kotlin.Long? = null, fiscalQuarterGte: kotlin.Long? = null, fiscalQuarterLt: kotlin.Long? = null, fiscalQuarterLte: kotlin.Long? = null, timeframe: kotlin.String? = null, timeframeAnyOf: kotlin.String? = null, timeframeGt: kotlin.String? = null, timeframeGte: kotlin.String? = null, timeframeLt: kotlin.String? = null, timeframeLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "period_end.asc") : GetStocksFinancialsV1IncomeStatements200Response {
         val localVarResponse = getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
@@ -14042,21 +14157,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -14071,7 +14186,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1IncomeStatements200Response?> {
+    fun getStocksFinancialsV1IncomeStatementsWithHttpInfo(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksFinancialsV1IncomeStatements200Response?> {
         val localVariableConfig = getStocksFinancialsV1IncomeStatementsRequestConfig(cik = cik, cikAnyOf = cikAnyOf, cikGt = cikGt, cikGte = cikGte, cikLt = cikLt, cikLte = cikLte, tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, periodEnd = periodEnd, periodEndGt = periodEndGt, periodEndGte = periodEndGte, periodEndLt = periodEndLt, periodEndLte = periodEndLte, filingDate = filingDate, filingDateGt = filingDateGt, filingDateGte = filingDateGte, filingDateLt = filingDateLt, filingDateLte = filingDateLte, fiscalYear = fiscalYear, fiscalYearGt = fiscalYearGt, fiscalYearGte = fiscalYearGte, fiscalYearLt = fiscalYearLt, fiscalYearLte = fiscalYearLte, fiscalQuarter = fiscalQuarter, fiscalQuarterGt = fiscalQuarterGt, fiscalQuarterGte = fiscalQuarterGte, fiscalQuarterLt = fiscalQuarterLt, fiscalQuarterLte = fiscalQuarterLte, timeframe = timeframe, timeframeAnyOf = timeframeAnyOf, timeframeGt = timeframeGt, timeframeGte = timeframeGte, timeframeLt = timeframeLt, timeframeLte = timeframeLte, limit = limit, sort = sort)
 
         return request<Unit, GetStocksFinancialsV1IncomeStatements200Response>(
@@ -14096,21 +14211,21 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param periodEndGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param periodEndLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param filingDate The date when the financial statement was filed with the SEC. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param filingDate The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param filingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param fiscalYear The fiscal year for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalYearGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalYearLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be a floating point number. (optional)
+     * @param fiscalYear The fiscal year for the reporting period. Value must be an integer. (optional)
+     * @param fiscalYearGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalYearGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalYearLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalYearLte Filter less than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer. (optional)
+     * @param fiscalQuarterGt Filter greater than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterGte Filter greater than or equal to the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLt Filter less than the value. Value must be an integer. (optional)
+     * @param fiscalQuarterLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param timeframe The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months. (optional)
      * @param timeframeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param timeframeGt Filter greater than the value. (optional)
@@ -14121,7 +14236,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;period_end&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "period_end.asc")
      * @return RequestConfig
      */
-    fun getStocksFinancialsV1IncomeStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Double?, fiscalYearGt: kotlin.Double?, fiscalYearGte: kotlin.Double?, fiscalYearLt: kotlin.Double?, fiscalYearLte: kotlin.Double?, fiscalQuarter: kotlin.Double?, fiscalQuarterGt: kotlin.Double?, fiscalQuarterGte: kotlin.Double?, fiscalQuarterLt: kotlin.Double?, fiscalQuarterLte: kotlin.Double?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getStocksFinancialsV1IncomeStatementsRequestConfig(cik: kotlin.String?, cikAnyOf: kotlin.String?, cikGt: kotlin.String?, cikGte: kotlin.String?, cikLt: kotlin.String?, cikLte: kotlin.String?, tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, periodEnd: kotlin.String?, periodEndGt: kotlin.String?, periodEndGte: kotlin.String?, periodEndLt: kotlin.String?, periodEndLte: kotlin.String?, filingDate: kotlin.String?, filingDateGt: kotlin.String?, filingDateGte: kotlin.String?, filingDateLt: kotlin.String?, filingDateLte: kotlin.String?, fiscalYear: kotlin.Long?, fiscalYearGt: kotlin.Long?, fiscalYearGte: kotlin.Long?, fiscalYearLt: kotlin.Long?, fiscalYearLte: kotlin.Long?, fiscalQuarter: kotlin.Long?, fiscalQuarterGt: kotlin.Long?, fiscalQuarterGte: kotlin.Long?, fiscalQuarterLt: kotlin.Long?, fiscalQuarterLte: kotlin.Long?, timeframe: kotlin.String?, timeframeAnyOf: kotlin.String?, timeframeGt: kotlin.String?, timeframeGte: kotlin.String?, timeframeLt: kotlin.String?, timeframeLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -14281,7 +14396,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param marketCapGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param marketCapLt Filter less than the value. Value must be a floating point number. (optional)
      * @param marketCapLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param earningsPerShare Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding. Value must be a floating point number. (optional)
+     * @param earningsPerShare Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint. Value must be a floating point number. (optional)
      * @param earningsPerShareGt Filter greater than the value. Value must be a floating point number. (optional)
      * @param earningsPerShareGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param earningsPerShareLt Filter less than the value. Value must be a floating point number. (optional)
@@ -14426,7 +14541,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param marketCapGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param marketCapLt Filter less than the value. Value must be a floating point number. (optional)
      * @param marketCapLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param earningsPerShare Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding. Value must be a floating point number. (optional)
+     * @param earningsPerShare Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint. Value must be a floating point number. (optional)
      * @param earningsPerShareGt Filter greater than the value. Value must be a floating point number. (optional)
      * @param earningsPerShareGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param earningsPerShareLt Filter less than the value. Value must be a floating point number. (optional)
@@ -14557,7 +14672,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param marketCapGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param marketCapLt Filter less than the value. Value must be a floating point number. (optional)
      * @param marketCapLte Filter less than or equal to the value. Value must be a floating point number. (optional)
-     * @param earningsPerShare Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding. Value must be a floating point number. (optional)
+     * @param earningsPerShare Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint. Value must be a floating point number. (optional)
      * @param earningsPerShareGt Filter greater than the value. Value must be a floating point number. (optional)
      * @param earningsPerShareGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
      * @param earningsPerShareLt Filter less than the value. Value must be a floating point number. (optional)
@@ -16156,7 +16271,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return GetStocksTaxonomiesVXDisclosures200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -16213,7 +16328,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return ApiResponse<GetStocksTaxonomiesVXDisclosures200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -16256,7 +16371,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return RequestConfig
      */
@@ -16383,7 +16498,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return GetStocksTaxonomiesVXRiskFactors200Response
      * @throws IllegalStateException If the request is not correctly configured
@@ -16439,7 +16554,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return ApiResponse<GetStocksTaxonomiesVXRiskFactors200Response?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -16481,7 +16596,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tertiaryCategoryGte Filter greater than or equal to the value. (optional)
      * @param tertiaryCategoryLt Filter less than the value. (optional)
      * @param tertiaryCategoryLte Filter less than or equal to the value. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 200)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;200&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 200)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;taxonomy&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "taxonomy.desc")
      * @return RequestConfig
      */
@@ -16970,7 +17085,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /stocks/v1/exchanges
      * 
      * US stock exchanges, trading venues, and reporting facilities including exchanges (NYSE, Nasdaq), Trade Reporting Facilities (TRF), Securities Information Processors (SIP), and OTC Reporting Facilities (ORF) for equity trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return GetOptionsV1Exchanges200Response
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -17002,7 +17117,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * GET /stocks/v1/exchanges
      * 
      * US stock exchanges, trading venues, and reporting facilities including exchanges (NYSE, Nasdaq), Trade Reporting Facilities (TRF), Securities Information Processors (SIP), and OTC Reporting Facilities (ORF) for equity trading.
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return ApiResponse<GetOptionsV1Exchanges200Response?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -17020,7 +17135,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     /**
      * To obtain the request config of the operation getStocksV1Exchanges
      *
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;999&#39;. (optional, default to 100)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;1000&#39;. (optional, default to 100)
      * @return RequestConfig
      */
     fun getStocksV1ExchangesRequestConfig(limit: kotlin.Int?) : RequestConfig<Unit> {
@@ -17510,7 +17625,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param executionDate Date when the stock split was applied and shares adjusted Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param executionDate Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -17556,7 +17671,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param executionDate Date when the stock split was applied and shares adjusted Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param executionDate Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -17588,7 +17703,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param tickerGte Filter greater than or equal to the value. (optional)
      * @param tickerLt Filter less than the value. (optional)
      * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param executionDate Date when the stock split was applied and shares adjusted Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param executionDate Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param executionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -19457,7 +19572,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param publishedUtcGt Search by published_utc. (optional)
      * @param publishedUtcLte Search by published_utc. (optional)
      * @param publishedUtcLt Search by published_utc. (optional)
-     * @param order Order results based on the &#x60;sort&#x60; field. (optional)
+     * @param order Order results based on the &#x60;sort&#x60; field. (optional, default to Order.desc)
      * @param limit Limit the number of results returned, default is 10 and max is 1000. (optional, default to 10)
      * @param sort Sort field used for ordering. (optional, default to Sort.publishedUtc)
      * @return ListNews200Response
@@ -19469,7 +19584,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listNews(ticker: kotlin.String? = null, publishedUtc: ListNewsPublishedUtcParameter? = null, tickerGte: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerLte: kotlin.String? = null, tickerLt: kotlin.String? = null, publishedUtcGte: ListNewsPublishedUtcParameter? = null, publishedUtcGt: ListNewsPublishedUtcParameter? = null, publishedUtcLte: ListNewsPublishedUtcParameter? = null, publishedUtcLt: ListNewsPublishedUtcParameter? = null, order: OrderListNews? = null, limit: kotlin.Int? = 10, sort: SortListNews? = SortListNews.publishedUtc) : ListNews200Response {
+    fun listNews(ticker: kotlin.String? = null, publishedUtc: ListNewsPublishedUtcParameter? = null, tickerGte: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerLte: kotlin.String? = null, tickerLt: kotlin.String? = null, publishedUtcGte: ListNewsPublishedUtcParameter? = null, publishedUtcGt: ListNewsPublishedUtcParameter? = null, publishedUtcLte: ListNewsPublishedUtcParameter? = null, publishedUtcLt: ListNewsPublishedUtcParameter? = null, order: OrderListNews? = OrderListNews.desc, limit: kotlin.Int? = 10, sort: SortListNews? = SortListNews.publishedUtc) : ListNews200Response {
         val localVarResponse = listNewsWithHttpInfo(ticker = ticker, publishedUtc = publishedUtc, tickerGte = tickerGte, tickerGt = tickerGt, tickerLte = tickerLte, tickerLt = tickerLt, publishedUtcGte = publishedUtcGte, publishedUtcGt = publishedUtcGt, publishedUtcLte = publishedUtcLte, publishedUtcLt = publishedUtcLt, order = order, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
@@ -19501,7 +19616,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param publishedUtcGt Search by published_utc. (optional)
      * @param publishedUtcLte Search by published_utc. (optional)
      * @param publishedUtcLt Search by published_utc. (optional)
-     * @param order Order results based on the &#x60;sort&#x60; field. (optional)
+     * @param order Order results based on the &#x60;sort&#x60; field. (optional, default to Order.desc)
      * @param limit Limit the number of results returned, default is 10 and max is 1000. (optional, default to 10)
      * @param sort Sort field used for ordering. (optional, default to Sort.publishedUtc)
      * @return ApiResponse<ListNews200Response?>
@@ -19531,7 +19646,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param publishedUtcGt Search by published_utc. (optional)
      * @param publishedUtcLte Search by published_utc. (optional)
      * @param publishedUtcLt Search by published_utc. (optional)
-     * @param order Order results based on the &#x60;sort&#x60; field. (optional)
+     * @param order Order results based on the &#x60;sort&#x60; field. (optional, default to Order.desc)
      * @param limit Limit the number of results returned, default is 10 and max is 1000. (optional, default to 10)
      * @param sort Sort field used for ordering. (optional, default to Sort.publishedUtc)
      * @return RequestConfig

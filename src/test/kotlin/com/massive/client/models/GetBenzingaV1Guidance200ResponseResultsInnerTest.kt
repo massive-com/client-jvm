@@ -63,13 +63,13 @@ class GetBenzingaV1Guidance200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.epsMethod shouldBe ("TODO")
         }
 
-        // to test the property `estimatedEpsGuidance` - The midpoint or central earnings per share (EPS) value the company expects for the given fiscal period.
+        // to test the property `estimatedEpsGuidance` - The analyst consensus EPS estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range.
         should("test estimatedEpsGuidance") {
             // uncomment below to test the property
             //modelInstance.estimatedEpsGuidance shouldBe ("TODO")
         }
 
-        // to test the property `estimatedRevenueGuidance` - The midpoint or central revenue figure the company expects for the given fiscal period.
+        // to test the property `estimatedRevenueGuidance` - The analyst consensus revenue estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range.
         should("test estimatedRevenueGuidance") {
             // uncomment below to test the property
             //modelInstance.estimatedRevenueGuidance shouldBe ("TODO")

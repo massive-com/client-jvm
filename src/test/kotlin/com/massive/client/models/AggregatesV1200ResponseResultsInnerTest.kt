@@ -39,7 +39,7 @@ class AggregatesV1200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.close shouldBe ("TODO")
         }
 
-        // to test the property `dollarVolume` - The total dollar volume of the transactions that occurred within the timeframe.
+        // to test the property `dollarVolume` - The sum of price × size across all trades in the window, expressed in the contract's quoted price units, which are the same units as the bar's open, high, low, and close. Despite the field name, no contract multiplier is applied, so this is not a notional dollar value. See the <a href=\"/docs/rest/futures/products\">Products endpoint</a> for contract multiplier details. Because dollar_volume is a raw sum, you can use it to compute a volume-weighted average price (VWAP) over any span of bars: sum dollar_volume across the bars in the window and divide by the summed volume.
         should("test dollarVolume") {
             // uncomment below to test the property
             //modelInstance.dollarVolume shouldBe ("TODO")
@@ -63,7 +63,7 @@ class AggregatesV1200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.`open` shouldBe ("TODO")
         }
 
-        // to test the property `sessionEndDate` - Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
+        // to test the property `sessionEndDate` - Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Sessions are named by this end date, while window_start holds the session's start date, which for session candles is the day before.
         should("test sessionEndDate") {
             // uncomment below to test the property
             //modelInstance.sessionEndDate shouldBe ("TODO")
@@ -93,7 +93,7 @@ class AggregatesV1200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.windowStart shouldBe ("TODO")
         }
 
-        // to test the property `settlementPrice` - The price the contract would have cost to settle for this session.
+        // to test the property `settlementPrice` - The price the contract settled at for this session. Included for session, week, month, quarter, and year candles; for multi-session candles it is the settlement of the final session in the period. Not returned for intraday candles (sec, min, hour).
         should("test settlementPrice") {
             // uncomment below to test the property
             //modelInstance.settlementPrice shouldBe ("TODO")

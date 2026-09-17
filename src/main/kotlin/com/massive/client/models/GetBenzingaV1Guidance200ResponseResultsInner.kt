@@ -35,8 +35,8 @@ import com.squareup.moshi.JsonClass
  * @param currency The ISO 4217 code representing the currency in which the company issued its guidance figures.
  * @param date The calendar date (formatted as YYYY-MM-DD) when the guidance was issued.
  * @param epsMethod The methodology of the EPS figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), ffo (Funds From Operations, a non-GAAP metric commonly used to assess the operating performance of REITs), and adj (adjusted, non-GAAP).
- * @param estimatedEpsGuidance The midpoint or central earnings per share (EPS) value the company expects for the given fiscal period.
- * @param estimatedRevenueGuidance The midpoint or central revenue figure the company expects for the given fiscal period.
+ * @param estimatedEpsGuidance The analyst consensus EPS estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range.
+ * @param estimatedRevenueGuidance The analyst consensus revenue estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range.
  * @param fiscalPeriod The fiscal quarter to which the guidance applies, such as Q1, Q2, Q3, or Q4.
  * @param fiscalYear The fiscal year corresponding to the period for which the guidance is issued.
  * @param importance A subjective indicator of the importance of the event, on a scale from 0 (lowest) to 5 (highest).
@@ -80,11 +80,11 @@ data class GetBenzingaV1Guidance200ResponseResultsInner (
     @Json(name = "eps_method")
     val epsMethod: kotlin.String? = null,
 
-    /* The midpoint or central earnings per share (EPS) value the company expects for the given fiscal period. */
+    /* The analyst consensus EPS estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range. */
     @Json(name = "estimated_eps_guidance")
     val estimatedEpsGuidance: kotlin.Double? = null,
 
-    /* The midpoint or central revenue figure the company expects for the given fiscal period. */
+    /* The analyst consensus revenue estimate at the time the company issued its guidance. This can sit above, below, or in line with the company's issued range. */
     @Json(name = "estimated_revenue_guidance")
     val estimatedRevenueGuidance: kotlin.Double? = null,
 
