@@ -87,6 +87,7 @@ jobs:
           BRANCH="bot/openapi-sync-$(date -u +'%Y-%m-%d')-${GITHUB_RUN_ID}"
           echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
           git checkout -B "$BRANCH"
+          git push origin "$BRANCH"
 
       - name: Commit and push
         if: steps.diff.outputs.changed == 'true'
@@ -95,10 +96,13 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           message: "Sync client-jvm with OpenAPI spec"
           ref: ${{ env.BRANCH }}
+          # These are minimatch patterns, not directories. A bare "src/" matches
+          # nothing, which makes the action commit no files and the next step
+          # fail with "No commits between master and bot/...".
           files: |
-            src/
-            docs/
-            scripts/
+            src/**
+            docs/**
+            scripts/**
 
       - name: Open PR
         if: steps.diff.outputs.changed == 'true'
