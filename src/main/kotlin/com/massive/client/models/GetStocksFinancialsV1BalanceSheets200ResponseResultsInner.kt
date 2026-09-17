@@ -41,7 +41,7 @@ import com.squareup.moshi.JsonClass
  * @param commonStock Par or stated value of common shares outstanding representing basic ownership in the company.
  * @param debtCurrent Short-term borrowings and the current portion of long-term debt due within one year.
  * @param deferredRevenueCurrent Customer payments received in advance for goods or services to be delivered within one year.
- * @param filingDate The date when the financial statement was filed with the SEC.
+ * @param filingDate The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index).
  * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period.
  * @param fiscalYear The fiscal year for the reporting period.
  * @param goodwill Intangible asset representing the excess of purchase price over fair value of net assets acquired in business combinations.
@@ -117,17 +117,17 @@ data class GetStocksFinancialsV1BalanceSheets200ResponseResultsInner (
     @Json(name = "deferred_revenue_current")
     val deferredRevenueCurrent: kotlin.Double? = null,
 
-    /* The date when the financial statement was filed with the SEC. */
+    /* The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). */
     @Json(name = "filing_date")
     val filingDate: java.time.LocalDate? = null,
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Double? = null,
+    val fiscalQuarter: kotlin.Int? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Double? = null,
+    val fiscalYear: kotlin.Int? = null,
 
     /* Intangible asset representing the excess of purchase price over fair value of net assets acquired in business combinations. */
     @Json(name = "goodwill")

@@ -37,7 +37,7 @@ import com.squareup.moshi.JsonClass
  * @param depreciationDepletionAndAmortization Non-cash charges for the reduction in value of tangible and intangible assets over time.
  * @param dividends Cash payments to shareholders in the form of dividends, typically reported as negative values.
  * @param effectOfCurrencyExchangeRate Impact of foreign exchange rate changes on cash and cash equivalents denominated in foreign currencies.
- * @param filingDate The date when the financial statement was filed with the SEC.
+ * @param filingDate The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index).
  * @param fiscalQuarter The fiscal quarter number (1, 2, 3, or 4) for the reporting period.
  * @param fiscalYear The fiscal year for the reporting period.
  * @param incomeLossFromDiscontinuedOperations After-tax income or loss from business operations that have been discontinued.
@@ -95,17 +95,17 @@ data class GetStocksFinancialsV1CashFlowStatements200ResponseResultsInner (
     @Json(name = "effect_of_currency_exchange_rate")
     val effectOfCurrencyExchangeRate: kotlin.Double? = null,
 
-    /* The date when the financial statement was filed with the SEC. */
+    /* The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). */
     @Json(name = "filing_date")
     val filingDate: java.time.LocalDate? = null,
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Double? = null,
+    val fiscalQuarter: kotlin.Int? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Double? = null,
+    val fiscalYear: kotlin.Int? = null,
 
     /* After-tax income or loss from business operations that have been discontinued. */
     @Json(name = "income_loss_from_discontinued_operations")

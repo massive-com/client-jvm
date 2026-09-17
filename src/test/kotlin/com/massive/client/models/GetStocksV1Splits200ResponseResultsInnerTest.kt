@@ -39,7 +39,7 @@ class GetStocksV1Splits200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.adjustmentType shouldBe ("TODO")
         }
 
-        // to test the property `executionDate` - Date when the stock split was applied and shares adjusted
+        // to test the property `executionDate` - Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session.
         should("test executionDate") {
             // uncomment below to test the property
             //modelInstance.executionDate shouldBe ("TODO")

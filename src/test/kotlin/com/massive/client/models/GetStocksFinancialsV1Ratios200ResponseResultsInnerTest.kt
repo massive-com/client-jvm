@@ -87,7 +87,7 @@ class GetStocksFinancialsV1Ratios200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.dividendYield shouldBe ("TODO")
         }
 
-        // to test the property `earningsPerShare` - Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding.
+        // to test the property `earningsPerShare` - Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint.
         should("test earningsPerShare") {
             // uncomment below to test the property
             //modelInstance.earningsPerShare shouldBe ("TODO")

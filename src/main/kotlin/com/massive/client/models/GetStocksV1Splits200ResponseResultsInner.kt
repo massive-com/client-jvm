@@ -31,7 +31,7 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param adjustmentType Classification of the share-change event. Possible values include: forward_split (share count increases), reverse_split (share count decreases), stock_dividend (shares issued as a dividend)
- * @param executionDate Date when the stock split was applied and shares adjusted
+ * @param executionDate Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session.
  * @param historicalAdjustmentFactor Cumulative adjustment factor used to offset split effects on historical prices. To adjust a historical price for splits: for a price on date D, find the first split whose `execution_date` is after date D and multiply the unadjusted price by the `historical_adjustment_factor`.
  * @param id Unique identifier for each stock split event
  * @param splitFrom Denominator of the split ratio (old shares)
@@ -46,7 +46,7 @@ data class GetStocksV1Splits200ResponseResultsInner (
     @Json(name = "adjustment_type")
     val adjustmentType: kotlin.String,
 
-    /* Date when the stock split was applied and shares adjusted */
+    /* Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session. */
     @Json(name = "execution_date")
     val executionDate: java.time.LocalDate? = null,
 

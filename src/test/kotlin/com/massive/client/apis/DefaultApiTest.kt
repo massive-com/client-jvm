@@ -58,6 +58,7 @@ import com.massive.client.models.GetEtfGlobalV1FundFlows200Response
 import com.massive.client.models.GetEtfGlobalV1Profiles200Response
 import com.massive.client.models.GetEtfGlobalV1Taxonomies200Response
 import com.massive.client.models.GetEvents200Response
+import com.massive.client.models.GetFedV1FundingConditions200Response
 import com.massive.client.models.GetFedV1Inflation200Response
 import com.massive.client.models.GetFedV1InflationExpectations200Response
 import com.massive.client.models.GetFedV1LaborMarket200Response
@@ -149,8 +150,8 @@ class DefaultApiTest : ShouldSpec() {
         should("test aggregatesV1") {
             // uncomment below to test aggregatesV1
             //val ticker : kotlin.String = GCJ5 // kotlin.String | The futures contract identifier, including the base symbol and contract expiration (e.g., GCJ5 for the April 2025 gold contract).
-            //val resolution : kotlin.String = 1min // kotlin.String | The size of each aggregate candle, specified as a number followed by a unit: `sec`, `min`, `hour`, `session`, `week`, `month`, `quarter`, or `year`.  Each unit has a maximum multiplier. For instance, minute candles go up to `59min` — after that, use `1hour`. Requesting an unsupported size returns a `400 Bad Request`.
-            //val windowStart : kotlin.String = windowStart_example // kotlin.String | Filter by the start time of each candle. Accepts a `YYYY-MM-DD` date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval.  When omitted, the API returns the most recent candles up to `limit`.  Use comparison suffixes to query a range: - `window_start.gte` — greater than or equal to - `window_start.gt` — greater than - `window_start.lte` — less than or equal to - `window_start.lt` — less than  **Examples** - Most recent minute candles: `/v1/aggs/ESU5?resolution=1min&limit=5` - Single daily candle: `/v1/aggs/ESU5?resolution=1session&window_start=2025-08-05` - Date range: `/v1/aggs/ESU5?resolution=1session&window_start.gte=2025-07-01&window_start.lte=2025-07-31` - After a timestamp: `/v1/aggs/ESU5?resolution=1sec&window_start.gt=1751409877000000000&limit=1000`
+            //val resolution : kotlin.String = 1min // kotlin.String | The size of each aggregate candle, specified as a number followed by a unit: sec, min, hour, session, week, month, quarter, or year.  Each unit has a maximum multiplier. For instance, minute candles go up to 59min; after that, use 1hour. Requesting an unsupported size returns a 400 Bad Request.
+            //val windowStart : kotlin.String = windowStart_example // kotlin.String | Filter by the start time of each candle. Accepts a YYYY-MM-DD date or a nanosecond Unix timestamp. The value is snapped to the start of the matching candle interval. When omitted, the API returns the most recent candles up to the limit.  Session candles are timestamped at the start of the session, not the trading date they settle on. A futures session opens the evening before it settles, so window_start falls on the day before session_end_date. To pull the session that settles on a given date, set window_start to the day before. For example, window_start=2025-08-05 returns the session that settles on 2025-08-06. Week, month, quarter, and year candles follow the same rule: window_start is the first day of the period and session_end_date is the last trading date in it.  Add a comparison suffix to filter a range: window_start.gte (greater than or equal to), window_start.gt (greater than), window_start.lte (less than or equal to), or window_start.lt (less than).  Examples:  Most recent minute candles: /v1/aggs/ESU5?resolution=1min&limit=5  Session settling 2025-08-06 (pass its start date, 2025-08-05): /v1/aggs/ESU5?resolution=1session&window_start=2025-08-05  Date range: /v1/aggs/ESU5?resolution=1session&window_start.gte=2025-07-01&window_start.lte=2025-07-31  After a timestamp: /v1/aggs/ESU5?resolution=1sec&window_start.gt=1751409877000000000&limit=1000
             //val limit : kotlin.Int = 56 // kotlin.Int | The number of results to return per page (default=1000, maximum=50000, minimum=1).
             //val windowStartGte : kotlin.String = windowStartGte_example // kotlin.String | Range by window_start.
             //val windowStartGt : kotlin.String = windowStartGt_example // kotlin.String | Range by window_start.
@@ -683,7 +684,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getCryptoV1Exchanges
         should("test getCryptoV1Exchanges") {
             // uncomment below to test getCryptoV1Exchanges
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val result : GetCryptoV1Exchanges200Response = apiInstance.getCryptoV1Exchanges(limit)
             //result shouldBe ("TODO")
         }
@@ -914,6 +915,20 @@ class DefaultApiTest : ShouldSpec() {
             //result shouldBe ("TODO")
         }
 
+        // to test getFedV1FundingConditions
+        should("test getFedV1FundingConditions") {
+            // uncomment below to test getFedV1FundingConditions
+            //val date : kotlin.String = date_example // kotlin.String | Calendar date of the observation (YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
+            //val result : GetFedV1FundingConditions200Response = apiInstance.getFedV1FundingConditions(date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
         // to test getFedV1Inflation
         should("test getFedV1Inflation") {
             // uncomment below to test getFedV1Inflation
@@ -1016,7 +1031,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getForexV1Exchanges
         should("test getForexV1Exchanges") {
             // uncomment below to test getForexV1Exchanges
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val result : GetForexV1Exchanges200Response = apiInstance.getForexV1Exchanges(limit)
             //result shouldBe ("TODO")
         }
@@ -1063,7 +1078,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getFuturesV1Exchanges
         should("test getFuturesV1Exchanges") {
             // uncomment below to test getFuturesV1Exchanges
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val result : GetFuturesV1Exchanges200Response = apiInstance.getFuturesV1Exchanges(limit)
             //result shouldBe ("TODO")
         }
@@ -1077,7 +1092,7 @@ class DefaultApiTest : ShouldSpec() {
             //val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
             //val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
             //val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '99'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '100'.
             //val result : GetFuturesV1MarketStatus200Response = apiInstance.getFuturesV1MarketStatus(productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, limit)
             //result shouldBe ("TODO")
         }
@@ -1134,7 +1149,7 @@ class DefaultApiTest : ShouldSpec() {
             //val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val sessionEndDate : kotlin.String = sessionEndDate_example // kotlin.String | Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetFuturesV1QuotesTicker200Response = apiInstance.getFuturesV1QuotesTicker(ticker, timestamp, timestampGt, timestampGte, timestampLt, timestampLte, sessionEndDate, limit, sort)
             //result shouldBe ("TODO")
@@ -1197,7 +1212,7 @@ class DefaultApiTest : ShouldSpec() {
             //val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val sessionEndDate : kotlin.String = sessionEndDate_example // kotlin.String | Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetFuturesV1TradesTicker200Response = apiInstance.getFuturesV1TradesTicker(ticker, timestamp, timestampGt, timestampGte, timestampLt, timestampLte, sessionEndDate, limit, sort)
             //result shouldBe ("TODO")
@@ -1258,7 +1273,7 @@ class DefaultApiTest : ShouldSpec() {
         should("test getIndicesSnapshot") {
             // uncomment below to test getIndicesSnapshot
             //val tickerAnyOf : kotlin.String = I:DJI // kotlin.String | Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
-            //val ticker : kotlin.String = ticker_example // kotlin.String | Search a range of tickers lexicographically.
+            //val ticker : kotlin.String = ticker_example // kotlin.String | Specify a single index ticker, for example I:SPX. Index tickers are case-sensitive and start with I:. To request more than one ticker or a range of tickers, expand the filter modifiers.
             //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Range by ticker.
             //val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Range by ticker.
             //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Range by ticker.
@@ -1386,7 +1401,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getOptionsV1Exchanges
         should("test getOptionsV1Exchanges") {
             // uncomment below to test getOptionsV1Exchanges
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val result : GetOptionsV1Exchanges200Response = apiInstance.getOptionsV1Exchanges(limit)
             //result shouldBe ("TODO")
         }
@@ -1400,7 +1415,7 @@ class DefaultApiTest : ShouldSpec() {
             //val timestampGte : kotlin.String = timestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetOptionsV3QuotesTicker200Response = apiInstance.getOptionsV3QuotesTicker(ticker, timestamp, timestampGt, timestampGte, timestampLt, timestampLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1415,7 +1430,7 @@ class DefaultApiTest : ShouldSpec() {
             //val timestampGte : kotlin.String = timestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetOptionsV3TradesTicker200Response = apiInstance.getOptionsV3TradesTicker(ticker, timestamp, timestampGt, timestampGte, timestampLt, timestampLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1484,13 +1499,13 @@ class DefaultApiTest : ShouldSpec() {
         // to test getSnapshots
         should("test getSnapshots") {
             // uncomment below to test getSnapshots
-            //val ticker : kotlin.String = ticker_example // kotlin.String | Search a range of tickers lexicographically.
+            //val ticker : kotlin.String = ticker_example // kotlin.String | Specify a single ticker symbol. Ticker symbols are case-sensitive and use a prefix for non-stock assets, for example NVDA for stocks, O:SPY280121C00750000 for options, C:EURUSD for forex, X:BTCUSD for crypto, and I:SPX for indices. To request more than one ticker or a range of tickers, expand the filter modifiers.
             //val type : kotlin.String = type_example // kotlin.String | Query by the type of asset.
             //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Range by ticker.
             //val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Range by ticker.
             //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Range by ticker.
             //val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Range by ticker.
-            //val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD,I:SPX // kotlin.String | Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. 
+            //val tickerAnyOf : kotlin.String = NVDA,O:SPY280121C00750000,C:EURUSD,X:BTCUSD,I:SPX // kotlin.String | Comma separated list of tickers, up to a maximum of 250. If no tickers are passed then all results will be returned in a paginated manner.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. 
             //val order : kotlin.String = asc // kotlin.String | Order results based on the `sort` field.
             //val limit : kotlin.Int = 10 // kotlin.Int | Limit the number of results returned, default is 10 and max is 250.
             //val sort : kotlin.String = ticker // kotlin.String | Sort field used for ordering.
@@ -1522,7 +1537,7 @@ class DefaultApiTest : ShouldSpec() {
             //val sipTimestampGte : kotlin.String = sipTimestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val sipTimestampLt : kotlin.String = sipTimestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
             //val sipTimestampLte : kotlin.String = sipTimestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'sip_timestamp' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksDevTradesTicker200Response = apiInstance.getStocksDevTradesTicker(ticker, sipTimestamp, sipTimestampGt, sipTimestampGte, sipTimestampLt, sipTimestampLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1575,7 +1590,7 @@ class DefaultApiTest : ShouldSpec() {
             //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '99'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '100'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksFilings10KVXSections200Response = apiInstance.getStocksFilings10KVX0Sections(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, section, sectionAnyOf, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1608,7 +1623,7 @@ class DefaultApiTest : ShouldSpec() {
             //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '99'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '100'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'period_end' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksFilings10KVXSections200Response = apiInstance.getStocksFilings10KVXSections(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, section, sectionAnyOf, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, periodEnd, periodEndGt, periodEndGte, periodEndLt, periodEndLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1661,7 +1676,7 @@ class DefaultApiTest : ShouldSpec() {
             //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '99'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '10' if not specified. The maximum allowed limit is '100'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksFilings8KVXText200Response = apiInstance.getStocksFilings8KVXText(cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, formType, formTypeAnyOf, formTypeGt, formTypeGte, formTypeLt, formTypeLte, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1781,7 +1796,7 @@ class DefaultApiTest : ShouldSpec() {
             //val cikGte : kotlin.String = cikGte_example // kotlin.String | Filter greater than or equal to the value.
             //val cikLt : kotlin.String = cikLt_example // kotlin.String | Filter less than the value.
             //val cikLte : kotlin.String = cikLte_example // kotlin.String | Filter less than or equal to the value.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '49999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksFilingsVXRiskFactors200Response = apiInstance.getStocksFilingsVXRiskFactors(filingDate, filingDateAnyOf, filingDateGt, filingDateGte, filingDateLt, filingDateLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, limit, sort)
             //result shouldBe ("TODO")
@@ -1804,21 +1819,21 @@ class DefaultApiTest : ShouldSpec() {
             //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date when the financial statement was filed with the SEC. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val fiscalYear : kotlin.Double = 1.2 // kotlin.Double | The fiscal year for the reporting period. Value must be a floating point number.
-            //val fiscalYearGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalYearGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalYearLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalYearLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarter : kotlin.Double = 1.2 // kotlin.Double | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number.
-            //val fiscalQuarterGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalQuarterGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarterLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalQuarterLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+            //val fiscalYear : kotlin.Long = 789 // kotlin.Long | The fiscal year for the reporting period. Value must be an integer.
+            //val fiscalYearGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalYearGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalYearLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalYearLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
+            //val fiscalQuarter : kotlin.Long = 789 // kotlin.Long | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer.
+            //val fiscalQuarterGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalQuarterGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalQuarterLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalQuarterLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
             //val timeframe : kotlin.String = timeframe_example // kotlin.String | The reporting period type. Possible values include: quarterly, annual.
             //val timeframeAnyOf : kotlin.String = timeframeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter greater than the value.
@@ -1845,7 +1860,7 @@ class DefaultApiTest : ShouldSpec() {
             //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date when the financial statement was filed with the SEC. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
@@ -1853,16 +1868,16 @@ class DefaultApiTest : ShouldSpec() {
             //val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
             //val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
             //val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
-            //val fiscalYear : kotlin.Double = 1.2 // kotlin.Double | The fiscal year for the reporting period. Value must be a floating point number.
-            //val fiscalYearGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalYearGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalYearLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalYearLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarter : kotlin.Double = 1.2 // kotlin.Double | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number.
-            //val fiscalQuarterGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalQuarterGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarterLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalQuarterLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+            //val fiscalYear : kotlin.Long = 789 // kotlin.Long | The fiscal year for the reporting period. Value must be an integer.
+            //val fiscalYearGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalYearGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalYearLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalYearLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
+            //val fiscalQuarter : kotlin.Long = 789 // kotlin.Long | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer.
+            //val fiscalQuarterGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalQuarterGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalQuarterLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalQuarterLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
             //val timeframe : kotlin.String = timeframe_example // kotlin.String | The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months.
             //val timeframeAnyOf : kotlin.String = timeframeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter greater than the value.
@@ -1892,21 +1907,21 @@ class DefaultApiTest : ShouldSpec() {
             //val periodEndGte : kotlin.String = periodEndGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLt : kotlin.String = periodEndLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val periodEndLte : kotlin.String = periodEndLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date when the financial statement was filed with the SEC. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val fiscalYear : kotlin.Double = 1.2 // kotlin.Double | The fiscal year for the reporting period. Value must be a floating point number.
-            //val fiscalYearGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalYearGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalYearLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalYearLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarter : kotlin.Double = 1.2 // kotlin.Double | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be a floating point number.
-            //val fiscalQuarterGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val fiscalQuarterGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val fiscalQuarterLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val fiscalQuarterLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+            //val fiscalYear : kotlin.Long = 789 // kotlin.Long | The fiscal year for the reporting period. Value must be an integer.
+            //val fiscalYearGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalYearGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalYearLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalYearLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
+            //val fiscalQuarter : kotlin.Long = 789 // kotlin.Long | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. Value must be an integer.
+            //val fiscalQuarterGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+            //val fiscalQuarterGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+            //val fiscalQuarterLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+            //val fiscalQuarterLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
             //val timeframe : kotlin.String = timeframe_example // kotlin.String | The reporting period type. Possible values include: quarterly, annual, trailing_twelve_months.
             //val timeframeAnyOf : kotlin.String = timeframeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val timeframeGt : kotlin.String = timeframeGt_example // kotlin.String | Filter greater than the value.
@@ -1949,7 +1964,7 @@ class DefaultApiTest : ShouldSpec() {
             //val marketCapGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
             //val marketCapLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
             //val marketCapLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
-            //val earningsPerShare : kotlin.Double = 1.2 // kotlin.Double | Earnings per share, calculated as net income available to common shareholders divided by weighted shares outstanding. Value must be a floating point number.
+            //val earningsPerShare : kotlin.Double = 1.2 // kotlin.Double | Earnings per share, calculated as trailing twelve months (TTM) net income available to common shareholders divided by point-in-time shares outstanding as of the price date, assuming all shares of other share classes are converted to this share class. This is not weighted average basic or diluted shares outstanding, so this value will not match the reported basic or diluted EPS on the income statements endpoint. Value must be a floating point number.
             //val earningsPerShareGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
             //val earningsPerShareGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
             //val earningsPerShareLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
@@ -2181,7 +2196,7 @@ class DefaultApiTest : ShouldSpec() {
             //val tertiaryCategoryGte : kotlin.String = tertiaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
             //val tertiaryCategoryLt : kotlin.String = tertiaryCategoryLt_example // kotlin.String | Filter less than the value.
             //val tertiaryCategoryLte : kotlin.String = tertiaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '1000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'taxonomy' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksTaxonomiesVXDisclosures200Response = apiInstance.getStocksTaxonomiesVXDisclosures(taxonomy, taxonomyAnyOf, taxonomyGt, taxonomyGte, taxonomyLt, taxonomyLte, primaryCategory, primaryCategoryAnyOf, primaryCategoryGt, primaryCategoryGte, primaryCategoryLt, primaryCategoryLte, secondaryCategory, secondaryCategoryAnyOf, secondaryCategoryGt, secondaryCategoryGte, secondaryCategoryLt, secondaryCategoryLte, tertiaryCategory, tertiaryCategoryAnyOf, tertiaryCategoryGt, tertiaryCategoryGte, tertiaryCategoryLt, tertiaryCategoryLte, limit, sort)
             //result shouldBe ("TODO")
@@ -2213,7 +2228,7 @@ class DefaultApiTest : ShouldSpec() {
             //val tertiaryCategoryGte : kotlin.String = tertiaryCategoryGte_example // kotlin.String | Filter greater than or equal to the value.
             //val tertiaryCategoryLt : kotlin.String = tertiaryCategoryLt_example // kotlin.String | Filter less than the value.
             //val tertiaryCategoryLte : kotlin.String = tertiaryCategoryLte_example // kotlin.String | Filter less than or equal to the value.
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '200' if not specified. The maximum allowed limit is '1000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'taxonomy' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksTaxonomiesVXRiskFactors200Response = apiInstance.getStocksTaxonomiesVXRiskFactors(taxonomy, taxonomyGt, taxonomyGte, taxonomyLt, taxonomyLte, primaryCategory, primaryCategoryAnyOf, primaryCategoryGt, primaryCategoryGte, primaryCategoryLt, primaryCategoryLte, secondaryCategory, secondaryCategoryAnyOf, secondaryCategoryGt, secondaryCategoryGte, secondaryCategoryLt, secondaryCategoryLte, tertiaryCategory, tertiaryCategoryAnyOf, tertiaryCategoryGt, tertiaryCategoryGte, tertiaryCategoryLt, tertiaryCategoryLte, limit, sort)
             //result shouldBe ("TODO")
@@ -2265,7 +2280,7 @@ class DefaultApiTest : ShouldSpec() {
         // to test getStocksV1Exchanges
         should("test getStocksV1Exchanges") {
             // uncomment below to test getStocksV1Exchanges
-            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '999'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val result : GetOptionsV1Exchanges200Response = apiInstance.getStocksV1Exchanges(limit)
             //result shouldBe ("TODO")
         }
@@ -2339,7 +2354,7 @@ class DefaultApiTest : ShouldSpec() {
             //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
             //val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
             //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
-            //val executionDate : kotlin.String = executionDate_example // kotlin.String | Date when the stock split was applied and shares adjusted Value must be formatted 'yyyy-mm-dd'.
+            //val executionDate : kotlin.String = executionDate_example // kotlin.String | Date when the stock split takes effect. The adjustment is applied overnight. On the prior trading day, the post-market session is the last session that shows pre-split prices. On the execution date, all trading is already adjusted for the split. This includes the pre-market session. Value must be formatted 'yyyy-mm-dd'.
             //val executionDateGt : kotlin.String = executionDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val executionDateGte : kotlin.String = executionDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val executionDateLt : kotlin.String = executionDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.

@@ -31,16 +31,16 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param close The last price within the timeframe.
- * @param dollarVolume The total dollar volume of the transactions that occurred within the timeframe.
+ * @param dollarVolume The sum of price × size across all trades in the window, expressed in the contract's quoted price units, which are the same units as the bar's open, high, low, and close. Despite the field name, no contract multiplier is applied, so this is not a notional dollar value. See the <a href=\"/docs/rest/futures/products\">Products endpoint</a> for contract multiplier details. Because dollar_volume is a raw sum, you can use it to compute a volume-weighted average price (VWAP) over any span of bars: sum dollar_volume across the bars in the window and divide by the summed volume.
  * @param high The highest price within the timeframe.
  * @param low The lowest price within the timeframe.
  * @param `open` The opening price within the timeframe.
- * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.
+ * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Sessions are named by this end date, while window_start holds the session's start date, which for session candles is the day before.
  * @param ticker The ticker for the contract.
  * @param transactions The number of transactions that occurred within the timeframe.
  * @param volume The number of contracts that traded within the timeframe.
  * @param windowStart The timestamp of the beginning of the candlestick’s aggregation window.
- * @param settlementPrice The price the contract would have cost to settle for this session.
+ * @param settlementPrice The price the contract settled at for this session. Included for session, week, month, quarter, and year candles; for multi-session candles it is the settlement of the final session in the period. Not returned for intraday candles (sec, min, hour).
  */
 
 
@@ -50,7 +50,7 @@ data class AggregatesV1200ResponseResultsInner (
     @Json(name = "close")
     val close: kotlin.Double,
 
-    /* The total dollar volume of the transactions that occurred within the timeframe. */
+    /* The sum of price × size across all trades in the window, expressed in the contract's quoted price units, which are the same units as the bar's open, high, low, and close. Despite the field name, no contract multiplier is applied, so this is not a notional dollar value. See the <a href=\"/docs/rest/futures/products\">Products endpoint</a> for contract multiplier details. Because dollar_volume is a raw sum, you can use it to compute a volume-weighted average price (VWAP) over any span of bars: sum dollar_volume across the bars in the window and divide by the summed volume. */
     @Json(name = "dollar_volume")
     val dollarVolume: kotlin.Double,
 
@@ -66,7 +66,7 @@ data class AggregatesV1200ResponseResultsInner (
     @Json(name = "open")
     val `open`: kotlin.Double,
 
-    /* Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. */
+    /* Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Sessions are named by this end date, while window_start holds the session's start date, which for session candles is the day before. */
     @Json(name = "session_end_date")
     val sessionEndDate: kotlin.String,
 
@@ -86,7 +86,7 @@ data class AggregatesV1200ResponseResultsInner (
     @Json(name = "window_start")
     val windowStart: kotlin.Long,
 
-    /* The price the contract would have cost to settle for this session. */
+    /* The price the contract settled at for this session. Included for session, week, month, quarter, and year candles; for multi-session candles it is the settlement of the final session in the period. Not returned for intraday candles (sec, min, hour). */
     @Json(name = "settlement_price")
     val settlementPrice: kotlin.Double? = null
 

@@ -9,8 +9,8 @@
 | **currency** | **kotlin.String** | The ISO 4217 code representing the currency in which the company issued its guidance figures. |  [optional] |
 | **date** | **kotlin.String** | The calendar date (formatted as YYYY-MM-DD) when the guidance was issued. |  [optional] |
 | **epsMethod** | **kotlin.String** | The methodology of the EPS figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), ffo (Funds From Operations, a non-GAAP metric commonly used to assess the operating performance of REITs), and adj (adjusted, non-GAAP). |  [optional] |
-| **estimatedEpsGuidance** | **kotlin.Double** | The midpoint or central earnings per share (EPS) value the company expects for the given fiscal period. |  [optional] |
-| **estimatedRevenueGuidance** | **kotlin.Double** | The midpoint or central revenue figure the company expects for the given fiscal period. |  [optional] |
+| **estimatedEpsGuidance** | **kotlin.Double** | The analyst consensus EPS estimate at the time the company issued its guidance. This can sit above, below, or in line with the company&#39;s issued range. |  [optional] |
+| **estimatedRevenueGuidance** | **kotlin.Double** | The analyst consensus revenue estimate at the time the company issued its guidance. This can sit above, below, or in line with the company&#39;s issued range. |  [optional] |
 | **fiscalPeriod** | **kotlin.String** | The fiscal quarter to which the guidance applies, such as Q1, Q2, Q3, or Q4. |  [optional] |
 | **fiscalYear** | **kotlin.Long** | The fiscal year corresponding to the period for which the guidance is issued. |  [optional] |
 | **importance** | **kotlin.Long** | A subjective indicator of the importance of the event, on a scale from 0 (lowest) to 5 (highest). |  [optional] |

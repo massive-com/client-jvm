@@ -99,7 +99,7 @@ class GetStocksFinancialsV1BalanceSheets200ResponseResultsInnerTest : ShouldSpec
             //modelInstance.deferredRevenueCurrent shouldBe ("TODO")
         }
 
-        // to test the property `filingDate` - The date when the financial statement was filed with the SEC.
+        // to test the property `filingDate` - The date of the most recent SEC filing that included this period's data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index).
         should("test filingDate") {
             // uncomment below to test the property
             //modelInstance.filingDate shouldBe ("TODO")

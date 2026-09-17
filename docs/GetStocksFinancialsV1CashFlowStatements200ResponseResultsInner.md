@@ -11,9 +11,9 @@
 | **depreciationDepletionAndAmortization** | **kotlin.Double** | Non-cash charges for the reduction in value of tangible and intangible assets over time. |  [optional] |
 | **dividends** | **kotlin.Double** | Cash payments to shareholders in the form of dividends, typically reported as negative values. |  [optional] |
 | **effectOfCurrencyExchangeRate** | **kotlin.Double** | Impact of foreign exchange rate changes on cash and cash equivalents denominated in foreign currencies. |  [optional] |
-| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date when the financial statement was filed with the SEC. |  [optional] |
-| **fiscalQuarter** | **kotlin.Double** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
-| **fiscalYear** | **kotlin.Double** | The fiscal year for the reporting period. |  [optional] |
+| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). |  [optional] |
+| **fiscalQuarter** | **kotlin.Int** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
+| **fiscalYear** | **kotlin.Int** | The fiscal year for the reporting period. |  [optional] |
 | **incomeLossFromDiscontinuedOperations** | **kotlin.Double** | After-tax income or loss from business operations that have been discontinued. |  [optional] |
 | **longTermDebtIssuancesRepayments** | **kotlin.Double** | Net cash flows from issuing or repaying long-term debt obligations. |  [optional] |
 | **netCashFromFinancingActivities** | **kotlin.Double** | Total cash generated or used by financing activities, including debt issuance, debt repayment, dividends, and share transactions. |  [optional] |

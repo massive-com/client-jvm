@@ -30,22 +30,18 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param conditions A list of condition codes.
  * @param exchange The exchange ID.
  * @param price The price of the trade. This is the actual dollar value per whole contract of this trade.
- * @param sequenceNumber The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
- * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
  * @param propertySize The size of a trade (also known as volume).
  * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000).
+ * @param conditions A list of condition codes.
  * @param participantTimestamp The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange.
+ * @param sequenceNumber The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
+ * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
  */
 
 
 data class GetOptionsV3TradesTicker200ResponseResultsInner (
-
-    /* A list of condition codes. */
-    @Json(name = "conditions")
-    val conditions: kotlin.collections.List<kotlin.Int>,
 
     /* The exchange ID. */
     @Json(name = "exchange")
@@ -55,14 +51,6 @@ data class GetOptionsV3TradesTicker200ResponseResultsInner (
     @Json(name = "price")
     val price: kotlin.Double,
 
-    /* The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day. */
-    @Json(name = "sequence_number")
-    val sequenceNumber: kotlin.Long,
-
-    /* The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it. */
-    @Json(name = "sip_timestamp")
-    val sipTimestamp: kotlin.Long,
-
     /* The size of a trade (also known as volume). */
     @Json(name = "size")
     val propertySize: kotlin.Long,
@@ -71,9 +59,21 @@ data class GetOptionsV3TradesTicker200ResponseResultsInner (
     @Json(name = "ticker")
     val ticker: kotlin.String,
 
+    /* A list of condition codes. */
+    @Json(name = "conditions")
+    val conditions: kotlin.collections.List<kotlin.Int>? = null,
+
     /* The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. */
     @Json(name = "participant_timestamp")
-    val participantTimestamp: kotlin.Long? = null
+    val participantTimestamp: kotlin.Long? = null,
+
+    /* The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day. */
+    @Json(name = "sequence_number")
+    val sequenceNumber: kotlin.Long? = null,
+
+    /* The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it. */
+    @Json(name = "sip_timestamp")
+    val sipTimestamp: kotlin.Long? = null
 
 ) {
 

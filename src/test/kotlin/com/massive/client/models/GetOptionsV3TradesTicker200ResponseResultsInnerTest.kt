@@ -33,12 +33,6 @@ class GetOptionsV3TradesTicker200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetOptionsV3TradesTicker200ResponseResultsInner
         //val modelInstance = GetOptionsV3TradesTicker200ResponseResultsInner()
 
-        // to test the property `conditions` - A list of condition codes.
-        should("test conditions") {
-            // uncomment below to test the property
-            //modelInstance.conditions shouldBe ("TODO")
-        }
-
         // to test the property `exchange` - The exchange ID.
         should("test exchange") {
             // uncomment below to test the property
@@ -49,18 +43,6 @@ class GetOptionsV3TradesTicker200ResponseResultsInnerTest : ShouldSpec() {
         should("test price") {
             // uncomment below to test the property
             //modelInstance.price shouldBe ("TODO")
-        }
-
-        // to test the property `sequenceNumber` - The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
-        should("test sequenceNumber") {
-            // uncomment below to test the property
-            //modelInstance.sequenceNumber shouldBe ("TODO")
-        }
-
-        // to test the property `sipTimestamp` - The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
-        should("test sipTimestamp") {
-            // uncomment below to test the property
-            //modelInstance.sipTimestamp shouldBe ("TODO")
         }
 
         // to test the property `propertySize` - The size of a trade (also known as volume).
@@ -75,10 +57,28 @@ class GetOptionsV3TradesTicker200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.ticker shouldBe ("TODO")
         }
 
+        // to test the property `conditions` - A list of condition codes.
+        should("test conditions") {
+            // uncomment below to test the property
+            //modelInstance.conditions shouldBe ("TODO")
+        }
+
         // to test the property `participantTimestamp` - The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange.
         should("test participantTimestamp") {
             // uncomment below to test the property
             //modelInstance.participantTimestamp shouldBe ("TODO")
+        }
+
+        // to test the property `sequenceNumber` - The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
+        should("test sequenceNumber") {
+            // uncomment below to test the property
+            //modelInstance.sequenceNumber shouldBe ("TODO")
+        }
+
+        // to test the property `sipTimestamp` - The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
+        should("test sipTimestamp") {
+            // uncomment below to test the property
+            //modelInstance.sipTimestamp shouldBe ("TODO")
         }
 
     }

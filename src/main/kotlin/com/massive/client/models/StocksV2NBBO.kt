@@ -36,12 +36,12 @@ import com.squareup.moshi.JsonClass
  * @param t The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this message from the exchange which produced it.
  * @param y The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the quote was actually generated at the exchange.
  * @param P The ask price.
- * @param S The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price.
+ * @param S The ask size. This represents the number of shares sellers are offering at the given ask price.
  * @param X The ask exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param c A list of condition codes. 
  * @param i The indicators. For more information, see our glossary of [Conditions and Indicators](https://massive.com/glossary/conditions-indicators). 
  * @param p The bid price.
- * @param s The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price.
+ * @param s The bid size. This represents the number of shares buyers are bidding for at the given bid price.
  * @param x The bid exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param z There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ 
  */
@@ -73,7 +73,7 @@ data class StocksV2NBBO (
     @Json(name = "P")
     val capitalP: kotlin.Double,
 
-    /* The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price. */
+    /* The ask size. This represents the number of shares sellers are offering at the given ask price. */
     @Json(name = "S")
     val capitalS: kotlin.Int,
 
@@ -93,7 +93,7 @@ data class StocksV2NBBO (
     @Json(name = "p")
     val p: kotlin.Double,
 
-    /* The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price. */
+    /* The bid size. This represents the number of shares buyers are bidding for at the given bid price. */
     @Json(name = "s")
     val s: kotlin.Int,
 

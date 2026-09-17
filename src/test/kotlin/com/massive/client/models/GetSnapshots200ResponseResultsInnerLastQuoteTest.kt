@@ -63,7 +63,7 @@ class GetSnapshots200ResponseResultsInnerLastQuoteTest : ShouldSpec() {
             //modelInstance.askExchange shouldBe ("TODO")
         }
 
-        // to test the property `askSize` - The ask size. This represents the number of round lot orders at the given ask price. The normal round lot size is 100 shares. An ask size of 2 means there are 200 shares available to purchase at the given ask price.
+        // to test the property `askSize` - The ask size. This represents the number of shares, or contracts for options, sellers are offering at the given ask price.
         should("test askSize") {
             // uncomment below to test the property
             //modelInstance.askSize shouldBe ("TODO")
@@ -75,7 +75,7 @@ class GetSnapshots200ResponseResultsInnerLastQuoteTest : ShouldSpec() {
             //modelInstance.bidExchange shouldBe ("TODO")
         }
 
-        // to test the property `bidSize` - The bid size. This represents the number of round lot orders at the given bid price. The normal round lot size is 100 shares. A bid size of 2 means there are 200 shares for purchase at the given bid price.
+        // to test the property `bidSize` - The bid size. This represents the number of shares, or contracts for options, buyers are bidding for at the given bid price.
         should("test bidSize") {
             // uncomment below to test the property
             //modelInstance.bidSize shouldBe ("TODO")

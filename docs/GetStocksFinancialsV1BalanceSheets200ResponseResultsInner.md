@@ -15,9 +15,9 @@
 | **commonStock** | **kotlin.Double** | Par or stated value of common shares outstanding representing basic ownership in the company. |  [optional] |
 | **debtCurrent** | **kotlin.Double** | Short-term borrowings and the current portion of long-term debt due within one year. |  [optional] |
 | **deferredRevenueCurrent** | **kotlin.Double** | Customer payments received in advance for goods or services to be delivered within one year. |  [optional] |
-| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date when the financial statement was filed with the SEC. |  [optional] |
-| **fiscalQuarter** | **kotlin.Double** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
-| **fiscalYear** | **kotlin.Double** | The fiscal year for the reporting period. |  [optional] |
+| **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date of the most recent SEC filing that included this period&#39;s data. This is not necessarily the date this period was originally filed. Because SEC filings restate comparative data for prior periods, multiple records can share the same filing_date. For example, an annual 10-K reports three years of results, and a 10-Q includes prior period comparatives. To find the original filing date for a specific 10-K or 10-Q, use the SEC EDGAR filings index endpoint (/stocks/filings/vX/index). |  [optional] |
+| **fiscalQuarter** | **kotlin.Int** | The fiscal quarter number (1, 2, 3, or 4) for the reporting period. |  [optional] |
+| **fiscalYear** | **kotlin.Int** | The fiscal year for the reporting period. |  [optional] |
 | **goodwill** | **kotlin.Double** | Intangible asset representing the excess of purchase price over fair value of net assets acquired in business combinations. |  [optional] |
 | **intangibleAssetsNet** | **kotlin.Double** | Intangible assets other than goodwill, including patents, trademarks, and customer relationships, net of accumulated amortization. |  [optional] |
 | **inventories** | **kotlin.Double** | Raw materials, work-in-process, and finished goods held for sale in the ordinary course of business. |  [optional] |
