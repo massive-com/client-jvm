@@ -21,7 +21,7 @@
 | **sedol** | **kotlin.String** | The Stock Exchange Daily Official List code, primarily used for securities trading in the UK. |  [optional] |
 | **sharesHeld** | **kotlin.Double** | The number of shares of this constituent security that the ETF currently owns. |  [optional] |
 | **usCode** | **kotlin.String** | A unique identifier code for the constituent security in US markets. |  [optional] |
-| **weight** | **kotlin.Double** | The percentage weight of this constituent security within the ETF&#39;s total portfolio. |  [optional] |
+| **weight** | **kotlin.Double** | The constituent&#39;s weight in the ETF&#39;s portfolio, as a decimal fraction (0.0789 &#x3D; 7.89%). Short positions are negative. For most funds the weights sum to about 1; leveraged and inverse funds vary. A few constituents have no weight, so a sum can fall short. |  [optional] |
 
 
 
