@@ -135,7 +135,7 @@ class GetEtfGlobalV1Constituents200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.usCode shouldBe ("TODO")
         }
 
-        // to test the property `weight` - The percentage weight of this constituent security within the ETF's total portfolio.
+        // to test the property `weight` - The constituent's weight in the ETF's portfolio, as a decimal fraction (0.0789 = 7.89%). Short positions are negative. For most funds the weights sum to about 1; leveraged and inverse funds vary. A few constituents have no weight, so a sum can fall short.
         should("test weight") {
             // uncomment below to test the property
             //modelInstance.weight shouldBe ("TODO")
