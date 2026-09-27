@@ -123,11 +123,11 @@ data class GetStocksFinancialsV1IncomeStatements200ResponseResultsInner (
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Int? = null,
+    val fiscalQuarter: kotlin.Long? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Int? = null,
+    val fiscalYear: kotlin.Long? = null,
 
     /* Revenue minus cost of revenue, representing profit before operating expenses. */
     @Json(name = "gross_profit")
