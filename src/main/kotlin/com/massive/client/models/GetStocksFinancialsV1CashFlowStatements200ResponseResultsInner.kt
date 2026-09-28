@@ -101,11 +101,11 @@ data class GetStocksFinancialsV1CashFlowStatements200ResponseResultsInner (
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Int? = null,
+    val fiscalQuarter: kotlin.Long? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Int? = null,
+    val fiscalYear: kotlin.Long? = null,
 
     /* After-tax income or loss from business operations that have been discontinued. */
     @Json(name = "income_loss_from_discontinued_operations")

@@ -123,11 +123,11 @@ data class GetStocksFinancialsV1BalanceSheets200ResponseResultsInner (
 
     /* The fiscal quarter number (1, 2, 3, or 4) for the reporting period. */
     @Json(name = "fiscal_quarter")
-    val fiscalQuarter: kotlin.Int? = null,
+    val fiscalQuarter: kotlin.Long? = null,
 
     /* The fiscal year for the reporting period. */
     @Json(name = "fiscal_year")
-    val fiscalYear: kotlin.Int? = null,
+    val fiscalYear: kotlin.Long? = null,
 
     /* Intangible asset representing the excess of purchase price over fair value of net assets acquired in business combinations. */
     @Json(name = "goodwill")
