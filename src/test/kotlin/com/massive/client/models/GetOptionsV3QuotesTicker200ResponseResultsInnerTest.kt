@@ -75,16 +75,16 @@ class GetOptionsV3QuotesTicker200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.sequenceNumber shouldBe ("TODO")
         }
 
-        // to test the property `sipTimestamp` - The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
-        should("test sipTimestamp") {
-            // uncomment below to test the property
-            //modelInstance.sipTimestamp shouldBe ("TODO")
-        }
-
         // to test the property `ticker` - The options ticker symbol (e.g., O:SPY260123C00687000).
         should("test ticker") {
             // uncomment below to test the property
             //modelInstance.ticker shouldBe ("TODO")
+        }
+
+        // to test the property `sipTimestamp` - The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
+        should("test sipTimestamp") {
+            // uncomment below to test the property
+            //modelInstance.sipTimestamp shouldBe ("TODO")
         }
 
     }
