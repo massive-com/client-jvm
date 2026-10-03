@@ -37,8 +37,8 @@ import com.squareup.moshi.JsonClass
  * @param bidPrice The bid price.
  * @param bidSize The size available at the bid price.
  * @param sequenceNumber The sequence number represents the sequence in which quote events happened. These are increasing and unique per ticker symbol, but will not always be sequential. Values reset after each trading session/day.
- * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
  * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000).
+ * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it.
  */
 
 
@@ -72,13 +72,13 @@ data class GetOptionsV3QuotesTicker200ResponseResultsInner (
     @Json(name = "sequence_number")
     val sequenceNumber: kotlin.Long,
 
-    /* The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it. */
-    @Json(name = "sip_timestamp")
-    val sipTimestamp: kotlin.Long,
-
     /* The options ticker symbol (e.g., O:SPY260123C00687000). */
     @Json(name = "ticker")
-    val ticker: kotlin.String
+    val ticker: kotlin.String,
+
+    /* The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this quote from the exchange which produced it. */
+    @Json(name = "sip_timestamp")
+    val sipTimestamp: kotlin.Long? = null
 
 ) {
 
