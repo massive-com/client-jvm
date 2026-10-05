@@ -33,13 +33,13 @@ import com.squareup.moshi.JsonClass
  * @param decimalSize The size of the trade including the fractional component. This is represented as a decimal string.
  * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param id The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID.
- * @param participantTimestamp The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange.
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
  * @param sequenceNumber The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential (e.g., 1, 2, 6, 9, 10, 11). Values reset after each trading session/day.
  * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
  * @param propertySize The size of a trade (also known as volume).
  * @param conditions A list of condition codes.
  * @param correction The trade correction indicator.
+ * @param participantTimestamp The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. Omitted on OTC trades reported through the FINRA ORF (exchange 62), which carry no participant timestamp.
  * @param tape There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ
  * @param trfId The ID for the Trade Reporting Facility where the trade took place.
  * @param trfTimestamp The nanosecond accuracy TRF (Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this trade.
@@ -59,10 +59,6 @@ data class GetStocksTrades200ResponseResultsInner (
     /* The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID. */
     @Json(name = "id")
     val id: kotlin.String,
-
-    /* The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. */
-    @Json(name = "participant_timestamp")
-    val participantTimestamp: kotlin.Long,
 
     /* The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. */
     @Json(name = "price")
@@ -87,6 +83,10 @@ data class GetStocksTrades200ResponseResultsInner (
     /* The trade correction indicator. */
     @Json(name = "correction")
     val correction: kotlin.Int? = null,
+
+    /* The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. Omitted on OTC trades reported through the FINRA ORF (exchange 62), which carry no participant timestamp. */
+    @Json(name = "participant_timestamp")
+    val participantTimestamp: kotlin.Long? = null,
 
     /* There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ */
     @Json(name = "tape")

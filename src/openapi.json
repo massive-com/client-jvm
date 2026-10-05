@@ -33956,7 +33956,7 @@
                           "type": "number"
                         },
                         "S": {
-                          "description": "The total number of shares available for sale at the current ask price.",
+                          "description": "The ask size. This represents the number of shares sellers are offering at the given ask price.",
                           "type": "integer"
                         },
                         "T": {
@@ -34006,7 +34006,7 @@
                           "type": "integer"
                         },
                         "s": {
-                          "description": "The total number of shares that buyers want to purchase at the current bid price.",
+                          "description": "The bid size. This represents the number of shares buyers are bidding for at the given bid price.",
                           "type": "integer"
                         },
                         "t": {
@@ -38998,7 +38998,7 @@
                             "type": "number"
                           },
                           "ask_size": {
-                            "description": "The total number of shares available for sale at the current ask price.",
+                            "description": "The ask size. This represents the number of shares sellers are offering at the given ask price.",
                             "format": "double",
                             "type": "number"
                           },
@@ -39012,7 +39012,7 @@
                             "type": "number"
                           },
                           "bid_size": {
-                            "description": "The total number of shares that buyers want to purchase at the current bid price.",
+                            "description": "The bid size. This represents the number of shares buyers are bidding for at the given bid price.",
                             "format": "double",
                             "type": "number"
                           },
@@ -44887,7 +44887,7 @@
                             "type": "string"
                           },
                           "participant_timestamp": {
-                            "description": "The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange.",
+                            "description": "The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. Omitted on OTC trades reported through the FINRA ORF (exchange 62), which carry no participant timestamp.",
                             "format": "int64",
                             "type": "integer",
                             "x-polygon-go-type": {
@@ -44944,7 +44944,6 @@
                           "price",
                           "sequence_number",
                           "sip_timestamp",
-                          "participant_timestamp",
                           "size",
                           "decimal_size"
                         ],
