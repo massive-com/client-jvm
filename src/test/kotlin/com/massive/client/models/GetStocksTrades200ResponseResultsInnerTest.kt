@@ -51,12 +51,6 @@ class GetStocksTrades200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `participantTimestamp` - The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange.
-        should("test participantTimestamp") {
-            // uncomment below to test the property
-            //modelInstance.participantTimestamp shouldBe ("TODO")
-        }
-
         // to test the property `price` - The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
         should("test price") {
             // uncomment below to test the property
@@ -91,6 +85,12 @@ class GetStocksTrades200ResponseResultsInnerTest : ShouldSpec() {
         should("test correction") {
             // uncomment below to test the property
             //modelInstance.correction shouldBe ("TODO")
+        }
+
+        // to test the property `participantTimestamp` - The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. Omitted on OTC trades reported through the FINRA ORF (exchange 62), which carry no participant timestamp.
+        should("test participantTimestamp") {
+            // uncomment below to test the property
+            //modelInstance.participantTimestamp shouldBe ("TODO")
         }
 
         // to test the property `tape` - There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ

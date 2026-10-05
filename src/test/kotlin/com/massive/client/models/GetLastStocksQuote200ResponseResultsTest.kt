@@ -63,7 +63,7 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.P shouldBe ("TODO")
         }
 
-        // to test the property `S` - The total number of shares available for sale at the current ask price.
+        // to test the property `S` - The ask size. This represents the number of shares sellers are offering at the given ask price.
         should("test S") {
             // uncomment below to test the property
             //modelInstance.S shouldBe ("TODO")
@@ -99,7 +99,7 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.p shouldBe ("TODO")
         }
 
-        // to test the property `s` - The total number of shares that buyers want to purchase at the current bid price.
+        // to test the property `s` - The bid size. This represents the number of shares buyers are bidding for at the given bid price.
         should("test s") {
             // uncomment below to test the property
             //modelInstance.s shouldBe ("TODO")

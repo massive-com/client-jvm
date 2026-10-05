@@ -63,7 +63,7 @@ class GetStocksQuotes200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.askPrice shouldBe ("TODO")
         }
 
-        // to test the property `askSize` - The total number of shares available for sale at the current ask price.
+        // to test the property `askSize` - The ask size. This represents the number of shares sellers are offering at the given ask price.
         should("test askSize") {
             // uncomment below to test the property
             //modelInstance.askSize shouldBe ("TODO")
@@ -81,7 +81,7 @@ class GetStocksQuotes200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.bidPrice shouldBe ("TODO")
         }
 
-        // to test the property `bidSize` - The total number of shares that buyers want to purchase at the current bid price.
+        // to test the property `bidSize` - The bid size. This represents the number of shares buyers are bidding for at the given bid price.
         should("test bidSize") {
             // uncomment below to test the property
             //modelInstance.bidSize shouldBe ("TODO")
