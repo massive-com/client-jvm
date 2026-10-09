@@ -70,6 +70,7 @@ import com.massive.client.models.GetFuturesV1Contracts200Response
 import com.massive.client.models.GetFuturesV1Exchanges200Response
 import com.massive.client.models.GetFuturesV1MarketStatus200Response
 import com.massive.client.models.GetFuturesV1Products200Response
+import com.massive.client.models.GetFuturesV1ProductsNew200Response
 import com.massive.client.models.GetFuturesV1QuotesTicker200Response
 import com.massive.client.models.GetFuturesV1Schedules200Response
 import com.massive.client.models.GetFuturesV1Snapshot200Response
@@ -7946,6 +7947,608 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/futures/v1/products",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * enum for parameter sector
+     */
+     enum class SectorGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "asia") asia("asia"),
+         @Json(name = "base") base("base"),
+         @Json(name = "biofuels") biofuels("biofuels"),
+         @Json(name = "coal") coal("coal"),
+         @Json(name = "cross_rates") crossRates("cross_rates"),
+         @Json(name = "crude_oil") crudeOil("crude_oil"),
+         @Json(name = "custom_index") customIndex("custom_index"),
+         @Json(name = "dairy") dairy("dairy"),
+         @Json(name = "dj_ubs_ci") djUbsCi("dj_ubs_ci"),
+         @Json(name = "electricity") electricity("electricity"),
+         @Json(name = "emissions") emissions("emissions"),
+         @Json(name = "europe") europe("europe"),
+         @Json(name = "fertilizer") fertilizer("fertilizer"),
+         @Json(name = "forestry") forestry("forestry"),
+         @Json(name = "grains_and_oilseeds") grainsAndOilseeds("grains_and_oilseeds"),
+         @Json(name = "intl_index") intlIndex("intl_index"),
+         @Json(name = "liq_nat_gas_lng") liqNatGasLng("liq_nat_gas_lng"),
+         @Json(name = "livestock") livestock("livestock"),
+         @Json(name = "long_term_gov") longTermGov("long_term_gov"),
+         @Json(name = "long_term_non_gov") longTermNonGov("long_term_non_gov"),
+         @Json(name = "majors") majors("majors"),
+         @Json(name = "minors") minors("minors"),
+         @Json(name = "nat_gas") natGas("nat_gas"),
+         @Json(name = "nat_gas_liq_petro") natGasLiqPetro("nat_gas_liq_petro"),
+         @Json(name = "precious") precious("precious"),
+         @Json(name = "refined_products") refinedProducts("refined_products"),
+         @Json(name = "s_and_p_gsci") sAndPGsci("s_and_p_gsci"),
+         @Json(name = "sel_sector_index") selSectorIndex("sel_sector_index"),
+         @Json(name = "short_term_gov") shortTermGov("short_term_gov"),
+         @Json(name = "short_term_non_gov") shortTermNonGov("short_term_non_gov"),
+         @Json(name = "softs") softs("softs"),
+         @Json(name = "us") us("us"),
+         @Json(name = "us_index") usIndex("us_index"),
+         @Json(name = "wet_bulk") wetBulk("wet_bulk");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter sectorAnyOf
+     */
+     enum class SectorAnyOfGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "asia") asia("asia"),
+         @Json(name = "base") base("base"),
+         @Json(name = "biofuels") biofuels("biofuels"),
+         @Json(name = "coal") coal("coal"),
+         @Json(name = "cross_rates") crossRates("cross_rates"),
+         @Json(name = "crude_oil") crudeOil("crude_oil"),
+         @Json(name = "custom_index") customIndex("custom_index"),
+         @Json(name = "dairy") dairy("dairy"),
+         @Json(name = "dj_ubs_ci") djUbsCi("dj_ubs_ci"),
+         @Json(name = "electricity") electricity("electricity"),
+         @Json(name = "emissions") emissions("emissions"),
+         @Json(name = "europe") europe("europe"),
+         @Json(name = "fertilizer") fertilizer("fertilizer"),
+         @Json(name = "forestry") forestry("forestry"),
+         @Json(name = "grains_and_oilseeds") grainsAndOilseeds("grains_and_oilseeds"),
+         @Json(name = "intl_index") intlIndex("intl_index"),
+         @Json(name = "liq_nat_gas_lng") liqNatGasLng("liq_nat_gas_lng"),
+         @Json(name = "livestock") livestock("livestock"),
+         @Json(name = "long_term_gov") longTermGov("long_term_gov"),
+         @Json(name = "long_term_non_gov") longTermNonGov("long_term_non_gov"),
+         @Json(name = "majors") majors("majors"),
+         @Json(name = "minors") minors("minors"),
+         @Json(name = "nat_gas") natGas("nat_gas"),
+         @Json(name = "nat_gas_liq_petro") natGasLiqPetro("nat_gas_liq_petro"),
+         @Json(name = "precious") precious("precious"),
+         @Json(name = "refined_products") refinedProducts("refined_products"),
+         @Json(name = "s_and_p_gsci") sAndPGsci("s_and_p_gsci"),
+         @Json(name = "sel_sector_index") selSectorIndex("sel_sector_index"),
+         @Json(name = "short_term_gov") shortTermGov("short_term_gov"),
+         @Json(name = "short_term_non_gov") shortTermNonGov("short_term_non_gov"),
+         @Json(name = "softs") softs("softs"),
+         @Json(name = "us") us("us"),
+         @Json(name = "us_index") usIndex("us_index"),
+         @Json(name = "wet_bulk") wetBulk("wet_bulk");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter subSector
+     */
+     enum class SubSectorGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "asian") asian("asian"),
+         @Json(name = "canadian") canadian("canadian"),
+         @Json(name = "cat") cat("cat"),
+         @Json(name = "cooling_degree_days") coolingDegreeDays("cooling_degree_days"),
+         @Json(name = "ercot") ercot("ercot"),
+         @Json(name = "european") european("european"),
+         @Json(name = "gulf") gulf("gulf"),
+         @Json(name = "heating_degree_days") heatingDegreeDays("heating_degree_days"),
+         @Json(name = "iso_ne") isoNe("iso_ne"),
+         @Json(name = "large_cap_index") largeCapIndex("large_cap_index"),
+         @Json(name = "mid_cap_index") midCapIndex("mid_cap_index"),
+         @Json(name = "miso") miso("miso"),
+         @Json(name = "north_american") northAmerican("north_american"),
+         @Json(name = "nyiso") nyiso("nyiso"),
+         @Json(name = "pjm") pjm("pjm"),
+         @Json(name = "small_cap_index") smallCapIndex("small_cap_index"),
+         @Json(name = "west") west("west"),
+         @Json(name = "western_power") westernPower("western_power");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter subSectorAnyOf
+     */
+     enum class SubSectorAnyOfGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "asian") asian("asian"),
+         @Json(name = "canadian") canadian("canadian"),
+         @Json(name = "cat") cat("cat"),
+         @Json(name = "cooling_degree_days") coolingDegreeDays("cooling_degree_days"),
+         @Json(name = "ercot") ercot("ercot"),
+         @Json(name = "european") european("european"),
+         @Json(name = "gulf") gulf("gulf"),
+         @Json(name = "heating_degree_days") heatingDegreeDays("heating_degree_days"),
+         @Json(name = "iso_ne") isoNe("iso_ne"),
+         @Json(name = "large_cap_index") largeCapIndex("large_cap_index"),
+         @Json(name = "mid_cap_index") midCapIndex("mid_cap_index"),
+         @Json(name = "miso") miso("miso"),
+         @Json(name = "north_american") northAmerican("north_american"),
+         @Json(name = "nyiso") nyiso("nyiso"),
+         @Json(name = "pjm") pjm("pjm"),
+         @Json(name = "small_cap_index") smallCapIndex("small_cap_index"),
+         @Json(name = "west") west("west"),
+         @Json(name = "western_power") westernPower("western_power");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetClass
+     */
+     enum class AssetClassGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "alt_investment") altInvestment("alt_investment"),
+         @Json(name = "commodity") commodity("commodity"),
+         @Json(name = "financials") financials("financials");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetClassAnyOf
+     */
+     enum class AssetClassAnyOfGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "alt_investment") altInvestment("alt_investment"),
+         @Json(name = "commodity") commodity("commodity"),
+         @Json(name = "financials") financials("financials");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetSubClass
+     */
+     enum class AssetSubClassGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "agricultural") agricultural("agricultural"),
+         @Json(name = "commodity_index") commodityIndex("commodity_index"),
+         @Json(name = "energy") energy("energy"),
+         @Json(name = "equity") equity("equity"),
+         @Json(name = "foreign_exchange") foreignExchange("foreign_exchange"),
+         @Json(name = "freight") freight("freight"),
+         @Json(name = "housing") housing("housing"),
+         @Json(name = "interest_rate") interestRate("interest_rate"),
+         @Json(name = "metals") metals("metals"),
+         @Json(name = "weather") weather("weather");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter assetSubClassAnyOf
+     */
+     enum class AssetSubClassAnyOfGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "agricultural") agricultural("agricultural"),
+         @Json(name = "commodity_index") commodityIndex("commodity_index"),
+         @Json(name = "energy") energy("energy"),
+         @Json(name = "equity") equity("equity"),
+         @Json(name = "foreign_exchange") foreignExchange("foreign_exchange"),
+         @Json(name = "freight") freight("freight"),
+         @Json(name = "housing") housing("housing"),
+         @Json(name = "interest_rate") interestRate("interest_rate"),
+         @Json(name = "metals") metals("metals"),
+         @Json(name = "weather") weather("weather");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter type
+     */
+     enum class TypeGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter typeAnyOf
+     */
+     enum class TypeAnyOfGetFuturesV1ProductsNew(val value: kotlin.String) {
+         @Json(name = "single") single("single"),
+         @Json(name = "combo") combo("combo");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /futures/v1/products/new
+     * Futures Products API
+     * The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
+     * @param name The full name of the product. (optional)
+     * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param nameGt Filter greater than the value. (optional)
+     * @param nameGte Filter greater than or equal to the value. (optional)
+     * @param nameLt Filter less than the value. (optional)
+     * @param nameLte Filter less than or equal to the value. (optional)
+     * @param productCode The identifier for the product. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param providerId A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code. (optional)
+     * @param providerIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param providerIdGt Filter greater than the value. (optional)
+     * @param providerIdGte Filter greater than or equal to the value. (optional)
+     * @param providerIdLt Filter less than the value. (optional)
+     * @param providerIdLte Filter less than or equal to the value. (optional)
+     * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param sector The sector to which the product belongs. (optional)
+     * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param subSector The sub-sector to which the product belongs. (optional)
+     * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetClass The asset class to which the product belongs. (optional)
+     * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetSubClass The asset sub-class to which the product belongs. (optional)
+     * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
+     * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return GetFuturesV1ProductsNew200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getFuturesV1ProductsNew(name: kotlin.String? = null, nameAnyOf: kotlin.String? = null, nameGt: kotlin.String? = null, nameGte: kotlin.String? = null, nameLt: kotlin.String? = null, nameLte: kotlin.String? = null, productCode: kotlin.String? = null, productCodeAnyOf: kotlin.String? = null, productCodeGt: kotlin.String? = null, productCodeGte: kotlin.String? = null, productCodeLt: kotlin.String? = null, productCodeLte: kotlin.String? = null, providerId: kotlin.String? = null, providerIdAnyOf: kotlin.String? = null, providerIdGt: kotlin.String? = null, providerIdGte: kotlin.String? = null, providerIdLt: kotlin.String? = null, providerIdLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, tradingVenue: kotlin.String? = null, tradingVenueAnyOf: kotlin.String? = null, tradingVenueGt: kotlin.String? = null, tradingVenueGte: kotlin.String? = null, tradingVenueLt: kotlin.String? = null, tradingVenueLte: kotlin.String? = null, sector: SectorGetFuturesV1ProductsNew? = null, sectorAnyOf: SectorAnyOfGetFuturesV1ProductsNew? = null, subSector: SubSectorGetFuturesV1ProductsNew? = null, subSectorAnyOf: SubSectorAnyOfGetFuturesV1ProductsNew? = null, assetClass: AssetClassGetFuturesV1ProductsNew? = null, assetClassAnyOf: AssetClassAnyOfGetFuturesV1ProductsNew? = null, assetSubClass: AssetSubClassGetFuturesV1ProductsNew? = null, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesV1ProductsNew? = null, type: TypeGetFuturesV1ProductsNew? = null, typeAnyOf: TypeAnyOfGetFuturesV1ProductsNew? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.asc") : GetFuturesV1ProductsNew200Response {
+        val localVarResponse = getFuturesV1ProductsNewWithHttpInfo(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, providerId = providerId, providerIdAnyOf = providerIdAnyOf, providerIdGt = providerIdGt, providerIdGte = providerIdGte, providerIdLt = providerIdLt, providerIdLte = providerIdLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, sector = sector, sectorAnyOf = sectorAnyOf, subSector = subSector, subSectorAnyOf = subSectorAnyOf, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, type = type, typeAnyOf = typeAnyOf, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetFuturesV1ProductsNew200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /futures/v1/products/new
+     * Futures Products API
+     * The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
+     * @param name The full name of the product. (optional)
+     * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param nameGt Filter greater than the value. (optional)
+     * @param nameGte Filter greater than or equal to the value. (optional)
+     * @param nameLt Filter less than the value. (optional)
+     * @param nameLte Filter less than or equal to the value. (optional)
+     * @param productCode The identifier for the product. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param providerId A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code. (optional)
+     * @param providerIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param providerIdGt Filter greater than the value. (optional)
+     * @param providerIdGte Filter greater than or equal to the value. (optional)
+     * @param providerIdLt Filter less than the value. (optional)
+     * @param providerIdLte Filter less than or equal to the value. (optional)
+     * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param sector The sector to which the product belongs. (optional)
+     * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param subSector The sub-sector to which the product belongs. (optional)
+     * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetClass The asset class to which the product belongs. (optional)
+     * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetSubClass The asset sub-class to which the product belongs. (optional)
+     * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
+     * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return ApiResponse<GetFuturesV1ProductsNew200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getFuturesV1ProductsNewWithHttpInfo(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, providerId: kotlin.String?, providerIdAnyOf: kotlin.String?, providerIdGt: kotlin.String?, providerIdGte: kotlin.String?, providerIdLt: kotlin.String?, providerIdLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, sector: SectorGetFuturesV1ProductsNew?, sectorAnyOf: SectorAnyOfGetFuturesV1ProductsNew?, subSector: SubSectorGetFuturesV1ProductsNew?, subSectorAnyOf: SubSectorAnyOfGetFuturesV1ProductsNew?, assetClass: AssetClassGetFuturesV1ProductsNew?, assetClassAnyOf: AssetClassAnyOfGetFuturesV1ProductsNew?, assetSubClass: AssetSubClassGetFuturesV1ProductsNew?, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesV1ProductsNew?, type: TypeGetFuturesV1ProductsNew?, typeAnyOf: TypeAnyOfGetFuturesV1ProductsNew?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetFuturesV1ProductsNew200Response?> {
+        val localVariableConfig = getFuturesV1ProductsNewRequestConfig(name = name, nameAnyOf = nameAnyOf, nameGt = nameGt, nameGte = nameGte, nameLt = nameLt, nameLte = nameLte, productCode = productCode, productCodeAnyOf = productCodeAnyOf, productCodeGt = productCodeGt, productCodeGte = productCodeGte, productCodeLt = productCodeLt, productCodeLte = productCodeLte, providerId = providerId, providerIdAnyOf = providerIdAnyOf, providerIdGt = providerIdGt, providerIdGte = providerIdGte, providerIdLt = providerIdLt, providerIdLte = providerIdLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, tradingVenue = tradingVenue, tradingVenueAnyOf = tradingVenueAnyOf, tradingVenueGt = tradingVenueGt, tradingVenueGte = tradingVenueGte, tradingVenueLt = tradingVenueLt, tradingVenueLte = tradingVenueLte, sector = sector, sectorAnyOf = sectorAnyOf, subSector = subSector, subSectorAnyOf = subSectorAnyOf, assetClass = assetClass, assetClassAnyOf = assetClassAnyOf, assetSubClass = assetSubClass, assetSubClassAnyOf = assetSubClassAnyOf, type = type, typeAnyOf = typeAnyOf, limit = limit, sort = sort)
+
+        return request<Unit, GetFuturesV1ProductsNew200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getFuturesV1ProductsNew
+     *
+     * @param name The full name of the product. (optional)
+     * @param nameAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param nameGt Filter greater than the value. (optional)
+     * @param nameGte Filter greater than or equal to the value. (optional)
+     * @param nameLt Filter less than the value. (optional)
+     * @param nameLte Filter less than or equal to the value. (optional)
+     * @param productCode The identifier for the product. (optional)
+     * @param productCodeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param productCodeGt Filter greater than the value. (optional)
+     * @param productCodeGte Filter greater than or equal to the value. (optional)
+     * @param productCodeLt Filter less than the value. (optional)
+     * @param productCodeLte Filter less than or equal to the value. (optional)
+     * @param providerId A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code. (optional)
+     * @param providerIdAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param providerIdGt Filter greater than the value. (optional)
+     * @param providerIdGte Filter greater than or equal to the value. (optional)
+     * @param providerIdLt Filter less than the value. (optional)
+     * @param providerIdLte Filter less than or equal to the value. (optional)
+     * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param tradingVenue The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. (optional)
+     * @param tradingVenueAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tradingVenueGt Filter greater than the value. (optional)
+     * @param tradingVenueGte Filter greater than or equal to the value. (optional)
+     * @param tradingVenueLt Filter less than the value. (optional)
+     * @param tradingVenueLte Filter less than or equal to the value. (optional)
+     * @param sector The sector to which the product belongs. (optional)
+     * @param sectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param subSector The sub-sector to which the product belongs. (optional)
+     * @param subSectorAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetClass The asset class to which the product belongs. (optional)
+     * @param assetClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param assetSubClass The asset sub-class to which the product belongs. (optional)
+     * @param assetSubClassAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param type The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. (optional)
+     * @param typeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "date.asc")
+     * @return RequestConfig
+     */
+    fun getFuturesV1ProductsNewRequestConfig(name: kotlin.String?, nameAnyOf: kotlin.String?, nameGt: kotlin.String?, nameGte: kotlin.String?, nameLt: kotlin.String?, nameLte: kotlin.String?, productCode: kotlin.String?, productCodeAnyOf: kotlin.String?, productCodeGt: kotlin.String?, productCodeGte: kotlin.String?, productCodeLt: kotlin.String?, productCodeLte: kotlin.String?, providerId: kotlin.String?, providerIdAnyOf: kotlin.String?, providerIdGt: kotlin.String?, providerIdGte: kotlin.String?, providerIdLt: kotlin.String?, providerIdLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, tradingVenue: kotlin.String?, tradingVenueAnyOf: kotlin.String?, tradingVenueGt: kotlin.String?, tradingVenueGte: kotlin.String?, tradingVenueLt: kotlin.String?, tradingVenueLte: kotlin.String?, sector: SectorGetFuturesV1ProductsNew?, sectorAnyOf: SectorAnyOfGetFuturesV1ProductsNew?, subSector: SubSectorGetFuturesV1ProductsNew?, subSectorAnyOf: SubSectorAnyOfGetFuturesV1ProductsNew?, assetClass: AssetClassGetFuturesV1ProductsNew?, assetClassAnyOf: AssetClassAnyOfGetFuturesV1ProductsNew?, assetSubClass: AssetSubClassGetFuturesV1ProductsNew?, assetSubClassAnyOf: AssetSubClassAnyOfGetFuturesV1ProductsNew?, type: TypeGetFuturesV1ProductsNew?, typeAnyOf: TypeAnyOfGetFuturesV1ProductsNew?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (name != null) {
+                    put("name", listOf(name.toString()))
+                }
+                if (nameAnyOf != null) {
+                    put("name.any_of", listOf(nameAnyOf.toString()))
+                }
+                if (nameGt != null) {
+                    put("name.gt", listOf(nameGt.toString()))
+                }
+                if (nameGte != null) {
+                    put("name.gte", listOf(nameGte.toString()))
+                }
+                if (nameLt != null) {
+                    put("name.lt", listOf(nameLt.toString()))
+                }
+                if (nameLte != null) {
+                    put("name.lte", listOf(nameLte.toString()))
+                }
+                if (productCode != null) {
+                    put("product_code", listOf(productCode.toString()))
+                }
+                if (productCodeAnyOf != null) {
+                    put("product_code.any_of", listOf(productCodeAnyOf.toString()))
+                }
+                if (productCodeGt != null) {
+                    put("product_code.gt", listOf(productCodeGt.toString()))
+                }
+                if (productCodeGte != null) {
+                    put("product_code.gte", listOf(productCodeGte.toString()))
+                }
+                if (productCodeLt != null) {
+                    put("product_code.lt", listOf(productCodeLt.toString()))
+                }
+                if (productCodeLte != null) {
+                    put("product_code.lte", listOf(productCodeLte.toString()))
+                }
+                if (providerId != null) {
+                    put("provider_id", listOf(providerId.toString()))
+                }
+                if (providerIdAnyOf != null) {
+                    put("provider_id.any_of", listOf(providerIdAnyOf.toString()))
+                }
+                if (providerIdGt != null) {
+                    put("provider_id.gt", listOf(providerIdGt.toString()))
+                }
+                if (providerIdGte != null) {
+                    put("provider_id.gte", listOf(providerIdGte.toString()))
+                }
+                if (providerIdLt != null) {
+                    put("provider_id.lt", listOf(providerIdLt.toString()))
+                }
+                if (providerIdLte != null) {
+                    put("provider_id.lte", listOf(providerIdLte.toString()))
+                }
+                if (date != null) {
+                    put("date", listOf(date.toString()))
+                }
+                if (dateGt != null) {
+                    put("date.gt", listOf(dateGt.toString()))
+                }
+                if (dateGte != null) {
+                    put("date.gte", listOf(dateGte.toString()))
+                }
+                if (dateLt != null) {
+                    put("date.lt", listOf(dateLt.toString()))
+                }
+                if (dateLte != null) {
+                    put("date.lte", listOf(dateLte.toString()))
+                }
+                if (tradingVenue != null) {
+                    put("trading_venue", listOf(tradingVenue.toString()))
+                }
+                if (tradingVenueAnyOf != null) {
+                    put("trading_venue.any_of", listOf(tradingVenueAnyOf.toString()))
+                }
+                if (tradingVenueGt != null) {
+                    put("trading_venue.gt", listOf(tradingVenueGt.toString()))
+                }
+                if (tradingVenueGte != null) {
+                    put("trading_venue.gte", listOf(tradingVenueGte.toString()))
+                }
+                if (tradingVenueLt != null) {
+                    put("trading_venue.lt", listOf(tradingVenueLt.toString()))
+                }
+                if (tradingVenueLte != null) {
+                    put("trading_venue.lte", listOf(tradingVenueLte.toString()))
+                }
+                if (sector != null) {
+                    put("sector", listOf(sector.value))
+                }
+                if (sectorAnyOf != null) {
+                    put("sector.any_of", listOf(sectorAnyOf.value))
+                }
+                if (subSector != null) {
+                    put("sub_sector", listOf(subSector.value))
+                }
+                if (subSectorAnyOf != null) {
+                    put("sub_sector.any_of", listOf(subSectorAnyOf.value))
+                }
+                if (assetClass != null) {
+                    put("asset_class", listOf(assetClass.value))
+                }
+                if (assetClassAnyOf != null) {
+                    put("asset_class.any_of", listOf(assetClassAnyOf.value))
+                }
+                if (assetSubClass != null) {
+                    put("asset_sub_class", listOf(assetSubClass.value))
+                }
+                if (assetSubClassAnyOf != null) {
+                    put("asset_sub_class.any_of", listOf(assetSubClassAnyOf.value))
+                }
+                if (type != null) {
+                    put("type", listOf(type.value))
+                }
+                if (typeAnyOf != null) {
+                    put("type.any_of", listOf(typeAnyOf.value))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/futures/v1/products/new",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
