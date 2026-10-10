@@ -70,6 +70,7 @@ import com.massive.client.models.GetFuturesV1Contracts200Response
 import com.massive.client.models.GetFuturesV1Exchanges200Response
 import com.massive.client.models.GetFuturesV1MarketStatus200Response
 import com.massive.client.models.GetFuturesV1Products200Response
+import com.massive.client.models.GetFuturesV1ProductsNew200Response
 import com.massive.client.models.GetFuturesV1QuotesTicker200Response
 import com.massive.client.models.GetFuturesV1Schedules200Response
 import com.massive.client.models.GetFuturesV1Snapshot200Response
@@ -1136,6 +1137,54 @@ class DefaultApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
             //val result : GetFuturesV1Products200Response = apiInstance.getFuturesV1Products(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getFuturesV1ProductsNew
+        should("test getFuturesV1ProductsNew") {
+            // uncomment below to test getFuturesV1ProductsNew
+            //val name : kotlin.String = name_example // kotlin.String | The full name of the product.
+            //val nameAnyOf : kotlin.String = nameAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val nameGt : kotlin.String = nameGt_example // kotlin.String | Filter greater than the value.
+            //val nameGte : kotlin.String = nameGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val nameLt : kotlin.String = nameLt_example // kotlin.String | Filter less than the value.
+            //val nameLte : kotlin.String = nameLte_example // kotlin.String | Filter less than or equal to the value.
+            //val productCode : kotlin.String = productCode_example // kotlin.String | The identifier for the product.
+            //val productCodeAnyOf : kotlin.String = productCodeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val productCodeGt : kotlin.String = productCodeGt_example // kotlin.String | Filter greater than the value.
+            //val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
+            //val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+            //val providerId : kotlin.String = providerId_example // kotlin.String | A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
+            //val providerIdAnyOf : kotlin.String = providerIdAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val providerIdGt : kotlin.String = providerIdGt_example // kotlin.String | Filter greater than the value.
+            //val providerIdGte : kotlin.String = providerIdGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val providerIdLt : kotlin.String = providerIdLt_example // kotlin.String | Filter less than the value.
+            //val providerIdLte : kotlin.String = providerIdLte_example // kotlin.String | Filter less than or equal to the value.
+            //val date : kotlin.String = date_example // kotlin.String | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted 'yyyy-mm-dd'.
+            //val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which this product's contracts trade.
+            //val tradingVenueAnyOf : kotlin.String = tradingVenueAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tradingVenueGt : kotlin.String = tradingVenueGt_example // kotlin.String | Filter greater than the value.
+            //val tradingVenueGte : kotlin.String = tradingVenueGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val tradingVenueLt : kotlin.String = tradingVenueLt_example // kotlin.String | Filter less than the value.
+            //val tradingVenueLte : kotlin.String = tradingVenueLte_example // kotlin.String | Filter less than or equal to the value.
+            //val sector : kotlin.String = sector_example // kotlin.String | The sector to which the product belongs.
+            //val sectorAnyOf : kotlin.String = sectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val subSector : kotlin.String = subSector_example // kotlin.String | The sub-sector to which the product belongs.
+            //val subSectorAnyOf : kotlin.String = subSectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val assetClass : kotlin.String = assetClass_example // kotlin.String | The asset class to which the product belongs.
+            //val assetClassAnyOf : kotlin.String = assetClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val assetSubClass : kotlin.String = assetSubClass_example // kotlin.String | The asset sub-class to which the product belongs.
+            //val assetSubClassAnyOf : kotlin.String = assetSubClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val type : kotlin.String = type_example // kotlin.String | The type of product, one of 'single' or 'combo'. Leaving this filter blank will query for both 'single' and 'combo' types.
+            //val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
+            //val result : GetFuturesV1ProductsNew200Response = apiInstance.getFuturesV1ProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, providerIdAnyOf, providerIdGt, providerIdGte, providerIdLt, providerIdLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
             //result shouldBe ("TODO")
         }
 
