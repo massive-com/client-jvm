@@ -48,6 +48,7 @@ All URIs are relative to *https://api.massive.com*
 | [**getFuturesV1Exchanges**](DefaultApi.md#getFuturesV1Exchanges) | **GET** /futures/v1/exchanges |  |
 | [**getFuturesV1MarketStatus**](DefaultApi.md#getFuturesV1MarketStatus) | **GET** /futures/v1/market-status | Market Status API |
 | [**getFuturesV1Products**](DefaultApi.md#getFuturesV1Products) | **GET** /futures/v1/products | Futures Products API |
+| [**getFuturesV1ProductsNew**](DefaultApi.md#getFuturesV1ProductsNew) | **GET** /futures/v1/products/new | Futures Products API |
 | [**getFuturesV1QuotesTicker**](DefaultApi.md#getFuturesV1QuotesTicker) | **GET** /futures/v1/quotes/{ticker} |  |
 | [**getFuturesV1Schedules**](DefaultApi.md#getFuturesV1Schedules) | **GET** /futures/v1/schedules | Futures Schedules API |
 | [**getFuturesV1Snapshot**](DefaultApi.md#getFuturesV1Snapshot) | **GET** /futures/v1/snapshot | futures_snapshot_v1 API |
@@ -3552,6 +3553,135 @@ try {
 ### Return type
 
 [**GetFuturesV1Products200Response**](GetFuturesV1Products200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getFuturesV1ProductsNew"></a>
+# **getFuturesV1ProductsNew**
+> GetFuturesV1ProductsNew200Response getFuturesV1ProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, providerIdAnyOf, providerIdGt, providerIdGte, providerIdLt, providerIdLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
+
+Futures Products API
+
+The Products API is a unified source for discovering all supported futures products and retrieving full product specifications. It returns the complete product universe with product codes, names, exchange identifiers, sector and asset class classifications, product type, settlement method, and pricing and quotation details. You can filter by name, exchange, sector, asset class, product type, or date to capture the product set or product definition that existed at a specific point in time. It also retrieves the full specification for a single product, supporting accurate system configuration, analytics, trading workflows, and historical reconciliation.  Use Cases: Product specification, historical product checks, risk management, trading system integration.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val name : kotlin.String = name_example // kotlin.String | The full name of the product.
+val nameAnyOf : kotlin.String = nameAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val nameGt : kotlin.String = nameGt_example // kotlin.String | Filter greater than the value.
+val nameGte : kotlin.String = nameGte_example // kotlin.String | Filter greater than or equal to the value.
+val nameLt : kotlin.String = nameLt_example // kotlin.String | Filter less than the value.
+val nameLte : kotlin.String = nameLte_example // kotlin.String | Filter less than or equal to the value.
+val productCode : kotlin.String = productCode_example // kotlin.String | The identifier for the product.
+val productCodeAnyOf : kotlin.String = productCodeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val productCodeGt : kotlin.String = productCodeGt_example // kotlin.String | Filter greater than the value.
+val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
+val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
+val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+val providerId : kotlin.String = providerId_example // kotlin.String | A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
+val providerIdAnyOf : kotlin.String = providerIdAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val providerIdGt : kotlin.String = providerIdGt_example // kotlin.String | Filter greater than the value.
+val providerIdGte : kotlin.String = providerIdGte_example // kotlin.String | Filter greater than or equal to the value.
+val providerIdLt : kotlin.String = providerIdLt_example // kotlin.String | Filter less than the value.
+val providerIdLte : kotlin.String = providerIdLte_example // kotlin.String | Filter less than or equal to the value.
+val date : kotlin.String = date_example // kotlin.String | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which this product's contracts trade.
+val tradingVenueAnyOf : kotlin.String = tradingVenueAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tradingVenueGt : kotlin.String = tradingVenueGt_example // kotlin.String | Filter greater than the value.
+val tradingVenueGte : kotlin.String = tradingVenueGte_example // kotlin.String | Filter greater than or equal to the value.
+val tradingVenueLt : kotlin.String = tradingVenueLt_example // kotlin.String | Filter less than the value.
+val tradingVenueLte : kotlin.String = tradingVenueLte_example // kotlin.String | Filter less than or equal to the value.
+val sector : kotlin.String = sector_example // kotlin.String | The sector to which the product belongs.
+val sectorAnyOf : kotlin.String = sectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val subSector : kotlin.String = subSector_example // kotlin.String | The sub-sector to which the product belongs.
+val subSectorAnyOf : kotlin.String = subSectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val assetClass : kotlin.String = assetClass_example // kotlin.String | The asset class to which the product belongs.
+val assetClassAnyOf : kotlin.String = assetClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val assetSubClass : kotlin.String = assetSubClass_example // kotlin.String | The asset sub-class to which the product belongs.
+val assetSubClassAnyOf : kotlin.String = assetSubClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val type : kotlin.String = type_example // kotlin.String | The type of product, one of 'single' or 'combo'. Leaving this filter blank will query for both 'single' and 'combo' types.
+val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
+try {
+    val result : GetFuturesV1ProductsNew200Response = apiInstance.getFuturesV1ProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, providerIdAnyOf, providerIdGt, providerIdGte, providerIdLt, providerIdLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getFuturesV1ProductsNew")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getFuturesV1ProductsNew")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **name** | **kotlin.String**| The full name of the product. | [optional] |
+| **nameAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **nameGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **nameGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **nameLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **nameLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **productCode** | **kotlin.String**| The identifier for the product. | [optional] |
+| **productCodeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **productCodeGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **productCodeGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **productCodeLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **productCodeLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **providerId** | **kotlin.String**| A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code. | [optional] |
+| **providerIdAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **providerIdGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **providerIdGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **providerIdLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **providerIdLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **date** | **kotlin.String**| A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **tradingVenue** | **kotlin.String**| The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. | [optional] |
+| **tradingVenueAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tradingVenueGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tradingVenueGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tradingVenueLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tradingVenueLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **sector** | **kotlin.String**| The sector to which the product belongs. | [optional] [enum: asia, base, biofuels, coal, cross_rates, crude_oil, custom_index, dairy, dj_ubs_ci, electricity, emissions, europe, fertilizer, forestry, grains_and_oilseeds, intl_index, liq_nat_gas_lng, livestock, long_term_gov, long_term_non_gov, majors, minors, nat_gas, nat_gas_liq_petro, precious, refined_products, s_and_p_gsci, sel_sector_index, short_term_gov, short_term_non_gov, softs, us, us_index, wet_bulk] |
+| **sectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: asia, base, biofuels, coal, cross_rates, crude_oil, custom_index, dairy, dj_ubs_ci, electricity, emissions, europe, fertilizer, forestry, grains_and_oilseeds, intl_index, liq_nat_gas_lng, livestock, long_term_gov, long_term_non_gov, majors, minors, nat_gas, nat_gas_liq_petro, precious, refined_products, s_and_p_gsci, sel_sector_index, short_term_gov, short_term_non_gov, softs, us, us_index, wet_bulk] |
+| **subSector** | **kotlin.String**| The sub-sector to which the product belongs. | [optional] [enum: asian, canadian, cat, cooling_degree_days, ercot, european, gulf, heating_degree_days, iso_ne, large_cap_index, mid_cap_index, miso, north_american, nyiso, pjm, small_cap_index, west, western_power] |
+| **subSectorAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: asian, canadian, cat, cooling_degree_days, ercot, european, gulf, heating_degree_days, iso_ne, large_cap_index, mid_cap_index, miso, north_american, nyiso, pjm, small_cap_index, west, western_power] |
+| **assetClass** | **kotlin.String**| The asset class to which the product belongs. | [optional] [enum: alt_investment, commodity, financials] |
+| **assetClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: alt_investment, commodity, financials] |
+| **assetSubClass** | **kotlin.String**| The asset sub-class to which the product belongs. | [optional] [enum: agricultural, commodity_index, energy, equity, foreign_exchange, freight, housing, interest_rate, metals, weather] |
+| **assetSubClassAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: agricultural, commodity_index, energy, equity, foreign_exchange, freight, housing, interest_rate, metals, weather] |
+| **type** | **kotlin.String**| The type of product, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for both &#39;single&#39; and &#39;combo&#39; types. | [optional] [enum: single, combo] |
+| **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: single, combo] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. | [optional] [default to &quot;date.asc&quot;] |
+
+### Return type
+
+[**GetFuturesV1ProductsNew200Response**](GetFuturesV1ProductsNew200Response.md)
 
 ### Authorization
 
