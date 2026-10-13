@@ -26,19 +26,13 @@ package com.massive.client.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.massive.client.models.ListFinancials200Response
-import com.massive.client.models.ListFinancials200ResponseResultsInner
+import com.massive.client.models.GetFuturesV1ProductsNew200Response
+import com.massive.client.models.GetFuturesV1ProductsNew200ResponseResultsInner
 
-class ListFinancials200ResponseTest : ShouldSpec() {
+class GetFuturesV1ProductsNew200ResponseTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of ListFinancials200Response
-        //val modelInstance = ListFinancials200Response()
-
-        // to test the property `count` - The total number of results for this request.
-        should("test count") {
-            // uncomment below to test the property
-            //modelInstance.count shouldBe ("TODO")
-        }
+        // uncomment below to create an instance of GetFuturesV1ProductsNew200Response
+        //val modelInstance = GetFuturesV1ProductsNew200Response()
 
         // to test the property `requestId` - A request id assigned by the server.
         should("test requestId") {
@@ -46,7 +40,7 @@ class ListFinancials200ResponseTest : ShouldSpec() {
             //modelInstance.requestId shouldBe ("TODO")
         }
 
-        // to test the property `results` - An array of results containing the requested data.
+        // to test the property `results` - The results for this request.
         should("test results") {
             // uncomment below to test the property
             //modelInstance.results shouldBe ("TODO")
@@ -58,7 +52,7 @@ class ListFinancials200ResponseTest : ShouldSpec() {
             //modelInstance.status shouldBe ("TODO")
         }
 
-        // to test the property `nextUrl` - If present, this value can be used to fetch the next page of data.
+        // to test the property `nextUrl` - If present, this value can be used to fetch the next page.
         should("test nextUrl") {
             // uncomment below to test the property
             //modelInstance.nextUrl shouldBe ("TODO")
