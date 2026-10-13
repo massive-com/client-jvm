@@ -45,6 +45,15 @@ To persist it, add the `export` line to your shell startup file (e.g. `.bashrc` 
 
 ---
 
+## AI tools
+
+Coding with Claude, Cursor, ChatGPT, or another AI assistant? Give it direct access to Massive data and docs:
+
+- **MCP server**: connect your MCP client to the hosted server at `https://mcp.massive.com/`. See the [AI Tools quickstart](https://massive.com/docs/ai-tools/quickstart) for setup in each client.
+- **llms.txt**: point your agent at [`https://massive.com/docs/llms.txt`](https://massive.com/docs/llms.txt) for an LLM-friendly index of the Massive docs.
+
+---
+
 ## Build and run the examples locally
 
 Follow these steps to clone, build, and verify the SDK works end-to-end with a live REST call and
@@ -195,3 +204,5 @@ for `connect`, `subscribe`, `unsubscribe`, and `disconnect`.
 
 Contributions are welcome — open an issue or PR. If you're changing how the client is generated,
 see [`scripts/readme.md`](scripts/readme.md) for the generation pipeline and the daily sync workflow.
+
+If you use an AI coding agent to work on this repo, it should read [AGENTS.md](./AGENTS.md), which covers the project layout, build and test commands, and which files are generated.
