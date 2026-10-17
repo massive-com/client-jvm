@@ -70,6 +70,7 @@ import com.massive.client.models.GetFuturesV1Contracts200Response
 import com.massive.client.models.GetFuturesV1Exchanges200Response
 import com.massive.client.models.GetFuturesV1MarketStatus200Response
 import com.massive.client.models.GetFuturesV1Products200Response
+import com.massive.client.models.GetFuturesV1ProductsNew200Response
 import com.massive.client.models.GetFuturesV1QuotesTicker200Response
 import com.massive.client.models.GetFuturesV1Schedules200Response
 import com.massive.client.models.GetFuturesV1Snapshot200Response
@@ -132,7 +133,6 @@ import com.massive.client.models.ListConditions200Response
 import com.massive.client.models.ListDividends200Response
 import com.massive.client.models.ListExchanges200Response
 import com.massive.client.models.ListExchanges400Response
-import com.massive.client.models.ListFinancials200Response
 import com.massive.client.models.ListIPOs200Response
 import com.massive.client.models.ListNews200Response
 import com.massive.client.models.ListNewsPublishedUtcParameter
@@ -1136,6 +1136,54 @@ class DefaultApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
             //val result : GetFuturesV1Products200Response = apiInstance.getFuturesV1Products(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getFuturesV1ProductsNew
+        should("test getFuturesV1ProductsNew") {
+            // uncomment below to test getFuturesV1ProductsNew
+            //val name : kotlin.String = name_example // kotlin.String | The full name of the product.
+            //val nameAnyOf : kotlin.String = nameAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val nameGt : kotlin.String = nameGt_example // kotlin.String | Filter greater than the value.
+            //val nameGte : kotlin.String = nameGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val nameLt : kotlin.String = nameLt_example // kotlin.String | Filter less than the value.
+            //val nameLte : kotlin.String = nameLte_example // kotlin.String | Filter less than or equal to the value.
+            //val productCode : kotlin.String = productCode_example // kotlin.String | The identifier for the product.
+            //val productCodeAnyOf : kotlin.String = productCodeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val productCodeGt : kotlin.String = productCodeGt_example // kotlin.String | Filter greater than the value.
+            //val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
+            //val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+            //val providerId : kotlin.String = providerId_example // kotlin.String | A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
+            //val providerIdAnyOf : kotlin.String = providerIdAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val providerIdGt : kotlin.String = providerIdGt_example // kotlin.String | Filter greater than the value.
+            //val providerIdGte : kotlin.String = providerIdGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val providerIdLt : kotlin.String = providerIdLt_example // kotlin.String | Filter less than the value.
+            //val providerIdLte : kotlin.String = providerIdLte_example // kotlin.String | Filter less than or equal to the value.
+            //val date : kotlin.String = date_example // kotlin.String | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted 'yyyy-mm-dd'.
+            //val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val tradingVenue : kotlin.String = tradingVenue_example // kotlin.String | The trading venue (MIC) for the exchange on which this product's contracts trade.
+            //val tradingVenueAnyOf : kotlin.String = tradingVenueAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tradingVenueGt : kotlin.String = tradingVenueGt_example // kotlin.String | Filter greater than the value.
+            //val tradingVenueGte : kotlin.String = tradingVenueGte_example // kotlin.String | Filter greater than or equal to the value.
+            //val tradingVenueLt : kotlin.String = tradingVenueLt_example // kotlin.String | Filter less than the value.
+            //val tradingVenueLte : kotlin.String = tradingVenueLte_example // kotlin.String | Filter less than or equal to the value.
+            //val sector : kotlin.String = sector_example // kotlin.String | The sector to which the product belongs.
+            //val sectorAnyOf : kotlin.String = sectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val subSector : kotlin.String = subSector_example // kotlin.String | The sub-sector to which the product belongs.
+            //val subSectorAnyOf : kotlin.String = subSectorAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val assetClass : kotlin.String = assetClass_example // kotlin.String | The asset class to which the product belongs.
+            //val assetClassAnyOf : kotlin.String = assetClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val assetSubClass : kotlin.String = assetSubClass_example // kotlin.String | The asset sub-class to which the product belongs.
+            //val assetSubClassAnyOf : kotlin.String = assetSubClassAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val type : kotlin.String = type_example // kotlin.String | The type of product, one of 'single' or 'combo'. Leaving this filter blank will query for both 'single' and 'combo' types.
+            //val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
+            //val result : GetFuturesV1ProductsNew200Response = apiInstance.getFuturesV1ProductsNew(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, providerIdAnyOf, providerIdGt, providerIdGte, providerIdLt, providerIdLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
             //result shouldBe ("TODO")
         }
 
@@ -2514,33 +2562,6 @@ class DefaultApiTest : ShouldSpec() {
             //val assetClass : kotlin.String = stocks // kotlin.String | Filter by asset class.
             //val locale : kotlin.String = us // kotlin.String | Filter by locale.
             //val result : ListExchanges200Response = apiInstance.listExchanges(assetClass, locale)
-            //result shouldBe ("TODO")
-        }
-
-        // to test listFinancials
-        should("test listFinancials") {
-            // uncomment below to test listFinancials
-            //val ticker : kotlin.String = ticker_example // kotlin.String | Query by company ticker.
-            //val cik : kotlin.String = cik_example // kotlin.String | Query by central index key (<a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://www.sec.gov/edgar/searchedgar/cik.htm\">CIK</a>) Number
-            //val companyName : kotlin.String = companyName_example // kotlin.String | Query by company name.
-            //val sic : kotlin.String = sic_example // kotlin.String | Query by standard industrial classification (<a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://www.sec.gov/corpfin/division-of-corporation-finance-standard-industrial-classification-sic-code-list\">SIC</a>)
-            //val filingDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Query by the date when the filing with financials data was filed in YYYY-MM-DD format.  Best used when querying over date ranges to find financials based on filings that happen in a time period.  Examples:  To get financials based on filings that have happened after January 1, 2009 use the query param filing_date.gte=2009-01-01  To get financials based on filings that happened in the year 2009 use the query params filing_date.gte=2009-01-01&filing_date.lt=2010-01-01
-            //val periodOfReportDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The period of report for the filing with financials data in YYYY-MM-DD format.
-            //val timeframe : kotlin.String = timeframe_example // kotlin.String | Query by timeframe. Annual financials originate from 10-K filings, and quarterly financials originate from 10-Q filings. Note: Most companies do not file quarterly reports for Q4 and instead include those financials in their annual report, so some companies my not return quarterly financials for Q4
-            //val includeSources : kotlin.Boolean = true // kotlin.Boolean | Whether or not to include the `xpath` and `formula` attributes for each financial data point. See the `xpath` and `formula` response attributes for more info. False by default.
-            //val companyNameSearch : kotlin.String = companyNameSearch_example // kotlin.String | Search by company_name.
-            //val filingDateGte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateGt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateLte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateLt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val periodOfReportDateGte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateGt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateLte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateLt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val order : kotlin.String = asc // kotlin.String | Order results based on the `sort` field.
-            //val limit : kotlin.Int = 10 // kotlin.Int | Limit the number of results returned, default is 10 and max is 100.
-            //val sort : kotlin.String = filing_date // kotlin.String | Sort field used for ordering.
-            //val result : ListFinancials200Response = apiInstance.listFinancials(ticker, cik, companyName, sic, filingDate, periodOfReportDate, timeframe, includeSources, companyNameSearch, filingDateGte, filingDateGt, filingDateLte, filingDateLt, periodOfReportDateGte, periodOfReportDateGt, periodOfReportDateLte, periodOfReportDateLt, order, limit, sort)
             //result shouldBe ("TODO")
         }
 
