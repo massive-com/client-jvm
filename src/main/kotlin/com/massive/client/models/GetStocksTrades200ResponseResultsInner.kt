@@ -37,7 +37,7 @@ import com.squareup.moshi.JsonClass
  * @param sequenceNumber The sequence number represents the sequence in which trade events happened. These are increasing and unique per ticker symbol, but will not always be sequential (e.g., 1, 2, 6, 9, 10, 11). Values reset after each trading session/day.
  * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it.
  * @param propertySize The size of a trade (also known as volume).
- * @param conditions A list of condition codes.
+ * @param conditions A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
  * @param correction The trade correction indicator.
  * @param participantTimestamp The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the trade was actually generated at the exchange. Omitted on OTC trades reported through the FINRA ORF (exchange 62), which carry no participant timestamp.
  * @param tape There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ
@@ -76,7 +76,7 @@ data class GetStocksTrades200ResponseResultsInner (
     @Json(name = "size")
     val propertySize: kotlin.Double,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>? = null,
 

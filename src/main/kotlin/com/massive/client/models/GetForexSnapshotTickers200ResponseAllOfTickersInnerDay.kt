@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The most recent daily bar for this ticker.
+ * The most recent daily bar for this ticker. Forex daily bars follow the UTC day (00:00 to 23:59 UTC).
  *
  * @param c The close price for the symbol in the given time period.
  * @param h The highest price for the symbol in the given time period.

@@ -36,7 +36,7 @@ import com.squareup.moshi.JsonClass
  * @param propertySize The size of a trade (also known as volume).
  * @param sizeFraction The fractional size of a trade (also known as volume).
  * @param ticker The ticker symbol.
- * @param conditions A list of condition codes.
+ * @param conditions A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
  * @param correction The trade correction indicator.
  * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param id The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID.
@@ -73,7 +73,7 @@ data class GetStocksDevTradesTicker200ResponseResultsInner (
     @Json(name = "ticker")
     val ticker: kotlin.String,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>? = null,
 

@@ -113,7 +113,7 @@ class GetTicker200ResponseResultsTest : ShouldSpec() {
             //modelInstance.homepageUrl shouldBe ("TODO")
         }
 
-        // to test the property `listDate` - The date that the symbol was first publicly listed in the format YYYY-MM-DD.
+        // to test the property `listDate` - The date the security currently trading under this ticker was first publicly listed, in the format YYYY-MM-DD. If a corporate action replaces the security behind the ticker, such as American Depositary Shares being exchanged for ordinary shares under the same symbol, this is the new security's listing date. A move to a different exchange does not change it. Use the date parameter to get the value as of an earlier date.
         should("test listDate") {
             // uncomment below to test the property
             //modelInstance.listDate shouldBe ("TODO")

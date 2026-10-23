@@ -33,14 +33,18 @@ import com.squareup.moshi.JsonClass
  * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day.
  * @param assetClass The asset class to which the product belongs.
  * @param assetSubClass The asset sub-class to which the product belongs.
+ * @param clearingSymbol The clearing symbol assigned to this product by the exchange's clearing house.
+ * @param clearingVenue The trading venue (MIC) for the clearing house that clears this product's contracts.
  * @param lastUpdated The date and time at which this product was last updated.
  * @param name The full name of the product.
  * @param priceQuotation The quoted price for this product.
  * @param productCode The identifier for the product.
+ * @param providerId A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
  * @param sector The sector to which the product belongs.
  * @param settlementCurrencyCode The currency in which this product settles.
  * @param settlementMethod The method of settlement for this product (Financially Settled or Deliverable).
  * @param settlementType The type of settlement for this product.
+ * @param strategyType The strategy type for combo products (e.g. spread, strip, pack). Null for single products.
  * @param subSector The sub-sector to which the product belongs.
  * @param tradeCurrencyCode The currency in which this product's contracts trade.
  * @param tradingVenue The trading venue (MIC) for the exchange on which this product's contracts trade.
@@ -64,6 +68,14 @@ data class GetFuturesV1Products200ResponseResultsInner (
     @Json(name = "asset_sub_class")
     val assetSubClass: kotlin.String? = null,
 
+    /* The clearing symbol assigned to this product by the exchange's clearing house. */
+    @Json(name = "clearing_symbol")
+    val clearingSymbol: kotlin.String? = null,
+
+    /* The trading venue (MIC) for the clearing house that clears this product's contracts. */
+    @Json(name = "clearing_venue")
+    val clearingVenue: kotlin.String? = null,
+
     /* The date and time at which this product was last updated. */
     @Json(name = "last_updated")
     val lastUpdated: java.time.OffsetDateTime? = null,
@@ -80,6 +92,10 @@ data class GetFuturesV1Products200ResponseResultsInner (
     @Json(name = "product_code")
     val productCode: kotlin.String? = null,
 
+    /* A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code. */
+    @Json(name = "provider_id")
+    val providerId: kotlin.String? = null,
+
     /* The sector to which the product belongs. */
     @Json(name = "sector")
     val sector: kotlin.String? = null,
@@ -95,6 +111,10 @@ data class GetFuturesV1Products200ResponseResultsInner (
     /* The type of settlement for this product. */
     @Json(name = "settlement_type")
     val settlementType: kotlin.String? = null,
+
+    /* The strategy type for combo products (e.g. spread, strip, pack). Null for single products. */
+    @Json(name = "strategy_type")
+    val strategyType: kotlin.String? = null,
 
     /* The sub-sector to which the product belongs. */
     @Json(name = "sub_sector")

@@ -45,7 +45,7 @@ import com.squareup.moshi.JsonClass
  * @param delistedUtc The last date that the asset was traded.
  * @param description A description of the company and what they do/offer.
  * @param homepageUrl The URL of the company's website homepage.
- * @param listDate The date that the symbol was first publicly listed in the format YYYY-MM-DD.
+ * @param listDate The date the security currently trading under this ticker was first publicly listed, in the format YYYY-MM-DD. If a corporate action replaces the security behind the ticker, such as American Depositary Shares being exchanged for ordinary shares under the same symbol, this is the new security's listing date. A move to a different exchange does not change it. Use the date parameter to get the value as of an earlier date.
  * @param marketCap The most recent close price of the ticker multiplied by weighted outstanding shares.
  * @param phoneNumber The phone number for the company behind this ticker.
  * @param primaryExchange The ISO code of the primary listing exchange for this asset.
@@ -114,7 +114,7 @@ data class GetTicker200ResponseResults (
     @Json(name = "homepage_url")
     val homepageUrl: kotlin.String? = null,
 
-    /* The date that the symbol was first publicly listed in the format YYYY-MM-DD. */
+    /* The date the security currently trading under this ticker was first publicly listed, in the format YYYY-MM-DD. If a corporate action replaces the security behind the ticker, such as American Depositary Shares being exchanged for ordinary shares under the same symbol, this is the new security's listing date. A move to a different exchange does not change it. Use the date parameter to get the value as of an earlier date. */
     @Json(name = "list_date")
     val listDate: kotlin.String? = null,
 

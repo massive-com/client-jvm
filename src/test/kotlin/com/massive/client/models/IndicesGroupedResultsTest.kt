@@ -27,7 +27,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import com.massive.client.models.IndicesGroupedResults
-import com.massive.client.models.GetPreviousIndicesAggregates200ResponseAllOfResultsInner
+import com.massive.client.models.GetIndicesAggregates200ResponseAllOfResultsInner
 
 class IndicesGroupedResultsTest : ShouldSpec() {
     init {

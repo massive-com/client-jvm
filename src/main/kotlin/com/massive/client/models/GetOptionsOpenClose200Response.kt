@@ -88,7 +88,7 @@ data class GetOptionsOpenClose200Response (
 
     /* The open price of the ticker symbol in pre-market trading. */
     @Json(name = "preMarket")
-    val preMarket: kotlin.Int? = null
+    val preMarket: kotlin.Double? = null
 
 ) {
 

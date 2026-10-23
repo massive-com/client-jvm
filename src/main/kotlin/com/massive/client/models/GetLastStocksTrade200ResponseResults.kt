@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
  * @param t The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this message from the exchange which produced it.
  * @param x The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param y The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the quote was actually generated at the exchange.
- * @param c A list of condition codes.
+ * @param c A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
  * @param e The trade correction indicator.
  * @param f The nanosecond accuracy TRF(Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this message.
  * @param r The ID for the Trade Reporting Facility where the trade took place.
@@ -81,7 +81,7 @@ data class GetLastStocksTrade200ResponseResults (
     @Json(name = "y")
     val y: kotlin.Int,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "c")
     val c: kotlin.collections.List<kotlin.Int>? = null,
 

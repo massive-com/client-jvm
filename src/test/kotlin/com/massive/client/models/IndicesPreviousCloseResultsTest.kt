@@ -26,17 +26,18 @@ package com.massive.client.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.massive.client.models.ListFinancials200ResponseResultsInnerFinancialsBalanceSheet
+import com.massive.client.models.IndicesPreviousCloseResults
+import com.massive.client.models.GetPreviousIndicesAggregates200ResponseAllOfResultsInner
 
-class ListFinancials200ResponseResultsInnerFinancialsBalanceSheetTest : ShouldSpec() {
+class IndicesPreviousCloseResultsTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of ListFinancials200ResponseResultsInnerFinancialsBalanceSheet
-        //val modelInstance = ListFinancials200ResponseResultsInnerFinancialsBalanceSheet()
+        // uncomment below to create an instance of IndicesPreviousCloseResults
+        //val modelInstance = IndicesPreviousCloseResults()
 
-        // to test the property `star`
-        should("test star") {
+        // to test the property `results` - An array of results containing the requested data.
+        should("test results") {
             // uncomment below to test the property
-            //modelInstance.star shouldBe ("TODO")
+            //modelInstance.results shouldBe ("TODO")
         }
 
     }

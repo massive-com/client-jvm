@@ -23,7 +23,7 @@
 
 package com.massive.client.models
 
-import com.massive.client.models.GetPreviousIndicesAggregates200ResponseAllOfResultsInner
+import com.massive.client.models.GetIndicesAggregates200ResponseAllOfResultsInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -39,7 +39,7 @@ data class IndicesGroupedResults (
 
     /* An array of results containing the requested data. */
     @Json(name = "results")
-    val results: kotlin.collections.List<GetPreviousIndicesAggregates200ResponseAllOfResultsInner>? = null
+    val results: kotlin.collections.List<GetIndicesAggregates200ResponseAllOfResultsInner>? = null
 
 ) {
 

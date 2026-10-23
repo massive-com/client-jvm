@@ -11,9 +11,9 @@
 | **P** | **kotlin.Double** | The ask price. |  [optional] |
 | **S** | **kotlin.Int** | The ask size. This represents the number of shares sellers are offering at the given ask price. |  [optional] |
 | **X** | **kotlin.Int** | The exchange ID. See &lt;a href&#x3D;\&quot;https://massive.com/docs/rest/stocks/market-operations/exchanges\&quot; alt&#x3D;\&quot;Exchanges\&quot;&gt;Exchanges&lt;/a&gt; for Massive&#39;s mapping of exchange IDs. |  [optional] |
-| **c** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. |  [optional] |
+| **c** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. |  [optional] |
 | **f** | **kotlin.Int** | The nanosecond accuracy TRF(Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this message. |  [optional] |
-| **i** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of indicator codes. |  [optional] |
+| **i** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means. |  [optional] |
 | **p** | **kotlin.Double** | The bid price. |  [optional] |
 | **s** | **kotlin.Int** | The bid size. This represents the number of shares buyers are bidding for at the given bid price. |  [optional] |
 | **x** | **kotlin.Int** | The exchange ID. See &lt;a href&#x3D;\&quot;https://massive.com/docs/rest/stocks/market-operations/exchanges\&quot; alt&#x3D;\&quot;Exchanges\&quot;&gt;Exchanges&lt;/a&gt; for Massive&#39;s mapping of exchange IDs. |  [optional] |

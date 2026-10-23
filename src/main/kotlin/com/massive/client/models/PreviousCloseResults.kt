@@ -23,21 +23,23 @@
 
 package com.massive.client.models
 
+import com.massive.client.models.GetGroupedCryptoAggregates200ResponseAllOfResultsInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Balance sheet. The keys in this object can be any of the fields listed in the Balance Sheet section of the <a target=\"_blank\" href=\"https://massive.com/blog/financials-api-glossary-of-fields\">financials API glossary of terms</a>.
+ * 
  *
- * @param star 
+ * @param results An array of results containing the requested data.
  */
 
 
-data class ListFinancials200ResponseResultsInnerFinancialsBalanceSheet (
+data class PreviousCloseResults (
 
-    @Json(name = "*")
-    val star: ListFinancials200ResponseResultsInnerFinancialsBalanceSheet? = null
+    /* An array of results containing the requested data. */
+    @Json(name = "results")
+    val results: kotlin.collections.List<GetGroupedCryptoAggregates200ResponseAllOfResultsInner>? = null
 
 ) {
 

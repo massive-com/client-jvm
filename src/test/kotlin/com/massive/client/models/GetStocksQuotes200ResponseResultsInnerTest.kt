@@ -87,13 +87,13 @@ class GetStocksQuotes200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.bidSize shouldBe ("TODO")
         }
 
-        // to test the property `conditions` - A list of condition codes.
+        // to test the property `conditions` - A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
         should("test conditions") {
             // uncomment below to test the property
             //modelInstance.conditions shouldBe ("TODO")
         }
 
-        // to test the property `indicators` - A list of indicator codes.
+        // to test the property `indicators` - A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means.
         should("test indicators") {
             // uncomment below to test the property
             //modelInstance.indicators shouldBe ("TODO")

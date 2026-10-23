@@ -13,8 +13,8 @@
 | **bidExchange** | **kotlin.Int** | The bid exchange ID |  [optional] |
 | **bidPrice** | **kotlin.Double** | The bid price. |  [optional] |
 | **bidSize** | **kotlin.Double** | The bid size. This represents the number of shares buyers are bidding for at the given bid price. |  [optional] |
-| **conditions** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. |  [optional] |
-| **indicators** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of indicator codes. |  [optional] |
+| **conditions** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. |  [optional] |
+| **indicators** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means. |  [optional] |
 | **tape** | **kotlin.Int** | There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 &#x3D; A, 2 &#x3D; B, 3 &#x3D; C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ |  [optional] |
 | **trfTimestamp** | **kotlin.Long** | The nanosecond accuracy TRF (Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this quote. |  [optional] |
 

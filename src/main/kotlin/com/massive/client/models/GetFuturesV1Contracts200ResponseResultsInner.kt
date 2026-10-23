@@ -40,6 +40,8 @@ import com.squareup.moshi.JsonClass
  * @param minOrderQuantity The minimum order quantity.
  * @param name The name of this contract.
  * @param productCode The identifier for the contract's product.
+ * @param providerId A unique identifier for the contract assigned by the data provider. Note that this value is null for historical data (pre-2025-03-12).
+ * @param providerProductId A unique identifier for the product to which a contract, or contracts, belongs. Note that this value is null for historical data (pre-2025-03-12).
  * @param settlementDate The date on which this contract settles.
  * @param settlementTickSize The tick size for settlement.
  * @param spreadTickSize The tick size for spreads.
@@ -91,6 +93,14 @@ data class GetFuturesV1Contracts200ResponseResultsInner (
     /* The identifier for the contract's product. */
     @Json(name = "product_code")
     val productCode: kotlin.String? = null,
+
+    /* A unique identifier for the contract assigned by the data provider. Note that this value is null for historical data (pre-2025-03-12). */
+    @Json(name = "provider_id")
+    val providerId: kotlin.String? = null,
+
+    /* A unique identifier for the product to which a contract, or contracts, belongs. Note that this value is null for historical data (pre-2025-03-12). */
+    @Json(name = "provider_product_id")
+    val providerProductId: kotlin.String? = null,
 
     /* The date on which this contract settles. */
     @Json(name = "settlement_date")

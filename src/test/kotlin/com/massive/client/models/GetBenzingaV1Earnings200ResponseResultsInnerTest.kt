@@ -87,7 +87,7 @@ class GetBenzingaV1Earnings200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.epsSurprise shouldBe ("TODO")
         }
 
-        // to test the property `epsSurprisePercent` - The percentage difference between the actual and estimated EPS.
+        // to test the property `epsSurprisePercent` - The EPS surprise relative to the estimate, as a decimal fraction (0.75 = 75%), calculated as eps_surprise divided by the absolute value of estimated_eps. Positive is a beat and negative a miss, even when the estimate is negative. When the estimate is 0 the value is 1 or -1, and estimates near 0 give very large values.
         should("test epsSurprisePercent") {
             // uncomment below to test the property
             //modelInstance.epsSurprisePercent shouldBe ("TODO")
@@ -159,7 +159,7 @@ class GetBenzingaV1Earnings200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.revenueSurprise shouldBe ("TODO")
         }
 
-        // to test the property `revenueSurprisePercent` - The percentage difference between the actual and estimated revenue.
+        // to test the property `revenueSurprisePercent` - The revenue surprise relative to the estimate, as a decimal fraction (0.126 = 12.6%), calculated as revenue_surprise divided by the absolute value of estimated_revenue. Positive is a beat and negative a miss.
         should("test revenueSurprisePercent") {
             // uncomment below to test the property
             //modelInstance.revenueSurprisePercent shouldBe ("TODO")

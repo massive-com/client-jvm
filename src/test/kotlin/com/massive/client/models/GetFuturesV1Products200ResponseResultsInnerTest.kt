@@ -51,6 +51,18 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.assetSubClass shouldBe ("TODO")
         }
 
+        // to test the property `clearingSymbol` - The clearing symbol assigned to this product by the exchange's clearing house.
+        should("test clearingSymbol") {
+            // uncomment below to test the property
+            //modelInstance.clearingSymbol shouldBe ("TODO")
+        }
+
+        // to test the property `clearingVenue` - The trading venue (MIC) for the clearing house that clears this product's contracts.
+        should("test clearingVenue") {
+            // uncomment below to test the property
+            //modelInstance.clearingVenue shouldBe ("TODO")
+        }
+
         // to test the property `lastUpdated` - The date and time at which this product was last updated.
         should("test lastUpdated") {
             // uncomment below to test the property
@@ -75,6 +87,12 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.productCode shouldBe ("TODO")
         }
 
+        // to test the property `providerId` - A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
+        should("test providerId") {
+            // uncomment below to test the property
+            //modelInstance.providerId shouldBe ("TODO")
+        }
+
         // to test the property `sector` - The sector to which the product belongs.
         should("test sector") {
             // uncomment below to test the property
@@ -97,6 +115,12 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
         should("test settlementType") {
             // uncomment below to test the property
             //modelInstance.settlementType shouldBe ("TODO")
+        }
+
+        // to test the property `strategyType` - The strategy type for combo products (e.g. spread, strip, pack). Null for single products.
+        should("test strategyType") {
+            // uncomment below to test the property
+            //modelInstance.strategyType shouldBe ("TODO")
         }
 
         // to test the property `subSector` - The sub-sector to which the product belongs.

@@ -35,7 +35,7 @@ import com.squareup.moshi.JsonClass
  * @param q The sequence number represents the sequence in which message events happened. These are increasing and unique per ticker symbol, but will not always be sequential (e.g., 1, 2, 6, 9, 10, 11). 
  * @param t The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this message from the exchange which produced it.
  * @param y The nanosecond accuracy Participant/Exchange Unix Timestamp. This is the timestamp of when the quote was actually generated at the exchange.
- * @param c A list of condition codes. 
+ * @param c A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
  * @param e The trade correction indicator. 
  * @param i The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID. 
  * @param p The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
@@ -68,7 +68,7 @@ data class StocksV2Trade (
     @Json(name = "y")
     val y: kotlin.Int,
 
-    /* A list of condition codes.  */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "c")
     val c: kotlin.collections.List<kotlin.Int>,
 

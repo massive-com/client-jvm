@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param conditions A list of condition codes. 
+ * @param conditions A list of condition codes. See [Crypto Condition Codes](https://massive.com/docs/rest/crypto/market-operations/condition-codes) for what each code means.
  * @param exchange The exchange that this crypto trade happened on.   See <a href=\"https://massive.com/docs/rest/crypto/market-operations/exchanges\">Exchanges</a> for a mapping of exchanges to IDs. 
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00. 
  * @param propertySize The size of a trade (also known as volume). 
@@ -40,7 +40,7 @@ import com.squareup.moshi.JsonClass
 
 data class CryptoLastTradeLast (
 
-    /* A list of condition codes.  */
+    /* A list of condition codes. See [Crypto Condition Codes](https://massive.com/docs/rest/crypto/market-operations/condition-codes) for what each code means. */
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>,
 

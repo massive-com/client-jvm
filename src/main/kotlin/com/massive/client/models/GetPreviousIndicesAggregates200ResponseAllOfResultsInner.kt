@@ -30,6 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
+ * @param T The exchange symbol that this item is traded under.
  * @param c The close value for the symbol in the given time period.
  * @param h The highest value for the symbol in the given time period.
  * @param l The lowest value for the symbol in the given time period.
@@ -39,6 +40,10 @@ import com.squareup.moshi.JsonClass
 
 
 data class GetPreviousIndicesAggregates200ResponseAllOfResultsInner (
+
+    /* The exchange symbol that this item is traded under. */
+    @Json(name = "T")
+    val T: kotlin.String,
 
     /* The close value for the symbol in the given time period. */
     @Json(name = "c")

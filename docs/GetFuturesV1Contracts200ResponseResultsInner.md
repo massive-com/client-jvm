@@ -14,6 +14,8 @@
 | **minOrderQuantity** | **kotlin.Long** | The minimum order quantity. |  [optional] |
 | **name** | **kotlin.String** | The name of this contract. |  [optional] |
 | **productCode** | **kotlin.String** | The identifier for the contract&#39;s product. |  [optional] |
+| **providerId** | **kotlin.String** | A unique identifier for the contract assigned by the data provider. Note that this value is null for historical data (pre-2025-03-12). |  [optional] |
+| **providerProductId** | **kotlin.String** | A unique identifier for the product to which a contract, or contracts, belongs. Note that this value is null for historical data (pre-2025-03-12). |  [optional] |
 | **settlementDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The date on which this contract settles. |  [optional] |
 | **settlementTickSize** | **kotlin.Double** | The tick size for settlement. |  [optional] |
 | **spreadTickSize** | **kotlin.Double** | The tick size for spreads. |  [optional] |
