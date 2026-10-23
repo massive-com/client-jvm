@@ -37,9 +37,9 @@ import com.squareup.moshi.JsonClass
  * @param P The ask price.
  * @param S The ask size. This represents the number of shares sellers are offering at the given ask price.
  * @param X The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
- * @param c A list of condition codes.
+ * @param c A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
  * @param f The nanosecond accuracy TRF(Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this message.
- * @param i A list of indicator codes.
+ * @param i A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means.
  * @param p The bid price.
  * @param s The bid size. This represents the number of shares buyers are bidding for at the given bid price.
  * @param x The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
@@ -77,7 +77,7 @@ data class GetLastStocksQuote200ResponseResults (
     @Json(name = "X")
     val capitalX: kotlin.Int? = null,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "c")
     val c: kotlin.collections.List<kotlin.Int>? = null,
 
@@ -85,7 +85,7 @@ data class GetLastStocksQuote200ResponseResults (
     @Json(name = "f")
     val f: kotlin.Int? = null,
 
-    /* A list of indicator codes. */
+    /* A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means. */
     @Json(name = "i")
     val i: kotlin.collections.List<kotlin.Int>? = null,
 

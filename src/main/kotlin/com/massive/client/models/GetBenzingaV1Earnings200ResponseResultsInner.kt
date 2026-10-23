@@ -39,7 +39,7 @@ import com.squareup.moshi.JsonClass
  * @param dateStatus Indicates whether the date of the earnings report has been confirmed. Possible values include: projected, confirmed.
  * @param epsMethod The methodology of the EPS figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), ffo (Funds From Operations, a non-GAAP metric commonly used to assess the operating performance of REITs), and adj (adjusted, non-GAAP).
  * @param epsSurprise The difference between the actual and estimated EPS.
- * @param epsSurprisePercent The percentage difference between the actual and estimated EPS.
+ * @param epsSurprisePercent The EPS surprise relative to the estimate, as a decimal fraction (0.75 = 75%), calculated as eps_surprise divided by the absolute value of estimated_eps. Positive is a beat and negative a miss, even when the estimate is negative. When the estimate is 0 the value is 1 or -1, and estimates near 0 give very large values.
  * @param estimatedEps The analyst consensus estimate for earnings per share (EPS) for the given period.
  * @param estimatedRevenue The analyst consensus estimate for the company's revenue in the given period.
  * @param fiscalPeriod The fiscal period for which the earnings are reported. Examples include: Q1, Q2, H1, FY.
@@ -51,7 +51,7 @@ import com.squareup.moshi.JsonClass
  * @param previousRevenue The company's revenue for the previous comparable fiscal period.
  * @param revenueMethod The methodology of the revenue figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), adj (adjusted, non-GAAP figures that exclude certain items like one-time charges or divestitures), and rental (revenue specifically derived from rental operations, typically used by REITs, leasing companies, or businesses with a rental-based model).
  * @param revenueSurprise The difference between the actual and estimated revenue.
- * @param revenueSurprisePercent The percentage difference between the actual and estimated revenue.
+ * @param revenueSurprisePercent The revenue surprise relative to the estimate, as a decimal fraction (0.126 = 12.6%), calculated as revenue_surprise divided by the absolute value of estimated_revenue. Positive is a beat and negative a miss.
  * @param ticker The stock symbol of the company reporting earnings.
  * @param time The time (formatted as 24-hour HH:MM:SS EST) when the earnings are scheduled or were reported.
  */
@@ -95,7 +95,7 @@ data class GetBenzingaV1Earnings200ResponseResultsInner (
     @Json(name = "eps_surprise")
     val epsSurprise: kotlin.Double? = null,
 
-    /* The percentage difference between the actual and estimated EPS. */
+    /* The EPS surprise relative to the estimate, as a decimal fraction (0.75 = 75%), calculated as eps_surprise divided by the absolute value of estimated_eps. Positive is a beat and negative a miss, even when the estimate is negative. When the estimate is 0 the value is 1 or -1, and estimates near 0 give very large values. */
     @Json(name = "eps_surprise_percent")
     val epsSurprisePercent: kotlin.Double? = null,
 
@@ -143,7 +143,7 @@ data class GetBenzingaV1Earnings200ResponseResultsInner (
     @Json(name = "revenue_surprise")
     val revenueSurprise: kotlin.Double? = null,
 
-    /* The percentage difference between the actual and estimated revenue. */
+    /* The revenue surprise relative to the estimate, as a decimal fraction (0.126 = 12.6%), calculated as revenue_surprise divided by the absolute value of estimated_revenue. Positive is a beat and negative a miss. */
     @Json(name = "revenue_surprise_percent")
     val revenueSurprisePercent: kotlin.Double? = null,
 

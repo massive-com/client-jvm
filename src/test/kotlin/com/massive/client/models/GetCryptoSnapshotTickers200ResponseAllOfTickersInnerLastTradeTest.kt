@@ -33,7 +33,7 @@ class GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTradeTest : Should
         // uncomment below to create an instance of GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTrade
         //val modelInstance = GetCryptoSnapshotTickers200ResponseAllOfTickersInnerLastTrade()
 
-        // to test the property `c` - The trade conditions.
+        // to test the property `c` - A list of condition codes. See [Crypto Condition Codes](https://massive.com/docs/rest/crypto/market-operations/condition-codes) for what each code means.
         should("test c") {
             // uncomment below to test the property
             //modelInstance.c shouldBe ("TODO")

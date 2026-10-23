@@ -13,7 +13,7 @@
 | **dateStatus** | **kotlin.String** | Indicates whether the date of the earnings report has been confirmed. Possible values include: projected, confirmed. |  [optional] |
 | **epsMethod** | **kotlin.String** | The methodology of the EPS figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), ffo (Funds From Operations, a non-GAAP metric commonly used to assess the operating performance of REITs), and adj (adjusted, non-GAAP). |  [optional] |
 | **epsSurprise** | **kotlin.Double** | The difference between the actual and estimated EPS. |  [optional] |
-| **epsSurprisePercent** | **kotlin.Double** | The percentage difference between the actual and estimated EPS. |  [optional] |
+| **epsSurprisePercent** | **kotlin.Double** | The EPS surprise relative to the estimate, as a decimal fraction (0.75 &#x3D; 75%), calculated as eps_surprise divided by the absolute value of estimated_eps. Positive is a beat and negative a miss, even when the estimate is negative. When the estimate is 0 the value is 1 or -1, and estimates near 0 give very large values. |  [optional] |
 | **estimatedEps** | **kotlin.Double** | The analyst consensus estimate for earnings per share (EPS) for the given period. |  [optional] |
 | **estimatedRevenue** | **kotlin.Double** | The analyst consensus estimate for the company&#39;s revenue in the given period. |  [optional] |
 | **fiscalPeriod** | **kotlin.String** | The fiscal period for which the earnings are reported. Examples include: Q1, Q2, H1, FY. |  [optional] |
@@ -25,7 +25,7 @@
 | **previousRevenue** | **kotlin.Double** | The company&#39;s revenue for the previous comparable fiscal period. |  [optional] |
 | **revenueMethod** | **kotlin.String** | The methodology of the revenue figure. Possible values are gaap (standardized financials under Generally Accepted Accounting Principles), adj (adjusted, non-GAAP figures that exclude certain items like one-time charges or divestitures), and rental (revenue specifically derived from rental operations, typically used by REITs, leasing companies, or businesses with a rental-based model). |  [optional] |
 | **revenueSurprise** | **kotlin.Double** | The difference between the actual and estimated revenue. |  [optional] |
-| **revenueSurprisePercent** | **kotlin.Double** | The percentage difference between the actual and estimated revenue. |  [optional] |
+| **revenueSurprisePercent** | **kotlin.Double** | The revenue surprise relative to the estimate, as a decimal fraction (0.126 &#x3D; 12.6%), calculated as revenue_surprise divided by the absolute value of estimated_revenue. Positive is a beat and negative a miss. |  [optional] |
 | **ticker** | **kotlin.String** | The stock symbol of the company reporting earnings. |  [optional] |
 | **time** | **kotlin.String** | The time (formatted as 24-hour HH:MM:SS EST) when the earnings are scheduled or were reported. |  [optional] |
 

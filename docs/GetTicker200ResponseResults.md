@@ -17,7 +17,7 @@
 | **delistedUtc** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The last date that the asset was traded. |  [optional] |
 | **description** | **kotlin.String** | A description of the company and what they do/offer. |  [optional] |
 | **homepageUrl** | **kotlin.String** | The URL of the company&#39;s website homepage. |  [optional] |
-| **listDate** | **kotlin.String** | The date that the symbol was first publicly listed in the format YYYY-MM-DD. |  [optional] |
+| **listDate** | **kotlin.String** | The date the security currently trading under this ticker was first publicly listed, in the format YYYY-MM-DD. If a corporate action replaces the security behind the ticker, such as American Depositary Shares being exchanged for ordinary shares under the same symbol, this is the new security&#39;s listing date. A move to a different exchange does not change it. Use the date parameter to get the value as of an earlier date. |  [optional] |
 | **marketCap** | **kotlin.Double** | The most recent close price of the ticker multiplied by weighted outstanding shares. |  [optional] |
 | **phoneNumber** | **kotlin.String** | The phone number for the company behind this ticker. |  [optional] |
 | **primaryExchange** | **kotlin.String** | The ISO code of the primary listing exchange for this asset. |  [optional] |

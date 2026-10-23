@@ -76,6 +76,7 @@ import com.massive.client.models.GetFuturesV1Snapshot200Response
 import com.massive.client.models.GetFuturesV1TradesTicker200Response
 import com.massive.client.models.GetGroupedCryptoAggregates200Response
 import com.massive.client.models.GetGroupedStocksAggregates200Response
+import com.massive.client.models.GetIndicesAggregates200Response
 import com.massive.client.models.GetIndicesOpenClose200Response
 import com.massive.client.models.GetIndicesSnapshot200Response
 import com.massive.client.models.GetLastCryptoTrade200Response
@@ -105,6 +106,7 @@ import com.massive.client.models.GetStocksFilings8KVXText200Response
 import com.massive.client.models.GetStocksFilingsVX13F200Response
 import com.massive.client.models.GetStocksFilingsVXForm3200Response
 import com.massive.client.models.GetStocksFilingsVXForm4200Response
+import com.massive.client.models.GetStocksFilingsVXForm5200Response
 import com.massive.client.models.GetStocksFilingsVXIndex200Response
 import com.massive.client.models.GetStocksFilingsVXRiskFactors200Response
 import com.massive.client.models.GetStocksFinancialsV1BalanceSheets200Response
@@ -132,7 +134,6 @@ import com.massive.client.models.ListConditions200Response
 import com.massive.client.models.ListDividends200Response
 import com.massive.client.models.ListExchanges200Response
 import com.massive.client.models.ListExchanges400Response
-import com.massive.client.models.ListFinancials200Response
 import com.massive.client.models.ListIPOs200Response
 import com.massive.client.models.ListNews200Response
 import com.massive.client.models.ListNewsPublishedUtcParameter
@@ -377,13 +378,13 @@ class DefaultApiTest : ShouldSpec() {
             //val dateStatusGte : kotlin.String = dateStatusGte_example // kotlin.String | Filter greater than or equal to the value.
             //val dateStatusLt : kotlin.String = dateStatusLt_example // kotlin.String | Filter less than the value.
             //val dateStatusLte : kotlin.String = dateStatusLte_example // kotlin.String | Filter less than or equal to the value.
-            //val epsSurprisePercent : kotlin.Double = 1.2 // kotlin.Double | The percentage difference between the actual and estimated EPS. Value must be a floating point number.
+            //val epsSurprisePercent : kotlin.Double = 1.2 // kotlin.Double | The EPS surprise relative to the estimate, as a decimal fraction (0.75 = 75%), calculated as eps_surprise divided by the absolute value of estimated_eps. Positive is a beat and negative a miss, even when the estimate is negative. When the estimate is 0 the value is 1 or -1, and estimates near 0 give very large values. Value must be a floating point number.
             //val epsSurprisePercentAnyOf : kotlin.String = epsSurprisePercentAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list. Value must be a floating point number.
             //val epsSurprisePercentGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
             //val epsSurprisePercentGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
             //val epsSurprisePercentLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
             //val epsSurprisePercentLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
-            //val revenueSurprisePercent : kotlin.Double = 1.2 // kotlin.Double | The percentage difference between the actual and estimated revenue. Value must be a floating point number.
+            //val revenueSurprisePercent : kotlin.Double = 1.2 // kotlin.Double | The revenue surprise relative to the estimate, as a decimal fraction (0.126 = 12.6%), calculated as revenue_surprise divided by the absolute value of estimated_revenue. Positive is a beat and negative a miss. Value must be a floating point number.
             //val revenueSurprisePercentAnyOf : kotlin.String = revenueSurprisePercentAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list. Value must be a floating point number.
             //val revenueSurprisePercentGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
             //val revenueSurprisePercentGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
@@ -1050,6 +1051,8 @@ class DefaultApiTest : ShouldSpec() {
             //val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
             //val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
             //val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+            //val providerId : kotlin.String = providerId_example // kotlin.String | A unique identifier for the contract assigned by the data provider. Note that this value is null for historical data (pre-2025-03-12).
+            //val providerProductId : kotlin.String = providerProductId_example // kotlin.String | A unique identifier for the product to which a contract, or contracts, belongs. Note that this value is null for historical data (pre-2025-03-12).
             //val ticker : kotlin.String = ticker_example // kotlin.String | The ticker for the contract.
             //val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
@@ -1071,7 +1074,7 @@ class DefaultApiTest : ShouldSpec() {
             //val lastTradeDateLte : kotlin.String = lastTradeDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '1000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'product_code' if not specified. The sort order defaults to 'asc' if not specified.
-            //val result : GetFuturesV1Contracts200Response = apiInstance.getFuturesV1Contracts(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
+            //val result : GetFuturesV1Contracts200Response = apiInstance.getFuturesV1Contracts(date, dateGt, dateGte, dateLt, dateLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, providerProductId, ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, active, type, typeAnyOf, firstTradeDate, firstTradeDateGt, firstTradeDateGte, firstTradeDateLt, firstTradeDateLte, lastTradeDate, lastTradeDateGt, lastTradeDateGte, lastTradeDateLt, lastTradeDateLte, limit, sort)
             //result shouldBe ("TODO")
         }
 
@@ -1112,6 +1115,7 @@ class DefaultApiTest : ShouldSpec() {
             //val productCodeGte : kotlin.String = productCodeGte_example // kotlin.String | Filter greater than or equal to the value.
             //val productCodeLt : kotlin.String = productCodeLt_example // kotlin.String | Filter less than the value.
             //val productCodeLte : kotlin.String = productCodeLte_example // kotlin.String | Filter less than or equal to the value.
+            //val providerId : kotlin.String = providerId_example // kotlin.String | A unique identifier for the product assigned by the data provider. Can be used to distinguish products that share a product code.
             //val date : kotlin.String = date_example // kotlin.String | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. Value must be formatted 'yyyy-mm-dd'.
             //val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
@@ -1135,7 +1139,7 @@ class DefaultApiTest : ShouldSpec() {
             //val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'asc' if not specified.
-            //val result : GetFuturesV1Products200Response = apiInstance.getFuturesV1Products(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
+            //val result : GetFuturesV1Products200Response = apiInstance.getFuturesV1Products(name, nameAnyOf, nameGt, nameGte, nameLt, nameLte, productCode, productCodeAnyOf, productCodeGt, productCodeGte, productCodeLt, productCodeLte, providerId, date, dateGt, dateGte, dateLt, dateLte, tradingVenue, tradingVenueAnyOf, tradingVenueGt, tradingVenueGte, tradingVenueLt, tradingVenueLte, sector, sectorAnyOf, subSector, subSectorAnyOf, assetClass, assetClassAnyOf, assetSubClass, assetSubClassAnyOf, type, typeAnyOf, limit, sort)
             //result shouldBe ("TODO")
         }
 
@@ -1256,7 +1260,7 @@ class DefaultApiTest : ShouldSpec() {
             //val to : kotlin.String = 2025-11-28 // kotlin.String | The end of the aggregate time window. Either a date with the format YYYY-MM-DD or a millisecond timestamp.
             //val sort : kotlin.String = asc // kotlin.String | Sort the results by timestamp. `asc` will return results in ascending order (oldest at the top), `desc` will return results in descending order (newest at the top). 
             //val limit : kotlin.Int = 120 // kotlin.Int | Limits the number of base aggregates queried to create the aggregate results. Max 50000 and Default 5000. Read more about how limit is used to calculate aggregate results in our article on <a href=\"https://massive.com/blog/aggs-api-updates/\" target=\"_blank\" alt=\"Aggregate Data API Improvements\">Aggregate Data API Improvements</a>. 
-            //val result : GetPreviousIndicesAggregates200Response = apiInstance.getIndicesAggregates(indicesTicker, multiplier, timespan, from, to, sort, limit)
+            //val result : GetIndicesAggregates200Response = apiInstance.getIndicesAggregates(indicesTicker, multiplier, timespan, from, to, sort, limit)
             //result shouldBe ("TODO")
         }
 
@@ -1467,7 +1471,7 @@ class DefaultApiTest : ShouldSpec() {
             // uncomment below to test getPreviousOptionsAggregates
             //val optionsTicker : kotlin.String = O:SPY251219C00650000 // kotlin.String | The ticker symbol of the options contract.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
-            //val result : GetCryptoAggregates200Response = apiInstance.getPreviousOptionsAggregates(optionsTicker, adjusted)
+            //val result : GetPreviousCryptoAggregates200Response = apiInstance.getPreviousOptionsAggregates(optionsTicker, adjusted)
             //result shouldBe ("TODO")
         }
 
@@ -1476,7 +1480,7 @@ class DefaultApiTest : ShouldSpec() {
             // uncomment below to test getPreviousStocksAggregates
             //val stocksTicker : kotlin.String = AAPL // kotlin.String | Specify a case-sensitive ticker symbol. For example, AAPL represents Apple Inc.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
-            //val result : GetCryptoAggregates200Response = apiInstance.getPreviousStocksAggregates(stocksTicker, adjusted)
+            //val result : GetPreviousCryptoAggregates200Response = apiInstance.getPreviousStocksAggregates(stocksTicker, adjusted)
             //result shouldBe ("TODO")
         }
 
@@ -1740,6 +1744,29 @@ class DefaultApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
             //val result : GetStocksFilingsVXForm4200Response = apiInstance.getStocksFilingsVXForm4(issuerCik, issuerCikAnyOf, ownerCik, ownerCikAnyOf, tickers, tickersAllOf, tickersAnyOf, formType, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, transactionCode, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getStocksFilingsVXForm5
+        should("test getStocksFilingsVXForm5") {
+            // uncomment below to test getStocksFilingsVXForm5
+            //val issuerCik : kotlin.String = issuerCik_example // kotlin.String | SEC Central Index Key of the issuer company (10 digits, zero-padded).
+            //val issuerCikAnyOf : kotlin.String = issuerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val ownerCik : kotlin.String = ownerCik_example // kotlin.String | SEC Central Index Key of the reporting owner (10 digits, zero-padded).
+            //val ownerCikAnyOf : kotlin.String = ownerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
+            //val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
+            //val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
+            //val formType : kotlin.String = formType_example // kotlin.String | SEC form type ('5' for standard filing, '5/A' for amendments).
+            //val filingDate : kotlin.String = filingDate_example // kotlin.String | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateGt : kotlin.String = filingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateGte : kotlin.String = filingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateLt : kotlin.String = filingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val filingDateLte : kotlin.String = filingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val transactionCode : kotlin.String = transactionCode_example // kotlin.String | SEC transaction code indicating the type of transaction (e.g., 'G' for gift, 'J' for other acquisition or disposition, 'A' for grant/award, 'S' for sale). Null for holdings.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'filing_date' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksFilingsVXForm5200Response = apiInstance.getStocksFilingsVXForm5(issuerCik, issuerCikAnyOf, ownerCik, ownerCikAnyOf, tickers, tickersAllOf, tickersAnyOf, formType, filingDate, filingDateGt, filingDateGte, filingDateLt, filingDateLte, transactionCode, limit, sort)
             //result shouldBe ("TODO")
         }
 
@@ -2391,7 +2418,7 @@ class DefaultApiTest : ShouldSpec() {
         should("test getTicker") {
             // uncomment below to test getTicker
             //val ticker : kotlin.String = AAPL // kotlin.String | Specify a case-sensitive ticker symbol. For example, AAPL represents Apple Inc.
-            //val date : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Specify a point in time to get information about the ticker available on that date. When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date.
+            //val date : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Specify a point in time to get information about the ticker available on that date. Fields that describe the security, including name, type, primary_exchange and list_date, reflect the security trading under this ticker on that date. For example, ASND returns type ADRC and list_date 2015-01-28 for 2026-04-17, and type CS and list_date 2026-04-20 from 2026-04-20, when its American Depositary Shares were exchanged for ordinary shares. Some fields may be empty for older dates.  When retrieving information from SEC filings, we compare this date with the period of report date on the SEC filing.  For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would include information from the SEC filing.  Defaults to the most recent available date.
             //val result : GetTicker200Response = apiInstance.getTicker(ticker, date)
             //result shouldBe ("TODO")
         }
@@ -2514,33 +2541,6 @@ class DefaultApiTest : ShouldSpec() {
             //val assetClass : kotlin.String = stocks // kotlin.String | Filter by asset class.
             //val locale : kotlin.String = us // kotlin.String | Filter by locale.
             //val result : ListExchanges200Response = apiInstance.listExchanges(assetClass, locale)
-            //result shouldBe ("TODO")
-        }
-
-        // to test listFinancials
-        should("test listFinancials") {
-            // uncomment below to test listFinancials
-            //val ticker : kotlin.String = ticker_example // kotlin.String | Query by company ticker.
-            //val cik : kotlin.String = cik_example // kotlin.String | Query by central index key (<a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://www.sec.gov/edgar/searchedgar/cik.htm\">CIK</a>) Number
-            //val companyName : kotlin.String = companyName_example // kotlin.String | Query by company name.
-            //val sic : kotlin.String = sic_example // kotlin.String | Query by standard industrial classification (<a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://www.sec.gov/corpfin/division-of-corporation-finance-standard-industrial-classification-sic-code-list\">SIC</a>)
-            //val filingDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Query by the date when the filing with financials data was filed in YYYY-MM-DD format.  Best used when querying over date ranges to find financials based on filings that happen in a time period.  Examples:  To get financials based on filings that have happened after January 1, 2009 use the query param filing_date.gte=2009-01-01  To get financials based on filings that happened in the year 2009 use the query params filing_date.gte=2009-01-01&filing_date.lt=2010-01-01
-            //val periodOfReportDate : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | The period of report for the filing with financials data in YYYY-MM-DD format.
-            //val timeframe : kotlin.String = timeframe_example // kotlin.String | Query by timeframe. Annual financials originate from 10-K filings, and quarterly financials originate from 10-Q filings. Note: Most companies do not file quarterly reports for Q4 and instead include those financials in their annual report, so some companies my not return quarterly financials for Q4
-            //val includeSources : kotlin.Boolean = true // kotlin.Boolean | Whether or not to include the `xpath` and `formula` attributes for each financial data point. See the `xpath` and `formula` response attributes for more info. False by default.
-            //val companyNameSearch : kotlin.String = companyNameSearch_example // kotlin.String | Search by company_name.
-            //val filingDateGte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateGt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateLte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val filingDateLt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by filing_date.
-            //val periodOfReportDateGte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateGt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateLte : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val periodOfReportDateLt : java.time.LocalDate = 2013-10-20 // java.time.LocalDate | Search by period_of_report_date.
-            //val order : kotlin.String = asc // kotlin.String | Order results based on the `sort` field.
-            //val limit : kotlin.Int = 10 // kotlin.Int | Limit the number of results returned, default is 10 and max is 100.
-            //val sort : kotlin.String = filing_date // kotlin.String | Sort field used for ordering.
-            //val result : ListFinancials200Response = apiInstance.listFinancials(ticker, cik, companyName, sic, filingDate, periodOfReportDate, timeframe, includeSources, companyNameSearch, filingDateGte, filingDateGt, filingDateLte, filingDateLt, periodOfReportDateGte, periodOfReportDateGt, periodOfReportDateLte, periodOfReportDateLt, order, limit, sort)
             //result shouldBe ("TODO")
         }
 

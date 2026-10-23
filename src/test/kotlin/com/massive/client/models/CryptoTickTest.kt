@@ -33,7 +33,7 @@ class CryptoTickTest : ShouldSpec() {
         // uncomment below to create an instance of CryptoTick
         //val modelInstance = CryptoTick()
 
-        // to test the property `c` - A list of condition codes. 
+        // to test the property `c` - A list of condition codes. See [Crypto Condition Codes](https://massive.com/docs/rest/crypto/market-operations/condition-codes) for what each code means.
         should("test c") {
             // uncomment below to test the property
             //modelInstance.c shouldBe ("TODO")

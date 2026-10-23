@@ -12,7 +12,7 @@
 | **status** | **kotlin.String** | The status of this request&#39;s response. |  |
 | **symbol** | **kotlin.String** | The exchange symbol that this item is traded under. |  |
 | **afterHours** | **kotlin.Double** | The close value of the ticker symbol in after hours trading. |  [optional] |
-| **preMarket** | **kotlin.Int** | The open value of the ticker symbol in pre-market trading. |  [optional] |
+| **preMarket** | **kotlin.Double** | The open value of the ticker symbol in pre-market trading. |  [optional] |
 
 
 

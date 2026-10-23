@@ -4,6 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
+| **T** | **kotlin.String** | The exchange symbol that this item is traded under. |  |
 | **c** | **kotlin.Double** | The close value for the symbol in the given time period. |  |
 | **h** | **kotlin.Double** | The highest value for the symbol in the given time period. |  |
 | **l** | **kotlin.Double** | The lowest value for the symbol in the given time period. |  |

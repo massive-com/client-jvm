@@ -93,6 +93,18 @@ class GetFuturesV1Contracts200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.productCode shouldBe ("TODO")
         }
 
+        // to test the property `providerId` - A unique identifier for the contract assigned by the data provider. Note that this value is null for historical data (pre-2025-03-12).
+        should("test providerId") {
+            // uncomment below to test the property
+            //modelInstance.providerId shouldBe ("TODO")
+        }
+
+        // to test the property `providerProductId` - A unique identifier for the product to which a contract, or contracts, belongs. Note that this value is null for historical data (pre-2025-03-12).
+        should("test providerProductId") {
+            // uncomment below to test the property
+            //modelInstance.providerProductId shouldBe ("TODO")
+        }
+
         // to test the property `settlementDate` - The date on which this contract settles.
         should("test settlementDate") {
             // uncomment below to test the property

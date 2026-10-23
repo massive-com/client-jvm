@@ -81,7 +81,7 @@ class DeprecatedGetHistoricStocksQuotes200ResponseAllOfResultsInnerTest : Should
             //modelInstance.X shouldBe ("TODO")
         }
 
-        // to test the property `c` - A list of condition codes. 
+        // to test the property `c` - A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
         should("test c") {
             // uncomment below to test the property
             //modelInstance.c shouldBe ("TODO")

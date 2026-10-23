@@ -33,7 +33,7 @@ class CryptoLastTradeLastTest : ShouldSpec() {
         // uncomment below to create an instance of CryptoLastTradeLast
         //val modelInstance = CryptoLastTradeLast()
 
-        // to test the property `conditions` - A list of condition codes. 
+        // to test the property `conditions` - A list of condition codes. See [Crypto Condition Codes](https://massive.com/docs/rest/crypto/market-operations/condition-codes) for what each code means.
         should("test conditions") {
             // uncomment below to test the property
             //modelInstance.conditions shouldBe ("TODO")

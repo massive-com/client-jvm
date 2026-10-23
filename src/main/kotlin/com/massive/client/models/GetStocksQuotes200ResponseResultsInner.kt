@@ -39,8 +39,8 @@ import com.squareup.moshi.JsonClass
  * @param bidExchange The bid exchange ID
  * @param bidPrice The bid price.
  * @param bidSize The bid size. This represents the number of shares buyers are bidding for at the given bid price.
- * @param conditions A list of condition codes.
- * @param indicators A list of indicator codes.
+ * @param conditions A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
+ * @param indicators A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means.
  * @param tape There are 3 tapes which define which exchange the ticker is listed on. These are integers in our objects which represent the letter of the alphabet. Eg: 1 = A, 2 = B, 3 = C. * Tape A is NYSE listed securities * Tape B is NYSE ARCA / NYSE American * Tape C is NASDAQ
  * @param trfTimestamp The nanosecond accuracy TRF (Trade Reporting Facility) Unix Timestamp. This is the timestamp of when the trade reporting facility received this quote.
  */
@@ -84,11 +84,11 @@ data class GetStocksQuotes200ResponseResultsInner (
     @Json(name = "bid_size")
     val bidSize: kotlin.Double? = null,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. */
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>? = null,
 
-    /* A list of indicator codes. */
+    /* A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means. */
     @Json(name = "indicators")
     val indicators: kotlin.collections.List<kotlin.Int>? = null,
 

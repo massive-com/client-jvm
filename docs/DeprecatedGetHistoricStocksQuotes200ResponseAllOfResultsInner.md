@@ -12,7 +12,7 @@
 | **P** | **kotlin.Double** | The ask price. |  |
 | **S** | **kotlin.Int** | The ask size. This represents the number of shares sellers are offering at the given ask price. |  |
 | **X** | **kotlin.Int** | The ask exchange ID. See &lt;a href&#x3D;\&quot;https://massive.com/docs/rest/stocks/market-operations/exchanges\&quot; alt&#x3D;\&quot;Exchanges\&quot;&gt;Exchanges&lt;/a&gt; for Massive&#39;s mapping of exchange IDs. |  |
-| **c** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes.  |  |
+| **c** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. |  |
 | **i** | **kotlin.collections.List&lt;kotlin.Int&gt;** | The indicators. For more information, see our glossary of [Conditions and Indicators](https://massive.com/glossary/conditions-indicators).  |  |
 | **p** | **kotlin.Double** | The bid price. |  |
 | **s** | **kotlin.Int** | The bid size. This represents the number of shares buyers are bidding for at the given bid price. |  |

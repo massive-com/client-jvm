@@ -23,7 +23,7 @@
 
 package com.massive.client.models
 
-import com.massive.client.models.ListFinancials200ResponseResultsInner
+import com.massive.client.models.GetStocksFilingsVXForm5200ResponseResultsInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,38 +31,42 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param count The total number of results for this request.
  * @param requestId A request id assigned by the server.
- * @param results An array of results containing the requested data.
+ * @param results The results for this request.
  * @param status The status of this request's response.
- * @param nextUrl If present, this value can be used to fetch the next page of data.
+ * @param nextUrl If present, this value can be used to fetch the next page.
  */
 
 
-data class ListFinancials200Response (
-
-    /* The total number of results for this request. */
-    @Json(name = "count")
-    val count: kotlin.Int,
+data class GetStocksFilingsVXForm5200Response (
 
     /* A request id assigned by the server. */
     @Json(name = "request_id")
     val requestId: kotlin.String,
 
-    /* An array of results containing the requested data. */
+    /* The results for this request. */
     @Json(name = "results")
-    val results: kotlin.collections.List<ListFinancials200ResponseResultsInner>,
+    val results: kotlin.collections.List<GetStocksFilingsVXForm5200ResponseResultsInner>,
 
     /* The status of this request's response. */
     @Json(name = "status")
-    val status: kotlin.String,
+    val status: GetStocksFilingsVXForm5200Response.Status,
 
-    /* If present, this value can be used to fetch the next page of data. */
+    /* If present, this value can be used to fetch the next page. */
     @Json(name = "next_url")
     val nextUrl: kotlin.String? = null
 
 ) {
 
+    /**
+     * The status of this request's response.
+     *
+     * Values: oK
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Status(val value: kotlin.String) {
+        @Json(name = "OK") oK("OK");
+    }
 
 }
 

@@ -10,7 +10,7 @@
 | **propertySize** | **kotlin.Int** | The size of a trade (also known as volume). |  |
 | **sizeFraction** | **kotlin.Long** | The fractional size of a trade (also known as volume). |  |
 | **ticker** | **kotlin.String** | The ticker symbol. |  |
-| **conditions** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. |  [optional] |
+| **conditions** | **kotlin.collections.List&lt;kotlin.Int&gt;** | A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means. |  [optional] |
 | **correction** | **kotlin.Long** | The trade correction indicator. |  [optional] |
 | **exchange** | **kotlin.Int** | The exchange ID. See &lt;a href&#x3D;\&quot;https://massive.com/docs/rest/stocks/market-operations/exchanges\&quot; alt&#x3D;\&quot;Exchanges\&quot;&gt;Exchanges&lt;/a&gt; for Massive&#39;s mapping of exchange IDs. |  [optional] |
 | **id** | **kotlin.String** | The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID. |  [optional] |

@@ -75,7 +75,7 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.X shouldBe ("TODO")
         }
 
-        // to test the property `c` - A list of condition codes.
+        // to test the property `c` - A list of condition codes. See [Stocks Condition Codes](https://massive.com/docs/rest/stocks/market-operations/condition-codes) for what each code means.
         should("test c") {
             // uncomment below to test the property
             //modelInstance.c shouldBe ("TODO")
@@ -87,7 +87,7 @@ class GetLastStocksQuote200ResponseResultsTest : ShouldSpec() {
             //modelInstance.f shouldBe ("TODO")
         }
 
-        // to test the property `i` - A list of indicator codes.
+        // to test the property `i` - A list of indicator codes. See the [Conditions and Indicators](https://massive.com/glossary/conditions-indicators) glossary for what each code means.
         should("test i") {
             // uncomment below to test the property
             //modelInstance.i shouldBe ("TODO")

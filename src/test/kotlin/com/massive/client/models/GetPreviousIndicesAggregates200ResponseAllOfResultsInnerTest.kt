@@ -33,6 +33,12 @@ class GetPreviousIndicesAggregates200ResponseAllOfResultsInnerTest : ShouldSpec(
         // uncomment below to create an instance of GetPreviousIndicesAggregates200ResponseAllOfResultsInner
         //val modelInstance = GetPreviousIndicesAggregates200ResponseAllOfResultsInner()
 
+        // to test the property `T` - The exchange symbol that this item is traded under.
+        should("test T") {
+            // uncomment below to test the property
+            //modelInstance.T shouldBe ("TODO")
+        }
+
         // to test the property `c` - The close value for the symbol in the given time period.
         should("test c") {
             // uncomment below to test the property
