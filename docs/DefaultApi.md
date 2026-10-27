@@ -97,6 +97,8 @@ All URIs are relative to *https://api.massive.com*
 | [**getStocksFinancialsV1CashFlowStatements**](DefaultApi.md#getStocksFinancialsV1CashFlowStatements) | **GET** /stocks/financials/v1/cash-flow-statements |  |
 | [**getStocksFinancialsV1IncomeStatements**](DefaultApi.md#getStocksFinancialsV1IncomeStatements) | **GET** /stocks/financials/v1/income-statements |  |
 | [**getStocksFinancialsV1Ratios**](DefaultApi.md#getStocksFinancialsV1Ratios) | **GET** /stocks/financials/v1/ratios |  |
+| [**getStocksInsidersVXActivity**](DefaultApi.md#getStocksInsidersVXActivity) | **GET** /stocks/insiders/vX/activity |  |
+| [**getStocksInsidersVXHoldings**](DefaultApi.md#getStocksInsidersVXHoldings) | **GET** /stocks/insiders/vX/holdings |  |
 | [**getStocksMACD**](DefaultApi.md#getStocksMACD) | **GET** /v1/indicators/macd/{stockTicker} | Moving Average Convergence/Divergence (MACD) |
 | [**getStocksOpenClose**](DefaultApi.md#getStocksOpenClose) | **GET** /v1/open-close/{stocksTicker}/{date} | Daily Open/Close |
 | [**getStocksQuotes**](DefaultApi.md#getStocksQuotes) | **GET** /v3/quotes/{stockTicker} | Quotes (NBBO) |
@@ -7051,6 +7053,152 @@ try {
 ### Return type
 
 [**GetStocksFinancialsV1Ratios200Response**](GetStocksFinancialsV1Ratios200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getStocksInsidersVXActivity"></a>
+# **getStocksInsidersVXActivity**
+> GetStocksInsidersVXActivity200Response getStocksInsidersVXActivity(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, transactionDate, transactionDateGt, transactionDateGte, transactionDateLt, transactionDateLte, limit, sort)
+
+
+
+Daily insider trading activity per issuer: open-market purchases and sales by directors, officers, and 10%+ shareholders, summed per issuer and transaction date from SEC Forms 4 and 5. Sum rows over a date range to build a rolling window of net insider buying or selling. Only purchases and sales of non-derivative securities count; grants, exercises, tax withholding, and gifts do not. Each transaction is counted once even when several reporting owners filed it jointly. Transactions replaced by a later amendment are excluded, and only transactions that could have been executed in the market are counted: the filed price is within 10% of the issuer&#39;s common-stock range on the transaction date, the size is at most 25% of the issuer&#39;s shares outstanding, and purchases are at most 10 times (sales 100 times) that day&#39;s consolidated volume. That excludes filer errors and bogus filings (an aggregate price entered as per-share, impossible share counts) and limits coverage to issuers with a listed common stock and a market price that day. A transaction reported by several affiliated entities, in one filing or several, is counted once. The underlying filings are available from the Form 4 and Form 5 endpoints.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
+val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
+val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
+val issuerCik : kotlin.String = issuerCik_example // kotlin.String | SEC Central Index Key of the issuer company (10 digits, zero-padded).
+val issuerCikAnyOf : kotlin.String = issuerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val transactionDate : kotlin.String = transactionDate_example // kotlin.String | Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val transactionDateGt : kotlin.String = transactionDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val transactionDateGte : kotlin.String = transactionDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val transactionDateLt : kotlin.String = transactionDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val transactionDateLte : kotlin.String = transactionDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'transaction_date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetStocksInsidersVXActivity200Response = apiInstance.getStocksInsidersVXActivity(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, transactionDate, transactionDateGt, transactionDateGte, transactionDateLt, transactionDateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksInsidersVXActivity")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksInsidersVXActivity")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **tickers** | **kotlin.String**| Filter for arrays that contain the value. | [optional] |
+| **tickersAllOf** | **kotlin.String**| Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickersAnyOf** | **kotlin.String**| Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **issuerCik** | **kotlin.String**| SEC Central Index Key of the issuer company (10 digits, zero-padded). | [optional] |
+| **issuerCikAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **transactionDate** | **kotlin.String**| Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **transactionDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **transactionDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **transactionDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **transactionDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;transaction_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;transaction_date.desc&quot;] |
+
+### Return type
+
+[**GetStocksInsidersVXActivity200Response**](GetStocksInsidersVXActivity200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getStocksInsidersVXHoldings"></a>
+# **getStocksInsidersVXHoldings**
+> GetStocksInsidersVXHoldings200Response getStocksInsidersVXHoldings(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, ownerCik, ownerCikAnyOf, lastFilingDate, lastFilingDateGt, lastFilingDateGte, lastFilingDateLt, lastFilingDateLte, limit, sort)
+
+
+
+Insiders of each issuer: one row per reporting owner per issuer, from every SEC Form 3, 4, and 5 filing, with the shares they hold. Use it to see who the insiders of a company are and how much each owns, or to find the CIK of a director, officer, or 10%+ shareholder and then query the Form 4 endpoint by owner_cik for their filings across issuers. Name, roles, and title reflect the owner&#39;s most recent filing for that issuer. Share totals sum the latest reported balance of each of the owner&#39;s non-derivative positions (direct holdings and each trust, LLC, or family vehicle); see position_count and oldest_position_date for how fresh the sum is.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
+val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
+val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
+val issuerCik : kotlin.String = issuerCik_example // kotlin.String | SEC Central Index Key of the issuer company (10 digits, zero-padded).
+val issuerCikAnyOf : kotlin.String = issuerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val ownerCik : kotlin.String = ownerCik_example // kotlin.String | SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints.
+val ownerCikAnyOf : kotlin.String = ownerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val lastFilingDate : kotlin.String = lastFilingDate_example // kotlin.String | Date of the owner's most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val lastFilingDateGt : kotlin.String = lastFilingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val lastFilingDateGte : kotlin.String = lastFilingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val lastFilingDateLt : kotlin.String = lastFilingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val lastFilingDateLte : kotlin.String = lastFilingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'last_filing_date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetStocksInsidersVXHoldings200Response = apiInstance.getStocksInsidersVXHoldings(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, ownerCik, ownerCikAnyOf, lastFilingDate, lastFilingDateGt, lastFilingDateGte, lastFilingDateLt, lastFilingDateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getStocksInsidersVXHoldings")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getStocksInsidersVXHoldings")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **tickers** | **kotlin.String**| Filter for arrays that contain the value. | [optional] |
+| **tickersAllOf** | **kotlin.String**| Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickersAnyOf** | **kotlin.String**| Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **issuerCik** | **kotlin.String**| SEC Central Index Key of the issuer company (10 digits, zero-padded). | [optional] |
+| **issuerCikAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **ownerCik** | **kotlin.String**| SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints. | [optional] |
+| **ownerCikAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **lastFilingDate** | **kotlin.String**| Date of the owner&#39;s most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastFilingDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastFilingDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastFilingDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **lastFilingDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;last_filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;last_filing_date.desc&quot;] |
+
+### Return type
+
+[**GetStocksInsidersVXHoldings200Response**](GetStocksInsidersVXHoldings200Response.md)
 
 ### Authorization
 

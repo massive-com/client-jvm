@@ -113,6 +113,8 @@ import com.massive.client.models.GetStocksFinancialsV1BalanceSheets200Response
 import com.massive.client.models.GetStocksFinancialsV1CashFlowStatements200Response
 import com.massive.client.models.GetStocksFinancialsV1IncomeStatements200Response
 import com.massive.client.models.GetStocksFinancialsV1Ratios200Response
+import com.massive.client.models.GetStocksInsidersVXActivity200Response
+import com.massive.client.models.GetStocksInsidersVXHoldings200Response
 import com.massive.client.models.GetStocksMACD200Response
 import com.massive.client.models.GetStocksQuotes200Response
 import com.massive.client.models.GetStocksRSI200Response
@@ -15301,6 +15303,306 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/stocks/financials/v1/ratios",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /stocks/insiders/vX/activity
+     * 
+     * Daily insider trading activity per issuer: open-market purchases and sales by directors, officers, and 10%+ shareholders, summed per issuer and transaction date from SEC Forms 4 and 5. Sum rows over a date range to build a rolling window of net insider buying or selling. Only purchases and sales of non-derivative securities count; grants, exercises, tax withholding, and gifts do not. Each transaction is counted once even when several reporting owners filed it jointly. Transactions replaced by a later amendment are excluded, and only transactions that could have been executed in the market are counted: the filed price is within 10% of the issuer&#39;s common-stock range on the transaction date, the size is at most 25% of the issuer&#39;s shares outstanding, and purchases are at most 10 times (sales 100 times) that day&#39;s consolidated volume. That excludes filer errors and bogus filings (an aggregate price entered as per-share, impossible share counts) and limits coverage to issuers with a listed common stock and a market price that day. A transaction reported by several affiliated entities, in one filing or several, is counted once. The underlying filings are available from the Form 4 and Form 5 endpoints.
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param transactionDate Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;transaction_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "transaction_date.desc")
+     * @return GetStocksInsidersVXActivity200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksInsidersVXActivity(tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, issuerCik: kotlin.String? = null, issuerCikAnyOf: kotlin.String? = null, transactionDate: kotlin.String? = null, transactionDateGt: kotlin.String? = null, transactionDateGte: kotlin.String? = null, transactionDateLt: kotlin.String? = null, transactionDateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "transaction_date.desc") : GetStocksInsidersVXActivity200Response {
+        val localVarResponse = getStocksInsidersVXActivityWithHttpInfo(tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, issuerCik = issuerCik, issuerCikAnyOf = issuerCikAnyOf, transactionDate = transactionDate, transactionDateGt = transactionDateGt, transactionDateGte = transactionDateGte, transactionDateLt = transactionDateLt, transactionDateLte = transactionDateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksInsidersVXActivity200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/insiders/vX/activity
+     * 
+     * Daily insider trading activity per issuer: open-market purchases and sales by directors, officers, and 10%+ shareholders, summed per issuer and transaction date from SEC Forms 4 and 5. Sum rows over a date range to build a rolling window of net insider buying or selling. Only purchases and sales of non-derivative securities count; grants, exercises, tax withholding, and gifts do not. Each transaction is counted once even when several reporting owners filed it jointly. Transactions replaced by a later amendment are excluded, and only transactions that could have been executed in the market are counted: the filed price is within 10% of the issuer&#39;s common-stock range on the transaction date, the size is at most 25% of the issuer&#39;s shares outstanding, and purchases are at most 10 times (sales 100 times) that day&#39;s consolidated volume. That excludes filer errors and bogus filings (an aggregate price entered as per-share, impossible share counts) and limits coverage to issuers with a listed common stock and a market price that day. A transaction reported by several affiliated entities, in one filing or several, is counted once. The underlying filings are available from the Form 4 and Form 5 endpoints.
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param transactionDate Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;transaction_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "transaction_date.desc")
+     * @return ApiResponse<GetStocksInsidersVXActivity200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksInsidersVXActivityWithHttpInfo(tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, issuerCik: kotlin.String?, issuerCikAnyOf: kotlin.String?, transactionDate: kotlin.String?, transactionDateGt: kotlin.String?, transactionDateGte: kotlin.String?, transactionDateLt: kotlin.String?, transactionDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksInsidersVXActivity200Response?> {
+        val localVariableConfig = getStocksInsidersVXActivityRequestConfig(tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, issuerCik = issuerCik, issuerCikAnyOf = issuerCikAnyOf, transactionDate = transactionDate, transactionDateGt = transactionDateGt, transactionDateGte = transactionDateGte, transactionDateLt = transactionDateLt, transactionDateLte = transactionDateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksInsidersVXActivity200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksInsidersVXActivity
+     *
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param transactionDate Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param transactionDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;transaction_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "transaction_date.desc")
+     * @return RequestConfig
+     */
+    fun getStocksInsidersVXActivityRequestConfig(tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, issuerCik: kotlin.String?, issuerCikAnyOf: kotlin.String?, transactionDate: kotlin.String?, transactionDateGt: kotlin.String?, transactionDateGte: kotlin.String?, transactionDateLt: kotlin.String?, transactionDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (tickers != null) {
+                    put("tickers", listOf(tickers.toString()))
+                }
+                if (tickersAllOf != null) {
+                    put("tickers.all_of", listOf(tickersAllOf.toString()))
+                }
+                if (tickersAnyOf != null) {
+                    put("tickers.any_of", listOf(tickersAnyOf.toString()))
+                }
+                if (issuerCik != null) {
+                    put("issuer_cik", listOf(issuerCik.toString()))
+                }
+                if (issuerCikAnyOf != null) {
+                    put("issuer_cik.any_of", listOf(issuerCikAnyOf.toString()))
+                }
+                if (transactionDate != null) {
+                    put("transaction_date", listOf(transactionDate.toString()))
+                }
+                if (transactionDateGt != null) {
+                    put("transaction_date.gt", listOf(transactionDateGt.toString()))
+                }
+                if (transactionDateGte != null) {
+                    put("transaction_date.gte", listOf(transactionDateGte.toString()))
+                }
+                if (transactionDateLt != null) {
+                    put("transaction_date.lt", listOf(transactionDateLt.toString()))
+                }
+                if (transactionDateLte != null) {
+                    put("transaction_date.lte", listOf(transactionDateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/insiders/vX/activity",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /stocks/insiders/vX/holdings
+     * 
+     * Insiders of each issuer: one row per reporting owner per issuer, from every SEC Form 3, 4, and 5 filing, with the shares they hold. Use it to see who the insiders of a company are and how much each owns, or to find the CIK of a director, officer, or 10%+ shareholder and then query the Form 4 endpoint by owner_cik for their filings across issuers. Name, roles, and title reflect the owner&#39;s most recent filing for that issuer. Share totals sum the latest reported balance of each of the owner&#39;s non-derivative positions (direct holdings and each trust, LLC, or family vehicle); see position_count and oldest_position_date for how fresh the sum is.
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param ownerCik SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints. (optional)
+     * @param ownerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param lastFilingDate Date of the owner&#39;s most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;last_filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "last_filing_date.desc")
+     * @return GetStocksInsidersVXHoldings200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getStocksInsidersVXHoldings(tickers: kotlin.String? = null, tickersAllOf: kotlin.String? = null, tickersAnyOf: kotlin.String? = null, issuerCik: kotlin.String? = null, issuerCikAnyOf: kotlin.String? = null, ownerCik: kotlin.String? = null, ownerCikAnyOf: kotlin.String? = null, lastFilingDate: kotlin.String? = null, lastFilingDateGt: kotlin.String? = null, lastFilingDateGte: kotlin.String? = null, lastFilingDateLt: kotlin.String? = null, lastFilingDateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "last_filing_date.desc") : GetStocksInsidersVXHoldings200Response {
+        val localVarResponse = getStocksInsidersVXHoldingsWithHttpInfo(tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, issuerCik = issuerCik, issuerCikAnyOf = issuerCikAnyOf, ownerCik = ownerCik, ownerCikAnyOf = ownerCikAnyOf, lastFilingDate = lastFilingDate, lastFilingDateGt = lastFilingDateGt, lastFilingDateGte = lastFilingDateGte, lastFilingDateLt = lastFilingDateLt, lastFilingDateLte = lastFilingDateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetStocksInsidersVXHoldings200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /stocks/insiders/vX/holdings
+     * 
+     * Insiders of each issuer: one row per reporting owner per issuer, from every SEC Form 3, 4, and 5 filing, with the shares they hold. Use it to see who the insiders of a company are and how much each owns, or to find the CIK of a director, officer, or 10%+ shareholder and then query the Form 4 endpoint by owner_cik for their filings across issuers. Name, roles, and title reflect the owner&#39;s most recent filing for that issuer. Share totals sum the latest reported balance of each of the owner&#39;s non-derivative positions (direct holdings and each trust, LLC, or family vehicle); see position_count and oldest_position_date for how fresh the sum is.
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param ownerCik SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints. (optional)
+     * @param ownerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param lastFilingDate Date of the owner&#39;s most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;last_filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "last_filing_date.desc")
+     * @return ApiResponse<GetStocksInsidersVXHoldings200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getStocksInsidersVXHoldingsWithHttpInfo(tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, issuerCik: kotlin.String?, issuerCikAnyOf: kotlin.String?, ownerCik: kotlin.String?, ownerCikAnyOf: kotlin.String?, lastFilingDate: kotlin.String?, lastFilingDateGt: kotlin.String?, lastFilingDateGte: kotlin.String?, lastFilingDateLt: kotlin.String?, lastFilingDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetStocksInsidersVXHoldings200Response?> {
+        val localVariableConfig = getStocksInsidersVXHoldingsRequestConfig(tickers = tickers, tickersAllOf = tickersAllOf, tickersAnyOf = tickersAnyOf, issuerCik = issuerCik, issuerCikAnyOf = issuerCikAnyOf, ownerCik = ownerCik, ownerCikAnyOf = ownerCikAnyOf, lastFilingDate = lastFilingDate, lastFilingDateGt = lastFilingDateGt, lastFilingDateGte = lastFilingDateGte, lastFilingDateLt = lastFilingDateLt, lastFilingDateLte = lastFilingDateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetStocksInsidersVXHoldings200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getStocksInsidersVXHoldings
+     *
+     * @param tickers Filter for arrays that contain the value. (optional)
+     * @param tickersAllOf Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickersAnyOf Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param issuerCik SEC Central Index Key of the issuer company (10 digits, zero-padded). (optional)
+     * @param issuerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param ownerCik SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints. (optional)
+     * @param ownerCikAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param lastFilingDate Date of the owner&#39;s most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param lastFilingDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;10000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;last_filing_date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "last_filing_date.desc")
+     * @return RequestConfig
+     */
+    fun getStocksInsidersVXHoldingsRequestConfig(tickers: kotlin.String?, tickersAllOf: kotlin.String?, tickersAnyOf: kotlin.String?, issuerCik: kotlin.String?, issuerCikAnyOf: kotlin.String?, ownerCik: kotlin.String?, ownerCikAnyOf: kotlin.String?, lastFilingDate: kotlin.String?, lastFilingDateGt: kotlin.String?, lastFilingDateGte: kotlin.String?, lastFilingDateLt: kotlin.String?, lastFilingDateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (tickers != null) {
+                    put("tickers", listOf(tickers.toString()))
+                }
+                if (tickersAllOf != null) {
+                    put("tickers.all_of", listOf(tickersAllOf.toString()))
+                }
+                if (tickersAnyOf != null) {
+                    put("tickers.any_of", listOf(tickersAnyOf.toString()))
+                }
+                if (issuerCik != null) {
+                    put("issuer_cik", listOf(issuerCik.toString()))
+                }
+                if (issuerCikAnyOf != null) {
+                    put("issuer_cik.any_of", listOf(issuerCikAnyOf.toString()))
+                }
+                if (ownerCik != null) {
+                    put("owner_cik", listOf(ownerCik.toString()))
+                }
+                if (ownerCikAnyOf != null) {
+                    put("owner_cik.any_of", listOf(ownerCikAnyOf.toString()))
+                }
+                if (lastFilingDate != null) {
+                    put("last_filing_date", listOf(lastFilingDate.toString()))
+                }
+                if (lastFilingDateGt != null) {
+                    put("last_filing_date.gt", listOf(lastFilingDateGt.toString()))
+                }
+                if (lastFilingDateGte != null) {
+                    put("last_filing_date.gte", listOf(lastFilingDateGte.toString()))
+                }
+                if (lastFilingDateLt != null) {
+                    put("last_filing_date.lt", listOf(lastFilingDateLt.toString()))
+                }
+                if (lastFilingDateLte != null) {
+                    put("last_filing_date.lte", listOf(lastFilingDateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/stocks/insiders/vX/holdings",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
