@@ -113,6 +113,8 @@ import com.massive.client.models.GetStocksFinancialsV1BalanceSheets200Response
 import com.massive.client.models.GetStocksFinancialsV1CashFlowStatements200Response
 import com.massive.client.models.GetStocksFinancialsV1IncomeStatements200Response
 import com.massive.client.models.GetStocksFinancialsV1Ratios200Response
+import com.massive.client.models.GetStocksInsidersVXActivity200Response
+import com.massive.client.models.GetStocksInsidersVXHoldings200Response
 import com.massive.client.models.GetStocksMACD200Response
 import com.massive.client.models.GetStocksQuotes200Response
 import com.massive.client.models.GetStocksRSI200Response
@@ -2079,6 +2081,46 @@ class DefaultApiTest : ShouldSpec() {
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'ticker' if not specified. The sort order defaults to 'asc' if not specified.
             //val result : GetStocksFinancialsV1Ratios200Response = apiInstance.getStocksFinancialsV1Ratios(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, cik, cikAnyOf, cikGt, cikGte, cikLt, cikLte, price, priceGt, priceGte, priceLt, priceLte, averageVolume, averageVolumeGt, averageVolumeGte, averageVolumeLt, averageVolumeLte, marketCap, marketCapGt, marketCapGte, marketCapLt, marketCapLte, earningsPerShare, earningsPerShareGt, earningsPerShareGte, earningsPerShareLt, earningsPerShareLte, priceToEarnings, priceToEarningsGt, priceToEarningsGte, priceToEarningsLt, priceToEarningsLte, priceToBook, priceToBookGt, priceToBookGte, priceToBookLt, priceToBookLte, priceToSales, priceToSalesGt, priceToSalesGte, priceToSalesLt, priceToSalesLte, priceToCashFlow, priceToCashFlowGt, priceToCashFlowGte, priceToCashFlowLt, priceToCashFlowLte, priceToFreeCashFlow, priceToFreeCashFlowGt, priceToFreeCashFlowGte, priceToFreeCashFlowLt, priceToFreeCashFlowLte, dividendYield, dividendYieldGt, dividendYieldGte, dividendYieldLt, dividendYieldLte, returnOnAssets, returnOnAssetsGt, returnOnAssetsGte, returnOnAssetsLt, returnOnAssetsLte, returnOnEquity, returnOnEquityGt, returnOnEquityGte, returnOnEquityLt, returnOnEquityLte, debtToEquity, debtToEquityGt, debtToEquityGte, debtToEquityLt, debtToEquityLte, current, currentGt, currentGte, currentLt, currentLte, quick, quickGt, quickGte, quickLt, quickLte, cash, cashGt, cashGte, cashLt, cashLte, evToSales, evToSalesGt, evToSalesGte, evToSalesLt, evToSalesLte, evToEbitda, evToEbitdaGt, evToEbitdaGte, evToEbitdaLt, evToEbitdaLte, enterpriseValue, enterpriseValueGt, enterpriseValueGte, enterpriseValueLt, enterpriseValueLte, freeCashFlow, freeCashFlowGt, freeCashFlowGte, freeCashFlowLt, freeCashFlowLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getStocksInsidersVXActivity
+        should("test getStocksInsidersVXActivity") {
+            // uncomment below to test getStocksInsidersVXActivity
+            //val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
+            //val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
+            //val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
+            //val issuerCik : kotlin.String = issuerCik_example // kotlin.String | SEC Central Index Key of the issuer company (10 digits, zero-padded).
+            //val issuerCikAnyOf : kotlin.String = issuerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val transactionDate : kotlin.String = transactionDate_example // kotlin.String | Date of the transactions (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val transactionDateGt : kotlin.String = transactionDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val transactionDateGte : kotlin.String = transactionDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val transactionDateLt : kotlin.String = transactionDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val transactionDateLte : kotlin.String = transactionDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'transaction_date' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksInsidersVXActivity200Response = apiInstance.getStocksInsidersVXActivity(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, transactionDate, transactionDateGt, transactionDateGte, transactionDateLt, transactionDateLte, limit, sort)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getStocksInsidersVXHoldings
+        should("test getStocksInsidersVXHoldings") {
+            // uncomment below to test getStocksInsidersVXHoldings
+            //val tickers : kotlin.String = tickers_example // kotlin.String | Filter for arrays that contain the value.
+            //val tickersAllOf : kotlin.String = tickersAllOf_example // kotlin.String | Filter for arrays that contain all of the values. Multiple values can be specified by using a comma separated list.
+            //val tickersAnyOf : kotlin.String = tickersAnyOf_example // kotlin.String | Filter for arrays that contain any of the values. Multiple values can be specified by using a comma separated list.
+            //val issuerCik : kotlin.String = issuerCik_example // kotlin.String | SEC Central Index Key of the issuer company (10 digits, zero-padded).
+            //val issuerCikAnyOf : kotlin.String = issuerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val ownerCik : kotlin.String = ownerCik_example // kotlin.String | SEC Central Index Key of the reporting owner (10 digits, zero-padded). Stable across issuers and years; use it to follow a person through the Form 3, 4, and 5 endpoints.
+            //val ownerCikAnyOf : kotlin.String = ownerCikAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+            //val lastFilingDate : kotlin.String = lastFilingDate_example // kotlin.String | Date of the owner's most recent Form 3, 4, or 5 filing for this issuer (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+            //val lastFilingDateGt : kotlin.String = lastFilingDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val lastFilingDateGte : kotlin.String = lastFilingDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val lastFilingDateLt : kotlin.String = lastFilingDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+            //val lastFilingDateLte : kotlin.String = lastFilingDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '10000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'last_filing_date' if not specified. The sort order defaults to 'desc' if not specified.
+            //val result : GetStocksInsidersVXHoldings200Response = apiInstance.getStocksInsidersVXHoldings(tickers, tickersAllOf, tickersAnyOf, issuerCik, issuerCikAnyOf, ownerCik, ownerCikAnyOf, lastFilingDate, lastFilingDateGt, lastFilingDateGte, lastFilingDateLt, lastFilingDateLte, limit, sort)
             //result shouldBe ("TODO")
         }
 
