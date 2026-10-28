@@ -95,7 +95,6 @@ import com.massive.client.models.GetOptionsV3TradesTicker200Response
 import com.massive.client.models.GetPreviousCryptoAggregates200Response
 import com.massive.client.models.GetPreviousIndicesAggregates200Response
 import com.massive.client.models.GetRelatedCompanies200Response
-import com.massive.client.models.GetSnapshotSummary200Response
 import com.massive.client.models.GetSnapshots200Response
 import com.massive.client.models.GetStocksAggregates200Response
 import com.massive.client.models.GetStocksDevTradesTicker200Response
@@ -1491,14 +1490,6 @@ class DefaultApiTest : ShouldSpec() {
             // uncomment below to test getRelatedCompanies
             //val ticker : kotlin.String = AAPL // kotlin.String | The ticker symbol to search.
             //val result : GetRelatedCompanies200Response = apiInstance.getRelatedCompanies(ticker)
-            //result shouldBe ("TODO")
-        }
-
-        // to test getSnapshotSummary
-        should("test getSnapshotSummary") {
-            // uncomment below to test getSnapshotSummary
-            //val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD // kotlin.String | Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/docs/rest/stocks/tickers/all-tickers\">the tickers endpoint</a> for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
-            //val result : GetSnapshotSummary200Response = apiInstance.getSnapshotSummary(tickerAnyOf)
             //result shouldBe ("TODO")
         }
 

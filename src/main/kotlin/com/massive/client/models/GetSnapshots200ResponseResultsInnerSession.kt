@@ -28,56 +28,40 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.
+ * Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.  Values describe the current trading session only; nothing carries over from the previous session apart from `previous_close`. For stocks snapshots, an asset that has not traded yet this session reports `volume: 0` with the price and change fields omitted rather than reported as 0.  During early trading on stocks snapshots, `volume` and `price` track the session as it happens, but `open`, `high`, `low`, `close` and `vwap` are omitted until the regular session opens, as those report official session prices. They appear from the open and remain through late trading.
  *
  * @param change The value of the price change for the asset from the previous trading day.
  * @param changePercent The percent of the price change for the asset from the previous trading day.
  * @param close The closing price of the asset for the day.
- * @param high The highest price of the asset for the day.
- * @param low The lowest price of the asset for the day.
- * @param `open` The open price of the asset for the day.
- * @param previousClose The closing price of the asset for the previous trading day.
  * @param decimalVolume The trading volume for the asset for the day with decimal precision. This field provides support for fractional shares, representing volume as a decimal string. This field is only returned for stocks snapshots.
  * @param earlyTradingChange Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close.
  * @param earlyTradingChangePercent Today's early trading change as a percentage.
+ * @param high The highest price of the asset for the day.
  * @param lateTradingChange Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close.
  * @param lateTradingChangePercent Today's late trading change as a percentage.
+ * @param low The lowest price of the asset for the day.
+ * @param `open` The open price of the asset for the day.
+ * @param previousClose The closing price of the asset for the previous trading day. This is the correct field for the prior session's reference price, and it is retained across the daily session rollover. It is absent only for an asset with no completed prior session, such as a newly listed ticker or option contract.
  * @param price The price of the most recent trade or bid price for this asset.
  * @param regularTradingChange Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close.
  * @param regularTradingChangePercent Today's regular trading change as a percentage.
- * @param volume The trading volume for the asset for the day.
+ * @param volume The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session.
  */
 
 
-data class GetSnapshotSummary200ResponseResultsInnerSession (
+data class GetSnapshots200ResponseResultsInnerSession (
 
     /* The value of the price change for the asset from the previous trading day. */
     @Json(name = "change")
-    val change: kotlin.Double,
+    val change: kotlin.Double? = null,
 
     /* The percent of the price change for the asset from the previous trading day. */
     @Json(name = "change_percent")
-    val changePercent: kotlin.Double,
+    val changePercent: kotlin.Double? = null,
 
     /* The closing price of the asset for the day. */
     @Json(name = "close")
-    val close: kotlin.Double,
-
-    /* The highest price of the asset for the day. */
-    @Json(name = "high")
-    val high: kotlin.Double,
-
-    /* The lowest price of the asset for the day. */
-    @Json(name = "low")
-    val low: kotlin.Double,
-
-    /* The open price of the asset for the day. */
-    @Json(name = "open")
-    val `open`: kotlin.Double,
-
-    /* The closing price of the asset for the previous trading day. */
-    @Json(name = "previous_close")
-    val previousClose: kotlin.Double,
+    val close: kotlin.Double? = null,
 
     /* The trading volume for the asset for the day with decimal precision. This field provides support for fractional shares, representing volume as a decimal string. This field is only returned for stocks snapshots. */
     @Json(name = "decimal_volume")
@@ -91,6 +75,10 @@ data class GetSnapshotSummary200ResponseResultsInnerSession (
     @Json(name = "early_trading_change_percent")
     val earlyTradingChangePercent: kotlin.Double? = null,
 
+    /* The highest price of the asset for the day. */
+    @Json(name = "high")
+    val high: kotlin.Double? = null,
+
     /* Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. */
     @Json(name = "late_trading_change")
     val lateTradingChange: kotlin.Double? = null,
@@ -98,6 +86,18 @@ data class GetSnapshotSummary200ResponseResultsInnerSession (
     /* Today's late trading change as a percentage. */
     @Json(name = "late_trading_change_percent")
     val lateTradingChangePercent: kotlin.Double? = null,
+
+    /* The lowest price of the asset for the day. */
+    @Json(name = "low")
+    val low: kotlin.Double? = null,
+
+    /* The open price of the asset for the day. */
+    @Json(name = "open")
+    val `open`: kotlin.Double? = null,
+
+    /* The closing price of the asset for the previous trading day. This is the correct field for the prior session's reference price, and it is retained across the daily session rollover. It is absent only for an asset with no completed prior session, such as a newly listed ticker or option contract. */
+    @Json(name = "previous_close")
+    val previousClose: kotlin.Double? = null,
 
     /* The price of the most recent trade or bid price for this asset. */
     @Json(name = "price")
@@ -111,7 +111,7 @@ data class GetSnapshotSummary200ResponseResultsInnerSession (
     @Json(name = "regular_trading_change_percent")
     val regularTradingChangePercent: kotlin.Double? = null,
 
-    /* The trading volume for the asset for the day. */
+    /* The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session. */
     @Json(name = "volume")
     val volume: kotlin.Double? = null
 

@@ -27,12 +27,12 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import com.massive.client.models.GetSnapshots200ResponseResultsInner
-import com.massive.client.models.GetSnapshotSummary200ResponseResultsInnerSession
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerDetails
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerGreeks
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastMinute
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastQuote
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastTrade
+import com.massive.client.models.GetSnapshots200ResponseResultsInnerSession
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerUnderlyingAsset
 
 class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {

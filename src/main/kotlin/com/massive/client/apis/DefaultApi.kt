@@ -95,7 +95,6 @@ import com.massive.client.models.GetOptionsV3TradesTicker200Response
 import com.massive.client.models.GetPreviousCryptoAggregates200Response
 import com.massive.client.models.GetPreviousIndicesAggregates200Response
 import com.massive.client.models.GetRelatedCompanies200Response
-import com.massive.client.models.GetSnapshotSummary200Response
 import com.massive.client.models.GetSnapshots200Response
 import com.massive.client.models.GetStocksAggregates200Response
 import com.massive.client.models.GetStocksDevTradesTicker200Response
@@ -10995,84 +10994,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/related-companies/{ticker}".replace("{"+"ticker"+"}", encodeURIComponent(ticker.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * GET /v1/summaries
-     * Summaries
-     * Get everything needed to visualize the tick-by-tick movement of a list of tickers.
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/rest/stocks/tickers/all-tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @return GetSnapshotSummary200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getSnapshotSummary(tickerAnyOf: kotlin.String? = null) : GetSnapshotSummary200Response {
-        val localVarResponse = getSnapshotSummaryWithHttpInfo(tickerAnyOf = tickerAnyOf)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GetSnapshotSummary200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /v1/summaries
-     * Summaries
-     * Get everything needed to visualize the tick-by-tick movement of a list of tickers.
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/rest/stocks/tickers/all-tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @return ApiResponse<GetSnapshotSummary200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getSnapshotSummaryWithHttpInfo(tickerAnyOf: kotlin.String?) : ApiResponse<GetSnapshotSummary200Response?> {
-        val localVariableConfig = getSnapshotSummaryRequestConfig(tickerAnyOf = tickerAnyOf)
-
-        return request<Unit, GetSnapshotSummary200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getSnapshotSummary
-     *
-     * @param tickerAnyOf Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/rest/stocks/tickers/all-tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. (optional)
-     * @return RequestConfig
-     */
-    fun getSnapshotSummaryRequestConfig(tickerAnyOf: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (tickerAnyOf != null) {
-                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/v1/summaries",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
