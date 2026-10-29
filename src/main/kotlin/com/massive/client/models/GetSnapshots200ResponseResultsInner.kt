@@ -23,12 +23,12 @@
 
 package com.massive.client.models
 
-import com.massive.client.models.GetSnapshotSummary200ResponseResultsInnerSession
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerDetails
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerGreeks
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastMinute
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastQuote
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerLastTrade
+import com.massive.client.models.GetSnapshots200ResponseResultsInnerSession
 import com.massive.client.models.GetSnapshots200ResponseResultsInnerUnderlyingAsset
 
 import com.squareup.moshi.Json
@@ -123,7 +123,7 @@ data class GetSnapshots200ResponseResultsInner (
     val openInterest: kotlin.Double? = null,
 
     @Json(name = "session")
-    val session: GetSnapshotSummary200ResponseResultsInnerSession? = null,
+    val session: GetSnapshots200ResponseResultsInnerSession? = null,
 
     /* The time relevance of the data. */
     @Json(name = "timeframe")

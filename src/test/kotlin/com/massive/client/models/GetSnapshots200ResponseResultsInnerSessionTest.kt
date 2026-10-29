@@ -26,12 +26,12 @@ package com.massive.client.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.massive.client.models.GetSnapshotSummary200ResponseResultsInnerSession
+import com.massive.client.models.GetSnapshots200ResponseResultsInnerSession
 
-class GetSnapshotSummary200ResponseResultsInnerSessionTest : ShouldSpec() {
+class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of GetSnapshotSummary200ResponseResultsInnerSession
-        //val modelInstance = GetSnapshotSummary200ResponseResultsInnerSession()
+        // uncomment below to create an instance of GetSnapshots200ResponseResultsInnerSession
+        //val modelInstance = GetSnapshots200ResponseResultsInnerSession()
 
         // to test the property `change` - The value of the price change for the asset from the previous trading day.
         should("test change") {
@@ -49,30 +49,6 @@ class GetSnapshotSummary200ResponseResultsInnerSessionTest : ShouldSpec() {
         should("test close") {
             // uncomment below to test the property
             //modelInstance.close shouldBe ("TODO")
-        }
-
-        // to test the property `high` - The highest price of the asset for the day.
-        should("test high") {
-            // uncomment below to test the property
-            //modelInstance.high shouldBe ("TODO")
-        }
-
-        // to test the property `low` - The lowest price of the asset for the day.
-        should("test low") {
-            // uncomment below to test the property
-            //modelInstance.low shouldBe ("TODO")
-        }
-
-        // to test the property ``open`` - The open price of the asset for the day.
-        should("test `open`") {
-            // uncomment below to test the property
-            //modelInstance.`open` shouldBe ("TODO")
-        }
-
-        // to test the property `previousClose` - The closing price of the asset for the previous trading day.
-        should("test previousClose") {
-            // uncomment below to test the property
-            //modelInstance.previousClose shouldBe ("TODO")
         }
 
         // to test the property `decimalVolume` - The trading volume for the asset for the day with decimal precision. This field provides support for fractional shares, representing volume as a decimal string. This field is only returned for stocks snapshots.
@@ -93,6 +69,12 @@ class GetSnapshotSummary200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.earlyTradingChangePercent shouldBe ("TODO")
         }
 
+        // to test the property `high` - The highest price of the asset for the day.
+        should("test high") {
+            // uncomment below to test the property
+            //modelInstance.high shouldBe ("TODO")
+        }
+
         // to test the property `lateTradingChange` - Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close.
         should("test lateTradingChange") {
             // uncomment below to test the property
@@ -103,6 +85,24 @@ class GetSnapshotSummary200ResponseResultsInnerSessionTest : ShouldSpec() {
         should("test lateTradingChangePercent") {
             // uncomment below to test the property
             //modelInstance.lateTradingChangePercent shouldBe ("TODO")
+        }
+
+        // to test the property `low` - The lowest price of the asset for the day.
+        should("test low") {
+            // uncomment below to test the property
+            //modelInstance.low shouldBe ("TODO")
+        }
+
+        // to test the property ``open`` - The open price of the asset for the day.
+        should("test `open`") {
+            // uncomment below to test the property
+            //modelInstance.`open` shouldBe ("TODO")
+        }
+
+        // to test the property `previousClose` - The closing price of the asset for the previous trading day. This is the correct field for the prior session's reference price, and it is retained across the daily session rollover. It is absent only for an asset with no completed prior session, such as a newly listed ticker or option contract.
+        should("test previousClose") {
+            // uncomment below to test the property
+            //modelInstance.previousClose shouldBe ("TODO")
         }
 
         // to test the property `price` - The price of the most recent trade or bid price for this asset.
@@ -123,7 +123,7 @@ class GetSnapshotSummary200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.regularTradingChangePercent shouldBe ("TODO")
         }
 
-        // to test the property `volume` - The trading volume for the asset for the day.
+        // to test the property `volume` - The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session.
         should("test volume") {
             // uncomment below to test the property
             //modelInstance.volume shouldBe ("TODO")

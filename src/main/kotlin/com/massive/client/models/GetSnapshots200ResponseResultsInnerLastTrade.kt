@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
  *
  * @param price The price of the trade. This is the actual dollar value per whole share of this trade. A trade of 100 shares with a price of $2.00 would be worth a total dollar value of $200.00.
  * @param propertySize The size of a trade (also known as volume).
- * @param conditions A list of condition codes.
+ * @param conditions A list of condition codes. The codes depend on the asset type; see the condition codes for [stocks](https://massive.com/docs/rest/stocks/market-operations/condition-codes), [options](https://massive.com/docs/rest/options/market-operations/condition-codes), or [crypto](https://massive.com/docs/rest/crypto/market-operations/condition-codes).
  * @param decimalSize The size of a trade, including fractional shares, represented as a decimal string where the fractional part is expressed in millionths. This field is only returned for stocks snapshots.
  * @param exchange The exchange ID. See <a href=\"https://massive.com/docs/rest/stocks/market-operations/exchanges\" alt=\"Exchanges\">Exchanges</a> for Massive's mapping of exchange IDs.
  * @param id The Trade ID which uniquely identifies a trade. These are unique per combination of ticker, exchange, and TRF. For example: A trade for AAPL executed on NYSE and a trade for AAPL executed on NASDAQ could potentially have the same Trade ID.
@@ -53,7 +53,7 @@ data class GetSnapshots200ResponseResultsInnerLastTrade (
     @Json(name = "size")
     val propertySize: kotlin.Int,
 
-    /* A list of condition codes. */
+    /* A list of condition codes. The codes depend on the asset type; see the condition codes for [stocks](https://massive.com/docs/rest/stocks/market-operations/condition-codes), [options](https://massive.com/docs/rest/options/market-operations/condition-codes), or [crypto](https://massive.com/docs/rest/crypto/market-operations/condition-codes). */
     @Json(name = "conditions")
     val conditions: kotlin.collections.List<kotlin.Int>? = null,
 

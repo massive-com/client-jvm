@@ -57,7 +57,7 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.clearingSymbol shouldBe ("TODO")
         }
 
-        // to test the property `clearingVenue` - The trading venue (MIC) for the clearing house that clears this product's contracts.
+        // to test the property `clearingVenue` - The exchange identifier for the clearing house that clears this product's contracts.
         should("test clearingVenue") {
             // uncomment below to test the property
             //modelInstance.clearingVenue shouldBe ("TODO")
@@ -117,7 +117,7 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.settlementType shouldBe ("TODO")
         }
 
-        // to test the property `strategyType` - The strategy type for combo products (e.g. spread, strip, pack). Null for single products.
+        // to test the property `strategyType` - The strategy type for combo products (e.g. calendar, butterfly, strip). Null for single products.
         should("test strategyType") {
             // uncomment below to test the property
             //modelInstance.strategyType shouldBe ("TODO")

@@ -45,7 +45,7 @@ class GetSnapshots200ResponseResultsInnerLastTradeTest : ShouldSpec() {
             //modelInstance.propertySize shouldBe ("TODO")
         }
 
-        // to test the property `conditions` - A list of condition codes.
+        // to test the property `conditions` - A list of condition codes. The codes depend on the asset type; see the condition codes for [stocks](https://massive.com/docs/rest/stocks/market-operations/condition-codes), [options](https://massive.com/docs/rest/options/market-operations/condition-codes), or [crypto](https://massive.com/docs/rest/crypto/market-operations/condition-codes).
         should("test conditions") {
             // uncomment below to test the property
             //modelInstance.conditions shouldBe ("TODO")

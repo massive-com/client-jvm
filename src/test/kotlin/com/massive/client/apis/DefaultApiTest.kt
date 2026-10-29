@@ -95,7 +95,6 @@ import com.massive.client.models.GetOptionsV3TradesTicker200Response
 import com.massive.client.models.GetPreviousCryptoAggregates200Response
 import com.massive.client.models.GetPreviousIndicesAggregates200Response
 import com.massive.client.models.GetRelatedCompanies200Response
-import com.massive.client.models.GetSnapshotSummary200Response
 import com.massive.client.models.GetSnapshots200Response
 import com.massive.client.models.GetStocksAggregates200Response
 import com.massive.client.models.GetStocksDevTradesTicker200Response
@@ -1061,7 +1060,7 @@ class DefaultApiTest : ShouldSpec() {
             //val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
             //val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
             //val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
-            //val active : kotlin.Boolean = true // kotlin.Boolean | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise.
+            //val active : kotlin.Boolean = true // kotlin.Boolean | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date <= last_trade_date) and false otherwise.
             //val type : kotlin.String = type_example // kotlin.String | The type of contract, one of 'single' or 'combo'. Leaving this filter blank will query for contracts where type is 'single', 'combo' or empty. This field only exists on contracts as of 2025-03-12 and later. It will be null when date < 2025-03-12.
             //val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val firstTradeDate : kotlin.String = firstTradeDate_example // kotlin.String | The first day on which the contract was tradeable. Value must be formatted 'yyyy-mm-dd'.
@@ -1491,14 +1490,6 @@ class DefaultApiTest : ShouldSpec() {
             // uncomment below to test getRelatedCompanies
             //val ticker : kotlin.String = AAPL // kotlin.String | The ticker symbol to search.
             //val result : GetRelatedCompanies200Response = apiInstance.getRelatedCompanies(ticker)
-            //result shouldBe ("TODO")
-        }
-
-        // to test getSnapshotSummary
-        should("test getSnapshotSummary") {
-            // uncomment below to test getSnapshotSummary
-            //val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD // kotlin.String | Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/docs/rest/stocks/tickers/all-tickers\">the tickers endpoint</a> for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
-            //val result : GetSnapshotSummary200Response = apiInstance.getSnapshotSummary(tickerAnyOf)
             //result shouldBe ("TODO")
         }
 

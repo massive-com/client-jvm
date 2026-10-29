@@ -33,7 +33,7 @@ class GetFuturesV1Contracts200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetFuturesV1Contracts200ResponseResultsInner
         //val modelInstance = GetFuturesV1Contracts200ResponseResultsInner()
 
-        // to test the property `active` - Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise.
+        // to test the property `active` - Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date <= last_trade_date) and false otherwise.
         should("test active") {
             // uncomment below to test the property
             //modelInstance.active shouldBe ("TODO")

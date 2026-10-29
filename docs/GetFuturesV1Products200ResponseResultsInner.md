@@ -8,7 +8,7 @@
 | **assetClass** | **kotlin.String** | The asset class to which the product belongs. |  [optional] |
 | **assetSubClass** | **kotlin.String** | The asset sub-class to which the product belongs. |  [optional] |
 | **clearingSymbol** | **kotlin.String** | The clearing symbol assigned to this product by the exchange&#39;s clearing house. |  [optional] |
-| **clearingVenue** | **kotlin.String** | The trading venue (MIC) for the clearing house that clears this product&#39;s contracts. |  [optional] |
+| **clearingVenue** | **kotlin.String** | The exchange identifier for the clearing house that clears this product&#39;s contracts. |  [optional] |
 | **lastUpdated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time at which this product was last updated. |  [optional] |
 | **name** | **kotlin.String** | The full name of the product. |  [optional] |
 | **priceQuotation** | **kotlin.String** | The quoted price for this product. |  [optional] |
@@ -18,7 +18,7 @@
 | **settlementCurrencyCode** | **kotlin.String** | The currency in which this product settles. |  [optional] |
 | **settlementMethod** | **kotlin.String** | The method of settlement for this product (Financially Settled or Deliverable). |  [optional] |
 | **settlementType** | **kotlin.String** | The type of settlement for this product. |  [optional] |
-| **strategyType** | **kotlin.String** | The strategy type for combo products (e.g. spread, strip, pack). Null for single products. |  [optional] |
+| **strategyType** | **kotlin.String** | The strategy type for combo products (e.g. calendar, butterfly, strip). Null for single products. |  [optional] |
 | **subSector** | **kotlin.String** | The sub-sector to which the product belongs. |  [optional] |
 | **tradeCurrencyCode** | **kotlin.String** | The currency in which this product&#39;s contracts trade. |  [optional] |
 | **tradingVenue** | **kotlin.String** | The trading venue (MIC) for the exchange on which this product&#39;s contracts trade. |  [optional] |

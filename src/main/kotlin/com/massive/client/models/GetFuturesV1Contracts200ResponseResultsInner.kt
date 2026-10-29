@@ -30,7 +30,7 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param active Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise.
+ * @param active Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date <= last_trade_date) and false otherwise.
  * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about contracts for the specified day.
  * @param daysToMaturity The number of calendar days between the 'date' and the contract's final settlement date.
  * @param firstTradeDate The first day on which the contract was tradeable.
@@ -54,7 +54,7 @@ import com.squareup.moshi.JsonClass
 
 data class GetFuturesV1Contracts200ResponseResultsInner (
 
-    /* Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise. */
+    /* Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date <= last_trade_date) and false otherwise. */
     @Json(name = "active")
     val active: kotlin.Boolean,
 
