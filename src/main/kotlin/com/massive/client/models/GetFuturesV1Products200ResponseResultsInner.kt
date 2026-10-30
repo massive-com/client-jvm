@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param assetClass The asset class to which the product belongs.
  * @param assetSubClass The asset sub-class to which the product belongs.
  * @param clearingSymbol The clearing symbol assigned to this product by the exchange's clearing house.
- * @param clearingVenue The trading venue (MIC) for the clearing house that clears this product's contracts.
+ * @param clearingVenue The exchange identifier for the clearing house that clears this product's contracts.
  * @param lastUpdated The date and time at which this product was last updated.
  * @param name The full name of the product.
  * @param priceQuotation The quoted price for this product.
@@ -44,7 +44,7 @@ import com.squareup.moshi.JsonClass
  * @param settlementCurrencyCode The currency in which this product settles.
  * @param settlementMethod The method of settlement for this product (Financially Settled or Deliverable).
  * @param settlementType The type of settlement for this product.
- * @param strategyType The strategy type for combo products (e.g. spread, strip, pack). Null for single products.
+ * @param strategyType The strategy type for combo products (e.g. calendar, butterfly, strip). Null for single products.
  * @param subSector The sub-sector to which the product belongs.
  * @param tradeCurrencyCode The currency in which this product's contracts trade.
  * @param tradingVenue The trading venue (MIC) for the exchange on which this product's contracts trade.
@@ -72,7 +72,7 @@ data class GetFuturesV1Products200ResponseResultsInner (
     @Json(name = "clearing_symbol")
     val clearingSymbol: kotlin.String? = null,
 
-    /* The trading venue (MIC) for the clearing house that clears this product's contracts. */
+    /* The exchange identifier for the clearing house that clears this product's contracts. */
     @Json(name = "clearing_venue")
     val clearingVenue: kotlin.String? = null,
 
@@ -112,7 +112,7 @@ data class GetFuturesV1Products200ResponseResultsInner (
     @Json(name = "settlement_type")
     val settlementType: kotlin.String? = null,
 
-    /* The strategy type for combo products (e.g. spread, strip, pack). Null for single products. */
+    /* The strategy type for combo products (e.g. calendar, butterfly, strip). Null for single products. */
     @Json(name = "strategy_type")
     val strategyType: kotlin.String? = null,
 

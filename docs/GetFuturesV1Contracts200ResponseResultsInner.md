@@ -4,7 +4,7 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **active** | **kotlin.Boolean** | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. |  |
+| **active** | **kotlin.Boolean** | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &lt;&#x3D; last_trade_date) and false otherwise. |  |
 | **date** | [**java.time.LocalDate**](java.time.LocalDate.md) | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about contracts for the specified day. |  |
 | **daysToMaturity** | **kotlin.Long** | The number of calendar days between the &#39;date&#39; and the contract&#39;s final settlement date. |  [optional] |
 | **firstTradeDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | The first day on which the contract was tradeable. |  [optional] |

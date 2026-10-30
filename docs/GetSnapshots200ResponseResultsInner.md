@@ -20,7 +20,7 @@
 | **message** | **kotlin.String** | The error message while looking for this ticker. |  [optional] |
 | **name** | **kotlin.String** | The name of this contract. |  [optional] |
 | **openInterest** | **kotlin.Double** | The quantity of this contract held at the end of the last trading day. |  [optional] |
-| **session** | [**GetSnapshotSummary200ResponseResultsInnerSession**](GetSnapshotSummary200ResponseResultsInnerSession.md) |  |  [optional] |
+| **session** | [**GetSnapshots200ResponseResultsInnerSession**](GetSnapshots200ResponseResultsInnerSession.md) |  |  [optional] |
 | **timeframe** | [**inline**](#Timeframe) | The time relevance of the data. |  [optional] |
 | **type** | [**inline**](#Type) | The asset class for this ticker. |  [optional] |
 | **underlyingAsset** | [**GetSnapshots200ResponseResultsInnerUnderlyingAsset**](GetSnapshots200ResponseResultsInnerUnderlyingAsset.md) |  |  [optional] |

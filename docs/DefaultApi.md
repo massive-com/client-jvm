@@ -78,7 +78,6 @@ All URIs are relative to *https://api.massive.com*
 | [**getPreviousOptionsAggregates**](DefaultApi.md#getPreviousOptionsAggregates) | **GET** /v2/aggs/ticker/{optionsTicker}/prev | Previous Close |
 | [**getPreviousStocksAggregates**](DefaultApi.md#getPreviousStocksAggregates) | **GET** /v2/aggs/ticker/{stocksTicker}/prev | Previous Close |
 | [**getRelatedCompanies**](DefaultApi.md#getRelatedCompanies) | **GET** /v1/related-companies/{ticker} | Related Companies |
-| [**getSnapshotSummary**](DefaultApi.md#getSnapshotSummary) | **GET** /v1/summaries | Summaries |
 | [**getSnapshots**](DefaultApi.md#getSnapshots) | **GET** /v3/snapshot | Universal Snapshot |
 | [**getStocksAggregates**](DefaultApi.md#getStocksAggregates) | **GET** /v2/aggs/ticker/{stocksTicker}/range/{multiplier}/{timespan}/{from}/{to} | Aggregates (Bars) |
 | [**getStocksDevTradesTicker**](DefaultApi.md#getStocksDevTradesTicker) | **GET** /stocks/dev/trades/{ticker} |  |
@@ -3263,7 +3262,7 @@ val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greate
 val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
 val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
 val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
-val active : kotlin.Boolean = true // kotlin.Boolean | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date >= last_trade_date) and false otherwise.
+val active : kotlin.Boolean = true // kotlin.Boolean | Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date <= date <= last_trade_date) and false otherwise.
 val type : kotlin.String = type_example // kotlin.String | The type of contract, one of 'single' or 'combo'. Leaving this filter blank will query for contracts where type is 'single', 'combo' or empty. This field only exists on contracts as of 2025-03-12 and later. It will be null when date < 2025-03-12.
 val typeAnyOf : kotlin.String = typeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
 val firstTradeDate : kotlin.String = firstTradeDate_example // kotlin.String | The first day on which the contract was tradeable. Value must be formatted 'yyyy-mm-dd'.
@@ -3310,7 +3309,7 @@ try {
 | **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
 | **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
 | **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **active** | **kotlin.Boolean**| Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &gt;&#x3D; last_trade_date) and false otherwise. | [optional] |
+| **active** | **kotlin.Boolean**| Whether or not a given contract was tradeable at the given point in time. Active is true when (first_trade_date &lt;&#x3D; date &lt;&#x3D; last_trade_date) and false otherwise. | [optional] |
 | **type** | **kotlin.String**| The type of contract, one of &#39;single&#39; or &#39;combo&#39;. Leaving this filter blank will query for contracts where type is &#39;single&#39;, &#39;combo&#39; or empty. This field only exists on contracts as of 2025-03-12 and later. It will be null when date &lt; 2025-03-12. | [optional] [enum: single, combo] |
 | **typeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: single, combo] |
 | **firstTradeDate** | **kotlin.String**| The first day on which the contract was tradeable. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
@@ -5246,55 +5245,6 @@ try {
 ### Return type
 
 [**GetRelatedCompanies200Response**](GetRelatedCompanies200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="getSnapshotSummary"></a>
-# **getSnapshotSummary**
-> GetSnapshotSummary200Response getSnapshotSummary(tickerAnyOf)
-
-Summaries
-
-Get everything needed to visualize the tick-by-tick movement of a list of tickers.
-
-### Example
-```kotlin
-// Import classes:
-//import com.massive.client.infrastructure.*
-//import com.massive.client.models.*
-
-val apiInstance = DefaultApi()
-val tickerAnyOf : kotlin.String = NCLH,O:SPY250321C00380000,C:EURUSD,X:BTCUSD // kotlin.String | Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://massive.com/docs/rest/stocks/tickers/all-tickers\">the tickers endpoint</a> for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack.
-try {
-    val result : GetSnapshotSummary200Response = apiInstance.getSnapshotSummary(tickerAnyOf)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#getSnapshotSummary")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#getSnapshotSummary")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **tickerAnyOf** | **kotlin.String**| Comma separated list of tickers. This API currently supports Stocks/Equities, Crypto, Options, and Forex. See &lt;a rel&#x3D;\&quot;nofollow\&quot; target&#x3D;\&quot;_blank\&quot; href&#x3D;\&quot;https://massive.com/docs/rest/stocks/tickers/all-tickers\&quot;&gt;the tickers endpoint&lt;/a&gt; for more details on supported tickers. If no tickers are passed then no results will be returned.  Warning: The maximum number of characters allowed in a URL are subject to your technology stack. | [optional] |
-
-### Return type
-
-[**GetSnapshotSummary200Response**](GetSnapshotSummary200Response.md)
 
 ### Authorization
 
