@@ -72,6 +72,8 @@ All URIs are relative to *https://api.massive.com*
 | [**getOptionsV1Exchanges**](DefaultApi.md#getOptionsV1Exchanges) | **GET** /options/v1/exchanges |  |
 | [**getOptionsV3QuotesTicker**](DefaultApi.md#getOptionsV3QuotesTicker) | **GET** /options/v3/quotes/{ticker} |  |
 | [**getOptionsV3TradesTicker**](DefaultApi.md#getOptionsV3TradesTicker) | **GET** /options/v3/trades/{ticker} |  |
+| [**getOptionsVXOpenInterest**](DefaultApi.md#getOptionsVXOpenInterest) | **GET** /options/vX/open-interest |  |
+| [**getOptionsVXOpenInterestUnderlying**](DefaultApi.md#getOptionsVXOpenInterestUnderlying) | **GET** /options/vX/open-interest/underlying |  |
 | [**getPreviousCryptoAggregates**](DefaultApi.md#getPreviousCryptoAggregates) | **GET** /v2/aggs/ticker/{cryptoTicker}/prev | Previous Close |
 | [**getPreviousForexAggregates**](DefaultApi.md#getPreviousForexAggregates) | **GET** /v2/aggs/ticker/{forexTicker}/prev | Previous Close |
 | [**getPreviousIndicesAggregates**](DefaultApi.md#getPreviousIndicesAggregates) | **GET** /v2/aggs/ticker/{indicesTicker}/prev | Previous Close |
@@ -4943,6 +4945,220 @@ try {
 ### Return type
 
 [**GetOptionsV3TradesTicker200Response**](GetOptionsV3TradesTicker200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsVXOpenInterest"></a>
+# **getOptionsVXOpenInterest**
+> GetOptionsVXOpenInterest200Response getOptionsVXOpenInterest(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, root, rootAnyOf, rootGt, rootGte, rootLt, rootLte, underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, contractType, contractTypeAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, strikePrice, strikePriceGt, strikePriceGte, strikePriceLt, strikePriceLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
+
+
+
+Daily open interest for every US options contract as reported by OPRA, one row per contract per trading day, with the contract&#39;s underlying, type, expiration and strike.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val ticker : kotlin.String = ticker_example // kotlin.String | The options ticker symbol (e.g., O:SPY260123C00687000).
+val tickerAnyOf : kotlin.String = tickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val tickerGt : kotlin.String = tickerGt_example // kotlin.String | Filter greater than the value.
+val tickerGte : kotlin.String = tickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val tickerLt : kotlin.String = tickerLt_example // kotlin.String | Filter less than the value.
+val tickerLte : kotlin.String = tickerLte_example // kotlin.String | Filter less than or equal to the value.
+val root : kotlin.String = root_example // kotlin.String | The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1).
+val rootAnyOf : kotlin.String = rootAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val rootGt : kotlin.String = rootGt_example // kotlin.String | Filter greater than the value.
+val rootGte : kotlin.String = rootGte_example // kotlin.String | Filter greater than or equal to the value.
+val rootLt : kotlin.String = rootLt_example // kotlin.String | Filter less than the value.
+val rootLte : kotlin.String = rootLte_example // kotlin.String | Filter less than or equal to the value.
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the contract's underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val underlyingTickerGt : kotlin.String = underlyingTickerGt_example // kotlin.String | Filter greater than the value.
+val underlyingTickerGte : kotlin.String = underlyingTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val underlyingTickerLt : kotlin.String = underlyingTickerLt_example // kotlin.String | Filter less than the value.
+val underlyingTickerLte : kotlin.String = underlyingTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val contractType : kotlin.String = contractType_example // kotlin.String | The contract type. Possible values: call, put.
+val contractTypeAnyOf : kotlin.String = contractTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val expirationDate : kotlin.String = expirationDate_example // kotlin.String | The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val expirationDateGt : kotlin.String = expirationDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateGte : kotlin.String = expirationDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateLt : kotlin.String = expirationDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateLte : kotlin.String = expirationDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val strikePrice : kotlin.Double = 1.2 // kotlin.Double | The strike price of the contract. Value must be a floating point number.
+val strikePriceGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
+val strikePriceGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
+val strikePriceLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
+val strikePriceLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+val date : kotlin.String = date_example // kotlin.String | The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val openInterest : kotlin.Long = 789 // kotlin.Long | The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer.
+val openInterestGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+val openInterestGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+val openInterestLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+val openInterestLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsVXOpenInterest200Response = apiInstance.getOptionsVXOpenInterest(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, root, rootAnyOf, rootGt, rootGte, rootLt, rootLte, underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, contractType, contractTypeAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, strikePrice, strikePriceGt, strikePriceGte, strikePriceLt, strikePriceLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsVXOpenInterest")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsVXOpenInterest")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **ticker** | **kotlin.String**| The options ticker symbol (e.g., O:SPY260123C00687000). | [optional] |
+| **tickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **tickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **tickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **tickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **tickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **root** | **kotlin.String**| The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). | [optional] |
+| **rootAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **rootGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **rootGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **rootLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **rootLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **underlyingTicker** | **kotlin.String**| The ticker of the contract&#39;s underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **underlyingTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **underlyingTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **underlyingTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **underlyingTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **contractType** | **kotlin.String**| The contract type. Possible values: call, put. | [optional] [enum: call, put] |
+| **contractTypeAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] [enum: call, put] |
+| **expirationDate** | **kotlin.String**| The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **strikePrice** | **kotlin.Double**| The strike price of the contract. Value must be a floating point number. | [optional] |
+| **strikePriceGt** | **kotlin.Double**| Filter greater than the value. Value must be a floating point number. | [optional] |
+| **strikePriceGte** | **kotlin.Double**| Filter greater than or equal to the value. Value must be a floating point number. | [optional] |
+| **strikePriceLt** | **kotlin.Double**| Filter less than the value. Value must be a floating point number. | [optional] |
+| **strikePriceLte** | **kotlin.Double**| Filter less than or equal to the value. Value must be a floating point number. | [optional] |
+| **date** | **kotlin.String**| The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **openInterest** | **kotlin.Long**| The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer. | [optional] |
+| **openInterestGt** | **kotlin.Long**| Filter greater than the value. Value must be an integer. | [optional] |
+| **openInterestGte** | **kotlin.Long**| Filter greater than or equal to the value. Value must be an integer. | [optional] |
+| **openInterestLt** | **kotlin.Long**| Filter less than the value. Value must be an integer. | [optional] |
+| **openInterestLte** | **kotlin.Long**| Filter less than or equal to the value. Value must be an integer. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsVXOpenInterest200Response**](GetOptionsVXOpenInterest200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsVXOpenInterestUnderlying"></a>
+# **getOptionsVXOpenInterestUnderlying**
+> GetOptionsVXOpenInterestUnderlying200Response getOptionsVXOpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
+
+
+
+Daily open interest for US options rolled up across each underlying&#39;s whole chain, as reported by OPRA, with the call and put split.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val underlyingTickerGt : kotlin.String = underlyingTickerGt_example // kotlin.String | Filter greater than the value.
+val underlyingTickerGte : kotlin.String = underlyingTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val underlyingTickerLt : kotlin.String = underlyingTickerLt_example // kotlin.String | Filter less than the value.
+val underlyingTickerLte : kotlin.String = underlyingTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val date : kotlin.String = date_example // kotlin.String | The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val openInterest : kotlin.Long = 789 // kotlin.Long | Total open interest across every contract on the underlying. Value must be an integer.
+val openInterestGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
+val openInterestGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
+val openInterestLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
+val openInterestLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsVXOpenInterestUnderlying200Response = apiInstance.getOptionsVXOpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsVXOpenInterestUnderlying")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsVXOpenInterestUnderlying")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **underlyingTicker** | **kotlin.String**| The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **underlyingTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **underlyingTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **underlyingTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **underlyingTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **date** | **kotlin.String**| The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **openInterest** | **kotlin.Long**| Total open interest across every contract on the underlying. Value must be an integer. | [optional] |
+| **openInterestGt** | **kotlin.Long**| Filter greater than the value. Value must be an integer. | [optional] |
+| **openInterestGte** | **kotlin.Long**| Filter greater than or equal to the value. Value must be an integer. | [optional] |
+| **openInterestLt** | **kotlin.Long**| Filter less than the value. Value must be an integer. | [optional] |
+| **openInterestLte** | **kotlin.Long**| Filter less than or equal to the value. Value must be an integer. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsVXOpenInterestUnderlying200Response**](GetOptionsVXOpenInterestUnderlying200Response.md)
 
 ### Authorization
 
