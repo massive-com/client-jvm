@@ -57,13 +57,13 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.decimalVolume shouldBe ("TODO")
         }
 
-        // to test the property `earlyTradingChange` - Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close.
+        // to test the property `earlyTradingChange` - Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`.
         should("test earlyTradingChange") {
             // uncomment below to test the property
             //modelInstance.earlyTradingChange shouldBe ("TODO")
         }
 
-        // to test the property `earlyTradingChangePercent` - Today's early trading change as a percentage.
+        // to test the property `earlyTradingChangePercent` - Today's early trading change as a percentage of `previous_close`.
         should("test earlyTradingChangePercent") {
             // uncomment below to test the property
             //modelInstance.earlyTradingChangePercent shouldBe ("TODO")
@@ -75,13 +75,19 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.high shouldBe ("TODO")
         }
 
-        // to test the property `lateTradingChange` - Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close.
+        // to test the property `lastUpdated` - The nanosecond timestamp of the last update to the session data. For stocks, it's set when the session resets at the start of each trading session and then advances with each trade; quotes don't update it. Returned for stocks, crypto, and forex snapshots, though it may be absent for inactive tickers.
+        should("test lastUpdated") {
+            // uncomment below to test the property
+            //modelInstance.lastUpdated shouldBe ("TODO")
+        }
+
+        // to test the property `lateTradingChange` - Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`.
         should("test lateTradingChange") {
             // uncomment below to test the property
             //modelInstance.lateTradingChange shouldBe ("TODO")
         }
 
-        // to test the property `lateTradingChangePercent` - Today's late trading change as a percentage.
+        // to test the property `lateTradingChangePercent` - Today's late trading change as a percentage of today's `close`.
         should("test lateTradingChangePercent") {
             // uncomment below to test the property
             //modelInstance.lateTradingChangePercent shouldBe ("TODO")
@@ -111,13 +117,13 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.price shouldBe ("TODO")
         }
 
-        // to test the property `regularTradingChange` - Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close.
+        // to test the property `regularTradingChange` - Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading.
         should("test regularTradingChange") {
             // uncomment below to test the property
             //modelInstance.regularTradingChange shouldBe ("TODO")
         }
 
-        // to test the property `regularTradingChangePercent` - Today's regular trading change as a percentage.
+        // to test the property `regularTradingChangePercent` - Today's regular trading change as a percentage of `previous_close`.
         should("test regularTradingChangePercent") {
             // uncomment below to test the property
             //modelInstance.regularTradingChangePercent shouldBe ("TODO")
@@ -127,6 +133,12 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
         should("test volume") {
             // uncomment below to test the property
             //modelInstance.volume shouldBe ("TODO")
+        }
+
+        // to test the property `vwap` - The volume weighted average price of the asset for the day. Only returned for stocks, crypto, and forex snapshots, and omitted when there's no day bar yet, such as for stocks before the regular market open or for tickers that haven't traded today.
+        should("test vwap") {
+            // uncomment below to test the property
+            //modelInstance.vwap shouldBe ("TODO")
         }
 
     }

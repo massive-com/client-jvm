@@ -63,18 +63,6 @@ class GetOptionsVXOpenInterest200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.openInterest shouldBe ("TODO")
         }
 
-        // to test the property `openInterestChange` - The change in open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null.
-        should("test openInterestChange") {
-            // uncomment below to test the property
-            //modelInstance.openInterestChange shouldBe ("TODO")
-        }
-
-        // to test the property `previousOpenInterest` - The contract's open interest on the previous trading day. Null if the contract had no open interest reported that day, such as a new listing.
-        should("test previousOpenInterest") {
-            // uncomment below to test the property
-            //modelInstance.previousOpenInterest shouldBe ("TODO")
-        }
-
         // to test the property `root` - The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1).
         should("test root") {
             // uncomment below to test the property
