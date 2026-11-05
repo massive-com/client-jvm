@@ -1458,12 +1458,6 @@ class DefaultApiTest : ShouldSpec() {
             //val rootGte : kotlin.String = rootGte_example // kotlin.String | Filter greater than or equal to the value.
             //val rootLt : kotlin.String = rootLt_example // kotlin.String | Filter less than the value.
             //val rootLte : kotlin.String = rootLte_example // kotlin.String | Filter less than or equal to the value.
-            //val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the contract's underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart.
-            //val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-            //val underlyingTickerGt : kotlin.String = underlyingTickerGt_example // kotlin.String | Filter greater than the value.
-            //val underlyingTickerGte : kotlin.String = underlyingTickerGte_example // kotlin.String | Filter greater than or equal to the value.
-            //val underlyingTickerLt : kotlin.String = underlyingTickerLt_example // kotlin.String | Filter less than the value.
-            //val underlyingTickerLte : kotlin.String = underlyingTickerLte_example // kotlin.String | Filter less than or equal to the value.
             //val contractType : kotlin.String = contractType_example // kotlin.String | The contract type. Possible values: call, put.
             //val contractTypeAnyOf : kotlin.String = contractTypeAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
             //val expirationDate : kotlin.String = expirationDate_example // kotlin.String | The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
@@ -1471,24 +1465,14 @@ class DefaultApiTest : ShouldSpec() {
             //val expirationDateGte : kotlin.String = expirationDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val expirationDateLt : kotlin.String = expirationDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val expirationDateLte : kotlin.String = expirationDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val strikePrice : kotlin.Double = 1.2 // kotlin.Double | The strike price of the contract. Value must be a floating point number.
-            //val strikePriceGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
-            //val strikePriceGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
-            //val strikePriceLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
-            //val strikePriceLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
             //val date : kotlin.String = date_example // kotlin.String | The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
             //val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
             //val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
             //val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
             //val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-            //val openInterest : kotlin.Long = 789 // kotlin.Long | The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer.
-            //val openInterestGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
-            //val openInterestGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
-            //val openInterestLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
-            //val openInterestLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
             //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
             //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
-            //val result : GetOptionsVXOpenInterest200Response = apiInstance.getOptionsVXOpenInterest(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, root, rootAnyOf, rootGt, rootGte, rootLt, rootLte, underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, contractType, contractTypeAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, strikePrice, strikePriceGt, strikePriceGte, strikePriceLt, strikePriceLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
+            //val result : GetOptionsVXOpenInterest200Response = apiInstance.getOptionsVXOpenInterest(ticker, tickerAnyOf, tickerGt, tickerGte, tickerLt, tickerLte, root, rootAnyOf, rootGt, rootGte, rootLt, rootLte, contractType, contractTypeAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
             //result shouldBe ("TODO")
         }
 
