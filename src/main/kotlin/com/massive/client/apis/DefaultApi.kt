@@ -10583,12 +10583,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param rootGte Filter greater than or equal to the value. (optional)
      * @param rootLt Filter less than the value. (optional)
      * @param rootLte Filter less than or equal to the value. (optional)
-     * @param underlyingTicker The ticker of the contract&#39;s underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart. (optional)
-     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param underlyingTickerGt Filter greater than the value. (optional)
-     * @param underlyingTickerGte Filter greater than or equal to the value. (optional)
-     * @param underlyingTickerLt Filter less than the value. (optional)
-     * @param underlyingTickerLte Filter less than or equal to the value. (optional)
      * @param contractType The contract type. Possible values: call, put. (optional)
      * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -10596,21 +10590,11 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param strikePrice The strike price of the contract. Value must be a floating point number. (optional)
-     * @param strikePriceGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param strikePriceGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param strikePriceLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param strikePriceLte Filter less than or equal to the value. Value must be a floating point number. (optional)
      * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param openInterest The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer. (optional)
-     * @param openInterestGt Filter greater than the value. Value must be an integer. (optional)
-     * @param openInterestGte Filter greater than or equal to the value. Value must be an integer. (optional)
-     * @param openInterestLt Filter less than the value. Value must be an integer. (optional)
-     * @param openInterestLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
      * @return GetOptionsVXOpenInterest200Response
@@ -10622,8 +10606,8 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getOptionsVXOpenInterest(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, root: kotlin.String? = null, rootAnyOf: kotlin.String? = null, rootGt: kotlin.String? = null, rootGte: kotlin.String? = null, rootLt: kotlin.String? = null, rootLte: kotlin.String? = null, underlyingTicker: kotlin.String? = null, underlyingTickerAnyOf: kotlin.String? = null, underlyingTickerGt: kotlin.String? = null, underlyingTickerGte: kotlin.String? = null, underlyingTickerLt: kotlin.String? = null, underlyingTickerLte: kotlin.String? = null, contractType: ContractTypeGetOptionsVXOpenInterest? = null, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest? = null, expirationDate: kotlin.String? = null, expirationDateGt: kotlin.String? = null, expirationDateGte: kotlin.String? = null, expirationDateLt: kotlin.String? = null, expirationDateLte: kotlin.String? = null, strikePrice: kotlin.Double? = null, strikePriceGt: kotlin.Double? = null, strikePriceGte: kotlin.Double? = null, strikePriceLt: kotlin.Double? = null, strikePriceLte: kotlin.Double? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, openInterest: kotlin.Long? = null, openInterestGt: kotlin.Long? = null, openInterestGte: kotlin.Long? = null, openInterestLt: kotlin.Long? = null, openInterestLte: kotlin.Long? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.desc") : GetOptionsVXOpenInterest200Response {
-        val localVarResponse = getOptionsVXOpenInterestWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, underlyingTicker = underlyingTicker, underlyingTickerAnyOf = underlyingTickerAnyOf, underlyingTickerGt = underlyingTickerGt, underlyingTickerGte = underlyingTickerGte, underlyingTickerLt = underlyingTickerLt, underlyingTickerLte = underlyingTickerLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, strikePrice = strikePrice, strikePriceGt = strikePriceGt, strikePriceGte = strikePriceGte, strikePriceLt = strikePriceLt, strikePriceLte = strikePriceLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, openInterest = openInterest, openInterestGt = openInterestGt, openInterestGte = openInterestGte, openInterestLt = openInterestLt, openInterestLte = openInterestLte, limit = limit, sort = sort)
+    fun getOptionsVXOpenInterest(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, root: kotlin.String? = null, rootAnyOf: kotlin.String? = null, rootGt: kotlin.String? = null, rootGte: kotlin.String? = null, rootLt: kotlin.String? = null, rootLte: kotlin.String? = null, contractType: ContractTypeGetOptionsVXOpenInterest? = null, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest? = null, expirationDate: kotlin.String? = null, expirationDateGt: kotlin.String? = null, expirationDateGte: kotlin.String? = null, expirationDateLt: kotlin.String? = null, expirationDateLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.desc") : GetOptionsVXOpenInterest200Response {
+        val localVarResponse = getOptionsVXOpenInterestWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsVXOpenInterest200Response
@@ -10656,12 +10640,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param rootGte Filter greater than or equal to the value. (optional)
      * @param rootLt Filter less than the value. (optional)
      * @param rootLte Filter less than or equal to the value. (optional)
-     * @param underlyingTicker The ticker of the contract&#39;s underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart. (optional)
-     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param underlyingTickerGt Filter greater than the value. (optional)
-     * @param underlyingTickerGte Filter greater than or equal to the value. (optional)
-     * @param underlyingTickerLt Filter less than the value. (optional)
-     * @param underlyingTickerLte Filter less than or equal to the value. (optional)
      * @param contractType The contract type. Possible values: call, put. (optional)
      * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -10669,21 +10647,11 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param strikePrice The strike price of the contract. Value must be a floating point number. (optional)
-     * @param strikePriceGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param strikePriceGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param strikePriceLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param strikePriceLte Filter less than or equal to the value. Value must be a floating point number. (optional)
      * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param openInterest The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer. (optional)
-     * @param openInterestGt Filter greater than the value. Value must be an integer. (optional)
-     * @param openInterestGte Filter greater than or equal to the value. Value must be an integer. (optional)
-     * @param openInterestLt Filter less than the value. Value must be an integer. (optional)
-     * @param openInterestLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
      * @return ApiResponse<GetOptionsVXOpenInterest200Response?>
@@ -10692,8 +10660,8 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getOptionsVXOpenInterestWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, underlyingTicker: kotlin.String?, underlyingTickerAnyOf: kotlin.String?, underlyingTickerGt: kotlin.String?, underlyingTickerGte: kotlin.String?, underlyingTickerLt: kotlin.String?, underlyingTickerLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, strikePrice: kotlin.Double?, strikePriceGt: kotlin.Double?, strikePriceGte: kotlin.Double?, strikePriceLt: kotlin.Double?, strikePriceLte: kotlin.Double?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, openInterest: kotlin.Long?, openInterestGt: kotlin.Long?, openInterestGte: kotlin.Long?, openInterestLt: kotlin.Long?, openInterestLte: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsVXOpenInterest200Response?> {
-        val localVariableConfig = getOptionsVXOpenInterestRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, underlyingTicker = underlyingTicker, underlyingTickerAnyOf = underlyingTickerAnyOf, underlyingTickerGt = underlyingTickerGt, underlyingTickerGte = underlyingTickerGte, underlyingTickerLt = underlyingTickerLt, underlyingTickerLte = underlyingTickerLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, strikePrice = strikePrice, strikePriceGt = strikePriceGt, strikePriceGte = strikePriceGte, strikePriceLt = strikePriceLt, strikePriceLte = strikePriceLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, openInterest = openInterest, openInterestGt = openInterestGt, openInterestGte = openInterestGte, openInterestLt = openInterestLt, openInterestLte = openInterestLte, limit = limit, sort = sort)
+    fun getOptionsVXOpenInterestWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsVXOpenInterest200Response?> {
+        val localVariableConfig = getOptionsVXOpenInterestRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
 
         return request<Unit, GetOptionsVXOpenInterest200Response>(
             localVariableConfig
@@ -10715,12 +10683,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param rootGte Filter greater than or equal to the value. (optional)
      * @param rootLt Filter less than the value. (optional)
      * @param rootLte Filter less than or equal to the value. (optional)
-     * @param underlyingTicker The ticker of the contract&#39;s underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart. (optional)
-     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param underlyingTickerGt Filter greater than the value. (optional)
-     * @param underlyingTickerGte Filter greater than or equal to the value. (optional)
-     * @param underlyingTickerLt Filter less than the value. (optional)
-     * @param underlyingTickerLte Filter less than or equal to the value. (optional)
      * @param contractType The contract type. Possible values: call, put. (optional)
      * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
      * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
@@ -10728,26 +10690,16 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param strikePrice The strike price of the contract. Value must be a floating point number. (optional)
-     * @param strikePriceGt Filter greater than the value. Value must be a floating point number. (optional)
-     * @param strikePriceGte Filter greater than or equal to the value. Value must be a floating point number. (optional)
-     * @param strikePriceLt Filter less than the value. Value must be a floating point number. (optional)
-     * @param strikePriceLte Filter less than or equal to the value. Value must be a floating point number. (optional)
      * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param openInterest The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer. (optional)
-     * @param openInterestGt Filter greater than the value. Value must be an integer. (optional)
-     * @param openInterestGte Filter greater than or equal to the value. Value must be an integer. (optional)
-     * @param openInterestLt Filter less than the value. Value must be an integer. (optional)
-     * @param openInterestLte Filter less than or equal to the value. Value must be an integer. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
      * @return RequestConfig
      */
-    fun getOptionsVXOpenInterestRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, underlyingTicker: kotlin.String?, underlyingTickerAnyOf: kotlin.String?, underlyingTickerGt: kotlin.String?, underlyingTickerGte: kotlin.String?, underlyingTickerLt: kotlin.String?, underlyingTickerLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, strikePrice: kotlin.Double?, strikePriceGt: kotlin.Double?, strikePriceGte: kotlin.Double?, strikePriceLt: kotlin.Double?, strikePriceLte: kotlin.Double?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, openInterest: kotlin.Long?, openInterestGt: kotlin.Long?, openInterestGte: kotlin.Long?, openInterestLt: kotlin.Long?, openInterestLte: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+    fun getOptionsVXOpenInterestRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -10787,24 +10739,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
                 if (rootLte != null) {
                     put("root.lte", listOf(rootLte.toString()))
                 }
-                if (underlyingTicker != null) {
-                    put("underlying_ticker", listOf(underlyingTicker.toString()))
-                }
-                if (underlyingTickerAnyOf != null) {
-                    put("underlying_ticker.any_of", listOf(underlyingTickerAnyOf.toString()))
-                }
-                if (underlyingTickerGt != null) {
-                    put("underlying_ticker.gt", listOf(underlyingTickerGt.toString()))
-                }
-                if (underlyingTickerGte != null) {
-                    put("underlying_ticker.gte", listOf(underlyingTickerGte.toString()))
-                }
-                if (underlyingTickerLt != null) {
-                    put("underlying_ticker.lt", listOf(underlyingTickerLt.toString()))
-                }
-                if (underlyingTickerLte != null) {
-                    put("underlying_ticker.lte", listOf(underlyingTickerLte.toString()))
-                }
                 if (contractType != null) {
                     put("contract_type", listOf(contractType.value))
                 }
@@ -10826,21 +10760,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
                 if (expirationDateLte != null) {
                     put("expiration_date.lte", listOf(expirationDateLte.toString()))
                 }
-                if (strikePrice != null) {
-                    put("strike_price", listOf(strikePrice.toString()))
-                }
-                if (strikePriceGt != null) {
-                    put("strike_price.gt", listOf(strikePriceGt.toString()))
-                }
-                if (strikePriceGte != null) {
-                    put("strike_price.gte", listOf(strikePriceGte.toString()))
-                }
-                if (strikePriceLt != null) {
-                    put("strike_price.lt", listOf(strikePriceLt.toString()))
-                }
-                if (strikePriceLte != null) {
-                    put("strike_price.lte", listOf(strikePriceLte.toString()))
-                }
                 if (date != null) {
                     put("date", listOf(date.toString()))
                 }
@@ -10855,21 +10774,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
                 }
                 if (dateLte != null) {
                     put("date.lte", listOf(dateLte.toString()))
-                }
-                if (openInterest != null) {
-                    put("open_interest", listOf(openInterest.toString()))
-                }
-                if (openInterestGt != null) {
-                    put("open_interest.gt", listOf(openInterestGt.toString()))
-                }
-                if (openInterestGte != null) {
-                    put("open_interest.gte", listOf(openInterestGte.toString()))
-                }
-                if (openInterestLt != null) {
-                    put("open_interest.lt", listOf(openInterestLt.toString()))
-                }
-                if (openInterestLte != null) {
-                    put("open_interest.lte", listOf(openInterestLte.toString()))
                 }
                 if (limit != null) {
                     put("limit", listOf(limit.toString()))

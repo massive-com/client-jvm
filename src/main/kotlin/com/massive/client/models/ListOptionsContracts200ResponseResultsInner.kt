@@ -33,15 +33,22 @@ import com.squareup.moshi.JsonClass
  *
  * @param additionalUnderlyings If an option contract has additional underlyings or deliverables associated with it, they will appear here. See <a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://www.optionseducation.org/referencelibrary/faq/splits-mergers-spinoffs-bankruptcies\">here</a> for some examples of what might cause a contract to have additional underlyings.
  * @param cfi The 6 letter CFI code of the contract (defined in <a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/ISO_10962\">ISO 10962</a>)
+ * @param companyTicker KPI binary options only. The ticker of the company the KPI belongs to, like NFLX.
  * @param contractType The type of contract. Can be \"put\", \"call\", or in some rare cases, \"other\".
  * @param correction The correction number for this option contract.
  * @param exerciseStyle The exercise style of this contract. See <a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Option_style\">this link</a> for more details on exercise styles.
  * @param expirationDate The contract's expiration date in YYYY-MM-DD format.
+ * @param metric KPI binary options only. The KPI the contract settles on, like \"Earnings Per Share ($/share)\".
  * @param primaryExchange The MIC code of the primary exchange that this contract is listed on.
+ * @param reportTime KPI binary options only. AM if the company reports before the market opens, PM if after it closes.
+ * @param reportingPeriod KPI binary options only. The fiscal period the KPI is for, like 2026Q3.
+ * @param scale KPI binary options only. The KPI value divided by scale gives the strike price, like 1000000000 for a KPI in billions. A negative scale means an inverted KPI, like Loss Per Share.
  * @param sharesPerContract The number of shares per contract for this contract.
  * @param strikePrice The strike price of the option contract.
  * @param ticker The ticker for the option contract.
+ * @param type The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.
  * @param underlyingTicker The underlying ticker that the option contract relates to.
+ * @param underlyingType What the contract is based on. For now only set on KPI binary options, as kpi.
  */
 
 
@@ -54,6 +61,10 @@ data class ListOptionsContracts200ResponseResultsInner (
     /* The 6 letter CFI code of the contract (defined in <a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/ISO_10962\">ISO 10962</a>) */
     @Json(name = "cfi")
     val cfi: kotlin.String? = null,
+
+    /* KPI binary options only. The ticker of the company the KPI belongs to, like NFLX. */
+    @Json(name = "company_ticker")
+    val companyTicker: kotlin.String? = null,
 
     /* The type of contract. Can be \"put\", \"call\", or in some rare cases, \"other\". */
     @Json(name = "contract_type")
@@ -71,9 +82,25 @@ data class ListOptionsContracts200ResponseResultsInner (
     @Json(name = "expiration_date")
     val expirationDate: kotlin.String? = null,
 
+    /* KPI binary options only. The KPI the contract settles on, like \"Earnings Per Share ($/share)\". */
+    @Json(name = "metric")
+    val metric: kotlin.String? = null,
+
     /* The MIC code of the primary exchange that this contract is listed on. */
     @Json(name = "primary_exchange")
     val primaryExchange: kotlin.String? = null,
+
+    /* KPI binary options only. AM if the company reports before the market opens, PM if after it closes. */
+    @Json(name = "report_time")
+    val reportTime: ListOptionsContracts200ResponseResultsInner.ReportTime? = null,
+
+    /* KPI binary options only. The fiscal period the KPI is for, like 2026Q3. */
+    @Json(name = "reporting_period")
+    val reportingPeriod: kotlin.String? = null,
+
+    /* KPI binary options only. The KPI value divided by scale gives the strike price, like 1000000000 for a KPI in billions. A negative scale means an inverted KPI, like Loss Per Share. */
+    @Json(name = "scale")
+    val scale: kotlin.Int? = null,
 
     /* The number of shares per contract for this contract. */
     @Json(name = "shares_per_contract")
@@ -87,9 +114,17 @@ data class ListOptionsContracts200ResponseResultsInner (
     @Json(name = "ticker")
     val ticker: kotlin.String? = null,
 
+    /* The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract. */
+    @Json(name = "type")
+    val type: ListOptionsContracts200ResponseResultsInner.Type? = null,
+
     /* The underlying ticker that the option contract relates to. */
     @Json(name = "underlying_ticker")
-    val underlyingTicker: kotlin.String? = null
+    val underlyingTicker: kotlin.String? = null,
+
+    /* What the contract is based on. For now only set on KPI binary options, as kpi. */
+    @Json(name = "underlying_type")
+    val underlyingType: ListOptionsContracts200ResponseResultsInner.UnderlyingType? = null
 
 ) {
 
@@ -103,6 +138,35 @@ data class ListOptionsContracts200ResponseResultsInner (
         @Json(name = "american") american("american"),
         @Json(name = "european") european("european"),
         @Json(name = "bermudan") bermudan("bermudan");
+    }
+    /**
+     * KPI binary options only. AM if the company reports before the market opens, PM if after it closes.
+     *
+     * Values: aM,pM
+     */
+    @JsonClass(generateAdapter = false)
+    enum class ReportTime(val value: kotlin.String) {
+        @Json(name = "AM") aM("AM"),
+        @Json(name = "PM") pM("PM");
+    }
+    /**
+     * The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.
+     *
+     * Values: standard,binary
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Type(val value: kotlin.String) {
+        @Json(name = "standard") standard("standard"),
+        @Json(name = "binary") binary("binary");
+    }
+    /**
+     * What the contract is based on. For now only set on KPI binary options, as kpi.
+     *
+     * Values: kpi
+     */
+    @JsonClass(generateAdapter = false)
+    enum class UnderlyingType(val value: kotlin.String) {
+        @Json(name = "kpi") kpi("kpi");
     }
 
 }
