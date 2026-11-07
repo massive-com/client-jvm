@@ -46,6 +46,12 @@ class ListOptionsContracts200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.cfi shouldBe ("TODO")
         }
 
+        // to test the property `companyTicker` - KPI binary options only. The ticker of the company the KPI belongs to, like NFLX.
+        should("test companyTicker") {
+            // uncomment below to test the property
+            //modelInstance.companyTicker shouldBe ("TODO")
+        }
+
         // to test the property `contractType` - The type of contract. Can be \"put\", \"call\", or in some rare cases, \"other\".
         should("test contractType") {
             // uncomment below to test the property
@@ -70,10 +76,34 @@ class ListOptionsContracts200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.expirationDate shouldBe ("TODO")
         }
 
+        // to test the property `metric` - KPI binary options only. The KPI the contract settles on, like \"Earnings Per Share ($/share)\".
+        should("test metric") {
+            // uncomment below to test the property
+            //modelInstance.metric shouldBe ("TODO")
+        }
+
         // to test the property `primaryExchange` - The MIC code of the primary exchange that this contract is listed on.
         should("test primaryExchange") {
             // uncomment below to test the property
             //modelInstance.primaryExchange shouldBe ("TODO")
+        }
+
+        // to test the property `reportTime` - KPI binary options only. AM if the company reports before the market opens, PM if after it closes.
+        should("test reportTime") {
+            // uncomment below to test the property
+            //modelInstance.reportTime shouldBe ("TODO")
+        }
+
+        // to test the property `reportingPeriod` - KPI binary options only. The fiscal period the KPI is for, like 2026Q3.
+        should("test reportingPeriod") {
+            // uncomment below to test the property
+            //modelInstance.reportingPeriod shouldBe ("TODO")
+        }
+
+        // to test the property `scale` - KPI binary options only. The KPI value divided by scale gives the strike price, like 1000000000 for a KPI in billions. A negative scale means an inverted KPI, like Loss Per Share.
+        should("test scale") {
+            // uncomment below to test the property
+            //modelInstance.scale shouldBe ("TODO")
         }
 
         // to test the property `sharesPerContract` - The number of shares per contract for this contract.
@@ -94,10 +124,22 @@ class ListOptionsContracts200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.ticker shouldBe ("TODO")
         }
 
+        // to test the property `type` - The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.
+        should("test type") {
+            // uncomment below to test the property
+            //modelInstance.type shouldBe ("TODO")
+        }
+
         // to test the property `underlyingTicker` - The underlying ticker that the option contract relates to.
         should("test underlyingTicker") {
             // uncomment below to test the property
             //modelInstance.underlyingTicker shouldBe ("TODO")
+        }
+
+        // to test the property `underlyingType` - What the contract is based on. For now only set on KPI binary options, as kpi.
+        should("test underlyingType") {
+            // uncomment below to test the property
+            //modelInstance.underlyingType shouldBe ("TODO")
         }
 
     }

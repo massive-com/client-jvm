@@ -5853,6 +5853,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -5892,7 +5897,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/analysts": {
@@ -6221,6 +6227,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -6260,7 +6271,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/bulls-bears-say": {
@@ -6498,6 +6510,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -6537,7 +6554,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/consensus-ratings/{ticker}": {
@@ -6746,6 +6764,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -6785,7 +6808,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/earnings": {
@@ -7439,6 +7463,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -7478,7 +7507,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/firms": {
@@ -7622,6 +7652,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -7661,7 +7696,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/guidance": {
@@ -8221,6 +8257,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -8260,7 +8301,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v1/ratings": {
@@ -8883,6 +8925,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -8922,7 +8969,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/benzinga/v2/news": {
@@ -9279,6 +9327,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -9318,7 +9371,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/consumer-spending/eu/v1/merchant-aggregates": {
@@ -9758,6 +9812,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -9797,7 +9856,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/consumer-spending/eu/v1/merchant-hierarchy": {
@@ -10163,6 +10223,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -10202,7 +10267,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/crypto/v1/exchanges": {
@@ -10300,6 +10366,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -10339,7 +10410,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/etf-global/v1/analytics": {
@@ -11198,6 +11270,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -11237,7 +11314,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/etf-global/v1/constituents": {
@@ -11780,6 +11858,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -11819,7 +11902,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/etf-global/v1/fund-flows": {
@@ -12074,6 +12158,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -12113,7 +12202,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/etf-global/v1/profiles": {
@@ -12958,6 +13048,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -12997,7 +13092,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/etf-global/v1/taxonomies": {
@@ -13398,6 +13494,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -13437,7 +13538,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/fed/v1/funding-conditions": {
@@ -13685,6 +13787,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -13724,7 +13831,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/fed/v1/inflation": {
@@ -13889,6 +13997,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -13928,7 +14041,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/fed/v1/inflation-expectations": {
@@ -14099,6 +14213,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -14138,7 +14257,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/fed/v1/labor-market": {
@@ -14291,6 +14411,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -14330,7 +14455,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/fed/v1/treasury-yields": {
@@ -14517,6 +14643,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -14556,7 +14687,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/forex/v1/exchanges": {
@@ -14643,6 +14775,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -14682,7 +14819,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/aggs/{ticker}": {
@@ -15375,6 +15513,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -15415,7 +15558,8 @@
         "summary": "futures contracts API",
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/exchanges": {
@@ -15527,6 +15671,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -15566,7 +15715,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/market-status": {
@@ -15711,6 +15861,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -15751,7 +15906,8 @@
         "summary": "Market Status API",
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/products": {
@@ -16363,6 +16519,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -16403,7 +16564,8 @@
         "summary": "Futures Products API",
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/quotes/{ticker}": {
@@ -16626,6 +16788,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -16665,7 +16832,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/schedules": {
@@ -16925,6 +17093,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -16965,7 +17138,8 @@
         "summary": "Futures Schedules API",
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/snapshot": {
@@ -17349,6 +17523,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -17389,7 +17568,8 @@
         "summary": "futures_snapshot_v1 API",
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/futures/v1/trades/{ticker}": {
@@ -17592,6 +17772,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -17631,7 +17816,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/options/v1/exchanges": {
@@ -17758,6 +17944,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -17797,7 +17988,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/options/v3/quotes/{ticker}": {
@@ -17967,6 +18159,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -18006,7 +18203,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/options/v3/trades/{ticker}": {
@@ -18170,6 +18368,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -18209,7 +18412,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/options/vX/open-interest": {
@@ -18314,54 +18518,6 @@
             }
           },
           {
-            "description": "The ticker of the contract's underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart.",
-            "in": "query",
-            "name": "underlying_ticker",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter equal to any of the values. Multiple values can be specified by using a comma separated list.",
-            "in": "query",
-            "name": "underlying_ticker.any_of",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter greater than the value.",
-            "in": "query",
-            "name": "underlying_ticker.gt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter greater than or equal to the value.",
-            "in": "query",
-            "name": "underlying_ticker.gte",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter less than the value.",
-            "in": "query",
-            "name": "underlying_ticker.lt",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Filter less than or equal to the value.",
-            "in": "query",
-            "name": "underlying_ticker.lte",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "The contract type. Possible values: call, put.",
             "in": "query",
             "name": "contract_type",
@@ -18426,51 +18582,6 @@
             }
           },
           {
-            "description": "The strike price of the contract. Value must be a floating point number.",
-            "in": "query",
-            "name": "strike_price",
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter greater than the value. Value must be a floating point number.",
-            "in": "query",
-            "name": "strike_price.gt",
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter greater than or equal to the value. Value must be a floating point number.",
-            "in": "query",
-            "name": "strike_price.gte",
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter less than the value. Value must be a floating point number.",
-            "in": "query",
-            "name": "strike_price.lt",
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "Filter less than or equal to the value. Value must be a floating point number.",
-            "in": "query",
-            "name": "strike_price.lte",
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
             "description": "The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.",
             "in": "query",
             "name": "date",
@@ -18511,51 +18622,6 @@
             }
           },
           {
-            "description": "The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. Value must be an integer.",
-            "in": "query",
-            "name": "open_interest",
-            "schema": {
-              "format": "int64",
-              "type": "integer"
-            }
-          },
-          {
-            "description": "Filter greater than the value. Value must be an integer.",
-            "in": "query",
-            "name": "open_interest.gt",
-            "schema": {
-              "format": "int64",
-              "type": "integer"
-            }
-          },
-          {
-            "description": "Filter greater than or equal to the value. Value must be an integer.",
-            "in": "query",
-            "name": "open_interest.gte",
-            "schema": {
-              "format": "int64",
-              "type": "integer"
-            }
-          },
-          {
-            "description": "Filter less than the value. Value must be an integer.",
-            "in": "query",
-            "name": "open_interest.lt",
-            "schema": {
-              "format": "int64",
-              "type": "integer"
-            }
-          },
-          {
-            "description": "Filter less than or equal to the value. Value must be an integer.",
-            "in": "query",
-            "name": "open_interest.lte",
-            "schema": {
-              "format": "int64",
-              "type": "integer"
-            }
-          },
-          {
             "description": "Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.",
             "in": "query",
             "name": "limit",
@@ -18589,8 +18655,6 @@
                       "date": "2026-01-22",
                       "expiration_date": "2026-01-23",
                       "open_interest": 9871,
-                      "open_interest_change": 459,
-                      "previous_open_interest": 9412,
                       "root": "SPY",
                       "strike_price": 687,
                       "ticker": "O:SPY260123P00687000",
@@ -18601,8 +18665,6 @@
                       "date": "2026-01-22",
                       "expiration_date": "2026-01-23",
                       "open_interest": 15234,
-                      "open_interest_change": -776,
-                      "previous_open_interest": 16010,
                       "root": "SPY",
                       "strike_price": 687,
                       "ticker": "O:SPY260123C00687000",
@@ -18641,16 +18703,6 @@
                           },
                           "open_interest": {
                             "description": "The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day.",
-                            "format": "int64",
-                            "type": "integer"
-                          },
-                          "open_interest_change": {
-                            "description": "The change in open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null.",
-                            "format": "int64",
-                            "type": "integer"
-                          },
-                          "previous_open_interest": {
-                            "description": "The contract's open interest on the previous trading day. Null if the contract had no open interest reported that day, such as a new listing.",
                             "format": "int64",
                             "type": "integer"
                           },
@@ -18695,6 +18747,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -18734,7 +18791,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/options/vX/open-interest/underlying": {
@@ -19012,6 +19070,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -19051,7 +19114,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/dev/trades/{ticker}": {
@@ -19246,6 +19310,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -19285,7 +19354,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/10-K/vX/sections": {
@@ -19608,6 +19678,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -19647,7 +19722,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/10-K/vX_0/sections": {
@@ -19970,6 +20046,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -20009,7 +20090,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/8-K/vX/disclosures": {
@@ -20245,6 +20327,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -20284,7 +20371,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/8-K/vX/text": {
@@ -20590,6 +20678,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -20629,7 +20722,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/13-F": {
@@ -20897,6 +20991,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -20936,7 +21035,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/form-3": {
@@ -21294,6 +21394,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -21333,7 +21438,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/form-4": {
@@ -21753,6 +21859,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -21792,7 +21903,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/form-5": {
@@ -22229,6 +22341,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -22268,7 +22385,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/index": {
@@ -22573,6 +22691,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -22612,7 +22735,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/filings/vX/risk-factors": {
@@ -22866,6 +22990,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -22905,7 +23034,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/financials/v1/balance-sheets": {
@@ -23495,6 +23625,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -23534,7 +23669,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/financials/v1/cash-flow-statements": {
@@ -24085,6 +24221,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -24124,7 +24265,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/financials/v1/income-statements": {
@@ -24687,6 +24829,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -24726,7 +24873,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/financials/v1/ratios": {
@@ -25938,6 +26086,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -25977,7 +26130,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/insiders/vX/activity": {
@@ -26252,6 +26406,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -26291,7 +26450,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/insiders/vX/holdings": {
@@ -26566,6 +26726,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -26605,7 +26770,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/taxonomies/vX/disclosures": {
@@ -26907,6 +27073,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -26946,7 +27117,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/taxonomies/vX/risk-factors": {
@@ -27246,6 +27418,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -27285,7 +27462,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/v1/dividends": {
@@ -27594,6 +27772,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -27633,7 +27816,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/v1/exchanges": {
@@ -27759,6 +27943,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -27798,7 +27987,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/v1/short-interest": {
@@ -28109,6 +28299,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -28148,7 +28343,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/v1/short-volume": {
@@ -28464,6 +28660,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -28503,7 +28704,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/v1/splits": {
@@ -28734,6 +28936,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -28773,7 +28980,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/stocks/vX/float": {
@@ -28964,6 +29172,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -29003,7 +29216,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/tmx/v1/corporate-events": {
@@ -29515,6 +29729,11 @@
                   ],
                   "type": "object"
                 }
+              },
+              "application/vnd.apache.arrow.file": {
+                "schema": {
+                  "description": "An Apache Arrow IPC file. Its record batch columns match the fields of the entries in the JSON response's `results` array."
+                }
               }
             },
             "description": "A list of results."
@@ -29554,7 +29773,8 @@
         },
         "tags": [
           "default"
-        ]
+        ],
+        "x-massive-field-selection": true
       }
     },
     "/v1/conversion/{from}/{to}": {
@@ -42718,6 +42938,10 @@
                             "description": "The 6 letter CFI code of the contract (defined in <a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/ISO_10962\">ISO 10962</a>)",
                             "type": "string"
                           },
+                          "company_ticker": {
+                            "description": "KPI binary options only. The ticker of the company the KPI belongs to, like NFLX.",
+                            "type": "string"
+                          },
                           "contract_type": {
                             "description": "The type of contract. Can be \"put\", \"call\", or in some rare cases, \"other\".",
                             "type": "string"
@@ -42743,9 +42967,29 @@
                               "path": "github.com/polygon-io/ptime"
                             }
                           },
+                          "metric": {
+                            "description": "KPI binary options only. The KPI the contract settles on, like \"Earnings Per Share ($/share)\".",
+                            "type": "string"
+                          },
                           "primary_exchange": {
                             "description": "The MIC code of the primary exchange that this contract is listed on.",
                             "type": "string"
+                          },
+                          "report_time": {
+                            "description": "KPI binary options only. AM if the company reports before the market opens, PM if after it closes.",
+                            "enum": [
+                              "AM",
+                              "PM"
+                            ],
+                            "type": "string"
+                          },
+                          "reporting_period": {
+                            "description": "KPI binary options only. The fiscal period the KPI is for, like 2026Q3.",
+                            "type": "string"
+                          },
+                          "scale": {
+                            "description": "KPI binary options only. The KPI value divided by scale gives the strike price, like 1000000000 for a KPI in billions. A negative scale means an inverted KPI, like Loss Per Share.",
+                            "type": "integer"
                           },
                           "shares_per_contract": {
                             "description": "The number of shares per contract for this contract.",
@@ -42759,8 +43003,23 @@
                             "description": "The ticker for the option contract.",
                             "type": "string"
                           },
+                          "type": {
+                            "description": "The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.",
+                            "enum": [
+                              "standard",
+                              "binary"
+                            ],
+                            "type": "string"
+                          },
                           "underlying_ticker": {
                             "description": "The underlying ticker that the option contract relates to.",
+                            "type": "string"
+                          },
+                          "underlying_type": {
+                            "description": "What the contract is based on. For now only set on KPI binary options, as kpi.",
+                            "enum": [
+                              "kpi"
+                            ],
                             "type": "string"
                           }
                         },
@@ -42909,6 +43168,10 @@
                           "description": "The 6 letter CFI code of the contract (defined in <a rel=\"nofollow\" target=\"_blank\" href=\"https://en.wikipedia.org/wiki/ISO_10962\">ISO 10962</a>)",
                           "type": "string"
                         },
+                        "company_ticker": {
+                          "description": "KPI binary options only. The ticker of the company the KPI belongs to, like NFLX.",
+                          "type": "string"
+                        },
                         "contract_type": {
                           "description": "The type of contract. Can be \"put\", \"call\", or in some rare cases, \"other\".",
                           "type": "string"
@@ -42934,9 +43197,29 @@
                             "path": "github.com/polygon-io/ptime"
                           }
                         },
+                        "metric": {
+                          "description": "KPI binary options only. The KPI the contract settles on, like \"Earnings Per Share ($/share)\".",
+                          "type": "string"
+                        },
                         "primary_exchange": {
                           "description": "The MIC code of the primary exchange that this contract is listed on.",
                           "type": "string"
+                        },
+                        "report_time": {
+                          "description": "KPI binary options only. AM if the company reports before the market opens, PM if after it closes.",
+                          "enum": [
+                            "AM",
+                            "PM"
+                          ],
+                          "type": "string"
+                        },
+                        "reporting_period": {
+                          "description": "KPI binary options only. The fiscal period the KPI is for, like 2026Q3.",
+                          "type": "string"
+                        },
+                        "scale": {
+                          "description": "KPI binary options only. The KPI value divided by scale gives the strike price, like 1000000000 for a KPI in billions. A negative scale means an inverted KPI, like Loss Per Share.",
+                          "type": "integer"
                         },
                         "shares_per_contract": {
                           "description": "The number of shares per contract for this contract.",
@@ -42950,8 +43233,23 @@
                           "description": "The ticker for the option contract.",
                           "type": "string"
                         },
+                        "type": {
+                          "description": "The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.",
+                          "enum": [
+                            "standard",
+                            "binary"
+                          ],
+                          "type": "string"
+                        },
                         "underlying_ticker": {
                           "description": "The underlying ticker that the option contract relates to.",
+                          "type": "string"
+                        },
+                        "underlying_type": {
+                          "description": "What the contract is based on. For now only set on KPI binary options, as kpi.",
+                          "enum": [
+                            "kpi"
+                          ],
                           "type": "string"
                         }
                       },
@@ -44287,20 +44585,20 @@
                       "name": "NCLH $5 Call",
                       "open_interest": 8921,
                       "session": {
-                        "change": -0.05,
-                        "change_percent": -1.07,
+                        "change": -0.06,
+                        "change_percent": -0.894,
                         "close": 6.65,
                         "decimal_volume": "67.0",
                         "early_trading_change": -0.01,
-                        "early_trading_change_percent": -0.03,
+                        "early_trading_change_percent": -0.149,
                         "high": 7.01,
-                        "late_trading_change": -0.4,
-                        "late_trading_change_percent": -0.02,
+                        "late_trading_change": 0.05,
+                        "late_trading_change_percent": 0.752,
                         "low": 5.42,
                         "open": 6.7,
                         "previous_close": 6.71,
-                        "regular_trading_change": -0.6,
-                        "regular_trading_change_percent": -0.5,
+                        "regular_trading_change": -0.06,
+                        "regular_trading_change_percent": -0.894,
                         "volume": 67
                       },
                       "ticker": "O:NCLH221014C00005000",
@@ -44722,7 +45020,7 @@
                             "type": "number"
                           },
                           "session": {
-                            "description": "Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.\n\nValues describe the current trading session only; nothing carries over from the previous session apart from `previous_close`. For stocks snapshots, an asset that has not traded yet this session reports `volume: 0` with the price and change fields omitted rather than reported as 0.\n\nDuring early trading on stocks snapshots, `volume` and `price` track the session as it happens, but `open`, `high`, `low`, `close` and `vwap` are omitted until the regular session opens, as those report official session prices. They appear from the open and remain through late trading.",
+                            "description": "Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.\n\nValues describe the current trading session only; nothing carries over from the previous session apart from `previous_close`. For stocks snapshots, an asset that has not traded yet this session reports `volume: 0` with the price and change fields omitted rather than reported as 0.\n\nDuring early trading on stocks snapshots, `volume` and `price` track the session as it happens, but `open`, `high`, `low`, `close` and `vwap` are omitted until the regular session opens, as those report official session prices. They appear from the open and remain through late trading.\n\nFor options snapshots, the early, regular and late trading changes use these sessions: early trading from 7:30 to 9:30 AM ET, the regular session from 9:30 AM to 4:00 PM ET (4:15 PM ET for some products, such as SPY and SPX options), and late trading from the end of the regular session to 5:00 PM ET. Only trades marked with the extended hours condition (EXHT, 248) count as early or late trading. Cboe's extended trading hours program covers selected equity options, so other contracts do not get an early or late trading change. Index options, such as SPX, SPXW and XSP, get the regular trading change only. A change field is omitted when the contract has no trade in that session on the current trading day, or when the price it is measured against is missing. A change of 0 is returned as 0.",
                             "properties": {
                               "change": {
                                 "description": "The value of the price change for the asset from the previous trading day.",
@@ -44744,12 +45042,12 @@
                                 "type": "string"
                               },
                               "early_trading_change": {
-                                "description": "Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close.",
+                                "description": "Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`.",
                                 "format": "double",
                                 "type": "number"
                               },
                               "early_trading_change_percent": {
-                                "description": "Today's early trading change as a percentage.",
+                                "description": "Today's early trading change as a percentage of `previous_close`.",
                                 "format": "double",
                                 "type": "number"
                               },
@@ -44758,13 +45056,22 @@
                                 "format": "double",
                                 "type": "number"
                               },
+                              "last_updated": {
+                                "description": "The nanosecond timestamp of the last update to the session data. For stocks, it's set when the session resets at the start of each trading session and then advances with each trade; quotes don't update it. Returned for stocks, crypto, and forex snapshots, though it may be absent for inactive tickers.",
+                                "format": "int64",
+                                "type": "integer",
+                                "x-polygon-go-type": {
+                                  "name": "INanoseconds",
+                                  "path": "github.com/polygon-io/ptime"
+                                }
+                              },
                               "late_trading_change": {
-                                "description": "Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close.",
+                                "description": "Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`.",
                                 "format": "double",
                                 "type": "number"
                               },
                               "late_trading_change_percent": {
-                                "description": "Today's late trading change as a percentage.",
+                                "description": "Today's late trading change as a percentage of today's `close`.",
                                 "format": "double",
                                 "type": "number"
                               },
@@ -44789,17 +45096,22 @@
                                 "type": "number"
                               },
                               "regular_trading_change": {
-                                "description": "Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close.",
+                                "description": "Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading.",
                                 "format": "double",
                                 "type": "number"
                               },
                               "regular_trading_change_percent": {
-                                "description": "Today's regular trading change as a percentage.",
+                                "description": "Today's regular trading change as a percentage of `previous_close`.",
                                 "format": "double",
                                 "type": "number"
                               },
                               "volume": {
                                 "description": "The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session.",
+                                "format": "double",
+                                "type": "number"
+                              },
+                              "vwap": {
+                                "description": "The volume weighted average price of the asset for the day. Only returned for stocks, crypto, and forex snapshots, and omitted when there's no day bar yet, such as for stocks before the regular market open or for tickers that haven't traded today.",
                                 "format": "double",
                                 "type": "number"
                               }
