@@ -28,24 +28,26 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.  Values describe the current trading session only; nothing carries over from the previous session apart from `previous_close`. For stocks snapshots, an asset that has not traded yet this session reports `volume: 0` with the price and change fields omitted rather than reported as 0.  During early trading on stocks snapshots, `volume` and `price` track the session as it happens, but `open`, `high`, `low`, `close` and `vwap` are omitted until the regular session opens, as those report official session prices. They appear from the open and remain through late trading.
+ * Comprehensive trading session metrics, detailing price changes, trading volume, and key price points (open, close, high, low) for the asset within the current trading day. Includes specific changes during early, regular, and late trading periods to enable detailed performance analysis and trend tracking.  Values describe the current trading session only; nothing carries over from the previous session apart from `previous_close`. For stocks snapshots, an asset that has not traded yet this session reports `volume: 0` with the price and change fields omitted rather than reported as 0.  During early trading on stocks snapshots, `volume` and `price` track the session as it happens, but `open`, `high`, `low`, `close` and `vwap` are omitted until the regular session opens, as those report official session prices. They appear from the open and remain through late trading.  For options snapshots, the early, regular and late trading changes use these sessions: early trading from 7:30 to 9:30 AM ET, the regular session from 9:30 AM to 4:00 PM ET (4:15 PM ET for some products, such as SPY and SPX options), and late trading from the end of the regular session to 5:00 PM ET. Only trades marked with the extended hours condition (EXHT, 248) count as early or late trading. Cboe's extended trading hours program covers selected equity options, so other contracts do not get an early or late trading change. Index options, such as SPX, SPXW and XSP, get the regular trading change only. A change field is omitted when the contract has no trade in that session on the current trading day, or when the price it is measured against is missing. A change of 0 is returned as 0.
  *
  * @param change The value of the price change for the asset from the previous trading day.
  * @param changePercent The percent of the price change for the asset from the previous trading day.
  * @param close The closing price of the asset for the day.
  * @param decimalVolume The trading volume for the asset for the day with decimal precision. This field provides support for fractional shares, representing volume as a decimal string. This field is only returned for stocks snapshots.
- * @param earlyTradingChange Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close.
- * @param earlyTradingChangePercent Today's early trading change as a percentage.
+ * @param earlyTradingChange Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`.
+ * @param earlyTradingChangePercent Today's early trading change as a percentage of `previous_close`.
  * @param high The highest price of the asset for the day.
- * @param lateTradingChange Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close.
- * @param lateTradingChangePercent Today's late trading change as a percentage.
+ * @param lastUpdated The nanosecond timestamp of the last update to the session data. For stocks, it's set when the session resets at the start of each trading session and then advances with each trade; quotes don't update it. Returned for stocks, crypto, and forex snapshots, though it may be absent for inactive tickers.
+ * @param lateTradingChange Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`.
+ * @param lateTradingChangePercent Today's late trading change as a percentage of today's `close`.
  * @param low The lowest price of the asset for the day.
  * @param `open` The open price of the asset for the day.
  * @param previousClose The closing price of the asset for the previous trading day. This is the correct field for the prior session's reference price, and it is retained across the daily session rollover. It is absent only for an asset with no completed prior session, such as a newly listed ticker or option contract.
  * @param price The price of the most recent trade or bid price for this asset.
- * @param regularTradingChange Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close.
- * @param regularTradingChangePercent Today's regular trading change as a percentage.
+ * @param regularTradingChange Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading.
+ * @param regularTradingChangePercent Today's regular trading change as a percentage of `previous_close`.
  * @param volume The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session.
+ * @param vwap The volume weighted average price of the asset for the day. Only returned for stocks, crypto, and forex snapshots, and omitted when there's no day bar yet, such as for stocks before the regular market open or for tickers that haven't traded today.
  */
 
 
@@ -67,11 +69,11 @@ data class GetSnapshots200ResponseResultsInnerSession (
     @Json(name = "decimal_volume")
     val decimalVolume: kotlin.String? = null,
 
-    /* Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. */
+    /* Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`. */
     @Json(name = "early_trading_change")
     val earlyTradingChange: kotlin.Double? = null,
 
-    /* Today's early trading change as a percentage. */
+    /* Today's early trading change as a percentage of `previous_close`. */
     @Json(name = "early_trading_change_percent")
     val earlyTradingChangePercent: kotlin.Double? = null,
 
@@ -79,11 +81,15 @@ data class GetSnapshots200ResponseResultsInnerSession (
     @Json(name = "high")
     val high: kotlin.Double? = null,
 
-    /* Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. */
+    /* The nanosecond timestamp of the last update to the session data. For stocks, it's set when the session resets at the start of each trading session and then advances with each trade; quotes don't update it. Returned for stocks, crypto, and forex snapshots, though it may be absent for inactive tickers. */
+    @Json(name = "last_updated")
+    val lastUpdated: kotlin.Long? = null,
+
+    /* Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`. */
     @Json(name = "late_trading_change")
     val lateTradingChange: kotlin.Double? = null,
 
-    /* Today's late trading change as a percentage. */
+    /* Today's late trading change as a percentage of today's `close`. */
     @Json(name = "late_trading_change_percent")
     val lateTradingChangePercent: kotlin.Double? = null,
 
@@ -103,17 +109,21 @@ data class GetSnapshots200ResponseResultsInnerSession (
     @Json(name = "price")
     val price: kotlin.Double? = null,
 
-    /* Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. */
+    /* Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading. */
     @Json(name = "regular_trading_change")
     val regularTradingChange: kotlin.Double? = null,
 
-    /* Today's regular trading change as a percentage. */
+    /* Today's regular trading change as a percentage of `previous_close`. */
     @Json(name = "regular_trading_change_percent")
     val regularTradingChangePercent: kotlin.Double? = null,
 
     /* The trading volume for the asset for the day. A value of 0 means no trades have occurred yet in the current session. */
     @Json(name = "volume")
-    val volume: kotlin.Double? = null
+    val volume: kotlin.Double? = null,
+
+    /* The volume weighted average price of the asset for the day. Only returned for stocks, crypto, and forex snapshots, and omitted when there's no day bar yet, such as for stocks before the regular market open or for tickers that haven't traded today. */
+    @Json(name = "vwap")
+    val vwap: kotlin.Double? = null
 
 ) {
 
