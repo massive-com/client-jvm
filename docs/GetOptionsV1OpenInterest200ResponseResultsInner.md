@@ -1,5 +1,5 @@
 
-# GetOptionsVXOpenInterest200ResponseResultsInner
+# GetOptionsV1OpenInterest200ResponseResultsInner
 
 ## Properties
 | Name | Type | Description | Notes |
