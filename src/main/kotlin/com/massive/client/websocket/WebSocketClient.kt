@@ -301,6 +301,7 @@ constructor(
             "Q" -> serializer.decodeFromJsonElement(OptionsMessage.Quote.serializer(), frame)
             "A", "AM" ->
                     serializer.decodeFromJsonElement(OptionsMessage.Aggregate.serializer(), frame)
+            "AD" -> serializer.decodeFromJsonElement(OptionsMessage.Admin.serializer(), frame)
             else -> RawMessage(frame.toString().toByteArray())
         }
     }

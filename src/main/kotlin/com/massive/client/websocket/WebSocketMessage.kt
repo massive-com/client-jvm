@@ -117,6 +117,17 @@ sealed class MassiveWebSocketMessage {
             @SerialName("s") val startTimestampMillis: Long? = null,
             @SerialName("e") val endTimestampMillis: Long? = null
         ) : OptionsMessage()
+
+        @Serializable
+        data class Admin(
+            @SerialName("ev") val eventType: String? = null,
+            @SerialName("i") val id: String? = null,
+            @SerialName("x") val exchangeId: Long? = null,
+            @SerialName("m") val message: String? = null,
+            @SerialName("t") val timestampNanos: Long? = null,
+            @SerialName("q") val sequenceNumber: Long? = null,
+            @SerialName("rt") val retransmission: Boolean? = null
+        ) : OptionsMessage()
     }
 
     sealed class ForexMessage : MassiveWebSocketMessage() {
