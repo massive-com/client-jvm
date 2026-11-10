@@ -35,8 +35,6 @@ import com.squareup.moshi.JsonClass
  * @param contractType The contract type. Possible values: call, put.
  * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD).
  * @param openInterest The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day.
- * @param openInterestChange The change in open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null.
- * @param previousOpenInterest The contract's open interest on the previous trading day. Null if the contract had no open interest reported that day, such as a new listing.
  * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1).
  * @param strikePrice The strike price of the contract.
  * @param underlyingTicker The ticker of the contract's underlying (e.g., SPX). Weekly and adjusted roots are folded in, so SPXW contracts report SPX and AMCR1 contracts report AMCR; see root to tell them apart.
@@ -64,14 +62,6 @@ data class GetOptionsVXOpenInterest200ResponseResultsInner (
     /* The number of outstanding contracts that have not been closed or exercised, as of the last open interest update of the day. */
     @Json(name = "open_interest")
     val openInterest: kotlin.Long? = null,
-
-    /* The change in open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null. */
-    @Json(name = "open_interest_change")
-    val openInterestChange: kotlin.Long? = null,
-
-    /* The contract's open interest on the previous trading day. Null if the contract had no open interest reported that day, such as a new listing. */
-    @Json(name = "previous_open_interest")
-    val previousOpenInterest: kotlin.Long? = null,
 
     /* The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). */
     @Json(name = "root")
