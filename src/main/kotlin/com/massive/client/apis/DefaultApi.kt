@@ -90,9 +90,10 @@ import com.massive.client.models.GetOptionsChain200Response
 import com.massive.client.models.GetOptionsContract200Response
 import com.massive.client.models.GetOptionsOpenClose200Response
 import com.massive.client.models.GetOptionsV1Exchanges200Response
+import com.massive.client.models.GetOptionsV1OpenInterest200Response
+import com.massive.client.models.GetOptionsV1UnusualTrades200Response
 import com.massive.client.models.GetOptionsV3QuotesTicker200Response
 import com.massive.client.models.GetOptionsV3TradesTicker200Response
-import com.massive.client.models.GetOptionsVXOpenInterest200Response
 import com.massive.client.models.GetOptionsVXOpenInterestUnderlying200Response
 import com.massive.client.models.GetPreviousCryptoAggregates200Response
 import com.massive.client.models.GetPreviousIndicesAggregates200Response
@@ -10300,6 +10301,418 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
     }
 
     /**
+     * enum for parameter contractType
+     */
+     enum class ContractTypeGetOptionsV1OpenInterest(val value: kotlin.String) {
+         @Json(name = "call") call("call"),
+         @Json(name = "put") put("put");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter contractTypeAnyOf
+     */
+     enum class ContractTypeAnyOfGetOptionsV1OpenInterest(val value: kotlin.String) {
+         @Json(name = "call") call("call"),
+         @Json(name = "put") put("put");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /options/v1/open-interest
+     * 
+     * Daily open interest for every US options contract as reported by OPRA, one row per contract per trading day, with the contract&#39;s underlying, type, expiration and strike.
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
+     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param rootGt Filter greater than the value. (optional)
+     * @param rootGte Filter greater than or equal to the value. (optional)
+     * @param rootLt Filter less than the value. (optional)
+     * @param rootLte Filter less than or equal to the value. (optional)
+     * @param contractType The contract type. Possible values: call, put. (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return GetOptionsV1OpenInterest200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getOptionsV1OpenInterest(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, root: kotlin.String? = null, rootAnyOf: kotlin.String? = null, rootGt: kotlin.String? = null, rootGte: kotlin.String? = null, rootLt: kotlin.String? = null, rootLte: kotlin.String? = null, contractType: ContractTypeGetOptionsV1OpenInterest? = null, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1OpenInterest? = null, expirationDate: kotlin.String? = null, expirationDateGt: kotlin.String? = null, expirationDateGte: kotlin.String? = null, expirationDateLt: kotlin.String? = null, expirationDateLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.desc") : GetOptionsV1OpenInterest200Response {
+        val localVarResponse = getOptionsV1OpenInterestWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsV1OpenInterest200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /options/v1/open-interest
+     * 
+     * Daily open interest for every US options contract as reported by OPRA, one row per contract per trading day, with the contract&#39;s underlying, type, expiration and strike.
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
+     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param rootGt Filter greater than the value. (optional)
+     * @param rootGte Filter greater than or equal to the value. (optional)
+     * @param rootLt Filter less than the value. (optional)
+     * @param rootLte Filter less than or equal to the value. (optional)
+     * @param contractType The contract type. Possible values: call, put. (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return ApiResponse<GetOptionsV1OpenInterest200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getOptionsV1OpenInterestWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsV1OpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1OpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsV1OpenInterest200Response?> {
+        val localVariableConfig = getOptionsV1OpenInterestRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetOptionsV1OpenInterest200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getOptionsV1OpenInterest
+     *
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
+     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param rootGt Filter greater than the value. (optional)
+     * @param rootGte Filter greater than or equal to the value. (optional)
+     * @param rootLt Filter less than the value. (optional)
+     * @param rootLte Filter less than or equal to the value. (optional)
+     * @param contractType The contract type. Possible values: call, put. (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return RequestConfig
+     */
+    fun getOptionsV1OpenInterestRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsV1OpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1OpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (root != null) {
+                    put("root", listOf(root.toString()))
+                }
+                if (rootAnyOf != null) {
+                    put("root.any_of", listOf(rootAnyOf.toString()))
+                }
+                if (rootGt != null) {
+                    put("root.gt", listOf(rootGt.toString()))
+                }
+                if (rootGte != null) {
+                    put("root.gte", listOf(rootGte.toString()))
+                }
+                if (rootLt != null) {
+                    put("root.lt", listOf(rootLt.toString()))
+                }
+                if (rootLte != null) {
+                    put("root.lte", listOf(rootLte.toString()))
+                }
+                if (contractType != null) {
+                    put("contract_type", listOf(contractType.value))
+                }
+                if (contractTypeAnyOf != null) {
+                    put("contract_type.any_of", listOf(contractTypeAnyOf.value))
+                }
+                if (expirationDate != null) {
+                    put("expiration_date", listOf(expirationDate.toString()))
+                }
+                if (expirationDateGt != null) {
+                    put("expiration_date.gt", listOf(expirationDateGt.toString()))
+                }
+                if (expirationDateGte != null) {
+                    put("expiration_date.gte", listOf(expirationDateGte.toString()))
+                }
+                if (expirationDateLt != null) {
+                    put("expiration_date.lt", listOf(expirationDateLt.toString()))
+                }
+                if (expirationDateLte != null) {
+                    put("expiration_date.lte", listOf(expirationDateLte.toString()))
+                }
+                if (date != null) {
+                    put("date", listOf(date.toString()))
+                }
+                if (dateGt != null) {
+                    put("date.gt", listOf(dateGt.toString()))
+                }
+                if (dateGte != null) {
+                    put("date.gte", listOf(dateGte.toString()))
+                }
+                if (dateLt != null) {
+                    put("date.lt", listOf(dateLt.toString()))
+                }
+                if (dateLte != null) {
+                    put("date.lte", listOf(dateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/options/v1/open-interest",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /options/v1/unusual-trades
+     * 
+     * Contains unusual trades for US options contracts, from real-time data for the most recent days and from historical trade records before that. A trade qualifies when its notional premium (price x size x 100) is $100,000 or more, when its size is 1,000 contracts or more, or when it is an intermarket sweep (condition 219). Cancels, late reports, and compression trades are excluded. The flags column lists every case the trade meets. Each record captures trade execution details including pricing, timing, and exchange information.
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
+     * @return GetOptionsV1UnusualTrades200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getOptionsV1UnusualTrades(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, sipTimestamp: kotlin.String? = null, sipTimestampGt: kotlin.String? = null, sipTimestampGte: kotlin.String? = null, sipTimestampLt: kotlin.String? = null, sipTimestampLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "sip_timestamp.desc") : GetOptionsV1UnusualTrades200Response {
+        val localVarResponse = getOptionsV1UnusualTradesWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, sipTimestamp = sipTimestamp, sipTimestampGt = sipTimestampGt, sipTimestampGte = sipTimestampGte, sipTimestampLt = sipTimestampLt, sipTimestampLte = sipTimestampLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsV1UnusualTrades200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /options/v1/unusual-trades
+     * 
+     * Contains unusual trades for US options contracts, from real-time data for the most recent days and from historical trade records before that. A trade qualifies when its notional premium (price x size x 100) is $100,000 or more, when its size is 1,000 contracts or more, or when it is an intermarket sweep (condition 219). Cancels, late reports, and compression trades are excluded. The flags column lists every case the trade meets. Each record captures trade execution details including pricing, timing, and exchange information.
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
+     * @return ApiResponse<GetOptionsV1UnusualTrades200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getOptionsV1UnusualTradesWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, sipTimestamp: kotlin.String?, sipTimestampGt: kotlin.String?, sipTimestampGte: kotlin.String?, sipTimestampLt: kotlin.String?, sipTimestampLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsV1UnusualTrades200Response?> {
+        val localVariableConfig = getOptionsV1UnusualTradesRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, sipTimestamp = sipTimestamp, sipTimestampGt = sipTimestampGt, sipTimestampGte = sipTimestampGte, sipTimestampLt = sipTimestampLt, sipTimestampLte = sipTimestampLte, limit = limit, sort = sort)
+
+        return request<Unit, GetOptionsV1UnusualTrades200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getOptionsV1UnusualTrades
+     *
+     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param tickerGt Filter greater than the value. (optional)
+     * @param tickerGte Filter greater than or equal to the value. (optional)
+     * @param tickerLt Filter less than the value. (optional)
+     * @param tickerLte Filter less than or equal to the value. (optional)
+     * @param sipTimestamp The nanosecond accuracy SIP Unix Timestamp. This is the timestamp of when the SIP received this trade from the exchange which produced it. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param sipTimestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;sip_timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "sip_timestamp.desc")
+     * @return RequestConfig
+     */
+    fun getOptionsV1UnusualTradesRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, sipTimestamp: kotlin.String?, sipTimestampGt: kotlin.String?, sipTimestampGte: kotlin.String?, sipTimestampLt: kotlin.String?, sipTimestampLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (tickerGt != null) {
+                    put("ticker.gt", listOf(tickerGt.toString()))
+                }
+                if (tickerGte != null) {
+                    put("ticker.gte", listOf(tickerGte.toString()))
+                }
+                if (tickerLt != null) {
+                    put("ticker.lt", listOf(tickerLt.toString()))
+                }
+                if (tickerLte != null) {
+                    put("ticker.lte", listOf(tickerLte.toString()))
+                }
+                if (sipTimestamp != null) {
+                    put("sip_timestamp", listOf(sipTimestamp.toString()))
+                }
+                if (sipTimestampGt != null) {
+                    put("sip_timestamp.gt", listOf(sipTimestampGt.toString()))
+                }
+                if (sipTimestampGte != null) {
+                    put("sip_timestamp.gte", listOf(sipTimestampGte.toString()))
+                }
+                if (sipTimestampLt != null) {
+                    put("sip_timestamp.lt", listOf(sipTimestampLt.toString()))
+                }
+                if (sipTimestampLte != null) {
+                    put("sip_timestamp.lte", listOf(sipTimestampLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/options/v1/unusual-trades",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
      * GET /options/v3/quotes/{ticker}
      * 
      * Contains NBBO (National Best Bid and Offer) quote records for US options contracts, capturing bid/ask prices, sizes, and exchange attribution at nanosecond precision.
@@ -10526,268 +10939,6 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/options/v3/trades/{ticker}".replace("{"+"ticker"+"}", encodeURIComponent(ticker.toString())),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = true,
-            body = localVariableBody
-        )
-    }
-
-    /**
-     * enum for parameter contractType
-     */
-     enum class ContractTypeGetOptionsVXOpenInterest(val value: kotlin.String) {
-         @Json(name = "call") call("call"),
-         @Json(name = "put") put("put");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * enum for parameter contractTypeAnyOf
-     */
-     enum class ContractTypeAnyOfGetOptionsVXOpenInterest(val value: kotlin.String) {
-         @Json(name = "call") call("call"),
-         @Json(name = "put") put("put");
-
-        /**
-         * Override [toString()] to avoid using the enum variable name as the value, and instead use
-         * the actual value defined in the API spec file.
-         *
-         * This solves a problem when the variable name and its value are different, and ensures that
-         * the client sends the correct enum values to the server always.
-         */
-        override fun toString(): kotlin.String = "$value"
-     }
-
-    /**
-     * GET /options/vX/open-interest
-     * 
-     * Daily open interest for every US options contract as reported by OPRA, one row per contract per trading day, with the contract&#39;s underlying, type, expiration and strike.
-     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
-     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param rootGt Filter greater than the value. (optional)
-     * @param rootGte Filter greater than or equal to the value. (optional)
-     * @param rootLt Filter less than the value. (optional)
-     * @param rootLte Filter less than or equal to the value. (optional)
-     * @param contractType The contract type. Possible values: call, put. (optional)
-     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
-     * @return GetOptionsVXOpenInterest200Response
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getOptionsVXOpenInterest(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, tickerGt: kotlin.String? = null, tickerGte: kotlin.String? = null, tickerLt: kotlin.String? = null, tickerLte: kotlin.String? = null, root: kotlin.String? = null, rootAnyOf: kotlin.String? = null, rootGt: kotlin.String? = null, rootGte: kotlin.String? = null, rootLt: kotlin.String? = null, rootLte: kotlin.String? = null, contractType: ContractTypeGetOptionsVXOpenInterest? = null, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest? = null, expirationDate: kotlin.String? = null, expirationDateGt: kotlin.String? = null, expirationDateGte: kotlin.String? = null, expirationDateLt: kotlin.String? = null, expirationDateLte: kotlin.String? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 100, sort: kotlin.String? = "date.desc") : GetOptionsVXOpenInterest200Response {
-        val localVarResponse = getOptionsVXOpenInterestWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsVXOpenInterest200Response
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-     * GET /options/vX/open-interest
-     * 
-     * Daily open interest for every US options contract as reported by OPRA, one row per contract per trading day, with the contract&#39;s underlying, type, expiration and strike.
-     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
-     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param rootGt Filter greater than the value. (optional)
-     * @param rootGte Filter greater than or equal to the value. (optional)
-     * @param rootLt Filter less than the value. (optional)
-     * @param rootLte Filter less than or equal to the value. (optional)
-     * @param contractType The contract type. Possible values: call, put. (optional)
-     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
-     * @return ApiResponse<GetOptionsVXOpenInterest200Response?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getOptionsVXOpenInterestWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsVXOpenInterest200Response?> {
-        val localVariableConfig = getOptionsVXOpenInterestRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, tickerGt = tickerGt, tickerGte = tickerGte, tickerLt = tickerLt, tickerLte = tickerLte, root = root, rootAnyOf = rootAnyOf, rootGt = rootGt, rootGte = rootGte, rootLt = rootLt, rootLte = rootLte, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, expirationDate = expirationDate, expirationDateGt = expirationDateGt, expirationDateGte = expirationDateGte, expirationDateLt = expirationDateLt, expirationDateLte = expirationDateLte, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
-
-        return request<Unit, GetOptionsVXOpenInterest200Response>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getOptionsVXOpenInterest
-     *
-     * @param ticker The options ticker symbol (e.g., O:SPY260123C00687000). (optional)
-     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param tickerGt Filter greater than the value. (optional)
-     * @param tickerGte Filter greater than or equal to the value. (optional)
-     * @param tickerLt Filter less than the value. (optional)
-     * @param tickerLte Filter less than or equal to the value. (optional)
-     * @param root The OCC root symbol of the contract (e.g., SPXW). Differs from the underlying for weekly roots and for contracts adjusted after a corporate action (e.g., AMCR1). (optional)
-     * @param rootAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param rootGt Filter greater than the value. (optional)
-     * @param rootGte Filter greater than or equal to the value. (optional)
-     * @param rootLt Filter less than the value. (optional)
-     * @param rootLte Filter less than or equal to the value. (optional)
-     * @param contractType The contract type. Possible values: call, put. (optional)
-     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
-     * @param expirationDate The date the contract expires (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param expirationDateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param date The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
-     * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
-     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
-     * @return RequestConfig
-     */
-    fun getOptionsVXOpenInterestRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, tickerGt: kotlin.String?, tickerGte: kotlin.String?, tickerLt: kotlin.String?, tickerLte: kotlin.String?, root: kotlin.String?, rootAnyOf: kotlin.String?, rootGt: kotlin.String?, rootGte: kotlin.String?, rootLt: kotlin.String?, rootLte: kotlin.String?, contractType: ContractTypeGetOptionsVXOpenInterest?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsVXOpenInterest?, expirationDate: kotlin.String?, expirationDateGt: kotlin.String?, expirationDateGte: kotlin.String?, expirationDateLt: kotlin.String?, expirationDateLte: kotlin.String?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
-        val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (ticker != null) {
-                    put("ticker", listOf(ticker.toString()))
-                }
-                if (tickerAnyOf != null) {
-                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
-                }
-                if (tickerGt != null) {
-                    put("ticker.gt", listOf(tickerGt.toString()))
-                }
-                if (tickerGte != null) {
-                    put("ticker.gte", listOf(tickerGte.toString()))
-                }
-                if (tickerLt != null) {
-                    put("ticker.lt", listOf(tickerLt.toString()))
-                }
-                if (tickerLte != null) {
-                    put("ticker.lte", listOf(tickerLte.toString()))
-                }
-                if (root != null) {
-                    put("root", listOf(root.toString()))
-                }
-                if (rootAnyOf != null) {
-                    put("root.any_of", listOf(rootAnyOf.toString()))
-                }
-                if (rootGt != null) {
-                    put("root.gt", listOf(rootGt.toString()))
-                }
-                if (rootGte != null) {
-                    put("root.gte", listOf(rootGte.toString()))
-                }
-                if (rootLt != null) {
-                    put("root.lt", listOf(rootLt.toString()))
-                }
-                if (rootLte != null) {
-                    put("root.lte", listOf(rootLte.toString()))
-                }
-                if (contractType != null) {
-                    put("contract_type", listOf(contractType.value))
-                }
-                if (contractTypeAnyOf != null) {
-                    put("contract_type.any_of", listOf(contractTypeAnyOf.value))
-                }
-                if (expirationDate != null) {
-                    put("expiration_date", listOf(expirationDate.toString()))
-                }
-                if (expirationDateGt != null) {
-                    put("expiration_date.gt", listOf(expirationDateGt.toString()))
-                }
-                if (expirationDateGte != null) {
-                    put("expiration_date.gte", listOf(expirationDateGte.toString()))
-                }
-                if (expirationDateLt != null) {
-                    put("expiration_date.lt", listOf(expirationDateLt.toString()))
-                }
-                if (expirationDateLte != null) {
-                    put("expiration_date.lte", listOf(expirationDateLte.toString()))
-                }
-                if (date != null) {
-                    put("date", listOf(date.toString()))
-                }
-                if (dateGt != null) {
-                    put("date.gt", listOf(dateGt.toString()))
-                }
-                if (dateGte != null) {
-                    put("date.gte", listOf(dateGte.toString()))
-                }
-                if (dateLt != null) {
-                    put("date.lt", listOf(dateLt.toString()))
-                }
-                if (dateLte != null) {
-                    put("date.lte", listOf(dateLte.toString()))
-                }
-                if (limit != null) {
-                    put("limit", listOf(limit.toString()))
-                }
-                if (sort != null) {
-                    put("sort", listOf(sort.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
-
-        return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/options/vX/open-interest",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
