@@ -42,6 +42,7 @@ sealed class MassiveWebSocketChannel(val prefix: String) {
         object Quotes: Options("Q")
         object AggPerSecond : Options("A")
         object AggPerMinute : Options("AM")
+        object Admin : Options("AD")
     }
 
 	/**
