@@ -49,7 +49,7 @@ import com.squareup.moshi.JsonClass
  * @param lastQuote 
  * @param lastTrade 
  * @param lastUpdated The nanosecond timestamp of when this information was updated.
- * @param marketStatus The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
+ * @param marketStatus The market status for the market that trades this ticker.  Possible values for Stocks are overnight_trading, open, closed, early_trading, and late_trading. Note that the overnight_trading session is new as of 2026-12-07 for SIP 23/5 extended hours.  Possible values for options, crypto, and forex snapshots are open, closed, early_trading, or late_trading.  Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
  * @param message The error message while looking for this ticker.
  * @param name The name of this contract.
  * @param openInterest The quantity of this contract held at the end of the last trading day.
@@ -106,7 +106,7 @@ data class GetSnapshots200ResponseResultsInner (
     @Json(name = "last_updated")
     val lastUpdated: kotlin.Long? = null,
 
-    /* The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading. */
+    /* The market status for the market that trades this ticker.  Possible values for Stocks are overnight_trading, open, closed, early_trading, and late_trading. Note that the overnight_trading session is new as of 2026-12-07 for SIP 23/5 extended hours.  Possible values for options, crypto, and forex snapshots are open, closed, early_trading, or late_trading.  Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading. */
     @Json(name = "market_status")
     val marketStatus: kotlin.String? = null,
 
