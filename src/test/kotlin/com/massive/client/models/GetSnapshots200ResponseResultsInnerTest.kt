@@ -112,7 +112,7 @@ class GetSnapshots200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.lastUpdated shouldBe ("TODO")
         }
 
-        // to test the property `marketStatus` - The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
+        // to test the property `marketStatus` - The market status for the market that trades this ticker.  Possible values for Stocks are overnight_trading, open, closed, early_trading, and late_trading. Note that the overnight_trading session is new as of 2026-12-07 for SIP 23/5 extended hours.  Possible values for options, crypto, and forex snapshots are open, closed, early_trading, or late_trading.  Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading.
         should("test marketStatus") {
             // uncomment below to test the property
             //modelInstance.marketStatus shouldBe ("TODO")

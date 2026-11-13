@@ -16,7 +16,7 @@
 | **lastQuote** | [**GetSnapshots200ResponseResultsInnerLastQuote**](GetSnapshots200ResponseResultsInnerLastQuote.md) |  |  [optional] |
 | **lastTrade** | [**GetSnapshots200ResponseResultsInnerLastTrade**](GetSnapshots200ResponseResultsInnerLastTrade.md) |  |  [optional] |
 | **lastUpdated** | **kotlin.Long** | The nanosecond timestamp of when this information was updated. |  [optional] |
-| **marketStatus** | **kotlin.String** | The market status for the market that trades this ticker. Possible values for stocks, options, crypto, and forex snapshots are open, closed, early_trading, or late_trading. Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading. |  [optional] |
+| **marketStatus** | **kotlin.String** | The market status for the market that trades this ticker.  Possible values for Stocks are overnight_trading, open, closed, early_trading, and late_trading. Note that the overnight_trading session is new as of 2026-12-07 for SIP 23/5 extended hours.  Possible values for options, crypto, and forex snapshots are open, closed, early_trading, or late_trading.  Possible values for indices snapshots are regular_trading, closed, early_trading, and late_trading. |  [optional] |
 | **message** | **kotlin.String** | The error message while looking for this ticker. |  [optional] |
 | **name** | **kotlin.String** | The name of this contract. |  [optional] |
 | **openInterest** | **kotlin.Double** | The quantity of this contract held at the end of the last trading day. |  [optional] |
