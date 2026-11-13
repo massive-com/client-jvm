@@ -48,7 +48,7 @@ import com.squareup.moshi.JsonClass
  * @param ticker The ticker for the option contract.
  * @param type The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract.
  * @param underlyingTicker The underlying ticker that the option contract relates to.
- * @param underlyingType What the contract is based on. For now only set on KPI binary options, as kpi.
+ * @param underlyingType What the contract is based on: kpi on Cboe KPI binary options, equity on NYSE American equity binary options (roots that start with B1). Missing on other contracts for now.
  */
 
 
@@ -122,7 +122,7 @@ data class ListOptionsContracts200ResponseResultsInner (
     @Json(name = "underlying_ticker")
     val underlyingTicker: kotlin.String? = null,
 
-    /* What the contract is based on. For now only set on KPI binary options, as kpi. */
+    /* What the contract is based on: kpi on Cboe KPI binary options, equity on NYSE American equity binary options (roots that start with B1). Missing on other contracts for now. */
     @Json(name = "underlying_type")
     val underlyingType: ListOptionsContracts200ResponseResultsInner.UnderlyingType? = null
 
@@ -160,13 +160,14 @@ data class ListOptionsContracts200ResponseResultsInner (
         @Json(name = "binary") binary("binary");
     }
     /**
-     * What the contract is based on. For now only set on KPI binary options, as kpi.
+     * What the contract is based on: kpi on Cboe KPI binary options, equity on NYSE American equity binary options (roots that start with B1). Missing on other contracts for now.
      *
-     * Values: kpi
+     * Values: kpi,equity
      */
     @JsonClass(generateAdapter = false)
     enum class UnderlyingType(val value: kotlin.String) {
-        @Json(name = "kpi") kpi("kpi");
+        @Json(name = "kpi") kpi("kpi"),
+        @Json(name = "equity") equity("equity");
     }
 
 }

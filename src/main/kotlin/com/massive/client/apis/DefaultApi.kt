@@ -89,6 +89,7 @@ import com.massive.client.models.GetOptionContract200Response
 import com.massive.client.models.GetOptionsChain200Response
 import com.massive.client.models.GetOptionsContract200Response
 import com.massive.client.models.GetOptionsOpenClose200Response
+import com.massive.client.models.GetOptionsV1AdminMessages200Response
 import com.massive.client.models.GetOptionsV1Exchanges200Response
 import com.massive.client.models.GetOptionsV1OpenInterest200Response
 import com.massive.client.models.GetOptionsV1UnusualTrades200Response
@@ -10215,6 +10216,120 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/open-close/{optionsTicker}/{date}".replace("{"+"optionsTicker"+"}", encodeURIComponent(optionsTicker.toString())).replace("{"+"date"+"}", encodeURIComponent(date.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /options/v1/admin-messages
+     * 
+     * OPRA administrative messages: the free-text channel of the OPRA feed, carrying FLEX option prints and quotes, operational notices, and other messages that don&#39;t fit a fixed format. One record per OPRA Category C message, written once and never modified.
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return GetOptionsV1AdminMessages200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getOptionsV1AdminMessages(timestampGt: kotlin.String? = null, timestampGte: kotlin.String? = null, timestampLt: kotlin.String? = null, timestampLte: kotlin.String? = null, exchange: kotlin.Long? = null, limit: kotlin.Int? = 1000, sort: kotlin.String? = "timestamp.asc") : GetOptionsV1AdminMessages200Response {
+        val localVarResponse = getOptionsV1AdminMessagesWithHttpInfo(timestampGt = timestampGt, timestampGte = timestampGte, timestampLt = timestampLt, timestampLte = timestampLte, exchange = exchange, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsV1AdminMessages200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /options/v1/admin-messages
+     * 
+     * OPRA administrative messages: the free-text channel of the OPRA feed, carrying FLEX option prints and quotes, operational notices, and other messages that don&#39;t fit a fixed format. One record per OPRA Category C message, written once and never modified.
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return ApiResponse<GetOptionsV1AdminMessages200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getOptionsV1AdminMessagesWithHttpInfo(timestampGt: kotlin.String?, timestampGte: kotlin.String?, timestampLt: kotlin.String?, timestampLte: kotlin.String?, exchange: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsV1AdminMessages200Response?> {
+        val localVariableConfig = getOptionsV1AdminMessagesRequestConfig(timestampGt = timestampGt, timestampGte = timestampGte, timestampLt = timestampLt, timestampLte = timestampLte, exchange = exchange, limit = limit, sort = sort)
+
+        return request<Unit, GetOptionsV1AdminMessages200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getOptionsV1AdminMessages
+     *
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return RequestConfig
+     */
+    fun getOptionsV1AdminMessagesRequestConfig(timestampGt: kotlin.String?, timestampGte: kotlin.String?, timestampLt: kotlin.String?, timestampLte: kotlin.String?, exchange: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (timestampGt != null) {
+                    put("timestamp.gt", listOf(timestampGt.toString()))
+                }
+                if (timestampGte != null) {
+                    put("timestamp.gte", listOf(timestampGte.toString()))
+                }
+                if (timestampLt != null) {
+                    put("timestamp.lt", listOf(timestampLt.toString()))
+                }
+                if (timestampLte != null) {
+                    put("timestamp.lte", listOf(timestampLte.toString()))
+                }
+                if (exchange != null) {
+                    put("exchange", listOf(exchange.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/options/v1/admin-messages",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,

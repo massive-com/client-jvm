@@ -69,6 +69,7 @@ All URIs are relative to *https://api.massive.com*
 | [**getOptionsChain**](DefaultApi.md#getOptionsChain) | **GET** /v3/snapshot/options/{underlyingAsset} | Options Chain |
 | [**getOptionsContract**](DefaultApi.md#getOptionsContract) | **GET** /v3/reference/options/contracts/{options_ticker} | Options Contract |
 | [**getOptionsOpenClose**](DefaultApi.md#getOptionsOpenClose) | **GET** /v1/open-close/{optionsTicker}/{date} | Daily Open/Close |
+| [**getOptionsV1AdminMessages**](DefaultApi.md#getOptionsV1AdminMessages) | **GET** /options/v1/admin-messages |  |
 | [**getOptionsV1Exchanges**](DefaultApi.md#getOptionsV1Exchanges) | **GET** /options/v1/exchanges |  |
 | [**getOptionsV1OpenInterest**](DefaultApi.md#getOptionsV1OpenInterest) | **GET** /options/v1/open-interest |  |
 | [**getOptionsV1UnusualTrades**](DefaultApi.md#getOptionsV1UnusualTrades) | **GET** /options/v1/unusual-trades |  |
@@ -4771,6 +4772,67 @@ try {
 ### Return type
 
 [**GetOptionsOpenClose200Response**](GetOptionsOpenClose200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsV1AdminMessages"></a>
+# **getOptionsV1AdminMessages**
+> GetOptionsV1AdminMessages200Response getOptionsV1AdminMessages(timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
+
+
+
+OPRA administrative messages: the free-text channel of the OPRA feed, carrying FLEX option prints and quotes, operational notices, and other messages that don&#39;t fit a fixed format. One record per OPRA Category C message, written once and never modified.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val timestampGt : kotlin.String = timestampGt_example // kotlin.String | Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+val timestampGte : kotlin.String = timestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+val exchange : kotlin.Long = 789 // kotlin.Long | The exchange ID. See Exchanges mapping for details. Value must be an integer.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'asc' if not specified.
+try {
+    val result : GetOptionsV1AdminMessages200Response = apiInstance.getOptionsV1AdminMessages(timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsV1AdminMessages")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsV1AdminMessages")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **timestampGt** | **kotlin.String**| Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
+| **timestampGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
+| **timestampLt** | **kotlin.String**| Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
+| **timestampLte** | **kotlin.String**| Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
+| **exchange** | **kotlin.Long**| The exchange ID. See Exchanges mapping for details. Value must be an integer. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 1000] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. | [optional] [default to &quot;timestamp.asc&quot;] |
+
+### Return type
+
+[**GetOptionsV1AdminMessages200Response**](GetOptionsV1AdminMessages200Response.md)
 
 ### Authorization
 
