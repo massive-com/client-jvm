@@ -89,6 +89,7 @@ import com.massive.client.models.GetOptionContract200Response
 import com.massive.client.models.GetOptionsChain200Response
 import com.massive.client.models.GetOptionsContract200Response
 import com.massive.client.models.GetOptionsOpenClose200Response
+import com.massive.client.models.GetOptionsV1AdminMessages200Response
 import com.massive.client.models.GetOptionsV1Exchanges200Response
 import com.massive.client.models.GetOptionsV1OpenInterest200Response
 import com.massive.client.models.GetOptionsV1UnusualTrades200Response
@@ -1403,6 +1404,20 @@ class DefaultApiTest : ShouldSpec() {
             //val date : java.time.LocalDate = 2023-01-09 // java.time.LocalDate | The date of the requested open/close in the format YYYY-MM-DD.
             //val adjusted : kotlin.Boolean = true // kotlin.Boolean | Whether or not the results are adjusted for splits.  By default, results are adjusted. Set this to false to get results that are NOT adjusted for splits. 
             //val result : GetOptionsOpenClose200Response = apiInstance.getOptionsOpenClose(optionsTicker, date, adjusted)
+            //result shouldBe ("TODO")
+        }
+
+        // to test getOptionsV1AdminMessages
+        should("test getOptionsV1AdminMessages") {
+            // uncomment below to test getOptionsV1AdminMessages
+            //val timestampGt : kotlin.String = timestampGt_example // kotlin.String | Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+            //val timestampGte : kotlin.String = timestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+            //val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+            //val timestampLte : kotlin.String = timestampLte_example // kotlin.String | Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
+            //val exchange : kotlin.Long = 789 // kotlin.Long | The exchange ID. See Exchanges mapping for details. Value must be an integer.
+            //val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
+            //val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'asc' if not specified.
+            //val result : GetOptionsV1AdminMessages200Response = apiInstance.getOptionsV1AdminMessages(timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
             //result shouldBe ("TODO")
         }
 
