@@ -21,7 +21,7 @@
 | **ticker** | **kotlin.String** | The ticker for the option contract. |  [optional] |
 | **type** | [**inline**](#Type) | The type of option contract: standard or binary. It can be missing, for example on contracts listed before this field was added, so a missing type says nothing about the contract. |  [optional] |
 | **underlyingTicker** | **kotlin.String** | The underlying ticker that the option contract relates to. |  [optional] |
-| **underlyingType** | [**inline**](#UnderlyingType) | What the contract is based on. For now only set on KPI binary options, as kpi. |  [optional] |
+| **underlyingType** | [**inline**](#UnderlyingType) | What the contract is based on: kpi on Cboe KPI binary options, equity on NYSE American equity binary options (roots that start with B1). Missing on other contracts for now. |  [optional] |
 
 
 <a id="ExerciseStyle"></a>
@@ -49,7 +49,7 @@
 ## Enum: underlying_type
 | Name | Value |
 | ---- | ----- |
-| underlyingType | kpi |
+| underlyingType | kpi, equity |
 
 
 
