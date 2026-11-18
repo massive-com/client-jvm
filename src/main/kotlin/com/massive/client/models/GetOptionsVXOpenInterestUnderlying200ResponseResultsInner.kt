@@ -34,10 +34,6 @@ import com.squareup.moshi.JsonClass
  * @param openInterestCalls Total open interest across the underlying's call contracts.
  * @param openInterestPuts Total open interest across the underlying's put contracts.
  * @param openInterest Total open interest across every contract on the underlying.
- * @param openInterestChange The change in total open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null.
- * @param openInterestChangeCalls The change in call open interest from the previous trading day, including call contracts that have since expired. Null when previous_open_interest is null.
- * @param openInterestChangePuts The change in put open interest from the previous trading day, including put contracts that have since expired. Null when previous_open_interest is null.
- * @param previousOpenInterest Total open interest on the underlying on the previous trading day, including contracts that have since expired. Null if the underlying had no open interest reported that day.
  * @param underlyingTicker The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included.
  */
 
@@ -59,22 +55,6 @@ data class GetOptionsVXOpenInterestUnderlying200ResponseResultsInner (
     /* Total open interest across every contract on the underlying. */
     @Json(name = "open_interest")
     val openInterest: kotlin.Long? = null,
-
-    /* The change in total open interest from the previous trading day (open_interest - previous_open_interest). Null when previous_open_interest is null. */
-    @Json(name = "open_interest_change")
-    val openInterestChange: kotlin.Long? = null,
-
-    /* The change in call open interest from the previous trading day, including call contracts that have since expired. Null when previous_open_interest is null. */
-    @Json(name = "open_interest_change_calls")
-    val openInterestChangeCalls: kotlin.Long? = null,
-
-    /* The change in put open interest from the previous trading day, including put contracts that have since expired. Null when previous_open_interest is null. */
-    @Json(name = "open_interest_change_puts")
-    val openInterestChangePuts: kotlin.Long? = null,
-
-    /* Total open interest on the underlying on the previous trading day, including contracts that have since expired. Null if the underlying had no open interest reported that day. */
-    @Json(name = "previous_open_interest")
-    val previousOpenInterest: kotlin.Long? = null,
 
     /* The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included. */
     @Json(name = "underlying_ticker")
