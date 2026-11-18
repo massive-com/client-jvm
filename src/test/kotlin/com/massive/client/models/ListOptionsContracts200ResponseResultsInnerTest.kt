@@ -136,7 +136,7 @@ class ListOptionsContracts200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.underlyingTicker shouldBe ("TODO")
         }
 
-        // to test the property `underlyingType` - What the contract is based on. For now only set on KPI binary options, as kpi.
+        // to test the property `underlyingType` - What the contract is based on: kpi on Cboe KPI binary options, equity on NYSE American equity binary options (roots that start with B1). Missing on other contracts for now.
         should("test underlyingType") {
             // uncomment below to test the property
             //modelInstance.underlyingType shouldBe ("TODO")

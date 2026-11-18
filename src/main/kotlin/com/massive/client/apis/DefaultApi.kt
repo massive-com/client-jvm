@@ -89,6 +89,8 @@ import com.massive.client.models.GetOptionContract200Response
 import com.massive.client.models.GetOptionsChain200Response
 import com.massive.client.models.GetOptionsContract200Response
 import com.massive.client.models.GetOptionsOpenClose200Response
+import com.massive.client.models.GetOptionsV1AdminMessages200Response
+import com.massive.client.models.GetOptionsV1Analytics200Response
 import com.massive.client.models.GetOptionsV1Exchanges200Response
 import com.massive.client.models.GetOptionsV1OpenInterest200Response
 import com.massive.client.models.GetOptionsV1UnusualTrades200Response
@@ -10215,6 +10217,310 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/v1/open-close/{optionsTicker}/{date}".replace("{"+"optionsTicker"+"}", encodeURIComponent(optionsTicker.toString())).replace("{"+"date"+"}", encodeURIComponent(date.toString())),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * GET /options/v1/admin-messages
+     * 
+     * OPRA administrative messages: the free-text channel of the OPRA feed, carrying FLEX option prints and quotes, operational notices, and other messages that don&#39;t fit a fixed format. One record per OPRA Category C message, written once and never modified.
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return GetOptionsV1AdminMessages200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getOptionsV1AdminMessages(timestampGt: kotlin.String? = null, timestampGte: kotlin.String? = null, timestampLt: kotlin.String? = null, timestampLte: kotlin.String? = null, exchange: kotlin.Long? = null, limit: kotlin.Int? = 1000, sort: kotlin.String? = "timestamp.asc") : GetOptionsV1AdminMessages200Response {
+        val localVarResponse = getOptionsV1AdminMessagesWithHttpInfo(timestampGt = timestampGt, timestampGte = timestampGte, timestampLt = timestampLt, timestampLte = timestampLte, exchange = exchange, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsV1AdminMessages200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /options/v1/admin-messages
+     * 
+     * OPRA administrative messages: the free-text channel of the OPRA feed, carrying FLEX option prints and quotes, operational notices, and other messages that don&#39;t fit a fixed format. One record per OPRA Category C message, written once and never modified.
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return ApiResponse<GetOptionsV1AdminMessages200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getOptionsV1AdminMessagesWithHttpInfo(timestampGt: kotlin.String?, timestampGte: kotlin.String?, timestampLt: kotlin.String?, timestampLte: kotlin.String?, exchange: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsV1AdminMessages200Response?> {
+        val localVariableConfig = getOptionsV1AdminMessagesRequestConfig(timestampGt = timestampGt, timestampGte = timestampGte, timestampLt = timestampLt, timestampLte = timestampLte, exchange = exchange, limit = limit, sort = sort)
+
+        return request<Unit, GetOptionsV1AdminMessages200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getOptionsV1AdminMessages
+     *
+     * @param timestampGt Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
+     * @param exchange The exchange ID. See Exchanges mapping for details. Value must be an integer. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;asc&#39; if not specified. (optional, default to "timestamp.asc")
+     * @return RequestConfig
+     */
+    fun getOptionsV1AdminMessagesRequestConfig(timestampGt: kotlin.String?, timestampGte: kotlin.String?, timestampLt: kotlin.String?, timestampLte: kotlin.String?, exchange: kotlin.Long?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (timestampGt != null) {
+                    put("timestamp.gt", listOf(timestampGt.toString()))
+                }
+                if (timestampGte != null) {
+                    put("timestamp.gte", listOf(timestampGte.toString()))
+                }
+                if (timestampLt != null) {
+                    put("timestamp.lt", listOf(timestampLt.toString()))
+                }
+                if (timestampLte != null) {
+                    put("timestamp.lte", listOf(timestampLte.toString()))
+                }
+                if (exchange != null) {
+                    put("exchange", listOf(exchange.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/options/v1/admin-messages",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
+    }
+
+    /**
+     * enum for parameter contractType
+     */
+     enum class ContractTypeGetOptionsV1Analytics(val value: kotlin.String) {
+         @Json(name = "call") call("call"),
+         @Json(name = "put") put("put");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * enum for parameter contractTypeAnyOf
+     */
+     enum class ContractTypeAnyOfGetOptionsV1Analytics(val value: kotlin.String) {
+         @Json(name = "call") call("call"),
+         @Json(name = "put") put("put");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /options/v1/analytics
+     * 
+     * Daily end-of-day greeks and implied volatility for every listed US options contract, with every input used to compute them.
+     * @param ticker Options contract ticker in Massive format (e.g. O:AMD261121C00220000) (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param underlyingTicker Underlying symbol (optional)
+     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate Contract expiration date Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param contractType call or put (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param date The trading date the values reflect Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return GetOptionsV1Analytics200Response
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getOptionsV1Analytics(ticker: kotlin.String? = null, tickerAnyOf: kotlin.String? = null, underlyingTicker: kotlin.String? = null, underlyingTickerAnyOf: kotlin.String? = null, expirationDate: kotlin.String? = null, contractType: ContractTypeGetOptionsV1Analytics? = null, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1Analytics? = null, date: kotlin.String? = null, dateGt: kotlin.String? = null, dateGte: kotlin.String? = null, dateLt: kotlin.String? = null, dateLte: kotlin.String? = null, limit: kotlin.Int? = 1000, sort: kotlin.String? = "date.desc") : GetOptionsV1Analytics200Response {
+        val localVarResponse = getOptionsV1AnalyticsWithHttpInfo(ticker = ticker, tickerAnyOf = tickerAnyOf, underlyingTicker = underlyingTicker, underlyingTickerAnyOf = underlyingTickerAnyOf, expirationDate = expirationDate, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GetOptionsV1Analytics200Response
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * GET /options/v1/analytics
+     * 
+     * Daily end-of-day greeks and implied volatility for every listed US options contract, with every input used to compute them.
+     * @param ticker Options contract ticker in Massive format (e.g. O:AMD261121C00220000) (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param underlyingTicker Underlying symbol (optional)
+     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate Contract expiration date Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param contractType call or put (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param date The trading date the values reflect Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return ApiResponse<GetOptionsV1Analytics200Response?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getOptionsV1AnalyticsWithHttpInfo(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, underlyingTicker: kotlin.String?, underlyingTickerAnyOf: kotlin.String?, expirationDate: kotlin.String?, contractType: ContractTypeGetOptionsV1Analytics?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1Analytics?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : ApiResponse<GetOptionsV1Analytics200Response?> {
+        val localVariableConfig = getOptionsV1AnalyticsRequestConfig(ticker = ticker, tickerAnyOf = tickerAnyOf, underlyingTicker = underlyingTicker, underlyingTickerAnyOf = underlyingTickerAnyOf, expirationDate = expirationDate, contractType = contractType, contractTypeAnyOf = contractTypeAnyOf, date = date, dateGt = dateGt, dateGte = dateGte, dateLt = dateLt, dateLte = dateLte, limit = limit, sort = sort)
+
+        return request<Unit, GetOptionsV1Analytics200Response>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getOptionsV1Analytics
+     *
+     * @param ticker Options contract ticker in Massive format (e.g. O:AMD261121C00220000) (optional)
+     * @param tickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param underlyingTicker Underlying symbol (optional)
+     * @param underlyingTickerAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param expirationDate Contract expiration date Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param contractType call or put (optional)
+     * @param contractTypeAnyOf Filter equal to any of the values. Multiple values can be specified by using a comma separated list. (optional)
+     * @param date The trading date the values reflect Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGt Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateGte Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLt Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param dateLte Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
+     * @param limit Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 1000)
+     * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "date.desc")
+     * @return RequestConfig
+     */
+    fun getOptionsV1AnalyticsRequestConfig(ticker: kotlin.String?, tickerAnyOf: kotlin.String?, underlyingTicker: kotlin.String?, underlyingTickerAnyOf: kotlin.String?, expirationDate: kotlin.String?, contractType: ContractTypeGetOptionsV1Analytics?, contractTypeAnyOf: ContractTypeAnyOfGetOptionsV1Analytics?, date: kotlin.String?, dateGt: kotlin.String?, dateGte: kotlin.String?, dateLt: kotlin.String?, dateLte: kotlin.String?, limit: kotlin.Int?, sort: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (ticker != null) {
+                    put("ticker", listOf(ticker.toString()))
+                }
+                if (tickerAnyOf != null) {
+                    put("ticker.any_of", listOf(tickerAnyOf.toString()))
+                }
+                if (underlyingTicker != null) {
+                    put("underlying_ticker", listOf(underlyingTicker.toString()))
+                }
+                if (underlyingTickerAnyOf != null) {
+                    put("underlying_ticker.any_of", listOf(underlyingTickerAnyOf.toString()))
+                }
+                if (expirationDate != null) {
+                    put("expiration_date", listOf(expirationDate.toString()))
+                }
+                if (contractType != null) {
+                    put("contract_type", listOf(contractType.value))
+                }
+                if (contractTypeAnyOf != null) {
+                    put("contract_type.any_of", listOf(contractTypeAnyOf.value))
+                }
+                if (date != null) {
+                    put("date", listOf(date.toString()))
+                }
+                if (dateGt != null) {
+                    put("date.gt", listOf(dateGt.toString()))
+                }
+                if (dateGte != null) {
+                    put("date.gte", listOf(dateGte.toString()))
+                }
+                if (dateLt != null) {
+                    put("date.lt", listOf(dateLt.toString()))
+                }
+                if (dateLte != null) {
+                    put("date.lte", listOf(dateLte.toString()))
+                }
+                if (limit != null) {
+                    put("limit", listOf(limit.toString()))
+                }
+                if (sort != null) {
+                    put("sort", listOf(sort.toString()))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/options/v1/analytics",
             query = localVariableQuery,
             headers = localVariableHeaders,
             requiresAuthentication = true,
