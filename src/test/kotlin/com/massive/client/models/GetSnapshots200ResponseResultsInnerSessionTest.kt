@@ -57,7 +57,7 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.decimalVolume shouldBe ("TODO")
         }
 
-        // to test the property `earlyTradingChange` - Today's early trading change amount, difference between price and previous close if in early trading hours, otherwise difference between last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`.
+        // to test the property `earlyTradingChange` - Today's early trading change amount. The difference between the price and previous close if in early trading hours, otherwise the difference between the last price during early trading and previous close. For options, this is the price of the contract's last early trading trade today (7:30 to 9:30 AM ET, with the EXHT condition) minus `previous_close`.
         should("test earlyTradingChange") {
             // uncomment below to test the property
             //modelInstance.earlyTradingChange shouldBe ("TODO")
@@ -81,7 +81,7 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.lastUpdated shouldBe ("TODO")
         }
 
-        // to test the property `lateTradingChange` - Today's late trading change amount, difference between price and today's close if in late trading hours, otherwise difference between last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`.
+        // to test the property `lateTradingChange` - Today's late trading change amount. The difference between the price and today's close if in late trading hours, otherwise the difference between the last price during late trading and today's close. For options, this is the price of the contract's last late trading trade today (after the regular session and before 5:00 PM ET, with the EXHT condition) minus today's `close`.
         should("test lateTradingChange") {
             // uncomment below to test the property
             //modelInstance.lateTradingChange shouldBe ("TODO")
@@ -105,6 +105,18 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.`open` shouldBe ("TODO")
         }
 
+        // to test the property `overnightTradingChange` - Today's overnight trading change amount. The difference between the last overnight trade price and `previous_close`. Only present for stocks. The overnight session runs from 9:00 PM ET on the prior calendar day to 4:00 AM ET on the trade date, starting 2026-12-07 with SIP 23/5 extended hours.
+        should("test overnightTradingChange") {
+            // uncomment below to test the property
+            //modelInstance.overnightTradingChange shouldBe ("TODO")
+        }
+
+        // to test the property `overnightTradingChangePercent` - Today's overnight trading change as a percentage of `previous_close`.
+        should("test overnightTradingChangePercent") {
+            // uncomment below to test the property
+            //modelInstance.overnightTradingChangePercent shouldBe ("TODO")
+        }
+
         // to test the property `previousClose` - The closing price of the asset for the previous trading day. This is the correct field for the prior session's reference price, and it is retained across the daily session rollover. It is absent only for an asset with no completed prior session, such as a newly listed ticker or option contract.
         should("test previousClose") {
             // uncomment below to test the property
@@ -117,7 +129,7 @@ class GetSnapshots200ResponseResultsInnerSessionTest : ShouldSpec() {
             //modelInstance.price shouldBe ("TODO")
         }
 
-        // to test the property `regularTradingChange` - Today's change in regular trading hours, difference between current price and previous trading day's close, otherwise difference between today's close and previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading.
+        // to test the property `regularTradingChange` - Today's change in regular trading hours. The difference between current price and the previous trading day's close, otherwise the difference between today's close and the previous day's close. For options, while `market_status` is `open` this is the price of the contract's last regular session trade today minus `previous_close`. During late trading and after the close, it is today's `close` minus `previous_close`. It is omitted during early trading.
         should("test regularTradingChange") {
             // uncomment below to test the property
             //modelInstance.regularTradingChange shouldBe ("TODO")
