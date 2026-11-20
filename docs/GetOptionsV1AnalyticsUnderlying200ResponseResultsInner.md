@@ -1,0 +1,25 @@
+
+# GetOptionsV1AnalyticsUnderlying200ResponseResultsInner
+
+## Properties
+| Name | Type | Description | Notes |
+| ------------ | ------------- | ------------- | ------------- |
+| **date** | [**java.time.LocalDate**](java.time.LocalDate.md) | The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day&#39;s close. Greeks are from 15 minutes before the close on date. |  |
+| **callWall** | **kotlin.Double** | The strike price at or above underlying_price with the largest call gamma exposure, summed over all expiration dates. If strike prices tie, the one nearest underlying_price. Null if no call contract at or above underlying_price has gamma exposure. |  [optional] |
+| **deltaExposure** | **kotlin.Double** | Delta exposure in dollars: the sum of open interest x 100 x delta x underlying_price. Put deltas are negative. Null if no contract has Greeks. |  [optional] |
+| **excludedOpenInterest** | **kotlin.Long** | Open interest of binary options and of the contracts that do not have a standard deliverable of 100 shares, for example contracts adjusted after a corporate action. These contracts are not in any other field. |  [optional] |
+| **gammaExposure** | **kotlin.Double** | Net gamma exposure in dollars per 1% move of the underlying price: the sum of open interest x 100 x gamma x underlying_price² x 0.01, with calls positive and puts negative. Null if no contract has Greeks. |  [optional] |
+| **gammaExposureCalls** | **kotlin.Double** | Gamma exposure of the call contracts (positive). Null if no call contract has Greeks. |  [optional] |
+| **gammaExposurePuts** | **kotlin.Double** | Gamma exposure of the put contracts (negative). Null if no put contract has Greeks. |  [optional] |
+| **gammaFlip** | **kotlin.Double** | The price where the running sum of net gamma exposure changes sign. The sum runs over the strike prices from the lowest up, and the price is interpolated linearly between the two adjacent strike prices. If the sum changes sign more than once, the crossing nearest underlying_price. Strike prices without gamma exposure are skipped. Null if the sum does not change sign. |  [optional] |
+| **openInterest** | **kotlin.Long** | Total open interest of the standard (not binary) contracts with a standard deliverable of 100 shares. |  [optional] |
+| **openInterestCalls** | **kotlin.Long** | Total open interest of the standard (not binary) call contracts with a standard deliverable of 100 shares. |  [optional] |
+| **openInterestPuts** | **kotlin.Long** | Total open interest of the standard (not binary) put contracts with a standard deliverable of 100 shares. |  [optional] |
+| **openInterestWithGreeks** | **kotlin.Long** | Open interest of the contracts that count in the exposure values: contracts with open interest above 0 and a gamma and a delta. |  [optional] |
+| **putCallRatio** | **kotlin.Double** | open_interest_puts divided by open_interest_calls. Null if there is no call open interest. |  [optional] |
+| **putWall** | **kotlin.Double** | The strike price at or below underlying_price with the most negative put gamma exposure, summed over all expiration dates. If strike prices tie, the one nearest underlying_price. Null if no put contract at or below underlying_price has gamma exposure. |  [optional] |
+| **underlyingPrice** | **kotlin.Double** | The underlying price used for the Greeks: the last SIP trade, or the last published index value, at or before 15 minutes before the close. Null if no contract has Greeks. |  [optional] |
+| **underlyingTicker** | **kotlin.String** | The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset. |  [optional] |
+
+
+

@@ -34,6 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param cusip The CUSIP identifier for the held security.
  * @param fileNumber The 13F-specific file number assigned to the filer.
  * @param filerCik SEC Central Index Key (10 digits, zero-padded) of the filing entity.
+ * @param filerName Name of the institutional investment manager filing the report, as reported on the filing's cover page. Null for older text-format filings (before mid-2013), which do not report it in a structured field.
  * @param filingDate Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD).
  * @param filingUrl Direct URL to the filing on the SEC EDGAR website.
  * @param filmNumber SEC EDGAR film number for the filing.
@@ -70,6 +71,10 @@ data class GetStocksFilingsVX13F200ResponseResultsInner (
     /* SEC Central Index Key (10 digits, zero-padded) of the filing entity. */
     @Json(name = "filer_cik")
     val filerCik: kotlin.String? = null,
+
+    /* Name of the institutional investment manager filing the report, as reported on the filing's cover page. Null for older text-format filings (before mid-2013), which do not report it in a structured field. */
+    @Json(name = "filer_name")
+    val filerName: kotlin.String? = null,
 
     /* Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). */
     @Json(name = "filing_date")

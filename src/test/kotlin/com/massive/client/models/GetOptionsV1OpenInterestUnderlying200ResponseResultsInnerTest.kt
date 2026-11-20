@@ -26,12 +26,12 @@ package com.massive.client.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.massive.client.models.GetOptionsVXOpenInterestUnderlying200ResponseResultsInner
+import com.massive.client.models.GetOptionsV1OpenInterestUnderlying200ResponseResultsInner
 
-class GetOptionsVXOpenInterestUnderlying200ResponseResultsInnerTest : ShouldSpec() {
+class GetOptionsV1OpenInterestUnderlying200ResponseResultsInnerTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of GetOptionsVXOpenInterestUnderlying200ResponseResultsInner
-        //val modelInstance = GetOptionsVXOpenInterestUnderlying200ResponseResultsInner()
+        // uncomment below to create an instance of GetOptionsV1OpenInterestUnderlying200ResponseResultsInner
+        //val modelInstance = GetOptionsV1OpenInterestUnderlying200ResponseResultsInner()
 
         // to test the property `date` - The trading date the open interest applies to (formatted as YYYY-MM-DD).
         should("test date") {

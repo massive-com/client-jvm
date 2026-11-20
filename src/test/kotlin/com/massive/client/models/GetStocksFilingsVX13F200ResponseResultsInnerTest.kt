@@ -57,6 +57,12 @@ class GetStocksFilingsVX13F200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.filerCik shouldBe ("TODO")
         }
 
+        // to test the property `filerName` - Name of the institutional investment manager filing the report, as reported on the filing's cover page. Null for older text-format filings (before mid-2013), which do not report it in a structured field.
+        should("test filerName") {
+            // uncomment below to test the property
+            //modelInstance.filerName shouldBe ("TODO")
+        }
+
         // to test the property `filingDate` - Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD).
         should("test filingDate") {
             // uncomment below to test the property

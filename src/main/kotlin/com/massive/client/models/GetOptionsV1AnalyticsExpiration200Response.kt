@@ -23,7 +23,7 @@
 
 package com.massive.client.models
 
-import com.massive.client.models.GetOptionsVXOpenInterestUnderlying200ResponseResultsInner
+import com.massive.client.models.GetOptionsV1AnalyticsExpiration200ResponseResultsInner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class GetOptionsVXOpenInterestUnderlying200Response (
+data class GetOptionsV1AnalyticsExpiration200Response (
 
     /* A request id assigned by the server. */
     @Json(name = "request_id")
@@ -46,11 +46,11 @@ data class GetOptionsVXOpenInterestUnderlying200Response (
 
     /* The results for this request. */
     @Json(name = "results")
-    val results: kotlin.collections.List<GetOptionsVXOpenInterestUnderlying200ResponseResultsInner>,
+    val results: kotlin.collections.List<GetOptionsV1AnalyticsExpiration200ResponseResultsInner>,
 
     /* The status of this request's response. */
     @Json(name = "status")
-    val status: GetOptionsVXOpenInterestUnderlying200Response.Status,
+    val status: GetOptionsV1AnalyticsExpiration200Response.Status,
 
     /* If present, this value can be used to fetch the next page. */
     @Json(name = "next_url")

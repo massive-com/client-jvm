@@ -71,12 +71,15 @@ All URIs are relative to *https://api.massive.com*
 | [**getOptionsOpenClose**](DefaultApi.md#getOptionsOpenClose) | **GET** /v1/open-close/{optionsTicker}/{date} | Daily Open/Close |
 | [**getOptionsV1AdminMessages**](DefaultApi.md#getOptionsV1AdminMessages) | **GET** /options/v1/admin-messages |  |
 | [**getOptionsV1Analytics**](DefaultApi.md#getOptionsV1Analytics) | **GET** /options/v1/analytics |  |
+| [**getOptionsV1AnalyticsExpiration**](DefaultApi.md#getOptionsV1AnalyticsExpiration) | **GET** /options/v1/analytics/expiration |  |
+| [**getOptionsV1AnalyticsStrike**](DefaultApi.md#getOptionsV1AnalyticsStrike) | **GET** /options/v1/analytics/strike |  |
+| [**getOptionsV1AnalyticsUnderlying**](DefaultApi.md#getOptionsV1AnalyticsUnderlying) | **GET** /options/v1/analytics/underlying |  |
 | [**getOptionsV1Exchanges**](DefaultApi.md#getOptionsV1Exchanges) | **GET** /options/v1/exchanges |  |
 | [**getOptionsV1OpenInterest**](DefaultApi.md#getOptionsV1OpenInterest) | **GET** /options/v1/open-interest |  |
+| [**getOptionsV1OpenInterestUnderlying**](DefaultApi.md#getOptionsV1OpenInterestUnderlying) | **GET** /options/v1/open-interest/underlying |  |
 | [**getOptionsV1UnusualTrades**](DefaultApi.md#getOptionsV1UnusualTrades) | **GET** /options/v1/unusual-trades |  |
 | [**getOptionsV3QuotesTicker**](DefaultApi.md#getOptionsV3QuotesTicker) | **GET** /options/v3/quotes/{ticker} |  |
 | [**getOptionsV3TradesTicker**](DefaultApi.md#getOptionsV3TradesTicker) | **GET** /options/v3/trades/{ticker} |  |
-| [**getOptionsVXOpenInterestUnderlying**](DefaultApi.md#getOptionsVXOpenInterestUnderlying) | **GET** /options/vX/open-interest/underlying |  |
 | [**getPreviousCryptoAggregates**](DefaultApi.md#getPreviousCryptoAggregates) | **GET** /v2/aggs/ticker/{cryptoTicker}/prev | Previous Close |
 | [**getPreviousForexAggregates**](DefaultApi.md#getPreviousForexAggregates) | **GET** /v2/aggs/ticker/{forexTicker}/prev | Previous Close |
 | [**getPreviousIndicesAggregates**](DefaultApi.md#getPreviousIndicesAggregates) | **GET** /v2/aggs/ticker/{indicesTicker}/prev | Previous Close |
@@ -4788,7 +4791,7 @@ Configure apiKey:
 
 <a id="getOptionsV1AdminMessages"></a>
 # **getOptionsV1AdminMessages**
-> GetOptionsV1AdminMessages200Response getOptionsV1AdminMessages(timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
+> GetOptionsV1AdminMessages200Response getOptionsV1AdminMessages(timestamp, timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
 
 
 
@@ -4801,6 +4804,7 @@ OPRA administrative messages: the free-text channel of the OPRA feed, carrying F
 //import com.massive.client.models.*
 
 val apiInstance = DefaultApi()
+val timestamp : kotlin.String = timestamp_example // kotlin.String | The SIP timestamp in Unix nanoseconds. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
 val timestampGt : kotlin.String = timestampGt_example // kotlin.String | Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
 val timestampGte : kotlin.String = timestampGte_example // kotlin.String | Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
 val timestampLt : kotlin.String = timestampLt_example // kotlin.String | Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted 'yyyy-mm-dd', or ISO 8601/RFC 3339 (e.g. '2024-05-28T20:27:41Z').
@@ -4809,7 +4813,7 @@ val exchange : kotlin.Long = 789 // kotlin.Long | The exchange ID. See Exchanges
 val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
 val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'timestamp' if not specified. The sort order defaults to 'asc' if not specified.
 try {
-    val result : GetOptionsV1AdminMessages200Response = apiInstance.getOptionsV1AdminMessages(timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
+    val result : GetOptionsV1AdminMessages200Response = apiInstance.getOptionsV1AdminMessages(timestamp, timestampGt, timestampGte, timestampLt, timestampLte, exchange, limit, sort)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling DefaultApi#getOptionsV1AdminMessages")
@@ -4821,6 +4825,7 @@ try {
 ```
 
 ### Parameters
+| **timestamp** | **kotlin.String**| The SIP timestamp in Unix nanoseconds. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
 | **timestampGt** | **kotlin.String**| Filter greater than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
 | **timestampGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
 | **timestampLt** | **kotlin.String**| Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). | [optional] |
@@ -4909,6 +4914,221 @@ try {
 ### Return type
 
 [**GetOptionsV1Analytics200Response**](GetOptionsV1Analytics200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsV1AnalyticsExpiration"></a>
+# **getOptionsV1AnalyticsExpiration**
+> GetOptionsV1AnalyticsExpiration200Response getOptionsV1AnalyticsExpiration(underlyingTicker, underlyingTickerAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+
+
+
+Daily options analytics per underlying asset and expiration date: open interest, max pain, gamma exposure and delta exposure. Only standard contracts that deliver 100 shares count.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val expirationDate : kotlin.String = expirationDate_example // kotlin.String | The expiration date of the contracts (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val expirationDateGt : kotlin.String = expirationDateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateGte : kotlin.String = expirationDateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateLt : kotlin.String = expirationDateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val expirationDateLte : kotlin.String = expirationDateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val date : kotlin.String = date_example // kotlin.String | The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day's close. Greeks are from 15 minutes before the close on date. Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsV1AnalyticsExpiration200Response = apiInstance.getOptionsV1AnalyticsExpiration(underlyingTicker, underlyingTickerAnyOf, expirationDate, expirationDateGt, expirationDateGte, expirationDateLt, expirationDateLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsV1AnalyticsExpiration")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsV1AnalyticsExpiration")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **underlyingTicker** | **kotlin.String**| The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **expirationDate** | **kotlin.String**| The expiration date of the contracts (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **expirationDateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **date** | **kotlin.String**| The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day&#39;s close. Greeks are from 15 minutes before the close on date. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsV1AnalyticsExpiration200Response**](GetOptionsV1AnalyticsExpiration200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsV1AnalyticsStrike"></a>
+# **getOptionsV1AnalyticsStrike**
+> GetOptionsV1AnalyticsStrike200Response getOptionsV1AnalyticsStrike(underlyingTicker, underlyingTickerAnyOf, strikePrice, strikePriceGt, strikePriceGte, strikePriceLt, strikePriceLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+
+
+
+Daily options analytics per underlying asset and strike price, summed over all expiration dates: open interest, gamma exposure and delta exposure. Only standard contracts that deliver 100 shares count.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val strikePrice : kotlin.Double = 1.2 // kotlin.Double | The strike price. The values sum the contracts of all expiration dates at this strike price. Value must be a floating point number.
+val strikePriceGt : kotlin.Double = 1.2 // kotlin.Double | Filter greater than the value. Value must be a floating point number.
+val strikePriceGte : kotlin.Double = 1.2 // kotlin.Double | Filter greater than or equal to the value. Value must be a floating point number.
+val strikePriceLt : kotlin.Double = 1.2 // kotlin.Double | Filter less than the value. Value must be a floating point number.
+val strikePriceLte : kotlin.Double = 1.2 // kotlin.Double | Filter less than or equal to the value. Value must be a floating point number.
+val date : kotlin.String = date_example // kotlin.String | The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day's close. Greeks are from 15 minutes before the close on date. Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '1000' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsV1AnalyticsStrike200Response = apiInstance.getOptionsV1AnalyticsStrike(underlyingTicker, underlyingTickerAnyOf, strikePrice, strikePriceGt, strikePriceGte, strikePriceLt, strikePriceLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsV1AnalyticsStrike")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsV1AnalyticsStrike")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **underlyingTicker** | **kotlin.String**| The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **strikePrice** | **kotlin.Double**| The strike price. The values sum the contracts of all expiration dates at this strike price. Value must be a floating point number. | [optional] |
+| **strikePriceGt** | **kotlin.Double**| Filter greater than the value. Value must be a floating point number. | [optional] |
+| **strikePriceGte** | **kotlin.Double**| Filter greater than or equal to the value. Value must be a floating point number. | [optional] |
+| **strikePriceLt** | **kotlin.Double**| Filter less than the value. Value must be a floating point number. | [optional] |
+| **strikePriceLte** | **kotlin.Double**| Filter less than or equal to the value. Value must be a floating point number. | [optional] |
+| **date** | **kotlin.String**| The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day&#39;s close. Greeks are from 15 minutes before the close on date. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;1000&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 1000] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsV1AnalyticsStrike200Response**](GetOptionsV1AnalyticsStrike200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsV1AnalyticsUnderlying"></a>
+# **getOptionsV1AnalyticsUnderlying**
+> GetOptionsV1AnalyticsUnderlying200Response getOptionsV1AnalyticsUnderlying(underlyingTicker, underlyingTickerAnyOf, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+
+
+
+Daily options analytics per underlying asset: open interest, put/call ratio, gamma exposure, delta exposure, the call and put walls, and the gamma flip. Only standard contracts that deliver 100 shares count.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val date : kotlin.String = date_example // kotlin.String | The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day's close. Greeks are from 15 minutes before the close on date. Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsV1AnalyticsUnderlying200Response = apiInstance.getOptionsV1AnalyticsUnderlying(underlyingTicker, underlyingTickerAnyOf, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsV1AnalyticsUnderlying")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsV1AnalyticsUnderlying")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **underlyingTicker** | **kotlin.String**| The ticker of the underlying asset (e.g., AAPL). The values cover every root on the underlying asset. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **date** | **kotlin.String**| The trading date the values apply to (formatted as YYYY-MM-DD). Open interest is as published the morning of date, for the prior trading day&#39;s close. Greeks are from 15 minutes before the close on date. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsV1AnalyticsUnderlying200Response**](GetOptionsV1AnalyticsUnderlying200Response.md)
 
 ### Authorization
 
@@ -5057,6 +5277,79 @@ try {
 ### Return type
 
 [**GetOptionsV1OpenInterest200Response**](GetOptionsV1OpenInterest200Response.md)
+
+### Authorization
+
+
+Configure apiKey:
+    ApiClient.apiKey["apiKey"] = ""
+    ApiClient.apiKeyPrefix["apiKey"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a id="getOptionsV1OpenInterestUnderlying"></a>
+# **getOptionsV1OpenInterestUnderlying**
+> GetOptionsV1OpenInterestUnderlying200Response getOptionsV1OpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+
+
+
+Daily open interest for US options rolled up across each underlying&#39;s whole chain, as reported by OPRA, with the call and put split.
+
+### Example
+```kotlin
+// Import classes:
+//import com.massive.client.infrastructure.*
+//import com.massive.client.models.*
+
+val apiInstance = DefaultApi()
+val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included.
+val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
+val underlyingTickerGt : kotlin.String = underlyingTickerGt_example // kotlin.String | Filter greater than the value.
+val underlyingTickerGte : kotlin.String = underlyingTickerGte_example // kotlin.String | Filter greater than or equal to the value.
+val underlyingTickerLt : kotlin.String = underlyingTickerLt_example // kotlin.String | Filter less than the value.
+val underlyingTickerLte : kotlin.String = underlyingTickerLte_example // kotlin.String | Filter less than or equal to the value.
+val date : kotlin.String = date_example // kotlin.String | The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
+val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
+val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
+val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
+val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
+try {
+    val result : GetOptionsV1OpenInterestUnderlying200Response = apiInstance.getOptionsV1OpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, limit, sort)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DefaultApi#getOptionsV1OpenInterestUnderlying")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DefaultApi#getOptionsV1OpenInterestUnderlying")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| **underlyingTicker** | **kotlin.String**| The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included. | [optional] |
+| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
+| **underlyingTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
+| **underlyingTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
+| **underlyingTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
+| **underlyingTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
+| **date** | **kotlin.String**| The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
+| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
+
+### Return type
+
+[**GetOptionsV1OpenInterestUnderlying200Response**](GetOptionsV1OpenInterestUnderlying200Response.md)
 
 ### Authorization
 
@@ -5256,89 +5549,6 @@ try {
 ### Return type
 
 [**GetOptionsV3TradesTicker200Response**](GetOptionsV3TradesTicker200Response.md)
-
-### Authorization
-
-
-Configure apiKey:
-    ApiClient.apiKey["apiKey"] = ""
-    ApiClient.apiKeyPrefix["apiKey"] = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a id="getOptionsVXOpenInterestUnderlying"></a>
-# **getOptionsVXOpenInterestUnderlying**
-> GetOptionsVXOpenInterestUnderlying200Response getOptionsVXOpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
-
-
-
-Daily open interest for US options rolled up across each underlying&#39;s whole chain, as reported by OPRA, with the call and put split.
-
-### Example
-```kotlin
-// Import classes:
-//import com.massive.client.infrastructure.*
-//import com.massive.client.models.*
-
-val apiInstance = DefaultApi()
-val underlyingTicker : kotlin.String = underlyingTicker_example // kotlin.String | The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included.
-val underlyingTickerAnyOf : kotlin.String = underlyingTickerAnyOf_example // kotlin.String | Filter equal to any of the values. Multiple values can be specified by using a comma separated list.
-val underlyingTickerGt : kotlin.String = underlyingTickerGt_example // kotlin.String | Filter greater than the value.
-val underlyingTickerGte : kotlin.String = underlyingTickerGte_example // kotlin.String | Filter greater than or equal to the value.
-val underlyingTickerLt : kotlin.String = underlyingTickerLt_example // kotlin.String | Filter less than the value.
-val underlyingTickerLte : kotlin.String = underlyingTickerLte_example // kotlin.String | Filter less than or equal to the value.
-val date : kotlin.String = date_example // kotlin.String | The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted 'yyyy-mm-dd'.
-val dateGt : kotlin.String = dateGt_example // kotlin.String | Filter greater than the value. Value must be formatted 'yyyy-mm-dd'.
-val dateGte : kotlin.String = dateGte_example // kotlin.String | Filter greater than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-val dateLt : kotlin.String = dateLt_example // kotlin.String | Filter less than the value. Value must be formatted 'yyyy-mm-dd'.
-val dateLte : kotlin.String = dateLte_example // kotlin.String | Filter less than or equal to the value. Value must be formatted 'yyyy-mm-dd'.
-val openInterest : kotlin.Long = 789 // kotlin.Long | Total open interest across every contract on the underlying. Value must be an integer.
-val openInterestGt : kotlin.Long = 789 // kotlin.Long | Filter greater than the value. Value must be an integer.
-val openInterestGte : kotlin.Long = 789 // kotlin.Long | Filter greater than or equal to the value. Value must be an integer.
-val openInterestLt : kotlin.Long = 789 // kotlin.Long | Filter less than the value. Value must be an integer.
-val openInterestLte : kotlin.Long = 789 // kotlin.Long | Filter less than or equal to the value. Value must be an integer.
-val limit : kotlin.Int = 56 // kotlin.Int | Limit the maximum number of results returned. Defaults to '100' if not specified. The maximum allowed limit is '50000'.
-val sort : kotlin.String = sort_example // kotlin.String | A comma separated list of sort columns. For each column, append '.asc' or '.desc' to specify the sort direction. The sort column defaults to 'date' if not specified. The sort order defaults to 'desc' if not specified.
-try {
-    val result : GetOptionsVXOpenInterestUnderlying200Response = apiInstance.getOptionsVXOpenInterestUnderlying(underlyingTicker, underlyingTickerAnyOf, underlyingTickerGt, underlyingTickerGte, underlyingTickerLt, underlyingTickerLte, date, dateGt, dateGte, dateLt, dateLte, openInterest, openInterestGt, openInterestGte, openInterestLt, openInterestLte, limit, sort)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling DefaultApi#getOptionsVXOpenInterestUnderlying")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling DefaultApi#getOptionsVXOpenInterestUnderlying")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-| **underlyingTicker** | **kotlin.String**| The ticker of the underlying (e.g., SPX). Totals cover every root on the underlying, so weekly roots (SPXW) and roots adjusted after a corporate action (AMCR1) are included. | [optional] |
-| **underlyingTickerAnyOf** | **kotlin.String**| Filter equal to any of the values. Multiple values can be specified by using a comma separated list. | [optional] |
-| **underlyingTickerGt** | **kotlin.String**| Filter greater than the value. | [optional] |
-| **underlyingTickerGte** | **kotlin.String**| Filter greater than or equal to the value. | [optional] |
-| **underlyingTickerLt** | **kotlin.String**| Filter less than the value. | [optional] |
-| **underlyingTickerLte** | **kotlin.String**| Filter less than or equal to the value. | [optional] |
-| **date** | **kotlin.String**| The trading date the open interest applies to (formatted as YYYY-MM-DD). Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **dateGt** | **kotlin.String**| Filter greater than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **dateGte** | **kotlin.String**| Filter greater than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **dateLt** | **kotlin.String**| Filter less than the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **dateLte** | **kotlin.String**| Filter less than or equal to the value. Value must be formatted &#39;yyyy-mm-dd&#39;. | [optional] |
-| **openInterest** | **kotlin.Long**| Total open interest across every contract on the underlying. Value must be an integer. | [optional] |
-| **openInterestGt** | **kotlin.Long**| Filter greater than the value. Value must be an integer. | [optional] |
-| **openInterestGte** | **kotlin.Long**| Filter greater than or equal to the value. Value must be an integer. | [optional] |
-| **openInterestLt** | **kotlin.Long**| Filter less than the value. Value must be an integer. | [optional] |
-| **openInterestLte** | **kotlin.Long**| Filter less than or equal to the value. Value must be an integer. | [optional] |
-| **limit** | **kotlin.Int**| Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. | [optional] [default to 100] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **sort** | **kotlin.String**| A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;date&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. | [optional] [default to &quot;date.desc&quot;] |
-
-### Return type
-
-[**GetOptionsVXOpenInterestUnderlying200Response**](GetOptionsVXOpenInterestUnderlying200Response.md)
 
 ### Authorization
 
