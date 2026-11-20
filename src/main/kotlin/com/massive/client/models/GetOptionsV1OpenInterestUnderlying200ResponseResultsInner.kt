@@ -38,7 +38,7 @@ import com.squareup.moshi.JsonClass
  */
 
 
-data class GetOptionsVXOpenInterestUnderlying200ResponseResultsInner (
+data class GetOptionsV1OpenInterestUnderlying200ResponseResultsInner (
 
     /* The trading date the open interest applies to (formatted as YYYY-MM-DD). */
     @Json(name = "date")

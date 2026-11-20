@@ -26,13 +26,13 @@ package com.massive.client.models
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
-import com.massive.client.models.GetOptionsVXOpenInterestUnderlying200Response
-import com.massive.client.models.GetOptionsVXOpenInterestUnderlying200ResponseResultsInner
+import com.massive.client.models.GetOptionsV1OpenInterestUnderlying200Response
+import com.massive.client.models.GetOptionsV1OpenInterestUnderlying200ResponseResultsInner
 
-class GetOptionsVXOpenInterestUnderlying200ResponseTest : ShouldSpec() {
+class GetOptionsV1OpenInterestUnderlying200ResponseTest : ShouldSpec() {
     init {
-        // uncomment below to create an instance of GetOptionsVXOpenInterestUnderlying200Response
-        //val modelInstance = GetOptionsVXOpenInterestUnderlying200Response()
+        // uncomment below to create an instance of GetOptionsV1OpenInterestUnderlying200Response
+        //val modelInstance = GetOptionsV1OpenInterestUnderlying200Response()
 
         // to test the property `requestId` - A request id assigned by the server.
         should("test requestId") {

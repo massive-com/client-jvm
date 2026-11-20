@@ -8,6 +8,7 @@
 | **cusip** | **kotlin.String** | The CUSIP identifier for the held security. |  [optional] |
 | **fileNumber** | **kotlin.String** | The 13F-specific file number assigned to the filer. |  [optional] |
 | **filerCik** | **kotlin.String** | SEC Central Index Key (10 digits, zero-padded) of the filing entity. |  [optional] |
+| **filerName** | **kotlin.String** | Name of the institutional investment manager filing the report, as reported on the filing&#39;s cover page. Null for older text-format filings (before mid-2013), which do not report it in a structured field. |  [optional] |
 | **filingDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | Date when the filing was submitted to the SEC (formatted as YYYY-MM-DD). |  [optional] |
 | **filingUrl** | **kotlin.String** | Direct URL to the filing on the SEC EDGAR website. |  [optional] |
 | **filmNumber** | **kotlin.String** | SEC EDGAR film number for the filing. |  [optional] |
