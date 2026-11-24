@@ -10,6 +10,7 @@
 | **exchanges** | [**GetMarketStatus200ResponseExchanges**](GetMarketStatus200ResponseExchanges.md) |  |  [optional] |
 | **indicesGroups** | [**GetMarketStatus200ResponseIndicesGroups**](GetMarketStatus200ResponseIndicesGroups.md) |  |  [optional] |
 | **market** | **kotlin.String** | The status of the market as a whole. |  [optional] |
+| **overnight** | **kotlin.Boolean** | Whether or not the market is in overnight hours (9:00 PM to 4:00 AM ET). |  [optional] |
 | **serverTime** | **kotlin.String** | The current time of the server, returned as a date-time in RFC3339 format. |  [optional] |
 
 

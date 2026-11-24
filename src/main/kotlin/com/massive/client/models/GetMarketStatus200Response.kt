@@ -39,6 +39,7 @@ import com.squareup.moshi.JsonClass
  * @param exchanges 
  * @param indicesGroups 
  * @param market The status of the market as a whole.
+ * @param overnight Whether or not the market is in overnight hours (9:00 PM to 4:00 AM ET).
  * @param serverTime The current time of the server, returned as a date-time in RFC3339 format.
  */
 
@@ -65,6 +66,10 @@ data class GetMarketStatus200Response (
     /* The status of the market as a whole. */
     @Json(name = "market")
     val market: kotlin.String? = null,
+
+    /* Whether or not the market is in overnight hours (9:00 PM to 4:00 AM ET). */
+    @Json(name = "overnight")
+    val overnight: kotlin.Boolean? = null,
 
     /* The current time of the server, returned as a date-time in RFC3339 format. */
     @Json(name = "serverTime")

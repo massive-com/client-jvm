@@ -72,6 +72,12 @@ class GetMarketStatus200ResponseTest : ShouldSpec() {
             //modelInstance.market shouldBe ("TODO")
         }
 
+        // to test the property `overnight` - Whether or not the market is in overnight hours (9:00 PM to 4:00 AM ET).
+        should("test overnight") {
+            // uncomment below to test the property
+            //modelInstance.overnight shouldBe ("TODO")
+        }
+
         // to test the property `serverTime` - The current time of the server, returned as a date-time in RFC3339 format.
         should("test serverTime") {
             // uncomment below to test the property
