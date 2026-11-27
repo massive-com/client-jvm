@@ -39,6 +39,12 @@ class GetFuturesV1Exchanges200ResponseResultsInnerTest : ShouldSpec() {
             //modelInstance.id shouldBe ("TODO")
         }
 
+        // to test the property `locale` - Geographic location code where the exchange operates.
+        should("test locale") {
+            // uncomment below to test the property
+            //modelInstance.locale shouldBe ("TODO")
+        }
+
         // to test the property `name` - Full official name of the futures exchange (e.g., 'Chicago Mercantile Exchange', 'New York Mercantile Exchange').
         should("test name") {
             // uncomment below to test the property
@@ -55,12 +61,6 @@ class GetFuturesV1Exchanges200ResponseResultsInnerTest : ShouldSpec() {
         should("test acronym") {
             // uncomment below to test the property
             //modelInstance.acronym shouldBe ("TODO")
-        }
-
-        // to test the property `locale` - Geographic location code where the exchange operates.
-        should("test locale") {
-            // uncomment below to test the property
-            //modelInstance.locale shouldBe ("TODO")
         }
 
         // to test the property `mic` - Market Identifier Code (MIC) - ISO 10383 standard four-character code for the futures market.

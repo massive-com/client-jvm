@@ -10,7 +10,7 @@
 | **low** | **kotlin.Double** | The lowest price reached in the minute bar. |  [optional] |
 | **&#x60;open&#x60;** | **kotlin.Double** | The opening price at the start of the minute bar. |  [optional] |
 | **timeframe** | **kotlin.String** | The timeliness of the data as determined by your subscription. One of REAL-TIME or DELAYED. |  [optional] |
-| **volume** | **kotlin.Long** | The number of contracts traded in the minute bar. |  [optional] |
+| **volume** | **kotlin.Double** | The number of contracts traded in the minute bar. |  [optional] |
 
 
 

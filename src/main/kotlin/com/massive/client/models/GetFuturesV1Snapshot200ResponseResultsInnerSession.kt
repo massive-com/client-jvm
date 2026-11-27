@@ -78,7 +78,7 @@ data class GetFuturesV1Snapshot200ResponseResultsInnerSession (
 
     /* The number of contracts traded in the session. */
     @Json(name = "volume")
-    val volume: kotlin.Long? = null
+    val volume: kotlin.Double? = null
 
 ) {
 

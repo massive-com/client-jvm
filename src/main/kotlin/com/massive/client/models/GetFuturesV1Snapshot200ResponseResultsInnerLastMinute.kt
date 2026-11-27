@@ -68,7 +68,7 @@ data class GetFuturesV1Snapshot200ResponseResultsInnerLastMinute (
 
     /* The number of contracts traded in the minute bar. */
     @Json(name = "volume")
-    val volume: kotlin.Long? = null
+    val volume: kotlin.Double? = null
 
 ) {
 
