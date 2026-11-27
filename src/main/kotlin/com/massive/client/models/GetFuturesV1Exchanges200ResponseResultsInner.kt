@@ -31,10 +31,10 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id Numeric identifier for the futures exchange or trading venue.
+ * @param locale Geographic location code where the exchange operates.
  * @param name Full official name of the futures exchange (e.g., 'Chicago Mercantile Exchange', 'New York Mercantile Exchange').
  * @param type Type of venue - 'exchange' for futures exchanges and derivatives trading platforms.
  * @param acronym Well-known acronym for the exchange (e.g., 'CME', 'NYMEX', 'CBOT', 'COMEX').
- * @param locale Geographic location code where the exchange operates.
  * @param mic Market Identifier Code (MIC) - ISO 10383 standard four-character code for the futures market.
  * @param operatingMic Operating Market Identifier Code for the futures exchange.
  * @param url Official website URL of the futures exchange organization.
@@ -47,6 +47,10 @@ data class GetFuturesV1Exchanges200ResponseResultsInner (
     @Json(name = "id")
     val id: kotlin.String,
 
+    /* Geographic location code where the exchange operates. */
+    @Json(name = "locale")
+    val locale: kotlin.String,
+
     /* Full official name of the futures exchange (e.g., 'Chicago Mercantile Exchange', 'New York Mercantile Exchange'). */
     @Json(name = "name")
     val name: kotlin.String,
@@ -58,10 +62,6 @@ data class GetFuturesV1Exchanges200ResponseResultsInner (
     /* Well-known acronym for the exchange (e.g., 'CME', 'NYMEX', 'CBOT', 'COMEX'). */
     @Json(name = "acronym")
     val acronym: kotlin.String? = null,
-
-    /* Geographic location code where the exchange operates. */
-    @Json(name = "locale")
-    val locale: kotlin.String? = null,
 
     /* Market Identifier Code (MIC) - ISO 10383 standard four-character code for the futures market. */
     @Json(name = "mic")

@@ -12,7 +12,7 @@
 | **&#x60;open&#x60;** | **kotlin.Double** | The opening price at the start of the session. |  [optional] |
 | **previousSettlement** | **kotlin.Double** | The settlement price of the previous session. |  [optional] |
 | **settlementPrice** | **kotlin.Double** | The final settlement price at the end of the session. |  [optional] |
-| **volume** | **kotlin.Long** | The number of contracts traded in the session. |  [optional] |
+| **volume** | **kotlin.Double** | The number of contracts traded in the session. |  [optional] |
 
 
 

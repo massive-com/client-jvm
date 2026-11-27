@@ -31,10 +31,10 @@ import com.squareup.moshi.JsonClass
  * 
  *
  * @param id Numeric identifier for the options trading venue or exchange.
+ * @param locale Geographic location code.
  * @param name Full official name of the options exchange or trading venue.
  * @param type Type of venue: 'exchange' for options exchanges, 'SIP' for Securities Information Processors like OPRA (Options Price Reporting Authority).
  * @param acronym Exchange acronym or short name (e.g., 'ISE', 'GEMX') - may be null for some venues.
- * @param locale Geographic location code.
  * @param mic Market Identifier Code (MIC) - ISO 10383 standard four-character code identifying the specific options market.
  * @param operatingMic Operating Market Identifier Code - identifies the parent organization or operating entity.
  * @param participantId Single-character participant identifier used in consolidator market data feeds and options trade reporting.
@@ -48,6 +48,10 @@ data class GetOptionsV1Exchanges200ResponseResultsInner (
     @Json(name = "id")
     val id: kotlin.String,
 
+    /* Geographic location code. */
+    @Json(name = "locale")
+    val locale: kotlin.String,
+
     /* Full official name of the options exchange or trading venue. */
     @Json(name = "name")
     val name: kotlin.String,
@@ -59,10 +63,6 @@ data class GetOptionsV1Exchanges200ResponseResultsInner (
     /* Exchange acronym or short name (e.g., 'ISE', 'GEMX') - may be null for some venues. */
     @Json(name = "acronym")
     val acronym: kotlin.String? = null,
-
-    /* Geographic location code. */
-    @Json(name = "locale")
-    val locale: kotlin.String? = null,
 
     /* Market Identifier Code (MIC) - ISO 10383 standard four-character code identifying the specific options market. */
     @Json(name = "mic")

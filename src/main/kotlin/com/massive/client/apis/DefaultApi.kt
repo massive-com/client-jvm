@@ -7991,7 +7991,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetFuturesV1QuotesTicker200Response
@@ -8031,7 +8031,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetFuturesV1QuotesTicker200Response?>
@@ -8057,7 +8057,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;100&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 100)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig
@@ -8456,7 +8456,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return GetFuturesV1TradesTicker200Response
@@ -8496,7 +8496,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return ApiResponse<GetFuturesV1TradesTicker200Response?>
@@ -8522,7 +8522,7 @@ open class DefaultApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param timestampGte Filter greater than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLt Filter less than the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
      * @param timestampLte Filter less than or equal to the value. Value must be an integer timestamp in nanoseconds, formatted &#39;yyyy-mm-dd&#39;, or ISO 8601/RFC 3339 (e.g. &#39;2024-05-28T20:27:41Z&#39;). (optional)
-     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. (optional)
+     * @param sessionEndDate Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted &#39;yyyy-mm-dd&#39;. (optional)
      * @param limit Limit the maximum number of results returned. Defaults to &#39;10&#39; if not specified. The maximum allowed limit is &#39;50000&#39;. (optional, default to 10)
      * @param sort A comma separated list of sort columns. For each column, append &#39;.asc&#39; or &#39;.desc&#39; to specify the sort direction. The sort column defaults to &#39;timestamp&#39; if not specified. The sort order defaults to &#39;desc&#39; if not specified. (optional, default to "timestamp.desc")
      * @return RequestConfig

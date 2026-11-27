@@ -33,12 +33,6 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
         // uncomment below to create an instance of GetFuturesV1Products200ResponseResultsInner
         //val modelInstance = GetFuturesV1Products200ResponseResultsInner()
 
-        // to test the property `date` - A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day.
-        should("test date") {
-            // uncomment below to test the property
-            //modelInstance.date shouldBe ("TODO")
-        }
-
         // to test the property `assetClass` - The asset class to which the product belongs.
         should("test assetClass") {
             // uncomment below to test the property
@@ -61,6 +55,12 @@ class GetFuturesV1Products200ResponseResultsInnerTest : ShouldSpec() {
         should("test clearingVenue") {
             // uncomment below to test the property
             //modelInstance.clearingVenue shouldBe ("TODO")
+        }
+
+        // to test the property `date` - A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day.
+        should("test date") {
+            // uncomment below to test the property
+            //modelInstance.date shouldBe ("TODO")
         }
 
         // to test the property `lastUpdated` - The date and time at which this product was last updated.

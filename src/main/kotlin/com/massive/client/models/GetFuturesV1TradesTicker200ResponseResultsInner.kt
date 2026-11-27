@@ -69,7 +69,7 @@ data class GetFuturesV1TradesTicker200ResponseResultsInner (
 
     /* Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. */
     @Json(name = "session_end_date")
-    val sessionEndDate: kotlin.String? = null,
+    val sessionEndDate: java.time.LocalDate? = null,
 
     /* The total number of contracts exchanged between buyers and sellers on a given trade. */
     @Json(name = "size")

@@ -15650,6 +15650,7 @@
                         "required": [
                           "id",
                           "type",
+                          "locale",
                           "name"
                         ],
                         "type": "object"
@@ -16497,9 +16498,6 @@
                             "type": "number"
                           }
                         },
-                        "required": [
-                          "date"
-                        ],
                         "type": "object"
                       },
                       "type": "array"
@@ -16614,7 +16612,7 @@
             }
           },
           {
-            "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.",
+            "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted 'yyyy-mm-dd'.",
             "in": "query",
             "name": "session_end_date",
             "schema": {
@@ -16750,6 +16748,7 @@
                           },
                           "session_end_date": {
                             "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.",
+                            "format": "date",
                             "type": "string"
                           },
                           "ticker": {
@@ -17379,8 +17378,8 @@
                               },
                               "volume": {
                                 "description": "The number of contracts traded in the minute bar.",
-                                "format": "int64",
-                                "type": "integer"
+                                "format": "double",
+                                "type": "number"
                               }
                             },
                             "type": "object"
@@ -17497,13 +17496,16 @@
                               },
                               "volume": {
                                 "description": "The number of contracts traded in the session.",
-                                "format": "int64",
-                                "type": "integer"
+                                "format": "double",
+                                "type": "number"
                               }
                             },
                             "type": "object"
                           }
                         },
+                        "required": [
+                          "details"
+                        ],
                         "type": "object"
                       },
                       "type": "array"
@@ -17618,7 +17620,7 @@
             }
           },
           {
-            "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.",
+            "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. Value must be formatted 'yyyy-mm-dd'.",
             "in": "query",
             "name": "session_end_date",
             "schema": {
@@ -17729,6 +17731,7 @@
                           },
                           "session_end_date": {
                             "description": "Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format.",
+                            "format": "date",
                             "type": "string"
                           },
                           "size": {
@@ -19447,6 +19450,7 @@
                         "required": [
                           "id",
                           "type",
+                          "locale",
                           "name"
                         ],
                         "type": "object"
@@ -29677,6 +29681,7 @@
                         "required": [
                           "id",
                           "type",
+                          "locale",
                           "name"
                         ],
                         "type": "object"

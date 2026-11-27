@@ -46,7 +46,7 @@ import com.squareup.moshi.JsonClass
 data class GetFuturesV1Snapshot200ResponseResultsInner (
 
     @Json(name = "details")
-    val details: GetFuturesV1Snapshot200ResponseResultsInnerDetails? = null,
+    val details: GetFuturesV1Snapshot200ResponseResultsInnerDetails,
 
     @Json(name = "last_minute")
     val lastMinute: GetFuturesV1Snapshot200ResponseResultsInnerLastMinute? = null,

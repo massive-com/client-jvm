@@ -4,11 +4,11 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **date** | [**java.time.LocalDate**](java.time.LocalDate.md) | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. |  |
 | **assetClass** | **kotlin.String** | The asset class to which the product belongs. |  [optional] |
 | **assetSubClass** | **kotlin.String** | The asset sub-class to which the product belongs. |  [optional] |
 | **clearingSymbol** | **kotlin.String** | The clearing symbol assigned to this product by the exchange&#39;s clearing house. |  [optional] |
 | **clearingVenue** | **kotlin.String** | The exchange identifier for the clearing house that clears this product&#39;s contracts. |  [optional] |
+| **date** | [**java.time.LocalDate**](java.time.LocalDate.md) | A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. |  [optional] |
 | **lastUpdated** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | The date and time at which this product was last updated. |  [optional] |
 | **name** | **kotlin.String** | The full name of the product. |  [optional] |
 | **priceQuotation** | **kotlin.String** | The quoted price for this product. |  [optional] |

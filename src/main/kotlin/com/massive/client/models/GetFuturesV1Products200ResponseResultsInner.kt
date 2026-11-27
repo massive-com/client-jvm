@@ -30,11 +30,11 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day.
  * @param assetClass The asset class to which the product belongs.
  * @param assetSubClass The asset sub-class to which the product belongs.
  * @param clearingSymbol The clearing symbol assigned to this product by the exchange's clearing house.
  * @param clearingVenue The exchange identifier for the clearing house that clears this product's contracts.
+ * @param date A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day.
  * @param lastUpdated The date and time at which this product was last updated.
  * @param name The full name of the product.
  * @param priceQuotation The quoted price for this product.
@@ -56,10 +56,6 @@ import com.squareup.moshi.JsonClass
 
 data class GetFuturesV1Products200ResponseResultsInner (
 
-    /* A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. */
-    @Json(name = "date")
-    val date: java.time.LocalDate,
-
     /* The asset class to which the product belongs. */
     @Json(name = "asset_class")
     val assetClass: kotlin.String? = null,
@@ -75,6 +71,10 @@ data class GetFuturesV1Products200ResponseResultsInner (
     /* The exchange identifier for the clearing house that clears this product's contracts. */
     @Json(name = "clearing_venue")
     val clearingVenue: kotlin.String? = null,
+
+    /* A date string in the format YYYY-MM-DD. This parameter will return point-in-time information about products for the specified day. */
+    @Json(name = "date")
+    val date: java.time.LocalDate? = null,
 
     /* The date and time at which this product was last updated. */
     @Json(name = "last_updated")

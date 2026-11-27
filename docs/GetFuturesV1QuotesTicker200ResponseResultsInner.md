@@ -15,7 +15,7 @@
 | **bidPrice** | **kotlin.Double** | The bid price is expressed per unit of the underlying asset, and you apply the contract multiplier to get the full contract value. |  [optional] |
 | **bidSize** | **kotlin.Int** | The quote size represents the number of futures contracts available at the given bid price. |  [optional] |
 | **bidTimestamp** | **kotlin.Long** | The time when the bid price was submitted to the exchange. |  [optional] |
-| **sessionEndDate** | **kotlin.String** | Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. |  [optional] |
+| **sessionEndDate** | [**java.time.LocalDate**](java.time.LocalDate.md) | Also known as the trading date, the date of the end of the trading session, in YYYY-MM-DD format. |  [optional] |
 
 
 
